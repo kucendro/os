@@ -69,27 +69,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Users
-  users.users.kucendro = {
-    isNormalUser = true;
-    description = "Ondřej Kučera";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    thunderbird
-    ];
-  };
-
-  # Programs --------------------------------------------------------
-  programs.firefox.enable = true;
-  
-  programs.git.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # SUID wrappers
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
@@ -107,10 +87,8 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  
+  # Packages --------------------------------------------------------
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
      wget
      vscode
@@ -122,4 +100,18 @@
      krita
      inkscape
   ];
+
+  # Programs --------------------------------------------------------
+  programs.firefox.enable = true;
+  programs.git.enable = true;
+
+  # Users -----------------------------------------------------------
+  users.users.kucendro = {
+    isNormalUser = true;
+    description = "Ondřej Kučera";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+    thunderbird
+    ];
+  };
 }

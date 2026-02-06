@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Kucendro Nixbook Flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -9,15 +9,18 @@
           inputs.nixpkgs.follows = "nixpkgs";
         };
 
+    sops-nix.url = "github:Mic92/sops-nix";
+
   };
 
-  outputs = { self, nixpkgs, asus-numberpad-driver, ... } @ inputs: {
+  outputs = { self, nixpkgs, asus-numberpad-driver, sops-nix, ... } @ inputs: {
     
     nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
             modules = [
                 ./configuration.nix
                 asus-numberpad-driver.nixosModules.default
+                sops-nix.nixosModules.sops
             ];
         };
 

@@ -83,7 +83,7 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedUDPPorts = [ 51820 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -106,9 +106,11 @@
   environment.systemPackages = with pkgs; [
     # ! I am f bitch. Idiot do not all user pkgs and apps to global!!!
      wget
-     wine64
+     wine64505
      fastfetch
      btop
+     aqe
+     sops
   ];
 
   # Programs --------------------------------------------------------

@@ -3,9 +3,10 @@
 {
   
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
-      ./myconfiguration.nix
+      ./config/configuration.nix
+      ./vpns/wg.nix
     ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!

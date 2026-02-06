@@ -16,6 +16,8 @@
 
   networking.networkmanager.enable = true;
 
+  services.resolved.enable = true;
+
   time.timeZone = "Europe/Prague";
 
   i18n.defaultLocale = "en_US.UTF-8";

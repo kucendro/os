@@ -40,6 +40,22 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  services.xserver.desktopManager.gnome = {
+
+    extraGSettingsOverridePackages = with pkgs; [ pkgs.gnome-settings-daemon ];
+    extraGSettingsOverrides = ''
+      [org.gnome.settings-daemon.plugins.media-keys]
+      custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+
+      [org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0]
+      binding='<Super>space'
+      command='vicinae toggle'
+      name='Vicinae toggle'
+    '';
+  };
+
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "cz";

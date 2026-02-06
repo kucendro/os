@@ -87,6 +87,4 @@
   networking.firewall.allowedUDPPorts = [ 51820 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  users.defaultUserShell = pkgs.zsh;
 }

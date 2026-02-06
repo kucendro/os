@@ -11,6 +11,7 @@
       ./custom/zenbook.nix
       ./packages/global-packages.nix
       ./users/kucendro.nix
+      ./zsh/zsh.nix
     ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!

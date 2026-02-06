@@ -1,15 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  users.defaultUserShell = pkgs.zsh;
+
   programs.zsh = {
   enable = true;
   enableCompletion = true;
-  autosuggestion.enable = true;
+  autosuggestions.enable = true;
   syntaxHighlighting.enable = true;
 
   shellAliases = {
     rebuild = "~/nixos/rebuild.sh";
   };
-  history.size = 10000;
 };
 }

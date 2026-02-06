@@ -15,6 +15,7 @@
     cider-2
     element-desktop
     vicinae
+    starship
     ];
   };
 }

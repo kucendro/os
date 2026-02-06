@@ -40,22 +40,6 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  services.xserver.desktopManager.gnome = {
-
-    extraGSettingsOverridePackages = with pkgs; [ pkgs.gnome-settings-daemon ];
-    extraGSettingsOverrides = ''
-      [org.gnome.settings-daemon.plugins.media-keys]
-      custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
-
-
-      [org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0]
-      binding='<Super>space'
-      command='vicinae toggle'
-      name='Vicinae toggle'
-    '';
-  };
-
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "cz";
@@ -103,37 +87,6 @@
   networking.firewall.allowedUDPPorts = [ 51820 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # Numpad
-  services.asus-numberpad-driver = {
-    enable = true;
-    layout = "up5401ea";
-    wayland = true;
-    runtimeDir = "/run/user/1000/";
-    waylandDisplay = "wayland-0";
-    ignoreWaylandDisplayEnv = false;
-    config = {
-      "activation_time" = "0.3";
-      # More Configuration Options
-    };
-  };
-
-  # Packages --------------------------------------------------------
-  nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    # ! I am f bitch. Idiot do not all user pkgs and apps to global!!!
-     wget
-     wine64
-     fastfetch
-     btop
-     sops
-     age
-     owntone
-  ];
-
-  # Programs --------------------------------------------------------
-  programs.firefox.enable = true;
-  programs.git.enable = true;
 
   # Users -----------------------------------------------------------
   users.users.kucendro = {

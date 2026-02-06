@@ -88,5 +88,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  users.defaultUserShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.zsh;
 }

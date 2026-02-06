@@ -132,6 +132,7 @@
     slack
     vscode
     cider-2
+    shairport-sync-airplay2
     ];
   };
 }

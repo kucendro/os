@@ -90,15 +90,11 @@
   # Packages --------------------------------------------------------
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    # ! I am f bitch. Idiot do not all user pkgs and apps to global!!!
      wget
-     vscode
-     slack
      wine64
-     gimp2
      fastfetch
      btop
-     krita
-     inkscape
   ];
 
   # Programs --------------------------------------------------------
@@ -112,6 +108,11 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     thunderbird
+    inkscape
+    krita
+    gimp2
+    slack
+    vscode
     ];
   };
 }

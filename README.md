@@ -1,3 +1,5 @@
 ## What the hell is NixOS?
 
-`sudo nixos-rebuild switch --flake .`
+Just run `rebuild`
+
+Or on first try: `sudo nixos-rebuild switch --flake .`

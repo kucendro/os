@@ -7,6 +7,7 @@
       ./hardware-configuration.nix
       ./config/configuration.nix
       ./vpns/wg.nix
+      ./config/home.nix
     ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!

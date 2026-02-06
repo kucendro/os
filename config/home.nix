@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
 {
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      rebuild = "~/nixos/rebuild.sh";
+    };
+  };
+
 #   sops = {
 #     age.keyFile = "/home/kucendro/.config/sops/age/keys.txt"; # must have no password!
 

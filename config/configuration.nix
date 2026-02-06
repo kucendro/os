@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
-{
 
+{
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -87,22 +87,4 @@
   networking.firewall.allowedUDPPorts = [ 51820 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # Users -----------------------------------------------------------
-  users.users.kucendro = {
-    isNormalUser = true;
-    description = "Ondřej Kučera";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    thunderbird
-    inkscape
-    krita
-    gimp2
-    slack
-    vscode
-    cider-2
-    element-desktop
-    vicinae
-    ];
-  };
 }

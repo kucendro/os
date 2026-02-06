@@ -131,6 +131,7 @@
     gimp2
     slack
     vscode
+    cider-2
     ];
   };
 }

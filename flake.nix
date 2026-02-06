@@ -13,7 +13,7 @@
 
   outputs = { self, nixpkgs, asus-numberpad-driver, ... } @ inputs: {
     
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
             modules = [
                 ./configuration.nix

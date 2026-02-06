@@ -16,7 +16,7 @@
 
   networking.networkmanager.enable = true;
 
-  services.resolved.enable = true;
+  # pak asi pro wg zapnout ig services.resolved.enable = true;
 
   time.timeZone = "Europe/Prague";
 
@@ -81,7 +81,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.cloudflare-warp.enable = true;
+  # services.cloudflare-warp.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

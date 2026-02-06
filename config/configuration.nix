@@ -106,7 +106,7 @@
   environment.systemPackages = with pkgs; [
     # ! I am f bitch. Idiot do not all user pkgs and apps to global!!!
      wget
-     wine64505
+     wine64
      fastfetch
      btop
      aqe

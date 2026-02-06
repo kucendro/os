@@ -109,7 +109,7 @@
      wine64
      fastfetch
      btop
-     aqe
+     aqe-keygen
      sops
   ];
 

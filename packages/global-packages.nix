@@ -11,7 +11,7 @@
      age
      owntone
      nixfmt
-     zsh
+     nushell
      starship
   ];
 }

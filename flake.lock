@@ -52,31 +52,10 @@
         "type": "github"
       }
     },
-    "noctalia": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770412437,
-        "narHash": "sha256-9ucnEc1GYaaFgfwNoXfUoj0EG3NZB6IIs1JBN8A40Nk=",
-        "owner": "noctalia-dev",
-        "repo": "noctalia-shell",
-        "rev": "72168bb47af6e6c3367b912f29e14c01f92473dd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "noctalia-dev",
-        "repo": "noctalia-shell",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "asus-numberpad-driver": "asus-numberpad-driver",
         "nixpkgs": "nixpkgs",
-        "noctalia": "noctalia",
         "sops-nix": "sops-nix"
       }
     },

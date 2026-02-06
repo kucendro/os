@@ -11,6 +11,7 @@
     ./packages/global-packages.nix
     ./users/kucendro.nix
     ./zsh/zsh.nix
+    ./display/hyprland.nix
   ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!

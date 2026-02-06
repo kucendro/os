@@ -87,6 +87,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Numpad
   services.asus-numberpad-driver = {
     enable = true;
     layout = "up5401ea";
@@ -95,7 +96,7 @@
     waylandDisplay = "wayland-0";
     ignoreWaylandDisplayEnv = false;
     config = {
-      # e.g. "activation_time" = "0.5";
+      "activation_time" = "0.3";
       # More Configuration Options
     };
   };

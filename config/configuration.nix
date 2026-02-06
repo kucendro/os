@@ -113,6 +113,7 @@
      btop
      sops
      age
+     owntone
   ];
 
   # Programs --------------------------------------------------------
@@ -132,7 +133,6 @@
     slack
     vscode
     cider-2
-    owntone
     ];
   };
 }

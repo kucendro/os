@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -24,6 +29,7 @@
       nixpkgs,
       asus-numberpad-driver,
       sops-nix,
+      home-manager,
       ...
     }@inputs:
     {
@@ -35,6 +41,12 @@
           asus-numberpad-driver.nixosModules.default
           sops-nix.nixosModules.sops
           ./display/noctalia.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.kucendro = import ./users/home.nix;
+          }
         ];
       };
 

@@ -51,7 +51,7 @@
         "monitors": [
         ],
         "outerCorners": true,
-        "position": "top",
+        "position": "left",
         "screenOverrides": [
         ],
         "showCapsule": true,
@@ -110,9 +110,8 @@
                     "useDistroLogo": true
                 },
                 {
-                    "icon": "rocket",
-                    "iconColor": "primary",
-                    "id": "Launcher"
+                    "id": "Spacer",
+                    "width": 10
                 },
                 {
                     "clockColor": "secondary",

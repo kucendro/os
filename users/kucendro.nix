@@ -15,6 +15,8 @@
     cider-2
     element-desktop
     starship
+    orca-slicer
+    prusa-slicer
     ];
   };
 }

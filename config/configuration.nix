@@ -39,12 +39,6 @@
     LC_TIME = "cs_CZ.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "cz";
-    variant = "";
-  };
-
   # Configure console keymap
   console.keyMap = "cz-lat2";
 

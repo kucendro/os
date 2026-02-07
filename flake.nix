@@ -11,10 +11,10 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    # noctalia = {
-    #   url = "github:noctalia-dev/noctalia-shell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -34,7 +34,7 @@
           ./configuration.nix
           asus-numberpad-driver.nixosModules.default
           sops-nix.nixosModules.sops
-          # ./display/noctalia.nix
+          ./display/noctalia.nix
         ];
       };
 

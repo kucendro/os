@@ -13,5 +13,6 @@
     nixfmt
     kitty
     adwaita-icon-theme
+    nautilus
   ];
 }

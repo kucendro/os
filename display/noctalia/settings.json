@@ -49,6 +49,7 @@
         "marginHorizontal": 4,
         "marginVertical": 4,
         "monitors": [
+            "eDP-1"
         ],
         "outerCorners": true,
         "position": "left",
@@ -324,6 +325,17 @@
                         "showBackground": true,
                         "x": 1660,
                         "y": 960
+                    },
+                    {
+                        "clockColor": "none",
+                        "clockStyle": "digital",
+                        "format": "HH:mm\\nd MMMM yyyy",
+                        "id": "Clock",
+                        "scale": 1.5449694059691637,
+                        "showBackground": true,
+                        "useCustomFont": false,
+                        "x": 1660,
+                        "y": 20
                     }
                 ]
             }

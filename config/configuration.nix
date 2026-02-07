@@ -70,6 +70,10 @@
   #   enableSSHSupport = true;
   # };
 
+  # Keyring (needed for apps like kDrive that store tokens via Secret Service)
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 

@@ -14,5 +14,7 @@
     kitty
     adwaita-icon-theme
     nautilus
+    gnome-keyring
+    libsecret
   ];
 }

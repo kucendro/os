@@ -4,4 +4,6 @@
   programs.firefox.enable = true;
   programs.git.enable = true;
   programs.zsh.enable = true;
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
 }

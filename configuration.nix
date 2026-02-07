@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   imports = [
     ./hardware-configuration.nix
     ./config/configuration.nix
@@ -12,6 +11,7 @@
     ./users/kucendro.nix
     ./zsh/zsh.nix
     ./display/hyprland.nix
+    ./display/gnome.nix
   ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!

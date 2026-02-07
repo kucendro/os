@@ -12,5 +12,6 @@
     owntone
     nixfmt
     kitty
+    adwaita-icon-theme
   ];
 }

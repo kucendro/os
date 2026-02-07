@@ -5,6 +5,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Linux kernel
+  # kernelPackages = pkgs.linuxPacksges_lastest;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

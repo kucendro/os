@@ -67,6 +67,21 @@
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
 
+  # Power management — without this, CPU runs at max speed 24/7
+  powerManagement.enable = true;
+  powerManagement.cpuFreqGovernor = "powersave";
+
+  # Lid close & idle actions (GNOME does this via its own power daemon)
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "lock";
+    extraConfig = ''
+      HandlePowerKey=suspend
+      IdleAction=suspend
+      IdleActionSec=15min
+    '';
+  };
+
   # SUID wrappers
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {

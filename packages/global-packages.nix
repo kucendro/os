@@ -16,5 +16,10 @@
     nautilus
     gnome-keyring
     libsecret
+
+    # Power & idle management for Hyprland
+    brightnessctl
+    hypridle
+    hyprlock
   ];
 }

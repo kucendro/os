@@ -109,7 +109,7 @@
   # services.cloudflare-warp.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)
+  # networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)
   networking.firewall.allowedUDPPorts = [ 51820 5353 ]; # WireGuard + mDNS (Avahi)
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

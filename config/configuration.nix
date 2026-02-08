@@ -96,13 +96,15 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # OwnTone — create the system user/group it expects
-  users.users.owntone = {
-    isSystemUser = true;
-    group = "owntone";
-    description = "OwnTone daemon user";
+  # Avahi (mDNS — needed for OwnTone device discovery)
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+    };
   };
-  users.groups.owntone = {};
 
   # services.cloudflare-warp.enable = true;
 

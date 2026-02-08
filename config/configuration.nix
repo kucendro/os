@@ -63,6 +63,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Battery & power management (needed for Hyprland — GNOME enables these automatically)
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
+
   # SUID wrappers
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {

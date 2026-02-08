@@ -16,6 +16,7 @@
     nautilus
     gnome-keyring
     libsecret
+    tuigreet
 
     # Power & idle management for Hyprland
     brightnessctl

@@ -96,6 +96,14 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # OwnTone — create the system user/group it expects
+  users.users.owntone = {
+    isSystemUser = true;
+    group = "owntone";
+    description = "OwnTone daemon user";
+  };
+  users.groups.owntone = {};
+
   # services.cloudflare-warp.enable = true;
 
   # Open ports in the firewall.

@@ -75,11 +75,11 @@
   services.logind = {
     lidSwitch = "suspend";
     lidSwitchExternalPower = "lock";
-    extraConfig = ''
-      HandlePowerKey=suspend
-      IdleAction=suspend
-      IdleActionSec=15min
-    '';
+    settings.Login = {
+      HandlePowerKey = "suspend";
+      IdleAction = "suspend";
+      IdleActionSec = "15min";
+    };
   };
 
   # SUID wrappers

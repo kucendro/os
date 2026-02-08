@@ -9,7 +9,8 @@
     "noctalia/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/home/kucendro/nixos/display/noctalia/settings.json";
     "noctalia/colors.json".source = config.lib.file.mkOutOfStoreSymlink "/home/kucendro/nixos/display/noctalia/colors.json";
     "noctalia/plugins.json".source = config.lib.file.mkOutOfStoreSymlink "/home/kucendro/nixos/display/noctalia/plugins.json";
-    "hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/kucendro/nixos/display/hyprland/hypridle.conf";
+    "hypridle/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/kucendro/nixos/display/hypridle/hypridle.conf";
+    "hyprlock/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/kucendro/nixos/display/hyprlock/hyprlock.conf";
   };
 
   # Let Home Manager manage itself

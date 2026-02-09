@@ -106,7 +106,8 @@
     };
   };
 
-  # services.cloudflare-warp.enable = true;
+  services.cloudflare-warp.enable = true;
+  services.onedrive.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)
@@ -116,6 +117,6 @@
 
   # Virtual box
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+  users.extraGroups.vboxusers.members = [ "kucendro" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
 }

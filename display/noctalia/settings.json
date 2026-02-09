@@ -95,7 +95,7 @@
                     "showArtistFirst": true,
                     "showProgressRing": true,
                     "showVisualizer": true,
-                    "textColor": "none",
+                    "textColor": "primary",
                     "useFixedWidth": false,
                     "visualizerType": "wave"
                 }

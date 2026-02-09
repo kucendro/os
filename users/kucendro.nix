@@ -22,6 +22,7 @@
     metasploit
     aircrack-ng
     hashcat
+    foremost
     ];
   };
 }

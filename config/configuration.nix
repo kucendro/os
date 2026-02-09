@@ -107,7 +107,6 @@
   };
 
   services.cloudflare-warp.enable = true;
-  services.onedrive.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)

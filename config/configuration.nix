@@ -106,7 +106,7 @@
     };
   };
 
-  services.cloudflare-warp.enable = true;
+  # services.cloudflare-warp.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)

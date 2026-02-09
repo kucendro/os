@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./config/configuration.nix
+    ./secrets/sops.nix
     ./vpn/wg.nix
     ./apps/programs.nix
     ./custom/zenbook.nix

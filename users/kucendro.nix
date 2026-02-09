@@ -23,6 +23,7 @@
     aircrack-ng
     hashcat
     foremost
+    sqlmap
     ];
   };
 }

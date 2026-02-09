@@ -22,7 +22,10 @@
 
   networking.networkmanager.enable = true;
 
-  # pak asi pro wg zapnout ig services.resolved.enable = true;
+  services.resolved = {
+    enable = true;
+    domains = [ "~work.local" ];
+  };
 
   time.timeZone = "Europe/Prague";
 

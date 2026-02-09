@@ -20,6 +20,8 @@
     wireshark
     nmap
     metasploit
+    aircrack-ng
+    hashcat
     ];
   };
 }

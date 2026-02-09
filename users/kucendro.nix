@@ -19,6 +19,7 @@
     prusa-slicer
     wireshark
     nmap
+    metasploit
     ];
   };
 }

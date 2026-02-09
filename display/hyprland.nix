@@ -4,7 +4,7 @@
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
 
-  # Greeter (tuigreet via greetd)
+  # tuigreet via greetd
   services.greetd = {
     enable = true;
     settings = {

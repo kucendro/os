@@ -17,7 +17,7 @@
     gnome-keyring
     libsecret
 
-    # Power & idle management for Hyprland
+    # ? Power & idle management
     brightnessctl
     hypridle
     hyprlock

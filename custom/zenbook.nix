@@ -11,7 +11,6 @@
     ignoreWaylandDisplayEnv = false;
     config = {
       "activation_time" = "0.3";
-      # More Configuration Options
     };
   };
 }

@@ -18,6 +18,7 @@
     orca-slicer
     prusa-slicer
     wireshark
+    nmap
     ];
   };
 }

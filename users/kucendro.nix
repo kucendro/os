@@ -17,6 +17,7 @@
     starship
     orca-slicer
     prusa-slicer
+    wireshark
     ];
   };
 }

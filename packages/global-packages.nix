@@ -17,6 +17,7 @@
     gnome-keyring
     libsecret
     rustup
+    oxker
 
     # ? Power & idle management
     brightnessctl

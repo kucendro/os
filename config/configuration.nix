@@ -24,7 +24,7 @@
 
   services.resolved = {
     enable = true;
-    domains = [ "~work.local" ];
+    settings.Resolve.Domains = [ "~work.local" ];
   };
 
   time.timeZone = "Europe/Prague";
@@ -80,14 +80,12 @@
   powerManagement.cpuFreqGovernor = "powersave";
 
   # Lid close & idle actions (GNOME does this via its own power daemon)
-  services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "lock";
-    settings.Login = {
-      HandlePowerKey = "suspend";
-      IdleAction = "suspend";
-      IdleActionSec = "15min";
-    };
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "lock";
+    HandlePowerKey = "suspend";
+    IdleAction = "suspend";
+    IdleActionSec = "15min";
   };
 
   # SUID wrappers

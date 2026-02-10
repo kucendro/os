@@ -58,9 +58,14 @@
     pulse.enable = true;
     jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    # AirPlay (RAOP) streaming — auto-discovers AirPlay speakers on the network
+    extraConfig.pipewire."91-raop-discover" = {
+      "context.modules" = [
+        {
+          name = "libpipewire-module-raop-discover";
+        }
+      ];
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

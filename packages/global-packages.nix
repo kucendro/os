@@ -16,6 +16,7 @@
     nautilus
     gnome-keyring
     libsecret
+    rustup
 
     # ? Power & idle management
     brightnessctl

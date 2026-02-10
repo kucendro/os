@@ -24,7 +24,6 @@
     hashcat
     foremost
     sqlmap
-    telegram-desktop
     ];
   };
 }

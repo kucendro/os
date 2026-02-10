@@ -121,4 +121,7 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "kucendro" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  # Docker
+  virtualisation.docker.enable = true;
 }

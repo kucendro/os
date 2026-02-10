@@ -4,7 +4,7 @@
   users.users.kucendro = {
     isNormalUser = true;
     description = "Ondřej Kučera";
-    extraGroups = [ "networkmanager" "wheel" "vboxusers" ];
+    extraGroups = [ "networkmanager" "wheel" "vboxusers" "docker" ];
     packages = with pkgs; [
     thunderbird
     inkscape

@@ -9,7 +9,6 @@
     btop
     sops
     age
-    owntone
     nixfmt
     kitty
     adwaita-icon-theme

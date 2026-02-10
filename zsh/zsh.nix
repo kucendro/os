@@ -17,7 +17,6 @@
 
     shellAliases = {
       rebuild = "~/nixos/rebuild.sh";
-      airplay = "owntone -f -c ~/.config/owntone/owntone.conf";
     };
   };
 }

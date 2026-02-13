@@ -17,6 +17,8 @@
 
     shellAliases = {
       rebuild = "~/nixos/rebuild.sh";
+      worklouder = "appimage-run -d input-0.13.2-Community.AppImage";
+      kdrive = "appimage-run -d kDrive-3.7.9.1-amd64.AppImage";
     };
   };
 }

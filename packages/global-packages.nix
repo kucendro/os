@@ -17,6 +17,7 @@
     libsecret
     rustup
     oxker
+    nodejs
 
     # ? Power & idle management
     brightnessctl

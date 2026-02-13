@@ -24,7 +24,6 @@
 
   services.resolved = {
     enable = true;
-    settings.Resolve.Domains = [ "~work.local" ];
   };
 
   hardware.bluetooth = {

@@ -18,6 +18,7 @@
     rustup
     oxker
     nodejs
+    pnpm
 
     # ? Power & idle management
     brightnessctl

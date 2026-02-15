@@ -24,6 +24,7 @@
     hashcat
     foremost
     sqlmap
+    freecad
     ];
   };
 }

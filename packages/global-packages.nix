@@ -20,6 +20,7 @@
     nodejs
     pnpm
     loupe
+    wineWowPackages.stable
 
     # ? Power & idle management
     brightnessctl

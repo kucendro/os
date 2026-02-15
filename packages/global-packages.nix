@@ -19,6 +19,7 @@
     oxker
     nodejs
     pnpm
+    loupe
 
     # ? Power & idle management
     brightnessctl

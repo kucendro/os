@@ -26,6 +26,7 @@
     sqlmap
     freecad
     LycheeSlicer
+    libreoffice-qt-fresh
     ];
   };
 }

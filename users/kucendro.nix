@@ -25,8 +25,7 @@
     foremost
     sqlmap
     freecad
-    mslicer
-    ideamaker
+    LycheeSlicer
     ];
   };
 }

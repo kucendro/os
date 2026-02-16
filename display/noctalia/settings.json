@@ -347,7 +347,7 @@
         "animationDisabled": false,
         "animationSpeed": 1,
         "autoStartAuth": false,
-        "avatarImage": "/home/kucendro/nixos/users/profile.jpg",
+        "avatarImage": "/home/kucendro/nixos/home/profile.jpg",
         "boxRadiusRatio": 1,
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
@@ -367,8 +367,8 @@
         },
         "language": "en",
         "lockOnSuspend": true,
-        "lockScreenAnimations": false,
-        "lockScreenCountdownDuration": 10000,
+        "lockScreenAnimations": true,
+        "lockScreenCountdownDuration": 5000,
         "lockScreenMonitors": [
         ],
         "radiusRatio": 1,
@@ -472,7 +472,7 @@
         "autoUpdate": false
     },
     "sessionMenu": {
-        "countdownDuration": 10000,
+        "countdownDuration": 5000,
         "enableCountdown": true,
         "largeButtonsLayout": "single-row",
         "largeButtonsStyle": true,

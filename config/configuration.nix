@@ -115,17 +115,37 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
-  # ! Security
-  # security.pam.services.sudo = {
-  #   text = ''
-  #     auth      sufficient      pam_unix.so try_first_pass nullok
-  #     auth      sufficient      pam_python.so /run/current-system/sw/lib/security/howdy/pam.py
-  #     auth      required        pam_deny.so
-  #     account   required        pam_unix.so
-  #     session   required        pam_unix.so
-  #   '';
-  # };
+  # ! Security ------------------------------------------
   services.howdy.enable = true;
+  services.howdy.settings = {
+    video = {
+      dark_threshold = 80; # or your preferred value
+    };
+    snapshots = {
+      save_failed = true;
+    };
+  };
+
+  security.pam.services.sudo = {
+    text = ''
+      auth      sufficient      pam_python.so /run/current-system/sw/lib/security/howdy/pam.py
+      auth      sufficient      pam_unix.so try_first_pass nullok
+      auth      required        pam_deny.so
+      account   required        pam_unix.so
+      session   required        pam_unix.so
+    '';
+  };
+
+  security.pam.services.greetd = {
+    text = ''
+      auth      sufficient      pam_python.so /run/current-system/sw/lib/security/howdy/pam.py
+      auth      sufficient      pam_unix.so try_first_pass nullok
+      auth      required        pam_deny.so
+      account   required        pam_unix.so
+      session   required        pam_unix.so
+    '';
+  };
+  # ! ---------------------------------------------------
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

@@ -84,22 +84,6 @@
     };
   };
 
-  # Battery & power management
-  services.upower.enable = true;
-  services.power-profiles-daemon.enable = true;
-
-  # Power management
-  powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "powersave";
-
-  # Lid close & idle actions
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchExternalPower = "lock";
-    HandlePowerKey = "suspend";
-    IdleAction = "suspend";
-    IdleActionSec = "5min";
-  };
 
   # SUID wrappers
   # programs.mtr.enable = true;

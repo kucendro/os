@@ -8,6 +8,10 @@
 
   services.howdy.enable = true;
   services.howdy.settings = {
+    core = {
+      detection_notice = true;
+      no_confirmation = true;
+    };
     video = {
       dark_threshold = 80; # Depends on hw camera
     };

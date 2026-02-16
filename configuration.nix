@@ -12,7 +12,6 @@
     ./home/kucendro.nix
     ./terminal/zsh.nix
     ./display/hyprland.nix
-    ./display/gnome.nix
     ./servers/nextcloud.nix
     ./security/auth-methods.nix
     ./security/keychain.nix

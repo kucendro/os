@@ -12,5 +12,5 @@
   # ! And this is the absolute shit because i am stupid bitch DO NOT USE THIS JUST COMMENT THIS LINE BEFORE REBUILD !!!
   security.pam.services.greetd.rules.auth.howdy.control = lib.mkForce "sufficient";
   security.pam.services.login.rules.auth.howdy.control = lib.mkForce "sufficient";
-  security.pam.services.keyring.rules.auth.howdy.control = lib.mkForce "sufficient";
+  security.pam.services.gnome-keyring.rules.auth.howdy.control = lib.mkForce "sufficient";
 }

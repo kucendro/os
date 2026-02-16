@@ -5,7 +5,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Linux kernel
+  # ! Linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix.settings.experimental-features = [
@@ -63,27 +63,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Sound
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-
-    # AirPlay (RAOP) streaming — auto-discovers AirPlay speakers on the network
-    extraConfig.pipewire."91-raop-discover" = {
-      "context.modules" = [
-        {
-          name = "libpipewire-module-raop-discover";
-        }
-      ];
-    };
-  };
-
 
   # SUID wrappers
   # programs.mtr.enable = true;

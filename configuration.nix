@@ -10,16 +10,19 @@
     ./custom/zenbook.nix
     ./packages/global-packages.nix
     ./users/kucendro.nix
-    ./zsh/zsh.nix
+    ./terminal/zsh.nix
     ./display/hyprland.nix
     ./display/gnome.nix
     ./servers/nextcloud.nix
     ./security/auth-methods.nix
     ./security/keychain.nix
     ./config/power-management.nix
+    ./sound/airplay.nix
+    ./sound/hardware.nix
   ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!
   system.stateVersion = "25.11";
 
 }
+>

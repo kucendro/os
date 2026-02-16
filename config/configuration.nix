@@ -145,6 +145,8 @@
       session   required        pam_unix.so
     '';
   };
+
+  users.users.greeter.extraGroups = [ "video" ];
   # ! ---------------------------------------------------
 
   # Enable the OpenSSH daemon.

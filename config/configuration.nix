@@ -115,7 +115,7 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
-  services.howdy.enable = true;
+  services.howdy.enable = false;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

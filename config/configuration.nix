@@ -31,18 +31,10 @@
     powerOnBoot = true;
     settings = {
       General = {
-        # Shows battery charge of connected devices on supported
-        # Bluetooth adapters. Defaults to 'false'.
         Experimental = true;
-        # When enabled other devices can connect faster to us, however
-        # the tradeoff is increased power consumption. Defaults to
-        # 'false'.
         FastConnectable = false;
       };
       Policy = {
-        # Enable all controllers when they are found. This includes
-        # adapters present on start as well as adapters that are plugged
-        # in later on. Defaults to 'true'.
         AutoEnable = true;
       };
     };
@@ -95,21 +87,21 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Battery & power management (needed for Hyprland — GNOME enables these automatically)
+  # Battery & power management
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
 
-  # Power management — without this, CPU runs at max speed 24/7
+  # Power management
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "powersave";
 
-  # Lid close & idle actions (GNOME does this via its own power daemon)
+  # Lid close & idle actions
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend";
     HandleLidSwitchExternalPower = "lock";
     HandlePowerKey = "suspend";
     IdleAction = "suspend";
-    IdleActionSec = "15min";
+    IdleActionSec = "5min";
   };
 
   # SUID wrappers
@@ -119,22 +111,12 @@
   #   enableSSHSupport = true;
   # };
 
-  # Keyring (needed for apps like kDrive that store tokens via Secret Service)
+  # Keyring
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Avahi (mDNS — needed for OwnTone device discovery)
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    publish = {
-      enable = true;
-      addresses = true;
-    };
-  };
 
   # services.cloudflare-warp.enable = true;
 

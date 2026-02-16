@@ -3,6 +3,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    howdy
     wget
     wine64
     fastfetch

@@ -14,6 +14,8 @@
     ./display/hyprland.nix
     ./display/gnome.nix
     ./servers/nextcloud.nix
+    ./security/auth-methods.nix
+    ./security/keychain.nix
   ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!

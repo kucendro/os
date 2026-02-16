@@ -13,6 +13,7 @@
     ./zsh/zsh.nix
     ./display/hyprland.nix
     ./display/gnome.nix
+    ./servers/nextcloud.nix
   ];
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!

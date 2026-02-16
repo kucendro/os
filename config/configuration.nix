@@ -127,7 +127,7 @@
     '';
   };
 
-  services.howdy.enable = false;
+  services.howdy.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

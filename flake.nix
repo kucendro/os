@@ -46,7 +46,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
-            home-manager.users.kucendro = import ./users/home.nix;
+            home-manager.users.kucendro = import ./home/home.nix;
           }
         ];
       };

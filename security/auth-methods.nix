@@ -13,7 +13,7 @@
     };
     snapshots = {
       save_failed = true;
-    };>
+    };
   };
 
 }

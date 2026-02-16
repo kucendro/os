@@ -3,8 +3,10 @@
 {
   imports = [
     ./hardware-configuration.nix
+
     ./config/configuration.nix
-    ./secrets/sops.nix
+    ./config/power-management.nix
+
     ./vpn/wg.nix
     ./apps/programs.nix
     ./custom/zenbook.nix
@@ -13,9 +15,13 @@
     ./terminal/zsh.nix
     ./display/hyprland.nix
     ./servers/nextcloud.nix
+
     ./security/auth-methods.nix
     ./security/keychain.nix
-    ./config/power-management.nix
+    ./security/pam.nix
+
+    ./secrets/sops.nix
+
     ./sound/airplay.nix
     ./sound/hardware.nix
   ];

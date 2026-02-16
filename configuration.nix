@@ -9,7 +9,7 @@
     ./apps/programs.nix
     ./custom/zenbook.nix
     ./packages/global-packages.nix
-    ./users/kucendro.nix
+    ./home/kucendro.nix
     ./terminal/zsh.nix
     ./display/hyprland.nix
     ./display/gnome.nix
@@ -23,5 +23,4 @@
 
   # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!
   system.stateVersion = "25.11";
-
 }

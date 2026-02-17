@@ -39,6 +39,33 @@
     };
   };
 
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+
+        savePath = "/home/kucendro/Screenshots";
+        disabledTrayIcon = true;
+        showStartupLaunchMessage = false;
+        saveAsFileExtension = ".png";
+        showDesktopNotification = true;
+        showAbortNotification = false;
+        showHelp = true;
+        showSidePanelButton = true;
+
+        # Color Customization
+        uiColor = "#740096";
+        contrastUiColor = "#270032";
+        drawColor = "#ff0000";
+
+        # For Wayland (Install Grim seperately)
+        useGrimAdapter = true;
+        # Stops warnings for using Grim
+        disabledGrimWarning = true;
+      };
+    };
+  };
+
   # ! DO NOT CHANGE
   home.stateVersion = "25.11";
 }

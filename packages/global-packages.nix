@@ -21,6 +21,7 @@
     pnpm
     loupe
     wineWowPackages.stable
+    grim
 
     # ? Power & idle management
     brightnessctl

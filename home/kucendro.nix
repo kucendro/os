@@ -34,7 +34,7 @@
       libreoffice-qt-fresh
       wl-clipboard
       wtype
-      jq
+      yq
     ];
   };
 }

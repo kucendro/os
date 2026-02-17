@@ -22,6 +22,7 @@
     loupe
     wineWowPackages.stable
     grim
+    slurp
 
     # ? Power & idle management
     brightnessctl

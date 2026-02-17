@@ -76,6 +76,14 @@
 
   services.cloudflare-warp.enable = true;
 
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)
   # networking.firewall.allowedUDPPorts = [ 51820 5353 ]; # WireGuard + mDNS (Avahi)

@@ -7,4 +7,5 @@
   programs.appimage.binfmt = true;
   programs.evince.enable = true;
   programs.kdeconnect.enable = true;
+  programs.tmux.enable = true;
 }

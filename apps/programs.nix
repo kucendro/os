@@ -6,5 +6,4 @@
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
   programs.evince.enable = true;
-  programs.kdeconnect.enable = true;
 }

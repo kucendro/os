@@ -39,6 +39,8 @@
     };
   };
 
+  services.kdeconnect.enable = true;
+
   # ! DO NOT CHANGE
   home.stateVersion = "25.11";
 }

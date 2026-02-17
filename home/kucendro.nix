@@ -36,6 +36,7 @@
       wtype
       yq
       gnome-calendar
+      gnome-calculator
     ];
   };
 }

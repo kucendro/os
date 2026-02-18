@@ -18,6 +18,8 @@
 
     shellAliases = {
       rebuild = "~/nixos/rebuild.sh";
+      tunnel = "cloudflared tunnel run nixbook";
+
     };
   };
 }

@@ -37,6 +37,7 @@
       yq
       gnome-calendar
       gnome-calculator
+      cloudflared
     ];
   };
 }

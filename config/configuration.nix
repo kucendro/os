@@ -74,8 +74,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.cloudflare-warp.enable = true;
-
   services.sunshine = {
     enable = true;
     autoStart = false;

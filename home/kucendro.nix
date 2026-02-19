@@ -39,6 +39,7 @@
       gnome-calculator
       cloudflared
       discord
+      maven
     ];
   };
 }

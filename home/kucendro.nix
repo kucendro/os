@@ -40,6 +40,7 @@
       cloudflared
       discord
       maven
+      jdk25_headless
     ];
   };
 }

@@ -56,7 +56,7 @@
         "position": "left",
         "screenOverrides": [
         ],
-        "showCapsule": true,
+        "showCapsule": false,
         "showOutline": false,
         "useSeparateOpacity": false,
         "widgets": {
@@ -67,7 +67,7 @@
                     "emptyColor": "secondary",
                     "enableScrollWheel": true,
                     "focusedColor": "primary",
-                    "followFocusedScreen": false,
+                    "followFocusedScreen": true,
                     "groupedBorderOpacity": 1,
                     "hideUnoccupied": false,
                     "iconScale": 0.8,

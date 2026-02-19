@@ -8,4 +8,5 @@
   programs.evince.enable = true;
   programs.kdeconnect.enable = true;
   programs.tmux.enable = true;
+  programs.nix-ld.enable = true;
 }

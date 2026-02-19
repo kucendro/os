@@ -10,11 +10,11 @@
     syntaxHighlighting.enable = true;
     histSize = 10000;
     
-    shellInit = ''
-      if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
-        tmux attach-session -t default || tmux new-session -s default
-      fi
-    '';
+    # shellInit = ''
+    #   if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
+    #     tmux attach-session -t default || tmux new-session -s default
+    #   fi
+    # '';
 
     shellAliases = {
       rebuild = "~/nixos/rebuild.sh";

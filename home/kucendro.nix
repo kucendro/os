@@ -38,7 +38,7 @@
       gnome-calendar
       gnome-calculator
       cloudflared
-      rpi-imager
+      discord
     ];
   };
 }

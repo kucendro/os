@@ -575,7 +575,7 @@
         "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
-        "automationEnabled": true,
+        "automationEnabled": false,
         "directory": "/home/kucendro/nixos/display/wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,

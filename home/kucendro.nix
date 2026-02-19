@@ -41,6 +41,7 @@
       discord
       maven
       jdk25_headless
+      d2
     ];
   };
 }

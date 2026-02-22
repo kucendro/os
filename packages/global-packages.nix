@@ -24,6 +24,7 @@
     grim
     slurp
     gccgo15
+    python315
 
     # ? Power & idle management
     brightnessctl

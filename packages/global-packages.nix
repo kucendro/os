@@ -23,6 +23,7 @@
     wineWowPackages.stable
     grim
     slurp
+    gccgo15
 
     # ? Power & idle management
     brightnessctl

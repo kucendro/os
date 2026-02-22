@@ -43,6 +43,7 @@
       jdk25_headless
       d2
       arduino-ide
+      chromium
     ];
   };
 }

@@ -24,6 +24,7 @@
     slurp
     gccgo15
     python315
+    qdirstat
 
     # ? Power & idle management
     brightnessctl

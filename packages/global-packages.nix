@@ -14,7 +14,6 @@
     adwaita-icon-theme
     nautilus
     gnome-keyring
-    libsecret
     rustup
     oxker
     nodejs

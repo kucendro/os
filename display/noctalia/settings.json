@@ -303,7 +303,7 @@
                     },
                     {
                         "id": "Weather",
-                        "scale": 1,
+                        "scale": 0.9166203253850863,
                         "showBackground": true,
                         "x": 1660,
                         "y": 960
@@ -319,6 +319,11 @@
                         "x": 1660,
                         "y": 20
                     }
+                ]
+            },
+            {
+                "name": "DP-1",
+                "widgets": [
                 ]
             }
         ]
@@ -399,7 +404,7 @@
         "firstDayOfWeek": 1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Prague",
+        "name": "Pardubice",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,

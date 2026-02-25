@@ -44,6 +44,7 @@
       d2
       arduino-ide
       chromium
+      clickhouse
     ];
   };
 }

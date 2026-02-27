@@ -47,6 +47,7 @@
       clickhouse
       mongodb-compass
       spotify
+      opencode
     ];
   };
 }

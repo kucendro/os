@@ -597,7 +597,7 @@
         "overviewEnabled": false,
         "panelPosition": "follow_bar",
         "randomIntervalSec": 900,
-        "setWallpaperOnAllMonitors": false,
+        "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
         "solidColor": "#1a1a2e",
         "sortOrder": "name",

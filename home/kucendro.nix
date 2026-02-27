@@ -46,6 +46,7 @@
       chromium
       clickhouse
       mongodb-compass
+      spotify
     ];
   };
 }

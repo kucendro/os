@@ -45,6 +45,7 @@
       arduino-ide
       chromium
       clickhouse
+      mongodb-compass
     ];
   };
 }

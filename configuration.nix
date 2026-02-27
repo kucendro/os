@@ -10,13 +10,16 @@
     ./vpn/wg.nix
     ./vpn/cloudflared.nix
     ./vpn/warp.nix
-    
+
     ./apps/programs.nix
     ./custom/zenbook.nix
     ./packages/global-packages.nix
     ./home/kucendro.nix
     ./terminal/zsh.nix
+
     ./display/hyprland.nix
+    ./display/colors/stylix.nix
+
     ./servers/nextcloud.nix
 
     ./security/auth-methods.nix

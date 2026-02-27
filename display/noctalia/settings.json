@@ -50,7 +50,8 @@
         "marginHorizontal": 4,
         "marginVertical": 4,
         "monitors": [
-            "eDP-1"
+            "eDP-1",
+            "DP-1"
         ],
         "outerCorners": true,
         "position": "left",

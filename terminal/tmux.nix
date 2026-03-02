@@ -8,6 +8,7 @@
     secureSocket = false;
     clock24 = true;
     historyLimit = 50000;
+    shortcut = "SPACE";
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.catppuccin

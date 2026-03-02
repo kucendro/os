@@ -49,7 +49,6 @@
       spotify
       opencode
       kdePackages.qttools
-      quickshell
     ];
   };
 }

@@ -49,6 +49,7 @@
       spotify
       opencode
       kdePackages.qttools
+      kicad
     ];
   };
 }

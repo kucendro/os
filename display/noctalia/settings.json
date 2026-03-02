@@ -193,21 +193,6 @@
                     "id": "NotificationHistory",
                     "showUnreadBadge": true,
                     "unreadBadgeColor": "primary"
-                },
-                {
-                    "defaultSettings": {
-                        "autoHeight": true,
-                        "cheatsheetData": [
-                        ],
-                        "columnCount": 3,
-                        "detectedCompositor": "",
-                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
-                        "modKeyVariable": "$mod",
-                        "niriConfigPath": "~/.config/niri/config.kdl",
-                        "windowHeight": 0,
-                        "windowWidth": 1400
-                    },
-                    "id": "plugin:keybind-cheatsheet"
                 }
             ]
         }
@@ -239,7 +224,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Tokyo Night",
+        "predefinedScheme": "GitHub Dark",
         "schedulingMode": "off",
         "useWallpaperColors": true
     },
@@ -323,7 +308,7 @@
                     },
                     {
                         "id": "Weather",
-                        "scale": 0.9166203253850863,
+                        "scale": 1.0111590288906003,
                         "showBackground": true,
                         "x": 1660,
                         "y": 960
@@ -593,7 +578,7 @@
         "fontFixed": "monospace",
         "fontFixedScale": 1,
         "networkPanelView": "wifi",
-        "panelBackgroundOpacity": 0.93,
+        "panelBackgroundOpacity": 0.8500000000000001,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "attached",
         "tooltipsEnabled": true,
@@ -631,12 +616,12 @@
         "transitionType": "random",
         "useSolidColor": false,
         "useWallhaven": false,
-        "viewMode": "browse",
+        "viewMode": "recursive",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
-        "wallhavenQuery": "",
+        "wallhavenQuery": "Kazakhstan",
         "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",

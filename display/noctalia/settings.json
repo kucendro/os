@@ -50,8 +50,7 @@
         "marginHorizontal": 4,
         "marginVertical": 4,
         "monitors": [
-            "eDP-1",
-            "DP-1"
+            "eDP-1"
         ],
         "outerCorners": true,
         "position": "left",
@@ -81,6 +80,11 @@
                     "showBadge": true,
                     "showLabelsOnlyWhenOccupied": true,
                     "unfocusedIconsOpacity": 1
+                },
+                {
+                    "defaultSettings": {
+                    },
+                    "id": "plugin:kde-connect"
                 }
             ],
             "left": [
@@ -189,6 +193,9 @@
                     "id": "NotificationHistory",
                     "showUnreadBadge": true,
                     "unreadBadgeColor": "primary"
+                },
+                {
+                    "id": "plugin:keybind-cheatsheet"
                 }
             ]
         }
@@ -586,18 +593,23 @@
         "enableMultiMonitorDirectories": true,
         "enabled": true,
         "fillColor": "#000000",
-        "fillMode": "fit",
+        "fillMode": "crop",
         "hideWallpaperFilenames": false,
         "monitorDirectories": [
             {
                 "directory": "/home/kucendro/nixos/display/wallpapers/inactive",
                 "name": "DP-2",
                 "wallpaper": ""
+            },
+            {
+                "directory": "/home/kucendro/nixos/display/wallpapers",
+                "name": "eDP-1",
+                "wallpaper": ""
             }
         ],
         "overviewEnabled": false,
         "panelPosition": "follow_bar",
-        "randomIntervalSec": 900,
+        "randomIntervalSec": 300,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
         "solidColor": "#1a1a2e",
@@ -607,7 +619,7 @@
         "transitionType": "random",
         "useSolidColor": false,
         "useWallhaven": false,
-        "viewMode": "single",
+        "viewMode": "browse",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",

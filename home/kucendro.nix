@@ -48,6 +48,7 @@
       mongodb-compass
       spotify
       opencode
+      kdePackages.qttools
     ];
   };
 }

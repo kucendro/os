@@ -6,6 +6,7 @@
     enable = true;
     escapeTime = 0;
     secureSocket = false;
+    focusEvents = true;
     clock24 = true;
     historyLimit = 50000;
     shortcut = "space";

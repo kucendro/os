@@ -3,6 +3,7 @@
 {
   imports = [
     ../development/neovim.nix
+    ../terminal/tmux.nix
   ];
   home.username = "kucendro";
   home.homeDirectory = "/home/kucendro";

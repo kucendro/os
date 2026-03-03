@@ -17,7 +17,6 @@
     ./home/kucendro.nix
 
     ./terminal/zsh.nix
-    ./terminal/tmux.nix
 
     ./display/hyprland.nix
     ./display/colors/stylix.nix

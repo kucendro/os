@@ -51,6 +51,7 @@
       kdePackages.qttools
       kicad
       witr
+      dioxus-cli
     ];
   };
 }

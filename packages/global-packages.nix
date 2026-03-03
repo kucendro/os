@@ -25,6 +25,7 @@
     gccgo15
     python315
     qdirstat
+    fzf
 
     # ? Power & idle management
     brightnessctl

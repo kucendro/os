@@ -12,7 +12,7 @@
     
     shellInit = ''
       if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
-        tmux attach-session -t default || tmux new-session -s default
+        tmux attach-session -t 1 || tmux new-session -s 1
       fi
     '';
 

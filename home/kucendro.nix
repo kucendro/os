@@ -50,6 +50,7 @@
       opencode
       kdePackages.qttools
       kicad
+      witr
     ];
   };
 }

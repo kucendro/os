@@ -7,6 +7,7 @@
       LazyVim
     ];
     extraLuaConfig = ''
+      require("lazyvim.config").init()
       require("lazy").setup({
         spec = {
           { "LazyVim/LazyVim", import = "lazyvim.plugins" },

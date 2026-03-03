@@ -15,6 +15,7 @@
     ./custom/zenbook.nix
     ./packages/global-packages.nix
     ./home/kucendro.nix
+    ./development/neovim.nix
 
     ./terminal/zsh.nix
     ./terminal/tmux.nix

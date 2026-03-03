@@ -2,8 +2,19 @@
 {
   programs.neovim = {
     enable = true;
-    plugins = with pkgs; [
-      vimPlugins.LazyVim
+    plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+      LazyVim
     ];
+    extraLuaConfig = ''
+      require("lazy").setup({
+        spec = {
+          { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+        },
+        performance = {
+          reset = false,  -- don't clear the Nix-managed runtimepath
+        },
+      })
+    '';
   };
 }

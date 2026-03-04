@@ -54,6 +54,9 @@
       # androidenv.androidPkgs.androidsdk
       androidenv.androidPkgs.tools
       magic-wormhole
+      just
+      tokei
+      beeper
     ];
   };
 }

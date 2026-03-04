@@ -35,6 +35,21 @@
   #      identitiesOnly = true;
   #    };
   #  };
+  #
+  #
+  #
+  #
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      warn-dirty = false;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+  };
 
    services.ssh-agent.enable = true;
 

@@ -51,7 +51,8 @@
       kdePackages.qttools
       kicad
       witr
-      dioxus-cli
+      androidenv.androidPkgs.androidsdk
+      androidenv.androidPkgs.tools
     ];
   };
 }

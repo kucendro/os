@@ -94,4 +94,7 @@
 
   # Docker
   virtualisation.docker.enable = true;
+
+  # Android SDK license acceptance
+  nixpkgs.config.android_sdk.accept_license = true;
 }

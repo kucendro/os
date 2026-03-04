@@ -25,16 +25,16 @@
 
   programs.home-manager.enable = true;
 
-   programs.ssh = {
-     enable = true;
-     addKeysToAgent = "yes";
-     matchBlocks."github.com" = {
-       hostname = "github.com";
-       user = "git";
-       identityFile = "/home/kucendro/.ssh/github_ed25519";
-       identitiesOnly = true;
-     };
-   };
+  #  programs.ssh = {
+  #    enable = true;
+  #    addKeysToAgent = "yes";
+  #    matchBlocks."github.com" = {
+  #      hostname = "github.com";
+  #      user = "git";
+  #      identityFile = "/home/kucendro/.ssh/github_ed25519";
+  #      identitiesOnly = true;
+  #    };
+  #  };
 
    services.ssh-agent.enable = true;
 

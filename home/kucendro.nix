@@ -57,6 +57,7 @@
       just
       tokei
       beeper
+      php
     ];
   };
 }

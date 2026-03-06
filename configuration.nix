@@ -15,6 +15,7 @@
     ./custom/zenbook.nix
     ./packages/global-packages.nix
     ./home/kucendro.nix
+    ./display/colors/stylix.nix
 
     ./terminal/zsh.nix
 

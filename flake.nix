@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -30,6 +35,7 @@
       asus-numberpad-driver,
       sops-nix,
       home-manager,
+      stylix,
       ...
     }@inputs:
     {
@@ -42,6 +48,7 @@
           sops-nix.nixosModules.sops
           ./display/noctalia.nix
           home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

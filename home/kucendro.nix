@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.kucendro = {
@@ -58,6 +58,7 @@
       tokei
       beeper
       php
+      xorg.setxkbmap
     ];
   };
 }

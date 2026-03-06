@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Bootloader.
@@ -59,7 +59,7 @@
   };
 
   # Configure console keymap
-  console.keyMap = "cz-lat2";
+  # console.keyMap = "cz-lat2";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

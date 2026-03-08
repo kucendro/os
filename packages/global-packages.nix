@@ -26,6 +26,7 @@
     python315
     qdirstat
     fzf
+    gpu-screen-recorder
 
     # ? Power & idle management
     brightnessctl

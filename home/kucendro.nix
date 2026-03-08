@@ -59,6 +59,7 @@
       beeper
       php
       xorg.setxkbmap
+      postman
     ];
   };
 }

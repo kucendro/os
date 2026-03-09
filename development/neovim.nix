@@ -5,6 +5,7 @@
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim
+      mini-nvim
     ];
     extraLuaConfig = ''
       require("lazy").setup({

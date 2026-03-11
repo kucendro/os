@@ -60,6 +60,7 @@
       php
       xorg.setxkbmap
       postman
+      maven
     ];
   };
 }

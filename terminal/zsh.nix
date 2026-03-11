@@ -12,7 +12,8 @@
     shellAliases = {
       rebuild = "~/nixos/rebuild.sh";
       tunnel = "cloudflared tunnel run nixbook";
-
+      wgprod = "nmcli connection up prod";
+      wgdev = "nmcli connection up dev";
     };
   };
 }

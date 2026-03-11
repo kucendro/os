@@ -248,8 +248,11 @@ bind = $mainMod, C, killactive, #"Close window"
 bind = $mainMod, I, exec, command ~/nixos/security/toggle-password.sh #"Insert password"
 
 # 3. WORKSPACES
-bind = $mainMod, TAB,  workspace, e+1 #"Move to next workspace"
-bind = $mainMod SHIFT, TAB, movetoworkspace, e+1 #"Move window to next workspace"
+
+bind = $mainMod, L, workspace, e+1 #"Move to next workspace"
+bind = $mainMod, H, workspace, e-1 #"Move to previous workspace"
+bind = $mainMod SHIFT, L, movetoworkspace, e+1 #"Move window to next workspace"
+bind = $mainMod SHIFT, H, movetoworkspace, e-1 #"Move window previous workspace"
 
 # 4. SPECIAL WORKSPACES
 bind = $mainMod, W, togglespecialworkspace, magic #"Toggle special workspace"

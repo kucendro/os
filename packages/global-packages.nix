@@ -27,7 +27,8 @@
     qdirstat
     fzf
     gpu-screen-recorder
-
+    inetutils
+    putty
     # ? Power & idle management
     brightnessctl
     hypridle

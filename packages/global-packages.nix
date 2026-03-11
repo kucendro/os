@@ -29,6 +29,7 @@
     gpu-screen-recorder
     inetutils
     putty
+    wireguard-tools
     # ? Power & idle management
     brightnessctl
     hypridle

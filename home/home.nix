@@ -5,6 +5,7 @@
     ../development/neovim.nix
     ../terminal/tmux.nix
     ../development/git.nix
+    ../development/opencode.nix
   ];
   home.username = "kucendro";
   home.homeDirectory = "/home/kucendro";

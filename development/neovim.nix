@@ -10,7 +10,7 @@ in
       LazyVim
       catppuccin-nvim
     ];
-    extraLuaConfig = ''
+    initLua = ''
       require("lazy").setup({
         spec = {
           { "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -32,4 +32,3 @@ in
     '';
   };
 }
-

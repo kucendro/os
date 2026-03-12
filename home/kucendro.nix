@@ -40,7 +40,6 @@
       cloudflared
       discord
       maven
-      jdk25_headless
       d2
       arduino-ide
       chromium

@@ -61,6 +61,7 @@
       xorg.setxkbmap
       postman
       maven
+      jdk
     ];
   };
 }

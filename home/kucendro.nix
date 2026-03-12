@@ -61,7 +61,7 @@
       xorg.setxkbmap
       postman
       maven
-      jdk
+      javaPackages.compiler.openjdk25
     ];
   };
 }

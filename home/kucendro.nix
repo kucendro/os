@@ -61,6 +61,7 @@
       postman
       maven
       javaPackages.compiler.openjdk25
+      claude-code
     ];
   };
 }

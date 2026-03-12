@@ -1,10 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     wget
-    wine64
     fastfetch
     btop
     sops
@@ -19,7 +18,6 @@
     nodejs
     pnpm
     loupe
-    wineWowPackages.stable
     grim
     slurp
     gccgo15

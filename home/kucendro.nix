@@ -30,7 +30,7 @@
       foremost
       sqlmap
       freecad
-      LycheeSlicer
+      lycheeslicer
       libreoffice-qt-fresh
       wl-clipboard
       wtype
@@ -57,7 +57,7 @@
       tokei
       beeper
       php
-      xorg.setxkbmap
+      setxkbmap
       postman
       maven
       javaPackages.compiler.openjdk25

@@ -15,9 +15,9 @@
       wg-prod-up = "nmcli connection up prod";
       wg-prod-down = "nmcli connection down prod";
       wg-prod-status = "nmcli connection show prod";
-      wg-dev-up = "nmcli connection up dev";
-      wg-dev-down = "nmcli connection down dev";
-      wg-dev-status = "nmcli connection show dev";
+      wg-dev-up = "nmcli connection up test";
+      wg-dev-down = "nmcli connection down test";
+      wg-dev-status = "nmcli connection show test";
     };
   };
 }

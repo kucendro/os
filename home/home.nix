@@ -25,20 +25,6 @@
 
   programs.home-manager.enable = true;
 
-  #  programs.ssh = {
-  #    enable = true;
-  #    addKeysToAgent = "yes";
-  #    matchBlocks."github.com" = {
-  #      hostname = "github.com";
-  #      user = "git";
-  #      identityFile = "/home/kucendro/.ssh/github_ed25519";
-  #      identitiesOnly = true;
-  #    };
-  #  };
-  #
-  #
-  #
-  #
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -51,7 +37,7 @@
     };
   };
 
-   services.ssh-agent.enable = true;
+  services.ssh-agent.enable = true;
 
   services.udiskie = {
     enable = true;

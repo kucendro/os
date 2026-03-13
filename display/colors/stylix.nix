@@ -3,6 +3,7 @@
   stylix = {
     enable = true;
     targets = {
+      nixvim.enable = false;
       console.enable = false;
       chromium.enable = false;
     };

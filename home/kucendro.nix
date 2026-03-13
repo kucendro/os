@@ -65,6 +65,7 @@
       tmuxPlugins.tmux-sessionx
       tmuxPlugins.resurrect
       kubernetes
+      fd
     ];
   };
 }

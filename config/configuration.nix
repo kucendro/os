@@ -6,7 +6,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ! Linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_6; # Switch to lastest packages after VirtualBox fixes their bug
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -100,9 +100,9 @@
   # networking.firewall.enable = false;
 
   # Virtual box
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "kucendro" ];
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "kucendro" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Docker
   virtualisation.docker.enable = true;

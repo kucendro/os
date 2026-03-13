@@ -10,9 +10,13 @@
     clock24 = true;
     historyLimit = 50000;
     shortcut = "space";
+    extraConfig = ''
+      set -g @resurrect-strategy-nvim 'session'
+    '';
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.catppuccin
+      tmuxPlugins.dotbar
     ];
   };
 }

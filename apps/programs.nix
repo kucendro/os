@@ -8,8 +8,4 @@
   programs.kdeconnect.enable = true;
   programs.nix-ld.enable = true;
   programs.nh.enable = true;
-  programs.tmux.plugins = with pkgs; [
-    tmuxPlugins.sessionx
-  ];
-
 }

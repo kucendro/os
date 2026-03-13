@@ -40,6 +40,8 @@
 
   services.ssh-agent.enable = true;
 
+  stylix.targets.neovim.enable = false;
+
   services.udiskie = {
     enable = true;
     settings = {

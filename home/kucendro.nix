@@ -66,6 +66,7 @@
       tmuxPlugins.resurrect
       kubernetes
       fd
+      lsd
     ];
   };
 }

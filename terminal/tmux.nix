@@ -13,7 +13,6 @@
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.catppuccin
-      tmuxPlugins.dotbar
     ];
   };
 }

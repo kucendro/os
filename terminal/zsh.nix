@@ -10,7 +10,6 @@
     syntaxHighlighting.enable = true;
     histSize = 10000;
     shellAliases = {
-      ls = "lsd";
       rebuild = "~/nixos/rebuild.sh";
       tunnel = "cloudflared tunnel run nixbook";
       wg-prod-up = "nmcli connection up prod";

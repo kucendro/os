@@ -12,11 +12,16 @@
     shortcut = "space";
     extraConfig = ''
       set -g @resurrect-strategy-nvim 'session'
+      set -g @continuum-restore 'on'
+      set -g @continuum-save-interval '10'
     '';
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.catppuccin
       tmuxPlugins.dotbar
+      tmuxPlugins.resurrect
+      tmuxPlugins.continuum
+      tmuxPlugins.tmux-sessionx
     ];
   };
 }

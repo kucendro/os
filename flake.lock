@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773490832,
-        "narHash": "sha256-R0KpCJe4wX7165jPb9XE489pThWfcvPqa9v9dnKQJp8=",
+        "lastModified": 1773478898,
+        "narHash": "sha256-SKofIFf2EDyBUR0h2SDndmWX8SvzN/uwy2hZu7w2LII=",
         "owner": "asus-linux-drivers",
         "repo": "asus-numberpad-driver",
-        "rev": "0e2a491c88167d02d5d91b20ecd850012793a998",
+        "rev": "04efcfce2b4b7aebc4246f86fba42d330013c0ae",
         "type": "github"
       },
       "original": {
@@ -220,11 +220,11 @@
         "noctalia-qs": "noctalia-qs"
       },
       "locked": {
-        "lastModified": 1773545031,
-        "narHash": "sha256-pbMCyf1S0jSiLSvfNQ6VABCCW0CFqqQhvlIU19zh438=",
+        "lastModified": 1773577186,
+        "narHash": "sha256-X42nwkzQBtKKedJEq47dfxvVp9BFDzIuPH1lNYp4x6U=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "a3f84fde37f5ef4bcfff3724d549824b4d050692",
+        "rev": "4cb3743a4f47fc60bd27006b45ae8b4c1dbb7ed2",
         "type": "github"
       },
       "original": {

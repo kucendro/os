@@ -62,8 +62,6 @@
       maven
       javaPackages.compiler.openjdk25
       obsidian
-      tmuxPlugins.tmux-sessionx
-      tmuxPlugins.resurrect
       kubernetes
       fd
       lsd

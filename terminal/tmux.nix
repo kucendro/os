@@ -21,7 +21,6 @@
       tmuxPlugins.dotbar
       tmuxPlugins.resurrect
       tmuxPlugins.continuum
-      tmuxPlugins.tmux-sessionx
     ];
   };
 }

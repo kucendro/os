@@ -6,7 +6,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ! Linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest; # Switch to lastest packages after VirtualBox fixes their bug
+  boot.kernelPackages = pkgs.linuxPackages_6_12; # Switch to lastest packages after VirtualBox fixes their bug
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -94,6 +94,9 @@
   };
 
   # Open ports in the firewall.
+  # Allow port 8081 for Expo dev server
+  networking.firewall.allowedTCPPorts = [ 8081 ];
+  networking.firewall.allowedUDPPorts = [ 8081 ];
   # networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)
   # networking.firewall.allowedUDPPorts = [ 51820 5353 ]; # WireGuard + mDNS (Avahi)
   # Or disable the firewall altogether.
@@ -103,6 +106,12 @@
   # virtualisation.virtualbox.host.enable = true;
   # users.extraGroups.vboxusers.members = [ "kucendro" ];
   # virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  # # Virt manager
+  # programs.virt-manager.enable = true;
+  # users.groups.libvirtd.members = [ "kucendro" ];
+  # virtualisation.libvirtd.enable = true;
+  # virtualisation.spiceUSBRedirection.enable = true;
 
   # Docker
   virtualisation.docker.enable = true;

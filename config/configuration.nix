@@ -103,9 +103,9 @@
   # networking.firewall.enable = false;
 
   # Virtual box
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "kucendro" ];
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "kucendro" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # # Virt manager
   # programs.virt-manager.enable = true;

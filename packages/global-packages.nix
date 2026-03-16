@@ -32,5 +32,6 @@
     brightnessctl
     hypridle
     hyprlock
+    ripgrep
   ];
 }

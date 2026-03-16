@@ -50,7 +50,6 @@
       kdePackages.qttools
       kicad
       witr
-      androidenv.androidPkgs.androidsdk
       androidenv.androidPkgs.tools
       magic-wormhole
       just

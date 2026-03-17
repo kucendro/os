@@ -50,8 +50,6 @@
       kdePackages.qttools
       kicad
       witr
-      androidenv.androidPkgs.androidsdk
-      androidenv.androidPkgs.tools
       magic-wormhole
       just
       tokei
@@ -65,7 +63,6 @@
       kubernetes
       fd
       lsd
-      android-studio
       exo
       tldr
       taskwarrior3

@@ -28,10 +28,10 @@
     inetutils
     putty
     wireguard-tools
-    # ? Power & idle management
     brightnessctl
     hypridle
     hyprlock
     ripgrep
+    vulnix
   ];
 }

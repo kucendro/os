@@ -68,6 +68,7 @@
       android-studio
       exo
       tldr
+      taskwarrior3
     ];
   };
 }

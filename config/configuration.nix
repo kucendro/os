@@ -1,12 +1,9 @@
 { pkgs, ... }:
 
 {
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # ! Linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_6_12; # Switch to lastest packages after VirtualBox fixes their bug
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -26,17 +23,7 @@
   };
 
   networking.hostName = "nixbook";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   networking.networkmanager.enable = true;
-
-  services.resolved = {
-    enable = true;
-  };
 
   hardware.bluetooth = {
     enable = true;
@@ -51,9 +38,6 @@
       };
     };
   };
-
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
 
   time.timeZone = "Europe/Prague";
 
@@ -70,52 +54,11 @@
     LC_TIME = "cs_CZ.UTF-8";
   };
 
-  # Configure console keymap
-  # console.keyMap = "cz-lat2";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # SUID wrappers
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  services.sunshine = {
-    enable = true;
-    autoStart = false;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
-
-  # Open ports in the firewall.
-  # Allow port 8081 for Expo dev server
-  networking.firewall.allowedTCPPorts = [ 8081 ];
-  networking.firewall.allowedUDPPorts = [ 8081 ];
-  # networking.firewall.allowedTCPPorts = [ 3689 ]; # OwnTone (DAAP)
-  # networking.firewall.allowedUDPPorts = [ 51820 5353 ]; # WireGuard + mDNS (Avahi)
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # Virtual box
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "kucendro" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
 
-  # # Virt manager
-  # programs.virt-manager.enable = true;
-  # users.groups.libvirtd.members = [ "kucendro" ];
-  # virtualisation.libvirtd.enable = true;
-  # virtualisation.spiceUSBRedirection.enable = true;
-
   # Docker
   virtualisation.docker.enable = true;
-
-  # Android SDK license acceptance
-  nixpkgs.config.android_sdk.accept_license = true;
 }

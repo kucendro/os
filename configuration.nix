@@ -22,18 +22,16 @@
     ./display/hyprland.nix
     ./display/colors/stylix.nix
 
-    ./servers/nextcloud.nix
-
     ./security/auth-methods.nix
     ./security/keychain.nix
     ./security/pam.nix
 
     ./secrets/sops.nix
 
+    ./services/services.nix
+
     ./sound/airplay.nix
     ./sound/hardware.nix
   ];
-
-  # ! ABSOLUTELY DO NOT CHANGE THE VERSION BELOW YOU MOTHER FUCKER BITCH!
   system.stateVersion = "25.11";
 }

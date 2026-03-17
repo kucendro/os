@@ -65,6 +65,8 @@
       kubernetes
       fd
       lsd
+      android-studio
+      exo
     ];
   };
 }

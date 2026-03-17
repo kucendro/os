@@ -67,7 +67,6 @@
       lsd
       android-studio
       exo
-      suricata
     ];
   };
 }

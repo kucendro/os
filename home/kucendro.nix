@@ -11,7 +11,6 @@
       "docker"
     ];
     packages = with pkgs; [
-      thunderbird
       inkscape
       krita
       gimp2

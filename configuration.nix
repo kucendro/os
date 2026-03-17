@@ -8,8 +8,6 @@
     ./config/power-management.nix
 
     ./vpn/wg.nix
-    ./vpn/cloudflared.nix
-    ./vpn/warp.nix
 
     ./apps/programs.nix
     ./custom/zenbook.nix

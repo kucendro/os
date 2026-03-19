@@ -9,6 +9,7 @@
       "wheel"
       "vboxusers"
       "docker"
+      "dialout"
     ];
     packages = with pkgs; [
       inkscape

@@ -9,6 +9,7 @@ in
       lazy-nvim
       LazyVim
       catppuccin-nvim
+      d2-vim
     ];
     initLua = ''
       require("lazy").setup({
@@ -21,6 +22,9 @@ in
             lazy = false,
             priority = 1000,
             opts = { flavour = "macchiato" },
+          },
+          { "terrastruct/d2-vim",
+             ft = { "d2" },
           },
         },
         performance = {

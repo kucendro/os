@@ -13,6 +13,8 @@
     extraConfig = ''
       set -g @continuum-restore 'on'
       set -g @continuum-save-interval '10'
+      set -g @plugin 'tmux-plugins/tpm'
+      set -g @catppuccin_flavor 'mocha'
     '';
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode

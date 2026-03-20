@@ -10,6 +10,7 @@ in
       LazyVim
       catppuccin-nvim
       d2-vim
+      rustaceanvim
     ];
     initLua = ''
       require("lazy").setup({
@@ -25,6 +26,15 @@ in
           },
           { "terrastruct/d2-vim",
              ft = { "d2" },
+          },
+          { "neovim/nvim-lspconfig",
+             opts = {
+             servers = {
+              rust_analyzer = {
+              mason = false,
+              },
+             },
+            },
           },
         },
         performance = {

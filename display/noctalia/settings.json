@@ -45,7 +45,7 @@
         "barType": "floating",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
-        "contentPadding": 3,
+        "contentPadding": 1,
         "density": "default",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
@@ -76,7 +76,7 @@
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
         "useSeparateOpacity": false,
-        "widgetSpacing": 3,
+        "widgetSpacing": 2,
         "widgets": {
             "center": [
                 {
@@ -104,6 +104,15 @@
                     "defaultSettings": {
                     },
                     "id": "plugin:kde-connect"
+                },
+                {
+                    "defaultSettings": {
+                        "enableTodoIntegration": false,
+                        "notecardsEnabled": true,
+                        "pincardsEnabled": true,
+                        "showCloseButton": true
+                    },
+                    "id": "plugin:clipper"
                 }
             ],
             "left": [
@@ -215,9 +224,6 @@
                     "id": "NotificationHistory",
                     "showUnreadBadge": true,
                     "unreadBadgeColor": "primary"
-                },
-                {
-                    "id": "plugin:clipper"
                 }
             ]
         }
@@ -266,7 +272,7 @@
                 "id": "shortcuts-card"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "media-sysmon-card"
             },
             {
@@ -339,7 +345,7 @@
     "desktopWidgets": {
         "enabled": true,
         "gridSnap": true,
-        "gridSnapScale": false,
+        "gridSnapScale": true,
         "monitorWidgets": [
             {
                 "name": "eDP-1",
@@ -357,10 +363,10 @@
                     },
                     {
                         "id": "Weather",
-                        "scale": 1.0111590288906003,
+                        "scale": 1.0145082066240063,
                         "showBackground": true,
-                        "x": 1660,
-                        "y": 960
+                        "x": 1220,
+                        "y": 20
                     },
                     {
                         "clockColor": "none",
@@ -371,6 +377,19 @@
                         "showBackground": true,
                         "useCustomFont": false,
                         "x": 1660,
+                        "y": 800
+                    },
+                    {
+                        "hideMode": "visible",
+                        "id": "MediaPlayer",
+                        "roundedCorners": true,
+                        "scale": 1,
+                        "showAlbumArt": true,
+                        "showBackground": true,
+                        "showButtons": true,
+                        "showVisualizer": true,
+                        "visualizerType": "linear",
+                        "x": 1500,
                         "y": 20
                     }
                 ]
@@ -424,8 +443,8 @@
         "autoStartAuth": false,
         "avatarImage": "/home/kucendro/nixos/home/profile.jpg",
         "boxRadiusRatio": 1,
-        "clockFormat": "hh\\nmmdd.MM.yyyy ",
-        "clockStyle": "custom",
+        "clockFormat": "h:mm AP ",
+        "clockStyle": "analog",
         "compactLockScreen": true,
         "dimmerOpacity": 0.2,
         "enableBlurBehind": true,
@@ -494,16 +513,16 @@
     "idle": {
         "customCommands": "[]",
         "enabled": true,
-        "fadeDuration": 5,
+        "fadeDuration": 3,
         "lockCommand": "",
         "lockTimeout": 60,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
-        "screenOffTimeout": 300,
+        "screenOffTimeout": 90,
         "suspendCommand": "",
-        "suspendTimeout": 1801
+        "suspendTimeout": 36000
     },
     "location": {
         "analogClockInCalendar": false,
@@ -533,7 +552,7 @@
     },
     "nightLight": {
         "autoSchedule": true,
-        "dayTemp": "6001",
+        "dayTemp": "5880",
         "enabled": true,
         "forced": false,
         "manualSunrise": "06:30",
@@ -688,10 +707,6 @@
     },
     "templates": {
         "activeTemplates": [
-            {
-                "enabled": true,
-                "id": "kitty"
-            }
         ],
         "enableUserTheming": false
     },
@@ -701,7 +716,7 @@
         "fontDefaultScale": 1.05,
         "fontFixed": "Hack Nerd Font",
         "fontFixedScale": 1.05,
-        "panelBackgroundOpacity": 0.8500000000000001,
+        "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": false,
         "settingsPanelMode": "attached",
@@ -728,6 +743,11 @@
             {
                 "directory": "/home/kucendro/nixos/display/wallpapers",
                 "name": "eDP-1",
+                "wallpaper": ""
+            },
+            {
+                "directory": "/home/kucendro/nixos/display/wallpapers",
+                "name": "DP-1",
                 "wallpaper": ""
             }
         ],

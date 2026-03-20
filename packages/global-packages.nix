@@ -9,7 +9,6 @@
     sops
     age
     nixfmt
-    kitty
     adwaita-icon-theme
     nautilus
     gnome-keyring

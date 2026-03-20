@@ -3,8 +3,8 @@
   stylix = {
     enable = true;
     targets = {
-      console.enable = false;
-      chromium.enable = false;
+      # console.enable = false;
+      # chromium.enable = false;
     };
     # image = ../../wallpaper.jpg;
     polarity = "dark";

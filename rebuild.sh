@@ -5,13 +5,16 @@ cd "$(dirname "$0")"
 
 echo "---------- Testing build ----------"
 
-build_output=$(sudo nixos-rebuild build --flake . 2>&1) || { echo "$build_output"; echo "Build failed!"; exit 1; }
+build_output=$(sudo nixos-rebuild build --flake . 2>&1) || {
+  echo "$build_output"
+  echo "Build failed!"
+  exit 1
+}
 
 echo "OK"
 echo "-----------------------------------"
 echo "$build_output"
 echo "-----------------------------------"
-
 
 if ! echo "$build_output" | grep -q "Done"; then
   echo "Build did not complete successfully (missing 'Done')."
@@ -19,7 +22,7 @@ if ! echo "$build_output" | grep -q "Done"; then
 fi
 
 echo "-----------------------------------"
-read -p "Commit message: " msg
+read -r -p "Commit message: " msg
 
 git add .
 git commit -m "$msg"

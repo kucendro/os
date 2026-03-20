@@ -13,7 +13,8 @@
     shellAliases = {
       rebuild = "~/nixos/rebuild.sh";
       ls = "lsd";
-      cl = "clear";
+      c = "clear";
+      e = "exit";
       tunnel = "cloudflared tunnel run nixbook";
       wg-prod-up = "nmcli connection up prod";
       wg-prod-down = "nmcli connection down prod";

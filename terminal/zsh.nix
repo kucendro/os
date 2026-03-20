@@ -23,6 +23,5 @@
       wg-dev-down = "nmcli connection down test";
       wg-dev-status = "nmcli connection show test";
     };
-    shellInit = "tmux a";
   };
 }

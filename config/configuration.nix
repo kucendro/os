@@ -24,6 +24,8 @@
 
   networking.hostName = "nixbook";
   networking.networkmanager.enable = true;
+  networking.firewall.allowedTCPPorts = [ 9901 ];
+  networking.firewall.allowedUDPPorts = [ 9901 ];
 
   hardware.bluetooth = {
     enable = true;

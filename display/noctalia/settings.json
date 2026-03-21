@@ -513,14 +513,14 @@
     "idle": {
         "customCommands": "[]",
         "enabled": true,
-        "fadeDuration": 3,
+        "fadeDuration": 4,
         "lockCommand": "",
         "lockTimeout": 60,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
-        "screenOffTimeout": 90,
+        "screenOffTimeout": 120,
         "suspendCommand": "",
         "suspendTimeout": 36000
     },

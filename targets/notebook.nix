@@ -1,9 +1,9 @@
 { inputs, pkgs, ... }:
 
 {
-  import = [
+  imports = [
     ./global.nix
-    ./hardware/zenbook.nix
+    ./hardware/zenbook/zenbook.nix
     ../config/power-management.nix
   ];
 

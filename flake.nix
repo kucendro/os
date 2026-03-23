@@ -44,6 +44,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./targets/notebook.nix
+          ./targets/hardware/zenbook/hardware-configuration.nix
           asus-numberpad-driver.nixosModules.default
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager

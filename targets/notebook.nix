@@ -4,7 +4,6 @@
   imports = [
     ./global.nix
     ./hardware/zenbook/zenbook.nix
-    ../config/power-management.nix
   ];
 
   networking.hostName = "nixbook";

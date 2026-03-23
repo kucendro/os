@@ -7,7 +7,7 @@
 {
   imports = [
     ../development/neovim.nix
-    ../terminal/tmux.nix
+    ../development/tmux.nix
     ../development/git.nix
     ../development/opencode.nix
     ../dotfiles/symlinks.nix

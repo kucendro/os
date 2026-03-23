@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../security/keychain.nix
     ../secrets/sops.nix
     ../vpn/wg.nix
     ../development/zsh.nix

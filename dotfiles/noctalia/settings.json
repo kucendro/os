@@ -177,6 +177,9 @@
                     "width": 20
                 },
                 {
+                    "defaultSettings": {
+                        "refreshInterval": 5000
+                    },
                     "id": "plugin:mini-docker"
                 },
                 {
@@ -210,6 +213,11 @@
                     "textColor": "none"
                 },
                 {
+                    "defaultSettings": {
+                        "connectedColor": "primary",
+                        "disconnectedColor": "none",
+                        "displayMode": "onhover"
+                    },
                     "id": "plugin:network-manager-vpn"
                 },
                 {

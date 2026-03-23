@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
 
@@ -20,5 +20,9 @@
       save_failed = true;
     };
   };
+
+  security.pam.services.sudo.rules.auth.howdy.control = lib.mkForce "sufficient";
+  security.pam.services.greetd.rules.auth.howdy.control = lib.mkForce "sufficient";
+  security.pam.services.login.rules.auth.howdy.control = lib.mkForce "sufficient";
 
 }

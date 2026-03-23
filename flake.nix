@@ -43,10 +43,9 @@
       nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./targets/notebook.nix
           asus-numberpad-driver.nixosModules.default
           sops-nix.nixosModules.sops
-          ./display/noctalia.nix
           home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
           {

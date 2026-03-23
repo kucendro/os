@@ -38,7 +38,7 @@ in
           },
         },
         performance = {
-          reset = false,  -- don't clear the Nix-managed runtimepath
+          reset = false,
         },
       })
 

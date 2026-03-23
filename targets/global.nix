@@ -1,6 +1,16 @@
 { pkgs, ... }:
 
 {
+  import = [
+    ../security/keychain.nix
+    ../secrets/sops.nix
+    ../vpn/wg.nix
+    ../development/zsh.nix
+    ../display/stylix.nix
+    ../home/kucendro.nix
+    ../services/services.nix
+  ];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_6_12;
@@ -22,24 +32,7 @@
     ];
   };
 
-  networking.hostName = "nixbook";
   networking.networkmanager.enable = true;
-  networking.firewall.allowedTCPPorts = [ 9901 ];
-  networking.firewall.allowedUDPPorts = [ 9901 ];
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
-        FastConnectable = false;
-      };
-      Policy = {
-        AutoEnable = true;
-      };
-    };
-  };
 
   time.timeZone = "Europe/Prague";
 
@@ -56,11 +49,41 @@
     LC_TIME = "cs_CZ.UTF-8";
   };
 
-  # Virtual box
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "kucendro" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 
-  # Docker
   virtualisation.docker.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
+
+  programs.nh.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    wget
+    fastfetch
+    btop
+    sops
+    age
+    nixfmt
+    adwaita-icon-theme
+    gnome-keyring
+    rustup
+    oxker
+    nodejs
+    pnpm
+    grim
+    slurp
+    gccgo15
+    python315
+    fzf
+    inetutils
+    putty
+    wireguard-tools
+    hypridle
+    hyprlock
+    ripgrep
+    vulnix
+  ];
+
+  system.stateVersion = "25.11";
 }

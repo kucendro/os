@@ -106,13 +106,14 @@
                     "id": "plugin:kde-connect"
                 },
                 {
+                    "id": "Spacer",
+                    "width": 20
+                },
+                {
                     "defaultSettings": {
-                        "enableTodoIntegration": false,
-                        "notecardsEnabled": true,
-                        "pincardsEnabled": true,
-                        "showCloseButton": true
+                        "refreshInterval": 5000
                     },
-                    "id": "plugin:clipper"
+                    "id": "plugin:mini-docker"
                 }
             ],
             "left": [
@@ -124,15 +125,6 @@
                     "icon": "noctalia",
                     "id": "ControlCenter",
                     "useDistroLogo": true
-                },
-                {
-                    "defaultSettings": {
-                        "activeColor": "primary",
-                        "hideInactive": false,
-                        "inactiveColor": "none",
-                        "removeMargins": false
-                    },
-                    "id": "plugin:privacy-indicator"
                 },
                 {
                     "id": "Spacer",
@@ -177,12 +169,6 @@
                     "width": 20
                 },
                 {
-                    "defaultSettings": {
-                        "refreshInterval": 5000
-                    },
-                    "id": "plugin:mini-docker"
-                },
-                {
                     "id": "Spacer",
                     "width": 20
                 },
@@ -211,14 +197,6 @@
                     "iconColor": "none",
                     "id": "Bluetooth",
                     "textColor": "none"
-                },
-                {
-                    "defaultSettings": {
-                        "connectedColor": "primary",
-                        "disconnectedColor": "none",
-                        "displayMode": "onhover"
-                    },
-                    "id": "plugin:network-manager-vpn"
                 },
                 {
                     "deviceNativePath": "__default__",
@@ -323,30 +301,6 @@
             "right": [
                 {
                     "id": "NightLight"
-                },
-                {
-                    "defaultSettings": {
-                        "audioCodec": "opus",
-                        "audioSource": "default_output",
-                        "colorRange": "limited",
-                        "copyToClipboard": false,
-                        "customReplayDuration": "30",
-                        "directory": "",
-                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
-                        "frameRate": "60",
-                        "hideInactive": false,
-                        "iconColor": "none",
-                        "quality": "very_high",
-                        "replayDuration": "30",
-                        "replayEnabled": false,
-                        "replayStorage": "ram",
-                        "resolution": "original",
-                        "restorePortalSession": false,
-                        "showCursor": true,
-                        "videoCodec": "h264",
-                        "videoSource": "portal"
-                    },
-                    "id": "plugin:screen-recorder"
                 },
                 {
                     "id": "WallpaperSelector"
@@ -738,7 +692,7 @@
     },
     "wallpaper": {
         "automationEnabled": false,
-        "directory": "/home/kucendro/nixos/display/wallpapers",
+        "directory": "/home/kucendro/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": true,
         "enabled": true,
         "favorites": [

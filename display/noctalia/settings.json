@@ -177,6 +177,13 @@
                     "width": 20
                 },
                 {
+                    "id": "plugin:mini-docker"
+                },
+                {
+                    "id": "Spacer",
+                    "width": 20
+                },
+                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Volume",
@@ -203,10 +210,7 @@
                     "textColor": "none"
                 },
                 {
-                    "displayMode": "onhover",
-                    "iconColor": "none",
-                    "id": "VPN",
-                    "textColor": "none"
+                    "id": "plugin:network-manager-vpn"
                 },
                 {
                     "deviceNativePath": "__default__",

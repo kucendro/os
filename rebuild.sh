@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 echo "---------- Testing build ----------"
 
-build_output=$(sudo nixos-rebuild build --flake . 2>&1) || {
+build_output=$(sudo nixos-rebuild build --flake ~/nixos/targets/hardware/zenbook/ 2>&1) || {
   echo "$build_output"
   echo "Build failed!"
   exit 1

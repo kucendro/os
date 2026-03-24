@@ -1,5 +1,5 @@
 {
-  description = "Kucendro Nixbook Flake";
+  description = "Zenbook";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -43,8 +43,8 @@
       nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./targets/notebook.nix
-          ./targets/hardware/zenbook/hardware-configuration.nix
+          ../../notebook.nix
+          ../zenbook/hardware-configuration.nix
           asus-numberpad-driver.nixosModules.default
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
@@ -53,7 +53,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
-            home-manager.users.kucendro = import ./home/home.nix;
+            home-manager.users.kucendro = import ../../../home/home.nix;
           }
         ];
       };

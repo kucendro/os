@@ -169,10 +169,6 @@
                     "width": 20
                 },
                 {
-                    "id": "Spacer",
-                    "width": 20
-                },
-                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Volume",
@@ -197,6 +193,14 @@
                     "iconColor": "none",
                     "id": "Bluetooth",
                     "textColor": "none"
+                },
+                {
+                    "defaultSettings": {
+                        "connectedColor": "primary",
+                        "disconnectedColor": "none",
+                        "displayMode": "onhover"
+                    },
+                    "id": "plugin:network-manager-vpn"
                 },
                 {
                     "deviceNativePath": "__default__",

@@ -16,5 +16,7 @@
     udisks2.enable = true;
     gvfs.enable = true;
     cloudflare-warp.enable = true;
+    clamav.daemon.enable = true;
+    clamav.updater.enable = true;
   };
 }

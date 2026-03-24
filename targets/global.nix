@@ -82,6 +82,7 @@
     hyprlock
     ripgrep
     vulnix
+    clamav
   ];
 
   system.stateVersion = "25.11";

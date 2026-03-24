@@ -1,7 +1,3 @@
 ## What the hell is NixOS?
 
-Just run `rebuild`
-
-Or on first try: `sudo nixos-rebuild switch --flake .`
-
 Before running VBOX `sudo modprobe -r kvm_amd`

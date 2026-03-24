@@ -3,7 +3,6 @@
 {
   imports = [
     ../secrets/sops.nix
-    ../vpn/wg.nix
     ../development/zsh.nix
     ../display/stylix.nix
     ../home/kucendro.nix

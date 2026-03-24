@@ -3,6 +3,7 @@
 {
   imports = [
     ./global.nix
+    ../services/vpn/deep.nix
   ];
 
   networking.hostName = "nixbook";

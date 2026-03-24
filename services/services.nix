@@ -2,14 +2,12 @@
 
 {
   services = {
-
     sunshine = {
       enable = true;
       autoStart = false;
       capSysAdmin = true;
       openFirewall = true;
     };
-
     resolved.enable = true;
     openssh.enable = true;
     printing.enable = true;

@@ -1,11 +1,20 @@
 { lib, ... }:
 
 {
-
-  /*
-    This IR auth method depends on hardware IR camera under video2 (howdy can autodetect). Comment this block before forst instalation and setting pasword.
-    ! You have to set you face via howdy -U username add before rebooting. You won't be able to login without your face saved.
-  */
+  imports = [
+    ./nixbook.nix
+  ];
+  services.asus-numberpad-driver = {
+    enable = true;
+    layout = "up5401ea";
+    wayland = true;
+    runtimeDir = "/run/user/1000/";
+    waylandDisplay = "wayland-1";
+    ignoreWaylandDisplayEnv = false;
+    config = {
+      "activation_time" = "0.3";
+    };
+  };
 
   services.howdy.enable = true;
   services.howdy.settings = {
@@ -14,7 +23,7 @@
       no_confirmation = false;
     };
     video = {
-      dark_threshold = 80; # Depends on hw camera
+      dark_threshold = 80;
     };
     snapshots = {
       save_failed = true;
@@ -24,5 +33,4 @@
   security.pam.services.sudo.rules.auth.howdy.control = lib.mkForce "sufficient";
   security.pam.services.greetd.rules.auth.howdy.control = lib.mkForce "sufficient";
   security.pam.services.login.rules.auth.howdy.control = lib.mkForce "sufficient";
-
 }

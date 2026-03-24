@@ -1,7 +1,6 @@
 { ... }:
 {
-
-  import = [
+  imports = [
     ./global.nix
   ];
 

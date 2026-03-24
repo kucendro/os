@@ -3,7 +3,6 @@
 {
   imports = [
     ./global.nix
-    ./hardware/zenbook/zenbook.nix
   ];
 
   networking.hostName = "nixbook";

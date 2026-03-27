@@ -66,6 +66,19 @@
     adwaita-icon-theme
     gnome-keyring
     rustup
+    stdenv.cc.cc
+    zlib
+    libGL
+    glibc
+    glibc.dev
+    gcc
+    clang
+    gnumake
+    autoconf
+    automake
+    libtool
+    pkg-config
+    dbus
     oxker
     nodejs
     pnpm
@@ -81,6 +94,7 @@
     hyprlock
     ripgrep
     vulnix
+    cloudflare-warp
     clamav
   ];
 

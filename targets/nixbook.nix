@@ -8,8 +8,18 @@
 
   networking.hostName = "nixbook";
   networking.networkmanager.enable = true;
-  networking.firewall.allowedTCPPorts = [ 9901 ];
-  networking.firewall.allowedUDPPorts = [ 9901 ];
+  networking.firewall = {
+    allowedTCPPorts = [
+      9901
+      443
+    ];
+    allowedUDPPorts = [
+      9901
+      1111
+      2408
+    ];
+    trustedInterfaces = [ "CloudflareWARP" ];
+  };
 
   hardware.bluetooth = {
     enable = true;

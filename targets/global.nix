@@ -94,7 +94,6 @@
     hyprlock
     ripgrep
     vulnix
-    cloudflare-warp
     clamav
   ];
 

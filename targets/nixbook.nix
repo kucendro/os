@@ -86,6 +86,7 @@
     qdirstat
     gpu-screen-recorder
     brightnessctl
+    drawy
   ];
 
   programs.firefox.enable = true;

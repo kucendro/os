@@ -66,6 +66,11 @@
       exo
       tldr
       taskwarrior3
+      nushell
+      kiwix
+      reaper
+      lmms
+      gnome-contacts
     ];
   };
 }

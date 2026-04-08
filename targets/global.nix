@@ -54,7 +54,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.nh.enable = true;
+  programs.nh = {
+    enable = true;
+    flake = "~/nixos";
+  };
 
   environment.systemPackages = with pkgs; [
     wget
@@ -94,6 +97,7 @@
     hyprlock
     ripgrep
     vulnix
+    cloudflare-warp
     clamav
   ];
 

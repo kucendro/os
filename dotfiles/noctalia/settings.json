@@ -60,7 +60,8 @@
         "middleClickCommand": "",
         "middleClickFollowMouse": false,
         "monitors": [
-            "eDP-1"
+            "eDP-1",
+            "DP-1"
         ],
         "mouseWheelAction": "none",
         "mouseWheelWrap": true,
@@ -74,6 +75,11 @@
             {
                 "enabled": false,
                 "name": "eDP-1"
+            },
+            {
+                "enabled": true,
+                "name": "DP-1",
+                "position": "top"
             }
         ],
         "showCapsule": true,

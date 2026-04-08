@@ -81,6 +81,7 @@
         #   hardwareModule = ./targets/workstation-hw-configuration.nix;
         #   extraModules = [ ];
         # };
+
       };
 
     };

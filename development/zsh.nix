@@ -11,7 +11,6 @@
     histSize = 10000;
     enableLsColors = true;
     shellAliases = {
-      rebuild = "~/nixos/rebuild.sh";
       ls = "lsd";
       cl = "clear";
       ex = "exit";

@@ -227,14 +227,6 @@
                     "textColor": "none"
                 },
                 {
-                    "defaultSettings": {
-                        "connectedColor": "primary",
-                        "disconnectedColor": "none",
-                        "displayMode": "onhover"
-                    },
-                    "id": "plugin:network-manager-vpn"
-                },
-                {
                     "deviceNativePath": "__default__",
                     "displayMode": "icon-always",
                     "hideIfIdle": false,
@@ -413,12 +405,12 @@
         "displayMode": "auto_hide",
         "dockType": "floating",
         "enabled": false,
-        "floatingRatio": 0.5,
+        "floatingRatio": 0.75,
         "groupApps": false,
         "groupClickAction": "cycle",
         "groupContextMenuMode": "extended",
         "groupIndicatorStyle": "dots",
-        "inactiveIndicators": false,
+        "inactiveIndicators": true,
         "indicatorColor": "primary",
         "indicatorOpacity": 0.6,
         "indicatorThickness": 3,
@@ -431,10 +423,10 @@
         "onlySameOutput": false,
         "pinnedApps": [
         ],
-        "pinnedStatic": false,
+        "pinnedStatic": true,
         "position": "bottom",
         "showDockIndicator": false,
-        "showLauncherIcon": false,
+        "showLauncherIcon": true,
         "sitOnFrame": false,
         "size": 1
     },
@@ -517,7 +509,7 @@
     "idle": {
         "customCommands": "[]",
         "enabled": true,
-        "fadeDuration": 4,
+        "fadeDuration": 5,
         "lockCommand": "",
         "lockTimeout": 60,
         "resumeLockCommand": "",

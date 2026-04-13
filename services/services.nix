@@ -15,5 +15,9 @@
     gvfs.enable = true;
     clamav.daemon.enable = true;
     clamav.updater.enable = true;
+    cloudflare-warp.enable = true;
+    gnome.evolution-data-server.enable = true;
+    gnome.gnome-online-accounts.enable = true;
+    gnome.gnome-keyring.enable = true;
   };
 }

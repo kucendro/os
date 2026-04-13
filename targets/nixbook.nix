@@ -6,19 +6,21 @@
     ../services/vpn/deep.nix
   ];
 
-  networking.hostName = "nixbook";
-  networking.networkmanager.enable = true;
-  networking.firewall = {
-    allowedTCPPorts = [
-      9901
-      443
-    ];
-    allowedUDPPorts = [
-      9901
-      1111
-      2408
-    ];
-    trustedInterfaces = [ "CloudflareWARP" ];
+  networking = {
+    hostName = "nixbook";
+    networkmanager.enable = true;
+    firewall = {
+      allowedTCPPorts = [
+        9901
+        443
+      ];
+      allowedUDPPorts = [
+        9901
+        1111
+        2408
+      ];
+      trustedInterfaces = [ "CloudflareWARP" ];
+    };
   };
 
   hardware.bluetooth = {
@@ -35,48 +37,53 @@
     };
   };
 
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    extraConfig.pipewire."91-raop-discover" = {
-      "context.modules" = [
-        {
-          name = "libpipewire-module-raop-discover";
-        }
-      ];
+
+  services = {
+
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "lock";
+      HandlePowerKey = "suspend";
+      IdleAction = "suspend";
+      IdleActionSec = "5min";
     };
 
-  };
-
-  services.upower.enable = true;
-  services.power-profiles-daemon.enable = true;
-  powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "powersave";
-
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchExternalPower = "lock";
-    HandlePowerKey = "suspend";
-    IdleAction = "suspend";
-    IdleActionSec = "5min";
-  };
-
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
-        user = "greeter";
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
+          user = "greeter";
+        };
       };
     };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      extraConfig.pipewire."91-raop-discover" = {
+        "context.modules" = [
+          {
+            name = "libpipewire-module-raop-discover";
+          }
+        ];
+      };
+
+    };
+
+    pulseaudio.enable = false;
+  };
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "powersave";
   };
 
   environment.systemPackages = with pkgs; [
@@ -91,13 +98,25 @@
     winetricks
   ];
 
-  programs.firefox.enable = true;
-  programs.evince.enable = true;
-  programs.kdeconnect.enable = true;
+  programs = {
+    firefox.enable = true;
+    evince.enable = true;
+    kdeconnect.enable = true;
+    dconf.enable = true;
+    hyprland.enable = true;
+    hyprland.xwayland.enable = true;
+  };
 
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+    guest = {
+      enable = true;
+      dragAndDrop = true;
+    };
+  };
   users.extraGroups.vboxusers.members = [ "kucendro" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.dragAndDrop = true;
+
 }

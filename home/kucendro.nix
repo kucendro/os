@@ -63,7 +63,6 @@
       kubernetes
       fd
       lsd
-      exo
       tldr
       taskwarrior3
       nushell

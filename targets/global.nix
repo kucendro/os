@@ -98,8 +98,6 @@
     inetutils
     putty
     wireguard-tools
-    hypridle
-    hyprlock
     ripgrep
     vulnix
     clamav

@@ -19,7 +19,6 @@
         1111
         2408
       ];
-      trustedInterfaces = [ "CloudflareWARP" ];
     };
   };
 

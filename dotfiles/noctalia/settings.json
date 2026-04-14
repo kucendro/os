@@ -165,12 +165,6 @@
             ],
             "right": [
                 {
-                    "defaultSettings": {
-                        "refreshInterval": 5000
-                    },
-                    "id": "plugin:mini-docker"
-                },
-                {
                     "id": "Spacer",
                     "width": 20
                 },
@@ -234,14 +228,6 @@
                         "displayMode": "onhover"
                     },
                     "id": "plugin:network-manager-vpn"
-                },
-                {
-                    "defaultSettings": {
-                        "connectedColor": "primary",
-                        "disconnectedColor": "none",
-                        "refreshInterval": 5000
-                    },
-                    "id": "plugin:cloudflare-warp"
                 },
                 {
                     "deviceNativePath": "__default__",
@@ -543,7 +529,7 @@
         "firstDayOfWeek": 1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Chrudim",
+        "name": "Prague",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,

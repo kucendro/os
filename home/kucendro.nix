@@ -37,7 +37,6 @@
       yq
       gnome-calendar
       gnome-calculator
-      dex
       cloudflared
       discord
       maven
@@ -61,7 +60,6 @@
       maven
       javaPackages.compiler.openjdk25
       obsidian
-      kubernetes
       fd
       lsd
       tldr

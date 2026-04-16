@@ -100,6 +100,7 @@
     wireguard-tools
     ripgrep
     vulnix
+    hypridle
     clamav
   ];
 

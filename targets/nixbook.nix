@@ -93,8 +93,6 @@
     gpu-screen-recorder
     brightnessctl
     drawy
-    wineWowPackages.staging
-    winetricks
   ];
 
   programs = {

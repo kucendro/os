@@ -161,18 +161,6 @@
                     "showText": true,
                     "textColor": "secondary",
                     "useFixedWidth": false
-                },
-                {
-                    "defaultSettings": {
-                        "activeColor": "primary",
-                        "enableToast": true,
-                        "hideInactive": false,
-                        "iconSpacing": 4,
-                        "inactiveColor": "none",
-                        "micFilterRegex": "",
-                        "removeMargins": false
-                    },
-                    "id": "plugin:privacy-indicator"
                 }
             ],
             "right": [
@@ -399,7 +387,7 @@
                         "id": "Weather",
                         "scale": 1.0145082066240063,
                         "showBackground": true,
-                        "x": 1220,
+                        "x": 1180,
                         "y": 20
                     },
                     {
@@ -561,7 +549,7 @@
     },
     "location": {
         "analogClockInCalendar": false,
-        "autoLocate": true,
+        "autoLocate": false,
         "firstDayOfWeek": 1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
@@ -646,7 +634,7 @@
         "overlayLayer": true
     },
     "plugins": {
-        "autoUpdate": true,
+        "autoUpdate": false,
         "notifyUpdates": true
     },
     "sessionMenu": {

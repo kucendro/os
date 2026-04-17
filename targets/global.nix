@@ -73,7 +73,6 @@
     nixfmt
     adwaita-icon-theme
     gnome-keyring
-    rustup
     stdenv.cc.cc
     zlib
     libGL
@@ -102,6 +101,13 @@
     vulnix
     hypridle
     clamav
+    cargo
+    rustc
+    rust-analyzer
+    clippy
+    rustfmt
+    dbus
+    pkg-config
   ];
 
   system.stateVersion = "25.11";

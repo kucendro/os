@@ -11,32 +11,21 @@
       };
       input-field = lib.mkForce [
         {
-          monitor = "";
-          size = "220, 50";
-          outline_thickness = 3;
-          dots_size = 0.33;
-          dots_spacing = 0.15;
-          dots_center = true;
-          outer_color = "rgb(151515)";
-          inner_color = "rgb(200, 200, 200)";
-          font_color = "rgb(10, 10, 10)";
           fade_on_empty = true;
-          placeholder_text = "<i>Password...</i>";
           hide_input = false;
-          rounding = 12;
-          check_color = "rgb(120, 200, 120)";
-          fail_color = "rgb(220, 80, 80)";
           position = "0, -20";
           halign = "center";
           valign = "center";
+          size = "0, 0";
+          outer_color = "";
+          inner_color = "";
         }
       ];
       label = lib.mkForce [
         {
           monitor = "";
           text = "$TIME";
-          color = "rgba(255, 255, 255, 0.8)";
-          font_size = 72;
+          font_size = 120;
           position = "0, 120";
           halign = "center";
           valign = "center";
@@ -70,30 +59,33 @@
       ];
 
       general = {
+
         gaps_in = 5;
         gaps_out = 8;
         border_size = 0;
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
+
       };
 
       decoration = {
+
         rounding = 12;
         rounding_power = 2;
         active_opacity = 0.95;
         inactive_opacity = 0.75;
+
         shadow = {
           enabled = true;
           range = 4;
           render_power = 3;
         };
+
         blur = {
           enabled = false;
-          size = 0;
-          passes = 1;
-          vibrancy = 0.1696;
         };
+
       };
 
       animations = {

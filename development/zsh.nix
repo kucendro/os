@@ -15,7 +15,6 @@
       cl = "clear";
       ex = "exit";
       tunnel = "cloudflared tunnel run nixbook";
-      ardmonitor = "arduino-cli monitor -p $PORT";
     };
   };
 }

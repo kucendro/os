@@ -24,7 +24,7 @@
         "showCategories": true,
         "showIconBackground": false,
         "sortByMostUsed": true,
-        "terminalCommand": "alacritty -e",
+        "terminalCommand": "kitty -e",
         "viewMode": "grid"
     },
     "audio": {
@@ -697,8 +697,8 @@
                 "action": "rebootToUefi",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true,
-                "keybind": "7"
+                "enabled": false,
+                "keybind": ""
             }
         ],
         "showHeader": true,

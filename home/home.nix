@@ -23,17 +23,20 @@
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
+      allowed-users = [ "kucendro" ];
     };
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 7d";
     };
   };
 
   services.ssh-agent.enable = true;
 
-  stylix.targets.neovim.enable = false;
+  stylix.targets = {
+    neovim.enable = false;
+  };
 
   programs.kitty = lib.mkForce {
     enable = true;

@@ -278,10 +278,10 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "ADW",
+        "predefinedScheme": "Catppuccin Lavender",
         "schedulingMode": "off",
-        "syncGsettings": true,
-        "useWallpaperColors": true
+        "syncGsettings": false,
+        "useWallpaperColors": false
     },
     "controlCenter": {
         "cards": [
@@ -499,7 +499,7 @@
             ]
         },
         "language": "en",
-        "lockOnSuspend": true,
+        "lockOnSuspend": false,
         "lockScreenAnimations": true,
         "lockScreenBlur": 0,
         "lockScreenCountdownDuration": 3000,
@@ -535,9 +535,9 @@
     },
     "idle": {
         "customCommands": "[]",
-        "enabled": true,
+        "enabled": false,
         "fadeDuration": 5,
-        "lockCommand": "",
+        "lockCommand": "hyprlock",
         "lockTimeout": 60,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
@@ -571,7 +571,7 @@
         "bluetoothRssiPollingEnabled": true,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "list"
+        "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
         "autoSchedule": true,
@@ -635,7 +635,7 @@
     },
     "plugins": {
         "autoUpdate": false,
-        "notifyUpdates": true
+        "notifyUpdates": false
     },
     "sessionMenu": {
         "countdownDuration": 3000,
@@ -646,7 +646,7 @@
         "powerOptions": [
             {
                 "action": "lock",
-                "command": "",
+                "command": "hyprlock",
                 "countdownEnabled": true,
                 "enabled": true,
                 "keybind": "1"
@@ -744,14 +744,14 @@
         "scrollbarAlwaysVisible": false,
         "settingsPanelMode": "attached",
         "settingsPanelSideBarCardStyle": true,
-        "tooltipsEnabled": true,
+        "tooltipsEnabled": false,
         "translucentWidgets": true
     },
     "wallpaper": {
         "automationEnabled": false,
         "directory": "/home/kucendro/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": true,
-        "enabled": true,
+        "enabled": false,
         "favorites": [
         ],
         "fillColor": "#000000",

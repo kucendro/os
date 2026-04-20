@@ -11,6 +11,7 @@
     ../development/git.nix
     ../development/opencode.nix
     ../dotfiles/symlinks.nix
+    ../display/hyprland.nix
   ];
 
   home.username = "kucendro";

@@ -38,5 +38,6 @@
     sudo.rules.auth.howdy.control = lib.mkForce "sufficient";
     greetd.rules.auth.howdy.control = lib.mkForce "sufficient";
     login.rules.auth.howdy.control = lib.mkForce "sufficient";
+    hyprlock.rules.auth.howdy.control = lib.mkForce "sufficient";
   };
 }

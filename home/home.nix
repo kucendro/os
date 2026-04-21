@@ -17,7 +17,9 @@
   home.username = "kucendro";
   home.homeDirectory = "/home/kucendro";
 
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+  };
 
   nix = {
     settings = {

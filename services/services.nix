@@ -13,8 +13,10 @@
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
-    clamav.daemon.enable = true;
-    clamav.updater.enable = true;
+    clamav = {
+      daemon.enable = true;
+      updater.enable = true;
+    };
     gnome.gnome-keyring.enable = true;
   };
 }

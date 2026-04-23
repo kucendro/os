@@ -18,5 +18,6 @@
       updater.enable = true;
     };
     gnome.gnome-keyring.enable = true;
+    passSecretService.enable = true;
   };
 }

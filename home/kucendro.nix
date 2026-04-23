@@ -47,6 +47,8 @@
       mongodb-compass
       spotify
       opencode
+      github-copilot-cli
+      ollama
       kdePackages.qttools
       kicad
       witr
@@ -67,6 +69,8 @@
       nushell
       kiwix
       lmms
+      supabase-cli
+      lefthook
     ];
   };
 }

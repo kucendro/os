@@ -35,9 +35,26 @@
   };
 
   security.pam.services = {
-    sudo.rules.auth.howdy.control = lib.mkForce "sufficient";
-    greetd.rules.auth.howdy.control = lib.mkForce "sufficient";
-    login.rules.auth.howdy.control = lib.mkForce "sufficient";
-    hyprlock.rules.auth.howdy.control = lib.mkForce "sufficient";
+
+    sudo.rules.auth = {
+      howdy.control = lib.mkForce "sufficient";
+      unix.control = lib.mkForce "sufficient";
+    };
+
+    greetd.rules.auth = {
+      howdy.control = lib.mkForce "sufficient";
+      unix.control = lib.mkForce "sufficient";
+    };
+
+    login.rules.auth = {
+      howdy.control = lib.mkForce "sufficient";
+      unix.control = lib.mkForce "sufficient";
+    };
+
+    hyprlock.rules.auth = {
+      howdy.control = lib.mkForce "sufficient";
+      unix.control = lib.mkForce "sufficient";
+    };
+
   };
 }

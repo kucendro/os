@@ -71,6 +71,7 @@
       lmms
       supabase-cli
       lefthook
+      dbeaver-bin
     ];
   };
 }

@@ -367,7 +367,7 @@
     "desktopWidgets": {
         "enabled": true,
         "gridSnap": true,
-        "gridSnapScale": true,
+        "gridSnapScale": false,
         "monitorWidgets": [
             {
                 "name": "eDP-1",
@@ -378,47 +378,50 @@
                         "layout": "bottom",
                         "roundedCorners": true,
                         "scale": 1.0119140126934296,
-                        "showBackground": true,
+                        "showBackground": false,
                         "statType": "CPU",
                         "x": 1660,
                         "y": 1060
                     },
                     {
                         "id": "Weather",
-                        "scale": 1.0145082066240063,
-                        "showBackground": true,
-                        "x": 1180,
-                        "y": 20
+                        "roundedCorners": true,
+                        "scale": 0.8464010085969388,
+                        "showBackground": false,
+                        "x": 1660,
+                        "y": 980
                     },
                     {
                         "clockColor": "none",
-                        "clockStyle": "digital",
+                        "clockStyle": "minimal",
+                        "customFont": "",
                         "format": "HH:mm\\nd MMMM yyyy",
                         "id": "Clock",
-                        "scale": 1.5449694059691637,
-                        "showBackground": true,
+                        "roundedCorners": true,
+                        "scale": 1.8817642948153792,
+                        "showBackground": false,
                         "useCustomFont": false,
                         "x": 1660,
-                        "y": 800
-                    },
-                    {
-                        "hideMode": "visible",
-                        "id": "MediaPlayer",
-                        "roundedCorners": true,
-                        "scale": 1,
-                        "showAlbumArt": true,
-                        "showBackground": true,
-                        "showButtons": true,
-                        "showVisualizer": true,
-                        "visualizerType": "linear",
-                        "x": 1500,
-                        "y": 20
+                        "y": 860
                     }
                 ]
             },
             {
                 "name": "DP-1",
                 "widgets": [
+                    {
+                        "clockColor": "none",
+                        "clockStyle": "minimal",
+                        "customFont": "Hack Nerd Font",
+                        "format": "HH:mm\\nd MMMM yyyy",
+                        "id": "Clock",
+                        "roundedCorners": true,
+                        "scale": 2.634932612448527,
+                        "showBackground": false,
+                        "useCustomFont": true,
+                        "x": 1575,
+                        "y": 450
+                    }
                 ]
             }
         ],
@@ -576,7 +579,7 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "5880",
-        "enabled": true,
+        "enabled": false,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",

@@ -108,6 +108,7 @@
     rustfmt
     dbus
     pkg-config
+    openssl
   ];
 
   system.stateVersion = "25.11";

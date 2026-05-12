@@ -14,7 +14,6 @@
     packages = with pkgs; [
       inkscape
       krita
-      gimp2
       slack
       vscode
       cider-2

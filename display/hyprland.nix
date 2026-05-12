@@ -79,7 +79,7 @@
       exec-once = [
         "noctalia-shell"
         "kdeconnectd"
-        "cider-2 & beeper & slack"
+        "beeper & slack"
       ];
 
       ecosystem.enforce_permissions = 1;
@@ -252,8 +252,8 @@
         no_focus = true
       }
       windowrule {
-        name = cider-to-special
-        match:class = ^(Cider|cider).*$
+        name = apple-music-to-special
+        match:class = ^(Apple music|apple music).*$
         workspace = special:magic silent
         opacity = 1
       }

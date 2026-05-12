@@ -37,7 +37,7 @@
   services.ssh-agent.enable = true;
 
   stylix.targets = {
-    neovim.enable = false;
+    # neovim.enable = false;
   };
 
   programs.kitty = lib.mkForce {

@@ -14,7 +14,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest; # for the virtual box revert to 6_18
   };
 
   nix.settings = {

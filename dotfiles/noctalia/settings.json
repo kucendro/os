@@ -18,6 +18,7 @@
         "ignoreMouseInput": false,
         "overviewLayer": false,
         "pinnedApps": [
+            "chrome-blgdilankhbcpipclgpdndahbehalgkh-Default"
         ],
         "position": "center",
         "screenshotAnnotationTool": "",
@@ -278,7 +279,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Catppuccin Lavender",
+        "predefinedScheme": "GitHub Dark",
         "schedulingMode": "off",
         "syncGsettings": false,
         "useWallpaperColors": false
@@ -333,9 +334,6 @@
             "right": [
                 {
                     "id": "NightLight"
-                },
-                {
-                    "id": "WallpaperSelector"
                 },
                 {
                     "defaultSettings": {
@@ -447,7 +445,7 @@
         "launcherIcon": "",
         "launcherIconColor": "none",
         "launcherPosition": "end",
-        "launcherUseDistroLogo": false,
+        "launcherUseDistroLogo": true,
         "monitors": [
         ],
         "onlySameOutput": false,
@@ -599,7 +597,7 @@
         "enableMarkdown": true,
         "enableMediaToast": false,
         "enabled": true,
-        "location": "top",
+        "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
         ],

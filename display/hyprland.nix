@@ -45,7 +45,7 @@
         {
           fade_on_empty = true;
           hide_input = false;
-          position = "0, -150";
+          position = "0, -350";
           halign = "center";
           valign = "center";
           size = "0, 0";
@@ -57,8 +57,8 @@
         {
           monitor = "";
           text = "$TIME";
-          font_size = 120;
-          position = "0, 0";
+          font_size = 60;
+          position = "0, -200";
           halign = "center";
           valign = "center";
         }

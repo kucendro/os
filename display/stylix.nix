@@ -4,6 +4,7 @@
     enable = true;
     targets = {
       console.enable = false;
+      chromium.enable = false;
     };
     image = ./wallpaper.png;
     polarity = "dark";

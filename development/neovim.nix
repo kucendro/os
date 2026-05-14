@@ -5,7 +5,6 @@
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim
-      catppuccin-nvim
       d2-vim
       rustaceanvim
     ];
@@ -25,13 +24,12 @@
              },
             },
           },
+          { "echasnovski/mini.nvim", lazy = false },
         },
         performance = {
           reset = false,
         },
-      })
-
-      vim.cmd.colorscheme("catppuccin")
+      }) 
     '';
   };
 }

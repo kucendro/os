@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
@@ -11,6 +12,7 @@
     ../development/git.nix
     ../development/opencode.nix
     ../dotfiles/symlinks.nix
+    inputs.noctalia.homeModules.default
     ../display/hyprland.nix
   ];
 
@@ -35,6 +37,10 @@
   };
 
   services.ssh-agent.enable = true;
+
+  programs."noctalia-shell" = {
+    enable = true;
+  };
 
   stylix.targets = {
     # neovim.enable = false;

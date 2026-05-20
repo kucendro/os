@@ -4,6 +4,7 @@
   imports = [
     ./global.nix
     ../services/vpn/deep.nix
+    ../services/kube.nix
   ];
 
   networking = {

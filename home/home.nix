@@ -20,6 +20,10 @@
   home.username = "kucendro";
   home.homeDirectory = "/home/kucendro";
 
+  home.sessionVariables = {
+    KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
+  };
+
   programs.home-manager = {
     enable = true;
   };

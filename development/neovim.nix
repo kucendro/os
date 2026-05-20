@@ -2,11 +2,14 @@
 {
   programs.neovim = {
     enable = true;
+    withRuby = true;
+    withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim
       d2-vim
       rustaceanvim
+      markdown-preview-nvim
     ];
     initLua = ''
       require("lazy").setup({
@@ -25,6 +28,16 @@
             },
           },
           { "echasnovski/mini.nvim", lazy = false },
+          {
+            "iamcco/markdown-preview.nvim",
+            dir = "${pkgs.vimPlugins.markdown-preview-nvim}",
+            build = function() vim.fn["mkdp#util#install"]() end,
+            cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
+            ft = { "markdown" },
+            init = function()
+              vim.g.mkdp_filetypes = { "markdown" }
+            end,
+          },
         },
         performance = {
           reset = false,

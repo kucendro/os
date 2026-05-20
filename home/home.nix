@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   inputs,
@@ -22,6 +23,8 @@
   programs.home-manager = {
     enable = true;
   };
+
+  gtk.gtk4.theme = config.gtk.theme;
 
   nix = {
     settings = {

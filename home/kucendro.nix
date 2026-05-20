@@ -70,7 +70,11 @@
       lmms
       supabase-cli
       lefthook
-      dbeaver-bin
+      tableplus
+      worktrunk
+      mkchromecast
+      jq
+      kubectl
     ];
   };
 }

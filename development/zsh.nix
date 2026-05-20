@@ -15,6 +15,9 @@
       cl = "clear";
       ex = "exit";
       tunnel = "cloudflared tunnel run nixbook";
+      vibe = "wt switch --create -x --execute=claude";
+      k = "kubectl";
+      n = "nvim .";
     };
   };
 }

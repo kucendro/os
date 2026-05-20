@@ -68,6 +68,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
 
     settings = {
       monitor = [
@@ -208,7 +209,7 @@
         "$mainMod, J, togglesplit,"
         "$mainMod, S, exec, grim -g \"$(slurp)\""
         "$mainMod, V, togglefloating,"
-        "$mainMod, C, killactive,"
+        "$mainMod, Q, killactive,"
         "$mainMod, I, exec, ~/nixos/secrets/toggle-password.sh"
         "$mainMod, TAB, workspace, e+1"
         "$mainMod SHIFT, TAB, movetoworkspace, e+1"

@@ -103,7 +103,14 @@
     dconf.enable = true;
     hyprland.enable = true;
     hyprland.xwayland.enable = true;
+    nix-ld.enable = true;
   };
+
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    openssl
+  ];
 
   # This shit doesnt work on latest linux, last supported 6.18
   # virtualisation.virtualbox = {

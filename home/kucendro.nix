@@ -42,6 +42,7 @@
       d2
       arduino-ide
       chromium
+      google-chrome
       clickhouse
       mongodb-compass
       spotify

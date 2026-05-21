@@ -64,6 +64,29 @@
     };
   };
 
+  programs.zsh.plugins = with pkgs; [
+    {
+      name = "zsh-autopair";
+      src = fetchFromGitHub {
+        owner = "hlissner";
+        repo = "zsh-autopair";
+        rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
+        sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
+      };
+      file = "autopair.zsh";
+    }
+    {
+      name = "fzf-tab";
+      src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+      file = "fzf-tab.plugin.zsh";
+    }
+    {
+      name = "zsh-you-should-use";
+      src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+      file = "you-should-use.plugin.zsh";
+    }
+  ];
+
   services.udiskie = {
     enable = true;
     settings = {

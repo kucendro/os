@@ -15,7 +15,7 @@
         enable = true;
         consoleMode = "auto";
       };
-      timeout = 0;
+      timeout = 3;
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
@@ -87,7 +87,11 @@
 
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
+    enableSSHSupport = false;
+  };
+
+  environment.sessionVariables = {
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gcr/ssh";
   };
 
   virtualisation.docker.enable = true;

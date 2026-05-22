@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, me, ... }:
 
 {
   imports = [
@@ -125,6 +125,6 @@
   #   # };
   # };
 
-  users.extraGroups.vboxusers.members = [ "kucendro" ];
+  users.extraGroups.vboxusers.members = [ me.name ];
 
 }

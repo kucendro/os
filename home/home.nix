@@ -43,8 +43,6 @@
     };
   };
 
-  services.ssh-agent.enable = true;
-
   programs."noctalia-shell" = {
     enable = true;
   };

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, me, ... }:
 
 {
 
@@ -154,7 +154,6 @@
       };
 
       dwindle = {
-        pseudotile = true;
         preserve_split = true;
       };
 
@@ -166,7 +165,7 @@
       };
 
       input = {
-        kb_layout = "us,cz";
+        kb_layout = me.keyboard.layout;
         kb_variant = ",qwerty";
         kb_model = "pc104";
         kb_options = "grp:alt_space_toggle";
@@ -200,13 +199,11 @@
         "$mainMod CTRL, right, movewindow, r"
         "$mainMod CTRL, up, movewindow, u"
         "$mainMod CTRL, down, movewindow, d"
-        "$mainMod CTRL, o, togglesplit"
         "$mainMod SHIFT, left, resizeactive, -20 0"
         "$mainMod SHIFT, right, resizeactive, 20 0"
         "$mainMod SHIFT, up, resizeactive, 0 -20"
         "$mainMod SHIFT, down, resizeactive, 0 20"
         "$mainMod, P, pseudo,"
-        "$mainMod, J, togglesplit,"
         "$mainMod, S, exec, grim -g \"$(slurp)\""
         "$mainMod, V, togglefloating,"
         "$mainMod, Q, killactive,"

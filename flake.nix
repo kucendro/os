@@ -39,12 +39,14 @@
       ...
     }@inputs:
     let
+      me = import ./me.nix;
+
       homeManagerConfig = {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.kucendro = import ./home/home.nix;
+        home-manager.extraSpecialArgs = { inherit inputs me; };
+        home-manager.users.${me.name} = import ./home/home.nix;
       };
 
       mkSystem =
@@ -54,7 +56,7 @@
           extraModules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs me; };
           modules = [
             targetModule
             hardwareModule

@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, me, ... }:
 
 {
-  users.users.kucendro = {
+  users.users.${me.name} = {
     isNormalUser = true;
-    description = "Ondřej Kučera";
+    description = me.fullName;
+    hashedPasswordFile = config.sops.secrets.password_hash.path;
     extraGroups = [
       "networkmanager"
       "wheel"

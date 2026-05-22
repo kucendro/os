@@ -1,11 +1,11 @@
-{ ... }:
+{ me, ... }:
 {
   programs.git = {
     enable = true;
     settings = {
       init.defaultBranch = "main";
-      user.name = "Ondřej Kučera";
-      user.email = "ondrej@kucendro.eu";
+      user.name = me.fullName;
+      user.email = me.emails.work;
     };
   };
 }

@@ -1,4 +1,9 @@
-{ pkgs, config, me, ... }:
+{
+  pkgs,
+  config,
+  me,
+  ...
+}:
 
 {
   users.users.${me.name} = {
@@ -17,7 +22,6 @@
       krita
       slack
       vscode
-      cider-2
       element-desktop
       starship
       orca-slicer
@@ -46,7 +50,6 @@
       google-chrome
       clickhouse
       mongodb-compass
-      spotify
       opencode
       github-copilot-cli
       ollama
@@ -77,6 +80,8 @@
       mkchromecast
       jq
       kubectl
+      sqlx-cli
+      qlcplus
     ];
   };
 }

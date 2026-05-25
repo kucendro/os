@@ -108,7 +108,7 @@
 
         rounding = 12;
         rounding_power = 2;
-        active_opacity = 0.95;
+        active_opacity = 1;
         inactive_opacity = 0.75;
 
         shadow = {

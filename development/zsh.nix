@@ -23,10 +23,12 @@
     };
 
     promptInit = ''
-      eval "$(starship init zsh)"
+      eval "$(any-nix-shell zsh --info-right)"
       export KUBECONFIG=~/.kube/work-prod:~/.kube/work-test
     '';
   };
+
+  environment.systemPackages = [ pkgs.any-nix-shell ];
 
   programs.starship = {
     enable = true;

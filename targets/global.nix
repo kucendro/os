@@ -1,12 +1,20 @@
-{ pkgs, me, ... }:
+{
+  pkgs,
+  lib,
+  me,
+  profile,
+  ...
+}:
 
 {
   imports = [
     ../secrets/sops.nix
     ../development/zsh.nix
-    ../display/stylix.nix
     ../home/user.nix
     ../services/services.nix
+  ]
+  ++ lib.optionals (profile == "desktop") [
+    ../display/stylix.nix
   ];
 
   boot = {
@@ -82,8 +90,8 @@
     };
   };
 
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
+  services.gnome.gnome-keyring.enable = lib.mkIf (profile == "desktop") true;
+  security.pam.services.login.enableGnomeKeyring = lib.mkIf (profile == "desktop") true;
 
   programs.gnupg.agent = {
     enable = true;
@@ -91,7 +99,7 @@
   };
 
   environment.sessionVariables = {
-    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gcr/ssh";
+    SSH_AUTH_SOCK = lib.mkIf (profile == "desktop") "$XDG_RUNTIME_DIR/gcr/ssh";
   };
 
   virtualisation.docker.enable = true;
@@ -103,52 +111,53 @@
     flake = "~/nixos";
   };
 
-  environment.systemPackages = with pkgs; [
-    wget
-    fastfetch
-    btop
-    sops
-    age
-    nixfmt
-    adwaita-icon-theme
-    gnome-keyring
-    stdenv.cc.cc
-    zlib
-    libGL
-    glibc
-    glibc.dev
-    gcc
-    clang
-    gnumake
-    autoconf
-    automake
-    libtool
-    pkg-config
-    dbus
-    oxker
-    nodejs
-    pnpm
-    grim
-    slurp
-    gccgo15
-    python315
-    fzf
-    inetutils
-    putty
-    wireguard-tools
-    ripgrep
-    vulnix
-    hypridle
-    clamav
-    cargo
-    rustc
-    rust-analyzer
-    clippy
-    rustfmt
-    dbus
-    pkg-config
-    openssl
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      wget
+      fastfetch
+      btop
+      sops
+      age
+      nixfmt
+      stdenv.cc.cc
+      zlib
+      libGL
+      glibc
+      glibc.dev
+      gcc
+      clang
+      gnumake
+      autoconf
+      automake
+      libtool
+      pkg-config
+      dbus
+      oxker
+      nodejs
+      pnpm
+      gccgo15
+      python315
+      fzf
+      inetutils
+      putty
+      wireguard-tools
+      ripgrep
+      vulnix
+      cargo
+      rustc
+      rust-analyzer
+      clippy
+      rustfmt
+      openssl
+    ])
+    ++ lib.optionals (profile == "desktop") (with pkgs; [
+      adwaita-icon-theme
+      gnome-keyring
+      grim
+      slurp
+      hypridle
+      clamav
+    ]);
 
   system.stateVersion = "25.11";
 }

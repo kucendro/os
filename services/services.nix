@@ -1,13 +1,7 @@
-{ ... }:
+{ lib, profile, ... }:
 
 {
   services = {
-    sunshine = {
-      enable = true;
-      autoStart = false;
-      capSysAdmin = true;
-      openFirewall = true;
-    };
     resolved.enable = true;
     openssh = {
       enable = true;
@@ -22,6 +16,16 @@
         ClientAliveCountMax = 2;
       };
     };
+    fwupd.enable = true;
+    fstrim.enable = true;
+  }
+  // lib.optionalAttrs (profile == "desktop") {
+    sunshine = {
+      enable = true;
+      autoStart = false;
+      capSysAdmin = true;
+      openFirewall = true;
+    };
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
@@ -29,9 +33,6 @@
       daemon.enable = true;
       updater.enable = true;
     };
-    gnome.gnome-keyring.enable = true;
     passSecretService.enable = true;
-    fwupd.enable = true;
-    fstrim.enable = true;
   };
 }

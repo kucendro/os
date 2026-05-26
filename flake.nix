@@ -71,8 +71,10 @@
             hardwareModule
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
-            stylix.nixosModules.stylix
             (homeManagerConfig profile)
+          ]
+          ++ nixpkgs.lib.optionals (profile == "desktop") [
+            stylix.nixosModules.stylix
           ]
           ++ extraModules;
         };

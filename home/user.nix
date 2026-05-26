@@ -1,9 +1,84 @@
 {
   pkgs,
+  lib,
   config,
   me,
+  profile,
   ...
 }:
+
+let
+  sharedPackages = with pkgs; [
+    starship
+    nushell
+    fd
+    lsd
+    tldr
+    jq
+    yq
+    fzf
+    ripgrep
+    magic-wormhole
+    just
+    tokei
+    taskwarrior3
+    lefthook
+    cloudflared
+    opencode
+    github-copilot-cli
+    ollama
+    kubectl
+    sqlx-cli
+    supabase-cli
+    d2
+    nmap
+    maven
+    javaPackages.compiler.openjdk25
+    php
+  ];
+
+  desktopPackages = with pkgs; [
+    inkscape
+    krita
+    slack
+    vscode
+    element-desktop
+    orca-slicer
+    prusa-slicer
+    wireshark
+    metasploit
+    aircrack-ng
+    hashcat
+    foremost
+    sqlmap
+    freecad
+    lycheeslicer
+    libreoffice-qt-fresh
+    wl-clipboard
+    wtype
+    gnome-calendar
+    gnome-calculator
+    discord
+    arduino-ide
+    chromium
+    google-chrome
+    clickhouse
+    mongodb-compass
+    kdePackages.qttools
+    kicad
+    witr
+    beeper
+    setxkbmap
+    postman
+    obsidian
+    kiwix
+    lmms
+    tableplus
+    worktrunk
+    mkchromecast
+    qlcplus
+  ];
+in
 
 {
   users.users.${me.name} = {
@@ -17,71 +92,6 @@
       "docker"
       "dialout"
     ];
-    packages = with pkgs; [
-      inkscape
-      krita
-      slack
-      vscode
-      element-desktop
-      starship
-      orca-slicer
-      prusa-slicer
-      wireshark
-      nmap
-      metasploit
-      aircrack-ng
-      hashcat
-      foremost
-      sqlmap
-      freecad
-      lycheeslicer
-      libreoffice-qt-fresh
-      wl-clipboard
-      wtype
-      yq
-      gnome-calendar
-      gnome-calculator
-      cloudflared
-      discord
-      maven
-      d2
-      arduino-ide
-      chromium
-      google-chrome
-      clickhouse
-      mongodb-compass
-      opencode
-      github-copilot-cli
-      ollama
-      kdePackages.qttools
-      kicad
-      witr
-      magic-wormhole
-      just
-      tokei
-      beeper
-      php
-      setxkbmap
-      postman
-      maven
-      javaPackages.compiler.openjdk25
-      obsidian
-      fd
-      lsd
-      tldr
-      taskwarrior3
-      nushell
-      kiwix
-      lmms
-      supabase-cli
-      lefthook
-      tableplus
-      worktrunk
-      mkchromecast
-      jq
-      kubectl
-      sqlx-cli
-      qlcplus
-    ];
+    packages = sharedPackages ++ lib.optionals (profile == "desktop") desktopPackages;
   };
 }

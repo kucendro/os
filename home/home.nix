@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  profile,
   ...
 }:
 
@@ -13,8 +14,11 @@
     ../development/git.nix
     ../development/opencode.nix
     ../dotfiles/symlinks.nix
+  ]
+  ++ lib.optionals (profile == "desktop") [
     inputs.noctalia.homeModules.default
     ../display/hyprland.nix
+    ./desktop.nix
   ];
 
   home.username = "kucendro";
@@ -28,8 +32,6 @@
     enable = true;
   };
 
-  gtk.gtk4.theme = config.gtk.theme;
-
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -40,25 +42,6 @@
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
-    };
-  };
-
-  programs."noctalia-shell" = {
-    enable = true;
-  };
-
-  stylix.targets = {
-    # neovim.enable = false;
-  };
-
-  programs.kitty = lib.mkForce {
-    enable = true;
-    settings = {
-      confirm_os_window_close = 0;
-      dynamic_background_opacity = true;
-      enable_audio_bell = false;
-      mouse_hide_wait = "-1.0";
-      background_blur = 5;
     };
   };
 
@@ -84,15 +67,6 @@
       file = "you-should-use.plugin.zsh";
     }
   ];
-
-  services.udiskie = {
-    enable = true;
-    settings = {
-      program_options = {
-        file_manager = "${pkgs.nautilus}/bin/nautilus";
-      };
-    };
-  };
 
   home.stateVersion = "25.11";
 }

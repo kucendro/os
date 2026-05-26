@@ -1,9 +1,6 @@
 { lib, ... }:
 
 {
-  imports = [
-    ./nixbook.nix
-  ];
   services = {
     asus-numberpad-driver = {
       enable = true;

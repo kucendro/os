@@ -1,14 +1,19 @@
-{ inputs, pkgs, me, ... }:
+{
+  inputs,
+  pkgs,
+  me,
+  ...
+}:
 
 {
   imports = [
-    ./global.nix
-    ../services/vpn/deep.nix
-    ../services/kube.nix
+    ../global.nix
+    ./zenbook.nix
+    ../../services/vpn/deep.nix
+    ../../services/kube.nix
   ];
 
   networking = {
-    hostName = "nixbook";
     networkmanager.enable = true;
     firewall = {
       allowedTCPPorts = [
@@ -19,6 +24,18 @@
         9901
         1111
         2408
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 32768;
+          to = 60999;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 32768;
+          to = 60999;
+        }
       ];
     };
   };
@@ -45,6 +62,17 @@
     upower.enable = true;
     power-profiles-daemon.enable = true;
 
+    avahi = {
+      enable = true;
+      publish.enable = true;
+      publish.userServices = true;
+    };
+
+    shairport-sync = {
+      enable = true;
+      openFirewall = true;
+    };
+
     logind.settings.Login = {
       HandleLidSwitch = "suspend";
       HandleLidSwitchExternalPower = "lock";
@@ -69,6 +97,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+      raopOpenFirewall = true;
       extraConfig.pipewire."91-raop-discover" = {
         "context.modules" = [
           {
@@ -95,7 +124,13 @@
     gpu-screen-recorder
     brightnessctl
     drawy
+    gnome-network-displays
   ];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   programs = {
     firefox.enable = true;

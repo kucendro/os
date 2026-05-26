@@ -365,7 +365,7 @@
     "desktopWidgets": {
         "enabled": true,
         "gridSnap": true,
-        "gridSnapScale": false,
+        "gridSnapScale": true,
         "monitorWidgets": [
             {
                 "name": "eDP-1",

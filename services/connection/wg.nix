@@ -1,22 +1,28 @@
-{ config, ... }:
+{ config, lib, ... }:
+
+let
+  registry = (import ./peers.nix).hosts;
+  selfName = config.networking.hostName;
+  self = registry.${selfName};
+  others = lib.filterAttrs (n: p: n != selfName && p.publicKey != "") registry;
+
+  mkPeer = _name: peer: {
+    publicKey = peer.publicKey;
+    allowedIPs = [ "${peer.ip}/32" ];
+    endpoint = peer.endpoint or peer.lanEndpoint or null;
+    persistentKeepalive = 25;
+  };
+in
 
 {
   networking.wireguard.interfaces.wg0 = {
-    ips = [ "10.100.0.1/24" ];
-
-    listenPort = 51820;
-
-    privateKeyFile = config.sops.secrets.wg-private-key.path;
-
-    peers = [
-      {
-        publicKey = config.sops.secrets.wg-peer-public-key.path;
-        presharedKeyFile = config.sops.secrets.wg-preshared-key.path;
-        allowedIPs = [ "10.100.0.2/32" ];
-        persistentKeepalive = 25;
-      }
-    ];
+    ips = [ "${self.ip}/24" ];
+    listenPort = self.listenPort or null;
+    privateKeyFile = config.sops.secrets."wg-${selfName}-priv".path;
+    peers = lib.mapAttrsToList mkPeer others;
   };
 
-  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.allowedUDPPorts = lib.optional (
+    self ? listenPort && self.listenPort != null
+  ) self.listenPort;
 }

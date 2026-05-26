@@ -68,11 +68,6 @@
       publish.userServices = true;
     };
 
-    shairport-sync = {
-      enable = true;
-      openFirewall = true;
-    };
-
     logind.settings.Login = {
       HandleLidSwitch = "suspend";
       HandleLidSwitchExternalPower = "lock";

@@ -6,9 +6,9 @@
       console.enable = false;
       chromium.enable = false;
     };
-    image = ./wallpaper.png;
+    image = ./earth_wallpaper.jpg;
     polarity = "dark";
-    base16Scheme = ./theme.yaml;
+    base16Scheme = ./carbonfox.yaml;
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";

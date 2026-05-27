@@ -378,29 +378,8 @@
                         "scale": 1.0119140126934296,
                         "showBackground": false,
                         "statType": "CPU",
-                        "x": 1660,
-                        "y": 1060
-                    },
-                    {
-                        "id": "Weather",
-                        "roundedCorners": true,
-                        "scale": 0.8464010085969388,
-                        "showBackground": false,
-                        "x": 1660,
-                        "y": 980
-                    },
-                    {
-                        "clockColor": "none",
-                        "clockStyle": "minimal",
-                        "customFont": "",
-                        "format": "HH:mm\\nd MMMM yyyy",
-                        "id": "Clock",
-                        "roundedCorners": true,
-                        "scale": 1.8817642948153792,
-                        "showBackground": false,
-                        "useCustomFont": false,
-                        "x": 1660,
-                        "y": 860
+                        "x": 2052,
+                        "y": 1296
                     }
                 ]
             },

@@ -71,9 +71,13 @@
     configType = "hyprlang";
 
     settings = {
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       monitor = [
         "DP-1, 3440x1440@59.97, 0x0, 1"
-        "eDP-1, 1920x1200@60, 760x1440, 1"
+        "eDP-1, 1920x1200@60, 760x1440, 0.83"
         ", preferred, auto, 1"
       ];
 

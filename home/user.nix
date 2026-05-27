@@ -77,6 +77,7 @@ let
     worktrunk
     mkchromecast
     qlcplus
+    qalculate-gtk
   ];
 in
 

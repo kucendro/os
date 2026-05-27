@@ -78,6 +78,7 @@ let
     mkchromecast
     qlcplus
     qalculate-gtk
+    libqalculate
   ];
 in
 

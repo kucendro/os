@@ -150,14 +150,17 @@
       rustfmt
       openssl
     ])
-    ++ lib.optionals (profile == "desktop") (with pkgs; [
-      adwaita-icon-theme
-      gnome-keyring
-      grim
-      slurp
-      hypridle
-      clamav
-    ]);
+    ++ lib.optionals (profile == "desktop") (
+      with pkgs;
+      [
+        adwaita-icon-theme
+        gnome-keyring
+        grim
+        slurp
+        hypridle
+        clamav
+      ]
+    );
 
   system.stateVersion = "25.11";
 }

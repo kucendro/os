@@ -35,6 +35,8 @@ let
     maven
     javaPackages.compiler.openjdk25
     php
+    browsh
+    libqalculate
   ];
 
   desktopPackages = with pkgs; [
@@ -78,7 +80,7 @@ let
     mkchromecast
     qlcplus
     qalculate-gtk
-    libqalculate
+    qutebrowser
   ];
 in
 

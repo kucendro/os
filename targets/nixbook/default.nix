@@ -120,7 +120,25 @@
     brightnessctl
     drawy
     gnome-network-displays
+    nwg-displays
+    adwaita-icon-theme
+    gnome-keyring
+    grim
+    slurp
+    hypridle
+    clamav
   ];
+
+  environment.sessionVariables = {
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gcr/ssh";
+    NIXOS_OZONE_WL = "1";
+    GDK_BACKEND = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+  };
 
   xdg.portal = {
     enable = true;

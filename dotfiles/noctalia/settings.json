@@ -51,12 +51,12 @@
         "density": "default",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
-        "fontScale": 1,
+        "fontScale": 0.9,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
-        "marginHorizontal": 6,
-        "marginVertical": 6,
+        "marginHorizontal": 4,
+        "marginVertical": 4,
         "middleClickAction": "none",
         "middleClickCommand": "",
         "middleClickFollowMouse": false,
@@ -254,7 +254,7 @@
         "backlightDeviceMappings": [
         ],
         "brightnessStep": 5,
-        "enableDdcSupport": false,
+        "enableDdcSupport": true,
         "enforceMinimum": true
     },
     "calendar": {
@@ -375,11 +375,11 @@
                         "id": "SystemStat",
                         "layout": "bottom",
                         "roundedCorners": true,
-                        "scale": 1.0119140126934296,
+                        "scale": 1,
                         "showBackground": false,
                         "statType": "CPU",
-                        "x": 2052,
-                        "y": 1296
+                        "x": 1660,
+                        "y": 1060
                     }
                 ]
             },
@@ -396,8 +396,8 @@
                         "scale": 2.634932612448527,
                         "showBackground": false,
                         "useCustomFont": true,
-                        "x": 3015,
-                        "y": 1170
+                        "x": 3105,
+                        "y": 1215
                     }
                 ]
             }
@@ -489,7 +489,7 @@
         "passwordChars": false,
         "radiusRatio": 1,
         "reverseScroll": false,
-        "scaleRatio": 1,
+        "scaleRatio": 0.9,
         "screenRadiusRatio": 1,
         "shadowDirection": "bottom_right",
         "shadowOffsetX": 2,

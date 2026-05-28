@@ -100,6 +100,13 @@
 
   environment.sessionVariables = {
     SSH_AUTH_SOCK = lib.mkIf (profile == "desktop") "$XDG_RUNTIME_DIR/gcr/ssh";
+    NIXOS_OZONE_WL = lib.mkIf (profile == "desktop") "1";
+    GDK_BACKEND = lib.mkIf (profile == "desktop") "wayland";
+    XDG_SESSION_TYPE = lib.mkIf (profile == "desktop") "wayland";
+    QT_QPA_PLATFORM = lib.mkIf (profile == "desktop") "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = lib.mkIf (profile == "desktop") "1";
+    XDG_CURRENT_DESKTOP = lib.mkIf (profile == "desktop") "Hyprland";
+    XDG_SESSION_DESKTOP = lib.mkIf (profile == "desktop") "Hyprland";
   };
 
   virtualisation.docker.enable = true;
@@ -111,8 +118,9 @@
     flake = "~/nixos";
   };
 
-  environment.systemPackages =
-    (with pkgs; [
+  environment.systemPackages = (
+    with pkgs;
+    [
       wget
       fastfetch
       btop
@@ -149,18 +157,8 @@
       clippy
       rustfmt
       openssl
-    ])
-    ++ lib.optionals (profile == "desktop") (
-      with pkgs;
-      [
-        adwaita-icon-theme
-        gnome-keyring
-        grim
-        slurp
-        hypridle
-        clamav
-      ]
-    );
+    ]
+  );
 
   system.stateVersion = "25.11";
 }

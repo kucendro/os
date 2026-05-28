@@ -75,10 +75,9 @@
         force_zero_scaling = true;
       };
 
-      monitor = [
-        "DP-1, 3440x1440@59.97, 0x0, 1"
-        "eDP-1, 1920x1200@60, 760x1440, 0.833333"
-        ", preferred, auto, 1"
+      source = [
+        "$HOME/.config/hypr/monitors.conf"
+        "$HOME/.config/hypr/workspaces.conf"
       ];
 
       exec-once = [
@@ -113,7 +112,7 @@
         rounding = 12;
         rounding_power = 2;
         active_opacity = 1;
-        inactive_opacity = 0.75;
+        inactive_opacity = 0.85;
 
         shadow = {
           enabled = true;
@@ -159,6 +158,7 @@
 
       dwindle = {
         preserve_split = true;
+        smart_split = true;
       };
 
       master.new_status = "master";

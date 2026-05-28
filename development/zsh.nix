@@ -20,6 +20,9 @@
       n = "nvim .";
       d = "docker";
       dc = "docker compose";
+      gs = "git status";
+      ga = "git add .";
+      gc = "git commit -m";
     };
 
     promptInit = ''

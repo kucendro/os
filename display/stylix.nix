@@ -6,7 +6,7 @@
       console.enable = false;
       chromium.enable = false;
     };
-    image = ./earth_wallpaper.jpg;
+    image = ./wallpaper_wolf.jpg;
     polarity = "dark";
     base16Scheme = ./carbonfox.yaml;
     cursor = {
@@ -32,10 +32,10 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 12;
-        desktop = 12;
-        popups = 12;
-        terminal = 12;
+        applications = 10;
+        desktop = 8;
+        popups = 10;
+        terminal = 10;
       };
     };
   };

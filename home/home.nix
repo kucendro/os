@@ -176,6 +176,12 @@
             format = "[$output]($style) ";
             style = "bold blue";
           };
+          darwin = {
+            command = "echo ";
+            when = ''[ "$(uname)" = "Darwin" ]'';
+            format = "[$output]($style) ";
+            style = "bold white";
+          };
         };
       };
     };

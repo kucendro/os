@@ -105,28 +105,95 @@
       };
     };
 
-    zsh.plugins = with pkgs; [
-      {
-        name = "zsh-autopair";
-        src = fetchFromGitHub {
-          owner = "hlissner";
-          repo = "zsh-autopair";
-          rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
-          sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      history.size = 10000;
+      shellAliases = {
+        ls = "lsd";
+        cl = "clear";
+        ex = "exit";
+        tunnel = "cloudflared tunnel run nixbook";
+        vibe = "wt switch --create -x --execute=claude";
+        k = "kubectl";
+        n = "nvim .";
+        d = "docker";
+        dc = "docker compose";
+        gs = "git status";
+        ga = "git add .";
+        gc = "git commit -m";
+        ssh = "kitten ssh";
+      };
+      initContent = ''
+        eval "$(${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right)"
+      '';
+      plugins = with pkgs; [
+        {
+          name = "zsh-autopair";
+          src = fetchFromGitHub {
+            owner = "hlissner";
+            repo = "zsh-autopair";
+            rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
+            sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
+          };
+          file = "autopair.zsh";
+        }
+        {
+          name = "fzf-tab";
+          src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+          file = "fzf-tab.plugin.zsh";
+        }
+        {
+          name = "zsh-you-should-use";
+          src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+          file = "you-should-use.plugin.zsh";
+        }
+      ];
+    };
+
+    starship = {
+      enable = true;
+      enableTransience = true;
+      settings = {
+        format = lib.concatStrings [
+          "$custom"
+          "$nix_shell"
+          "$all"
+        ];
+        nix_shell = {
+          disabled = false;
+          symbol = "❄️";
+          format = "[$symbol]($style) ";
+          style = "bold cyan";
+          heuristic = false;
         };
-        file = "autopair.zsh";
-      }
-      {
-        name = "fzf-tab";
-        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
-        file = "fzf-tab.plugin.zsh";
-      }
-      {
-        name = "zsh-you-should-use";
-        src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
-        file = "you-should-use.plugin.zsh";
-      }
-    ];
+        custom = {
+          fhs = {
+            command = "echo 🐧";
+            when = "[ -e /lib/libc.so.6 ]";
+            format = "[$output]($style) ";
+            style = "bold blue";
+          };
+        };
+      };
+    };
+
+    atuin = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        auto_sync = false;
+        update_check = false;
+        style = "compact";
+        inline_height = 20;
+        show_preview = true;
+        exit_mode = "return-query";
+        filter_mode_shell_up_key_binding = "session";
+        filter_mode = "global";
+      };
+    };
   };
 
   home.stateVersion = "25.11";

@@ -21,8 +21,9 @@
       ip = "10.100.0.1";
       publicKey = "";
       listenPort = 51820;
-      # LAN address for edge↔workstation direct path (avoids hairpin).
-      # Fill in the workstation's static LAN IP once known.
+      # Workstation currently lives as a Docker container; this is whichever
+      # host runs it (the Mac today, possibly metal later). The host must
+      # port-forward UDP 51820 to the container.
       lanEndpoint = null;
     };
 

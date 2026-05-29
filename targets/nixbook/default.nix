@@ -7,7 +7,7 @@
 
 {
   imports = [
-    ../global.nix
+    ../linux.nix
     ./zenbook.nix
     ../../services/vpn/deep.nix
     ../../services/kube.nix

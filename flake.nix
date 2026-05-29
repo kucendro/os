@@ -30,6 +30,16 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -42,6 +52,8 @@
       home-manager,
       stylix,
       disko,
+      nix-darwin,
+      nixos-generators,
       ...
     }@inputs:
     let
@@ -78,6 +90,42 @@
           ]
           ++ extraModules;
         };
+
+      mkDarwin =
+        hostName:
+        {
+          targetModule,
+          profile,
+          extraModules ? [ ],
+        }:
+        nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs me profile; };
+          modules = [
+            { networking.hostName = hostName; }
+            targetModule
+            sops-nix.darwinModules.sops
+            home-manager.darwinModules.home-manager
+            (homeManagerConfig profile)
+          ]
+          ++ extraModules;
+        };
+
+      mkWorkstationDocker =
+        system:
+        nixos-generators.nixosGenerate {
+          inherit system;
+          format = "docker";
+          specialArgs = {
+            inherit inputs me;
+            profile = "headless";
+          };
+          modules = [
+            { networking.hostName = "workstation"; }
+            ./targets/workstation
+            home-manager.nixosModules.home-manager
+            (homeManagerConfig "headless")
+          ];
+        };
     in
     {
       nixosConfigurations = nixpkgs.lib.mapAttrs mkSystem {
@@ -91,13 +139,6 @@
           ];
         };
 
-        workstation = {
-          profile = "headless";
-          targetModule = ./targets/workstation;
-          hardwareModule = ./targets/workstation/hw-configuration.nix;
-          extraModules = [ ];
-        };
-
         edge = {
           profile = "headless";
           targetModule = ./targets/edge;
@@ -107,13 +148,20 @@
           ];
         };
 
-        # car = {
-        #   profile = "headless";
-        #   targetModule = ./targets/car;
-        #   hardwareModule = ./targets/car/hw-configuration.nix;
-        #   extraModules = [ ];
-        # };
+      };
 
+      darwinConfigurations = nixpkgs.lib.mapAttrs mkDarwin {
+
+        mac = {
+          profile = "darwin";
+          targetModule = ./targets/mac;
+        };
+
+      };
+
+      packages = {
+        aarch64-linux.workstation-docker = mkWorkstationDocker "aarch64-linux";
+        x86_64-linux.workstation-docker = mkWorkstationDocker "x86_64-linux";
       };
 
     };

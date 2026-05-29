@@ -1,0 +1,45 @@
+# Workstation container — runs the NixOS image built from `targets/workstation/`.
+#
+# Build the image (on a host that can build Linux nix derivations):
+#   nix build .#packages.aarch64-linux.workstation-docker   # for Apple Silicon Docker
+#   # or
+#   nix build .#packages.x86_64-linux.workstation-docker    # for x86_64 hosts
+# Then load it:
+#   docker load < result
+#
+# Bring it up:
+#   docker compose -f targets/workstation/docker-compose.yaml up -d
+#
+# Prerequisites on the host:
+#   - sops-managed wg priv key materialised at
+#     $HOME/.docker-secrets/workstation-wg.priv (see secrets/sops.nix)
+#   - Docker Desktop's file sharing must include $HOME/.docker-secrets/
+
+services:
+  workstation:
+    image: workstation:latest
+    hostname: workstation
+    restart: unless-stopped
+
+    # Required for the systemd init that nixos-generators ships in the image.
+    privileged: true
+    cgroup: host
+
+    devices:
+      - /dev/net/tun:/dev/net/tun
+
+    tmpfs:
+      - /run
+      - /tmp
+
+    ports:
+      # SSH fallback through the host: `ssh -p 2222 mac` lands here.
+      - "2222:22"
+      # WireGuard listen port — needed so other peers can reach 10.100.0.1.
+      - "51820:51820/udp"
+
+    volumes:
+      - ${HOME}/.docker-secrets/workstation-wg.priv:/etc/wireguard/wg.priv:ro
+
+    # systemd's poweroff signal — clean shutdown.
+    stop_signal: SIGRTMIN+3

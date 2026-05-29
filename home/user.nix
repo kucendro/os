@@ -80,7 +80,6 @@ let
     mkchromecast
     qlcplus
     qalculate-gtk
-    qutebrowser
   ];
 in
 

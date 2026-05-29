@@ -8,6 +8,7 @@
 
 {
   imports = [
+    ./common.nix
     ../secrets/sops.nix
     ../development/zsh.nix
     ../home/user.nix
@@ -55,25 +56,7 @@
 
   hardware.enableRedistributableFirmware = true;
 
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-
-    substituters = [
-      "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
-    ];
-
-    trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
-
   networking.networkmanager.enable = true;
-
-  time.timeZone = me.timeZone;
 
   i18n = {
     defaultLocale = me.locale.default;
@@ -93,69 +76,28 @@
   services.gnome.gnome-keyring.enable = lib.mkIf (profile == "desktop") true;
   security.pam.services.login.enableGnomeKeyring = lib.mkIf (profile == "desktop") true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = false;
-  };
-
-  environment.sessionVariables = {
-    SSH_AUTH_SOCK = lib.mkIf (profile == "desktop") "$XDG_RUNTIME_DIR/gcr/ssh";
-    NIXOS_OZONE_WL = lib.mkIf (profile == "desktop") "1";
-    GDK_BACKEND = lib.mkIf (profile == "desktop") "wayland";
-    XDG_SESSION_TYPE = lib.mkIf (profile == "desktop") "wayland";
-    QT_QPA_PLATFORM = lib.mkIf (profile == "desktop") "wayland";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = lib.mkIf (profile == "desktop") "1";
-    XDG_CURRENT_DESKTOP = lib.mkIf (profile == "desktop") "Hyprland";
-    XDG_SESSION_DESKTOP = lib.mkIf (profile == "desktop") "Hyprland";
-  };
-
   virtualisation.docker.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
-
-  programs.nh = {
-    enable = true;
-    flake = "~/nixos";
-  };
 
   environment.systemPackages = (
     with pkgs;
     [
-      wget
-      fastfetch
-      btop
-      sops
-      age
-      nixfmt
       stdenv.cc.cc
       zlib
       libGL
       glibc
       glibc.dev
-      gcc
       clang
-      gnumake
       autoconf
       automake
       libtool
       pkg-config
       dbus
       oxker
-      nodejs
-      pnpm
       gccgo15
       python315
-      fzf
       inetutils
       putty
-      wireguard-tools
-      ripgrep
       vulnix
-      cargo
-      rustc
-      rust-analyzer
-      clippy
-      rustfmt
       openssl
     ]
   );

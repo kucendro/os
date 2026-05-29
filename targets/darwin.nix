@@ -11,9 +11,7 @@
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-
   system.primaryUser = me.name;
-
   nix.enable = true;
 
   programs.zsh.enable = true;
@@ -24,7 +22,6 @@
   sops.age.sshKeyPaths = [ ];
   sops.gnupg.sshKeyPaths = [ ];
 
-  environment.systemPackages = with pkgs; [
-    # Darwin-only extras go here.
-  ];
+  environment.variables.NH_FLAKE = "/Users/${me.name}/nixos";
+  environment.systemPackages = [ pkgs.nh ];
 }

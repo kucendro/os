@@ -45,5 +45,6 @@
     gcc
     gnumake
     wireguard-tools
+    deploy-rs
   ];
 }

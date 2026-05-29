@@ -40,6 +40,11 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -54,6 +59,7 @@
       disko,
       nix-darwin,
       nixos-generators,
+      deploy-rs,
       ...
     }@inputs:
     let
@@ -163,6 +169,38 @@
         aarch64-linux.workstation-docker = mkWorkstationDocker "aarch64-linux";
         x86_64-linux.workstation-docker = mkWorkstationDocker "x86_64-linux";
       };
+
+      deploy.nodes = {
+        nixbook = {
+          hostname = "nixbook.local";
+          sshUser = me.name;
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nixbook;
+          };
+        };
+
+        edge = {
+          hostname = "10.100.0.254";
+          sshUser = me.name;
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.edge;
+          };
+        };
+
+        mac = {
+          hostname = "mac.local";
+          sshUser = me.name;
+          remoteBuild = true;
+          profiles.system = {
+            user = me.name;
+            path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mac;
+          };
+        };
+      };
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
     };
 }

@@ -78,22 +78,17 @@
       };
       settings = {
         "colors.webpage.darkmode.enabled" = true;
-
         "content.cookies.accept" = "no-3rdparty";
         "content.geolocation" = "ask";
         "content.notifications.enabled" = "ask";
-
         "content.autoplay" = true;
-
         "downloads.location.directory" = "~/Downloads";
         "downloads.location.prompt" = false;
-
         "tabs.show" = "multiple";
         "statusbar.show" = "in-mode";
         "scrolling.smooth" = true;
         "fonts.default_family" = "monospace";
         "fonts.default_size" = "11pt";
-
         "auto_save.session" = true;
         "session.lazy_restore" = true;
       };
@@ -115,8 +110,6 @@
         ls = "lsd";
         cl = "clear";
         ex = "exit";
-        tunnel = "cloudflared tunnel run nixbook";
-        vibe = "wt switch --create -x --execute=claude";
         k = "kubectl";
         n = "nvim .";
         d = "docker";

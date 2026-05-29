@@ -26,11 +26,6 @@
     enableSSHSupport = false;
   };
 
-  programs.nh = {
-    enable = true;
-    flake = "~/nixos";
-  };
-
   environment.systemPackages = with pkgs; [
     wget
     fastfetch

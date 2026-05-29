@@ -76,6 +76,11 @@
   services.gnome.gnome-keyring.enable = lib.mkIf (profile == "desktop") true;
   security.pam.services.login.enableGnomeKeyring = lib.mkIf (profile == "desktop") true;
 
+  programs.nh = {
+    enable = true;
+    flake = "~/nixos";
+  };
+
   virtualisation.docker.enable = true;
 
   environment.systemPackages = (

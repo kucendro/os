@@ -26,4 +26,16 @@
     home = "/Users/${me.name}";
     shell = pkgs.zsh;
   };
+
+  environment.systemPackages = with pkgs; [
+    docker
+    docker-compose
+    colima
+  ];
+
+  # Keep the Mac awake on AC power so the workstation container stays up.
+  # Display + disks may still nap. Battery defaults remain untouched.
+  system.activationScripts.postActivation.text = ''
+    /usr/bin/pmset -c sleep 0 displaysleep 30 disksleep 0
+  '';
 }

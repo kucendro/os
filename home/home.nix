@@ -67,7 +67,7 @@
       };
     };
 
-    qutebrowser = {
+    qutebrowser = lib.mkIf (profile == "desktop") {
       enable = true;
       searchEngines = {
         DEFAULT = "https://duckduckgo.com/?q={}";

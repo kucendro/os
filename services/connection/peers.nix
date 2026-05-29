@@ -13,7 +13,6 @@
       ip = "10.100.0.254";
       publicKey = "";
       listenPort = 51820;
-      # Reachable from outside via port-forward on the home router.
       endpoint = "home.kucendro.dev:51820";
     };
 
@@ -21,16 +20,12 @@
       ip = "10.100.0.1";
       publicKey = "";
       listenPort = 51820;
-      # Workstation currently lives as a Docker container; this is whichever
-      # host runs it (the Mac today, possibly metal later). The host must
-      # port-forward UDP 51820 to the container.
       lanEndpoint = null;
     };
 
     nixbook = {
       ip = "10.100.0.2";
       publicKey = "";
-      # No endpoint: roaming client, always initiates outward.
     };
   };
 }

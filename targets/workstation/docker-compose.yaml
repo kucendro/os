@@ -40,6 +40,7 @@ services:
 
     volumes:
       - ${HOME}/.docker-secrets/workstation-wg.priv:/etc/wireguard/wg.priv:ro
+      - ${HOME}/.docker-secrets/workstation-authorized-keys:/etc/workstation-ssh/authorized_keys:ro
 
     # systemd's poweroff signal — clean shutdown.
     stop_signal: SIGRTMIN+3

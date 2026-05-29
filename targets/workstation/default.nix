@@ -29,6 +29,11 @@ in
 
   services.openssh = {
     enable = true;
+    authorizedKeysFiles = [
+      "%h/.ssh/authorized_keys"
+      "/etc/ssh/authorized_keys.d/%u"
+      "/etc/workstation-ssh/authorized_keys"
+    ];
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
@@ -43,12 +48,8 @@ in
     hashedPassword = null;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [
-      # Add nixbook's user pubkey here once available.
-    ];
   };
 
-  # wg key arrives via docker bind-mount from the host's sops-managed file.
   networking.wireguard.interfaces.wg0 = {
     ips = [ "${self.ip}/24" ];
     listenPort = self.listenPort or null;

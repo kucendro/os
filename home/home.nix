@@ -107,6 +107,8 @@
         gs = "git status";
         ga = "git add .";
         gc = "git commit -m";
+        ssh = "kitten ssh";
+
       };
       initContent = ''
         eval "$(${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right)"

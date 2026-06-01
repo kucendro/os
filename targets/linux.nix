@@ -57,6 +57,8 @@
 
   hardware.enableRedistributableFirmware = true;
 
+  security.sudo.wheelNeedsPassword = false;
+
   networking.networkmanager.enable = true;
 
   i18n = {

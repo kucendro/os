@@ -181,7 +181,7 @@
         };
 
         edge = {
-          hostname = "10.100.0.254";
+          hostname = "edge.kucendro.dev";
           sshUser = me.name;
           profiles.system = {
             user = "root";

@@ -18,7 +18,6 @@
     docker
     docker-compose
     colima
-    brew
   ];
 
   system.activationScripts.postActivation.text = ''

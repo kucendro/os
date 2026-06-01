@@ -1,29 +1,22 @@
 {
   pkgs,
-  lib,
   me,
   ...
 }:
-
-let
-  registry = (import ../../services/connection/peers.nix).hosts;
-  selfName = "workstation";
-  self = registry.${selfName};
-  others = lib.filterAttrs (n: p: n != selfName && p.publicKey != "") registry;
-
-  mkPeer = _name: peer: {
-    publicKey = peer.publicKey;
-    allowedIPs = [ "${peer.ip}/32" ];
-    endpoint = peer.endpoint or peer.lanEndpoint or null;
-    persistentKeepalive = 25;
-  };
-in
 
 {
   imports = [
     ../common.nix
     ../../development/zsh.nix
   ];
+
+  services.tailscale = {
+    enable = true;
+    authKeyFile = "/etc/tailscale/authkey";
+    extraUpFlags = [
+      "--login-server=https://edge.kucendro.dev"
+    ];
+  };
 
   boot.isContainer = true;
 
@@ -48,13 +41,6 @@ in
     hashedPassword = null;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
-  };
-
-  networking.wireguard.interfaces.wg0 = {
-    ips = [ "${self.ip}/24" ];
-    listenPort = self.listenPort or null;
-    privateKeyFile = "/etc/wireguard/wg.priv";
-    peers = lib.mapAttrsToList mkPeer others;
   };
 
   networking.useDHCP = false;

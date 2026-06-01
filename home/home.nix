@@ -51,19 +51,9 @@
     ssh = {
       enable = true;
       matchBlocks = {
-        mac = {
-          hostname = "mac.local";
-          user = me.name;
-        };
-        workstation = {
-          hostname = "10.100.0.1";
-          user = me.name;
-        };
-        "workstation-fallback" = {
-          hostname = "mac.local";
-          port = 2222;
-          user = me.name;
-        };
+        mac.user = me.name;
+        workstation.user = me.name;
+        edge.user = me.name;
       };
     };
 
@@ -117,7 +107,6 @@
         gs = "git status";
         ga = "git add .";
         gc = "git commit -m";
-        ssh = "kitten ssh";
       };
       initContent = ''
         eval "$(${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right)"

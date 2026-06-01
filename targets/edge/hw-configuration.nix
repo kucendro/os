@@ -1,24 +1,21 @@
 { lib, modulesPath, ... }:
 
-# replace `boot.initrd.availableKernelModules` with the actual list from
-# `nixos-generate-config --no-filesystems` if anything's missing.
-
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
   boot.initrd.availableKernelModules = [
-    "xhci_pci"
     "ahci"
-    "nvme"
-    "usb_storage"
+    "xhci_pci"
+    "virtio_pci"
+    "virtio_scsi"
     "sd_mod"
+    "sr_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault true;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

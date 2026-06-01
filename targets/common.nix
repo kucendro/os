@@ -46,5 +46,6 @@
     gnumake
     wireguard-tools
     deploy-rs
+    nixos-anywhere
   ];
 }

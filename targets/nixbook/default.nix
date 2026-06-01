@@ -162,16 +162,16 @@
   ];
 
   # This shit doesnt work on latest linux, last supported 6.18
-  # virtualisation.virtualbox = {
-  #   host = {
-  #     enable = true;
-  #     enableExtensionPack = true;
-  #   };
-  #   # guest = {
-  #   #   enable = true;
-  #   #   dragAndDrop = true;
-  #   # };
-  # };
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+    # guest = {
+    #   enable = true;
+    #   dragAndDrop = true;
+    # };
+  };
 
   users.extraGroups.vboxusers.members = [ me.name ];
 

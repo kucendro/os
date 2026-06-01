@@ -231,6 +231,9 @@
                     "id": "plugin:network-manager-vpn"
                 },
                 {
+                    "id": "plugin:tailscale"
+                },
+                {
                     "deviceNativePath": "__default__",
                     "displayMode": "icon-always",
                     "hideIfIdle": false,

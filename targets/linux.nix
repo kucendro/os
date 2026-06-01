@@ -13,6 +13,7 @@
     ../development/zsh.nix
     ../home/user.nix
     ../services/services.nix
+    ../services/tailscale.nix
   ]
   ++ lib.optionals (profile == "desktop") [
     ../display/stylix.nix

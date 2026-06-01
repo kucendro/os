@@ -11,6 +11,11 @@
       "flakes"
     ];
 
+    trusted-users = [
+      "root"
+      me.name
+    ];
+
     substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"

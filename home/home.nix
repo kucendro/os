@@ -107,6 +107,7 @@
         gs = "git status";
         ga = "git add .";
         gc = "git commit -m";
+        gp = "git push";
         ssh = "kitten ssh";
 
       };

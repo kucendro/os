@@ -37,6 +37,7 @@ let
     php
     browsh
     libqalculate
+    exo
   ];
 
   desktopPackages = with pkgs; [

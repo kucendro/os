@@ -57,7 +57,7 @@
 
   hardware.enableRedistributableFirmware = true;
 
-  security.sudo.wheelNeedsPassword = false;
+  security.sudo.wheelNeedsPassword = profile == "desktop";
 
   networking.networkmanager.enable = true;
 

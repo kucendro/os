@@ -1,4 +1,4 @@
-{ lib, me, ... }:
+{ lib, pkgs, me, ... }:
 
 {
 
@@ -82,18 +82,19 @@
 
       exec-once = [
         "noctalia-shell"
-        "kdeconnectd"
+        "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
         "beeper & slack"
       ];
 
       ecosystem.enforce_permissions = 1;
 
       permission = [
-        "/usr/(bin|local/bin)/grim, screencopy, allow"
-        "/usr/(bin|local/bin)/hyprlock, screencopy, allow"
-        "/usr/(bin|local/bin)/slurp, screencopy, allow"
-        "/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, allow"
-        "/usr/(bin|local/bin)/hyprpm, plugin, allow"
+        "/nix/store/.*/bin/grim, screencopy, allow"
+        "/nix/store/.*/bin/hyprlock, screencopy, allow"
+        "/nix/store/.*/bin/slurp, screencopy, allow"
+        "/nix/store/.*/bin/sunshine, screencopy, allow"
+        "/nix/store/.*/libexec/xdg-desktop-portal-hyprland, screencopy, allow"
+        "/nix/store/.*/bin/hyprpm, plugin, allow"
       ];
 
       general = {

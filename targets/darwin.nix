@@ -8,7 +8,6 @@
   imports = [
     ./common.nix
     ../secrets/sops.nix
-    ../services/tailscale.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -17,16 +16,14 @@
 
   programs.zsh.enable = true;
 
-  services.tailscale.enable = true;
-
-  system.activationScripts.tailscaleUp.text = ''
-    if ! /usr/bin/sudo -u ${me.name} /run/current-system/sw/bin/tailscale status >/dev/null 2>&1; then
-      /run/current-system/sw/bin/tailscale up \
-        --login-server=https://edge.kucendro.dev \
-        --auth-key="$(cat /Users/${me.name}/.docker-secrets/tailscale-authkey)" \
-        || true
-    fi
-  '';
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = false;
+      cleanup = "zap";
+    };
+    casks = [ "tailscale-app" ];
+  };
 
   system.stateVersion = 6;
 

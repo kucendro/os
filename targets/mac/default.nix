@@ -21,6 +21,14 @@
   ];
 
   system.activationScripts.postActivation.text = ''
-    /usr/bin/pmset -c sleep 0 displaysleep 30 disksleep 0
+    /usr/bin/pmset -a sleep 0 displaysleep 30 disksleep 0 disablesleep 1
   '';
+
+  launchd.daemons.caffeinate = {
+    serviceConfig = {
+      ProgramArguments = [ "/usr/bin/caffeinate" "-dimsu" ];
+      KeepAlive = true;
+      RunAtLoad = true;
+    };
+  };
 }

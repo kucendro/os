@@ -171,15 +171,6 @@
       };
 
       deploy.nodes = {
-        nixbook = {
-          hostname = "nixbook.local";
-          sshUser = me.name;
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nixbook;
-          };
-        };
-
         edge = {
           hostname = "edge.kucendro.dev";
           sshUser = me.name;
@@ -190,7 +181,7 @@
         };
 
         mac = {
-          hostname = "mac.local";
+          hostname = "mac";
           sshUser = me.name;
           remoteBuild = true;
           profiles.system = {

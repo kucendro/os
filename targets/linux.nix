@@ -14,6 +14,7 @@
     ../home/user.nix
     ../services/services.nix
     ../services/tailscale.nix
+    ../services/beszel-agent.nix
   ]
   ++ lib.optionals (profile == "desktop") [
     ../display/stylix.nix

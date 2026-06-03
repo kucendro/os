@@ -3,6 +3,7 @@
 let
   envPath = "/etc/beszel-agent.env";
   launcher = pkgs.writeShellScript "beszel-agent-launcher" ''
+    until [ -s ${envPath} ]; do sleep 2; done
     while IFS='=' read -r key value; do
       [ -z "$key" ] && continue
       export "$key=$value"
@@ -16,6 +17,7 @@ in
       ProgramArguments = [ "${launcher}" ];
       KeepAlive = true;
       RunAtLoad = true;
+      ThrottleInterval = 5;
       StandardErrorPath = "/var/log/beszel-agent.err";
       StandardOutPath = "/var/log/beszel-agent.out";
     };

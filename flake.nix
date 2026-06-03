@@ -184,8 +184,10 @@
           hostname = "mac";
           sshUser = me.name;
           remoteBuild = true;
+          interactiveSudo = true;
+          magicRollback = false;
           profiles.system = {
-            user = me.name;
+            user = "root";
             path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mac;
           };
         };

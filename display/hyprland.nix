@@ -1,6 +1,16 @@
-{ lib, pkgs, me, ... }:
+{
+  lib,
+  pkgs,
+  me,
+  ...
+}:
 
 {
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 
   services.hypridle = {
     enable = true;
@@ -82,7 +92,6 @@
 
       exec-once = [
         "noctalia-shell"
-        "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnectd"
         "beeper & slack"
       ];
 

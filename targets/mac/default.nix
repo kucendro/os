@@ -20,6 +20,12 @@
     colima
   ];
 
+  security.pam.services.sudo_local.touchIdAuth = true;
+
+  environment.etc."ssh/sshd_config.d/100-relaxed-strict-modes.conf".text = ''
+    StrictModes no
+  '';
+
   system.activationScripts.postActivation.text = ''
     /usr/bin/pmset -a sleep 0 displaysleep 30 disksleep 0 disablesleep 1
   '';

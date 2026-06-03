@@ -16,6 +16,7 @@
   };
 
   services.nginx.virtualHosts."monitoring.home.kucendro.dev" = {
+    listenAddresses = [ "100.64.0.1" ];
     useACMEHost = "home.kucendro.dev";
     forceSSL = true;
     locations."/" = {

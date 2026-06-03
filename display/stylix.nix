@@ -5,6 +5,7 @@
     targets = {
       console.enable = false;
       chromium.enable = false;
+      kmscon.enable = false;
     };
     image = ./wallpaper_wolf.jpg;
     polarity = "dark";

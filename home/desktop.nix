@@ -6,8 +6,6 @@
 }:
 
 {
-  gtk.gtk4.theme = config.gtk.theme;
-
   programs."noctalia-shell" = {
     enable = true;
   };

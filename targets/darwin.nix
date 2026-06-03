@@ -8,6 +8,7 @@
   imports = [
     ./common.nix
     ../secrets/sops.nix
+    ../services/monitoring/agent-darwin.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";

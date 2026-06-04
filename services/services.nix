@@ -20,12 +20,6 @@
     fstrim.enable = true;
   }
   // lib.optionalAttrs (profile == "desktop") {
-    sunshine = {
-      enable = true;
-      autoStart = false;
-      capSysAdmin = true;
-      openFirewall = true;
-    };
     printing.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;

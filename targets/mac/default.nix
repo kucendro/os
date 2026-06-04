@@ -18,6 +18,7 @@
     docker
     docker-compose
     colima
+    exo
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -32,9 +33,26 @@
 
   launchd.daemons.caffeinate = {
     serviceConfig = {
-      ProgramArguments = [ "/usr/bin/caffeinate" "-dimsu" ];
+      ProgramArguments = [
+        "/usr/bin/caffeinate"
+        "-dimsu"
+      ];
       KeepAlive = true;
       RunAtLoad = true;
+    };
+  };
+
+  launchd.user.agents.exo = {
+    serviceConfig = {
+      ProgramArguments = [ "${pkgs.exo}/bin/exo" ];
+      KeepAlive = true;
+      RunAtLoad = true;
+      ProcessType = "Interactive";
+      StandardOutPath = "/Users/${me.name}/Library/Logs/exo.log";
+      StandardErrorPath = "/Users/${me.name}/Library/Logs/exo.log";
+      EnvironmentVariables = {
+        PATH = "/run/current-system/sw/bin:/usr/bin:/bin:/usr/sbin:/sbin";
+      };
     };
   };
 }

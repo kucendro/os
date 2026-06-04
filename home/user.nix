@@ -8,38 +8,6 @@
 }:
 
 let
-  sharedPackages = with pkgs; [
-    starship
-    nushell
-    fd
-    lsd
-    tldr
-    jq
-    yq
-    fzf
-    ripgrep
-    magic-wormhole
-    just
-    tokei
-    taskwarrior3
-    lefthook
-    cloudflared
-    opencode
-    github-copilot-cli
-    ollama
-    kubectl
-    sqlx-cli
-    supabase-cli
-    d2
-    nmap
-    maven
-    javaPackages.compiler.openjdk25
-    php
-    browsh
-    libqalculate
-    exo
-  ];
-
   desktopPackages = with pkgs; [
     inkscape
     krita
@@ -96,6 +64,6 @@ in
       "docker"
       "dialout"
     ];
-    packages = sharedPackages ++ lib.optionals (profile == "desktop") desktopPackages;
+    packages = lib.optionals (profile == "desktop") desktopPackages;
   };
 }

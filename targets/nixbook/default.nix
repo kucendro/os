@@ -11,6 +11,7 @@
     ./zenbook.nix
     ../../services/vpn/deep.nix
     ../../services/kube.nix
+    ../../services/sunshine.nix
   ];
 
   networking = {

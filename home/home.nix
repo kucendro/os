@@ -30,6 +30,38 @@
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
   };
 
+  # Cross-platform CLI tools — these follow the shell config to every target
+  # (NixOS + darwin). starship/opencode are intentionally omitted: they're
+  # installed by programs.starship / programs.opencode.
+  home.packages = with pkgs; [
+    nushell
+    fd
+    lsd
+    tldr
+    jq
+    yq
+    fzf
+    ripgrep
+    magic-wormhole
+    just
+    tokei
+    taskwarrior3
+    lefthook
+    cloudflared
+    github-copilot-cli
+    ollama
+    kubectl
+    sqlx-cli
+    supabase-cli
+    d2
+    nmap
+    maven
+    javaPackages.compiler.openjdk25
+    php
+    browsh
+    libqalculate
+  ];
+
   programs.home-manager = {
     enable = true;
   };

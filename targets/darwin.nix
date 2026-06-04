@@ -23,6 +23,7 @@
       autoUpdate = false;
       cleanup = "zap";
     };
+
     casks = [ "tailscale-app" ];
   };
 

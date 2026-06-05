@@ -21,10 +21,12 @@
     enable = true;
     onActivation = {
       autoUpdate = false;
-      cleanup = "zap";
+      cleanup = "uninstall";
     };
 
     casks = [ "tailscale-app" ];
+    taps = [ "LizardByte/homebrew" ];
+    brews = [ "lizardbyte/homebrew/sunshine-beta" ];
   };
 
   system.stateVersion = 6;
@@ -34,5 +36,6 @@
   sops.gnupg.sshKeyPaths = [ ];
 
   environment.variables.NH_FLAKE = "/Users/${me.name}/nixos";
+  environment.variables.HOMEBREW_ASK = "1";
   environment.systemPackages = [ pkgs.nh ];
 }

@@ -12,6 +12,7 @@
 
   stylix.targets = {
     # neovim.enable = false;
+    # inkscape.enable = false;
   };
 
   programs.kitty = lib.mkForce {

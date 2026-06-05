@@ -30,9 +30,6 @@
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
   };
 
-  # Cross-platform CLI tools — these follow the shell config to every target
-  # (NixOS + darwin). starship/opencode are intentionally omitted: they're
-  # installed by programs.starship / programs.opencode.
   home.packages = with pkgs; [
     nushell
     fd
@@ -136,6 +133,7 @@
         n = "nvim .";
         d = "docker";
         dc = "docker compose";
+        d-clean-non-destruct = "docker builder prune -a && docker image prune -a";
         gs = "git status";
         ga = "git add .";
         gc = "git commit -m";

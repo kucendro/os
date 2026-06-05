@@ -15,6 +15,7 @@
     ../development/git.nix
     ../development/opencode.nix
     ../dotfiles/symlinks.nix
+    ./docker.nix
   ]
   ++ lib.optionals (profile == "desktop") [
     inputs.noctalia.homeModules.default

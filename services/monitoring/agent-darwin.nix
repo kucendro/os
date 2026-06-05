@@ -22,4 +22,8 @@ in
       StandardOutPath = "/var/log/beszel-agent.out";
     };
   };
+
+  system.activationScripts.postActivation.text = ''
+    launchctl bootstrap system /Library/LaunchDaemons/org.nixos.beszel-agent.plist 2>/dev/null || true
+  '';
 }

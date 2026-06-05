@@ -22,6 +22,7 @@
     onActivation = {
       autoUpdate = false;
       cleanup = "uninstall";
+      extraFlags = [ "--force" ];
     };
 
     casks = [ "tailscale-app" ];
@@ -36,6 +37,6 @@
   sops.gnupg.sshKeyPaths = [ ];
 
   environment.variables.NH_FLAKE = "/Users/${me.name}/nixos";
-  environment.variables.HOMEBREW_ASK = "1";
+  environment.systemPath = [ "/opt/homebrew/bin" ];
   environment.systemPackages = [ pkgs.nh ];
 }

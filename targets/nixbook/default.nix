@@ -118,6 +118,7 @@
     loupe
     qdirstat
     gpu-screen-recorder
+    moonlight-qt
     brightnessctl
     drawy
     gnome-network-displays

@@ -42,6 +42,20 @@
     };
   };
 
+  launchd.user.agents.sunshine = {
+    serviceConfig = {
+      ProgramArguments = [
+        "/opt/homebrew/opt/sunshine-beta/bin/sunshine"
+        "/Users/${me.name}/.config/sunshine/sunshine.conf"
+      ];
+      KeepAlive = true;
+      RunAtLoad = true;
+      ProcessType = "Interactive";
+      StandardOutPath = "/Users/${me.name}/Library/Logs/sunshine.log";
+      StandardErrorPath = "/Users/${me.name}/Library/Logs/sunshine.log";
+    };
+  };
+
   launchd.user.agents.exo = {
     serviceConfig = {
       ProgramArguments = [ "${pkgs.exo}/bin/exo" ];

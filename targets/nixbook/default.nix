@@ -110,7 +110,6 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "powersave";
   };
 
   environment.systemPackages = with pkgs; [
@@ -169,10 +168,6 @@
     host = {
       enable = true;
       enableExtensionPack = true;
-    };
-    guest = {
-      enable = true;
-      dragAndDrop = true;
     };
   };
 

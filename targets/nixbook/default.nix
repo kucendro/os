@@ -12,7 +12,10 @@
     ../../services/vpn/deep.nix
     ../../services/kube.nix
     ../../services/sunshine.nix
+    ../../services/scrcpy.nix
   ];
+
+  services.scrcpy.devices.fold.address = "100.64.0.3:5555";
 
   networking = {
     networkmanager.enable = true;
@@ -129,6 +132,7 @@
     slurp
     hypridle
     clamav
+    android-tools
   ];
 
   environment.sessionVariables = {
@@ -163,16 +167,15 @@
     openssl
   ];
 
-  # This shit doesnt work on latest linux, last supported 6.18
   virtualisation.virtualbox = {
     host = {
       enable = true;
       enableExtensionPack = true;
     };
-    # guest = {
-    #   enable = true;
-    #   dragAndDrop = true;
-    # };
+    guest = {
+      enable = true;
+      dragAndDrop = true;
+    };
   };
 
   users.extraGroups.vboxusers.members = [ me.name ];

@@ -13,7 +13,7 @@
     ../development/zsh.nix
     ../home/user.nix
     ../services/services.nix
-    ../services/tailscale.nix
+    ../services/mesh/tailscale.nix
     ../services/monitoring/agent.nix
   ]
   ++ lib.optionals (profile == "desktop") [

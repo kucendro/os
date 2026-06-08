@@ -4,8 +4,8 @@
   imports = [
     ../linux.nix
     ./disko.nix
-    ../../services/nginx.nix
-    ../../services/headscale.nix
+    ../../services/mesh/nginx.nix
+    ../../services/mesh/headscale.nix
     ../../services/monitoring/hub.nix
   ];
 

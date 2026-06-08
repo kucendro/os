@@ -70,22 +70,22 @@
     };
   };
 
-  launchd.user.agents.colima = {
-    serviceConfig = {
-      ProgramArguments = [
-        "${pkgs.colima}/bin/colima"
-        "start"
-        "--foreground"
-      ];
-      KeepAlive = true;
-      RunAtLoad = true;
-      ProcessType = "Background";
-      StandardOutPath = "/Users/${me.name}/Library/Logs/colima.log";
-      StandardErrorPath = "/Users/${me.name}/Library/Logs/colima.log";
-      EnvironmentVariables = {
-        HOME = "/Users/${me.name}";
-        PATH = "/run/current-system/sw/bin:/usr/bin:/bin:/usr/sbin:/sbin";
-      };
-    };
-  };
+  # launchd.user.agents.colima = {
+  #   serviceConfig = {
+  #     ProgramArguments = [
+  #       "${pkgs.colima}/bin/colima"
+  #       "start"
+  #       "--foreground"
+  #     ];
+  #     KeepAlive = true;
+  #     RunAtLoad = true;
+  #     ProcessType = "Background";
+  #     StandardOutPath = "/Users/${me.name}/Library/Logs/colima.log";
+  #     StandardErrorPath = "/Users/${me.name}/Library/Logs/colima.log";
+  #     EnvironmentVariables = {
+  #       HOME = "/Users/${me.name}";
+  #       PATH = "/run/current-system/sw/bin:/usr/bin:/bin:/usr/sbin:/sbin";
+  #     };
+  #   };
+  # };
 }

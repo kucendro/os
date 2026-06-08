@@ -1,5 +1,5 @@
 {
-  description = "NixOS configurations";
+  description = "Kucendro's nix configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -132,7 +132,9 @@
             (homeManagerConfig "headless")
           ];
         };
+
     in
+
     {
       nixosConfigurations = nixpkgs.lib.mapAttrs mkSystem {
 
@@ -149,6 +151,15 @@
           profile = "headless";
           targetModule = ./targets/edge;
           hardwareModule = ./targets/edge/hw-configuration.nix;
+          extraModules = [
+            disko.nixosModules.disko
+          ];
+        };
+
+        nas = {
+          profile = "headless";
+          targetModule = ./targets/nas;
+          hardwareModule = ./targets/nas/hw-configuration.nix;
           extraModules = [
             disko.nixosModules.disko
           ];
@@ -171,6 +182,7 @@
       };
 
       deploy.nodes = {
+
         edge = {
           hostname = "edge.kucendro.dev";
           sshUser = me.name;
@@ -189,6 +201,15 @@
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mac;
+          };
+        };
+
+        nas = {
+          hostname = "nas";
+          sshUser = me.name;
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nas;
           };
         };
       };

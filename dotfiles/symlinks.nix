@@ -2,8 +2,6 @@
   config,
   lib,
   osConfig,
-  inputs,
-  pkgs,
   ...
 }:
 let
@@ -21,9 +19,4 @@ in
       "nvim/lazy-lock.json".source = mkSymlink "nvim/lazy-lock.json";
       "nvim/lazyvim.json".source = mkSymlink "nvim/lazyvim.json";
     });
-
-  xdg.dataFile = lib.optionalAttrs isNixbook {
-    "applications/dev.noctalia.noctalia-qs.desktop".source =
-      "${inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default}/share/applications/dev.noctalia.noctalia-qs.desktop";
-  };
 }

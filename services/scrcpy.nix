@@ -25,24 +25,39 @@ in
     );
   };
 
-  config.environment.systemPackages = lib.mapAttrsToList (
-    name: device:
-    pkgs.writeShellApplication {
-      inherit name;
-      runtimeInputs = [
-        pkgs.android-tools
-        pkgs.scrcpy
-      ];
-      text = ''
-        adb connect ${device.address} || true
-        for _ in $(seq 1 10); do
-          if adb -s ${device.address} get-state 2>/dev/null | grep -q device; then
-            break
-          fi
-          sleep 0.5
-        done
-        exec scrcpy -s ${device.address} "$@"
-      '';
-    }
-  ) cfg.devices;
+  config.environment.systemPackages = lib.concatLists (
+    lib.mapAttrsToList (
+      name: device:
+      let
+        launcher = pkgs.writeShellApplication {
+          inherit name;
+          runtimeInputs = [
+            pkgs.android-tools
+            pkgs.scrcpy
+          ];
+          text = ''
+            adb connect ${device.address} || true
+            for _ in $(seq 1 10); do
+              if adb -s ${device.address} get-state 2>/dev/null | grep -q device; then
+                break
+              fi
+              sleep 0.5
+            done
+            exec scrcpy -s ${device.address} "$@"
+          '';
+        };
+      in
+      [
+        launcher
+        (pkgs.makeDesktopItem {
+          inherit name;
+          desktopName = "${name}";
+          comment = "Mirror ${name} (${device.address}) over the network";
+          exec = lib.getExe launcher;
+          icon = "phone";
+          categories = [ "Utility" ];
+        })
+      ]
+    ) cfg.devices
+  );
 }

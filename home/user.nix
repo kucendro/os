@@ -49,6 +49,15 @@ let
     mkchromecast
     qlcplus
     qalculate-gtk
+    hyprpicker
+    tesseract
+    zbar
+    translate-shell
+    wl-screenrec
+    ffmpeg
+    gifski
+    (python3.withPackages (ps: [ ps.pygobject3 ]))
+    qt6.qtwebsockets
   ];
 in
 

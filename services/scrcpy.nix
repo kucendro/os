@@ -17,6 +17,7 @@ let
         ];
         text = ''
           export SDL_VIDEODRIVER=wayland
+          export SDL_APP_ID=scrcpy
           adb connect ${address} || true
           for _ in $(seq 1 10); do
             if adb -s ${address} get-state 2>/dev/null | grep -q device; then

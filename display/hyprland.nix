@@ -219,7 +219,7 @@
         "$mainMod SHIFT, down, resizeactive, 0 20"
         "$mainMod, P, pseudo,"
         "$mainMod, S, exec, grim -g \"$(slurp)\""
-        "$mainMod, V, togglefloating,"
+        "$mainMod, F, togglefloating,"
         "$mainMod, Q, killactive,"
         "$mainMod, I, exec, ~/nixos/secrets/toggle-password.sh"
         "$mainMod, TAB, workspace, e+1"
@@ -289,6 +289,12 @@
         match:class = hyprland-run
         move = 20 monitor_h-120
         float = yes
+      }
+      windowrule {
+        name = float-scrcpy
+        match:class = ^(scrcpy)$
+        float = yes
+        center = yes
       }
     '';
   };

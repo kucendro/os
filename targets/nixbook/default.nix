@@ -15,8 +15,6 @@
     ../../services/scrcpy.nix
   ];
 
-  services.scrcpy.devices.fold.address = "100.64.0.3:5555";
-
   networking = {
     networkmanager.enable = true;
     firewall = {

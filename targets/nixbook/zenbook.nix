@@ -1,6 +1,8 @@
 { lib, ... }:
 
 {
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   services = {
     asus-numberpad-driver = {
       enable = true;

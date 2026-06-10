@@ -399,15 +399,6 @@
                         "videoPath": ""
                     },
                     "id": "plugin:screen-toolkit"
-                },
-                {
-                    "defaultSettings": {
-                        "entities": [
-                        ],
-                        "haToken": "",
-                        "haUrl": ""
-                    },
-                    "id": "plugin:hassio"
                 }
             ]
         }

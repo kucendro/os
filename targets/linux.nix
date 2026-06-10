@@ -18,6 +18,7 @@
   ]
   ++ lib.optionals (profile == "desktop") [
     ../display/stylix.nix
+    ../display/plymouth.nix
   ];
 
   boot = {

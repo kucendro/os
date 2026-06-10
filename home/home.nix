@@ -15,7 +15,7 @@
     ../development/git.nix
     ../development/opencode.nix
     ../dotfiles/symlinks.nix
-    ./docker.nix
+    ../development/docker.nix
   ]
   ++ lib.optionals (profile == "desktop") [
     inputs.noctalia.homeModules.default
@@ -141,6 +141,7 @@
         gc = "git commit -m";
         gp = "git push";
         gd = "git diff";
+        link-phone = "adb tcpip 5555";
 
       };
       initContent = ''

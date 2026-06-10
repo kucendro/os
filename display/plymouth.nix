@@ -2,7 +2,7 @@
   boot.plymouth.enable = true;
 
   stylix.targets.plymouth = {
-    logo = ./icon.png;
+    logo = ./boot.png;
     logoAnimated = false;
   };
 }

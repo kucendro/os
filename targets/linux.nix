@@ -86,7 +86,21 @@
     flake = "~/nixos";
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
+    autoPrune.enable = true;
+    extraPackages = [ pkgs.docker-buildx ];
+    daemon.settings = {
+      features.cdi = true;
+      max-concurrent-downloads = 5;
+      max-concurrent-uploads = 5;
+      builder.gc = {
+        enabled = true;
+        defaultKeepStorage = "40GB";
+      };
+    };
+  };
 
   environment.systemPackages = (
     with pkgs;

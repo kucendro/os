@@ -73,11 +73,12 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 3d";
     };
   };
 
   programs = {
+
     ssh = {
       enable = true;
       matchBlocks = {
@@ -139,6 +140,7 @@
         ga = "git add .";
         gc = "git commit -m";
         gp = "git push";
+        gd = "git diff";
 
       };
       initContent = ''

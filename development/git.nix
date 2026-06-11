@@ -5,7 +5,7 @@
     settings = {
       init.defaultBranch = "main";
       user.name = me.fullName;
-      user.email = me.emails.work;
+      user.email = me.emails.personal;
     };
   };
 }

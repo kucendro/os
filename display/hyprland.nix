@@ -5,12 +5,6 @@
 }:
 
 {
-
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
-
   services.hypridle = {
     enable = true;
     settings = {

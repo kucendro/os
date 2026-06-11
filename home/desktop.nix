@@ -5,6 +5,14 @@
 }:
 
 {
+  services.kdeconnectRunCommands.commands = {
+    "Vol DOWN" = "noctalia-shell ipc call volume decrease";
+    "Vol UP" = "noctalia-shell ipc call volume increase";
+    "MUTE" = "noctalia-shell ipc call volume muteOutput";
+    "LOCK" = "hyprlock";
+    "SUSPEND" = "noctalia-shell ipc call sessionMenu lockAndSuspend";
+  };
+
   programs."noctalia-shell" = {
     enable = true;
   };
@@ -12,6 +20,11 @@
   stylix.targets = {
     # neovim.enable = false;
     # inkscape.enable = false;
+  };
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
   };
 
   programs.kitty = lib.mkForce {

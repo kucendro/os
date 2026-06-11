@@ -20,6 +20,7 @@
   ++ lib.optionals (profile == "desktop") [
     inputs.noctalia.homeModules.default
     ../display/hyprland.nix
+    ../services/kdeconnect.nix
     ./desktop.nix
   ];
 

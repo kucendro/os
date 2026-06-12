@@ -6,9 +6,9 @@ let
 
   upstreams = {
     monitoring = "http://127.0.0.1:8090";
-    # music = "http://nas.ts.kucendro.dev:8095";
+    music = "http://nas.ts.kucendro.dev:8095";
     # vault = "http://nas.ts.kucendro.dev:";
-    # gallery = "http://nas.ts.kucendro.dev:";
+    gallery = "http://nas.ts.kucendro.dev:2283";
   };
 
   mkVhost = upstream: {

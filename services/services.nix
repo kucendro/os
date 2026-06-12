@@ -29,4 +29,9 @@
     };
     passSecretService.enable = true;
   };
+
+  systemd = lib.mkIf (profile != "desktop") {
+    services.fwupd-refresh.enable = false;
+    timers.fwupd-refresh.enable = false;
+  };
 }

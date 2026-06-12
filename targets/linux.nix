@@ -88,7 +88,7 @@
 
   virtualisation.docker = {
     enable = true;
-    enableOnBoot = false;
+    enableOnBoot = true;
     autoPrune.enable = true;
     extraPackages = [ pkgs.docker-buildx ];
     daemon.settings = {

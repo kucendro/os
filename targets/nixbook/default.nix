@@ -13,6 +13,7 @@
     ../../services/kube.nix
     ../../services/sunshine.nix
     ../../services/scrcpy.nix
+    ../../services/dockerized/music-assistant.nix
   ];
 
   networking = {

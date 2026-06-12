@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-# Developer CLI tooling (home-manager). Imported only by dev hosts — the
-# `desktop` (nixbook) and `workstation` profiles — via home/home.nix, so
-# headless servers (edge, nas) and the mac stay lean.
 {
   imports = [
     ./opencode.nix

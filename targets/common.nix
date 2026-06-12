@@ -49,5 +49,6 @@
     ripgrep
     fzf
     wireguard-tools
+    fastfetch
   ];
 }

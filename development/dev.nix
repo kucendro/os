@@ -35,7 +35,6 @@
       deploy-rs
       nixos-anywhere
       # misc dev
-      fastfetch
       oxker
       vulnix
       putty

@@ -13,9 +13,11 @@
     ../development/neovim.nix
     ../development/tmux.nix
     ../development/git.nix
-    ../development/opencode.nix
     ../dotfiles/symlinks.nix
     ../development/docker.nix
+  ]
+  ++ lib.optionals (profile == "desktop" || profile == "workstation") [
+    ../development/tools.nix
   ]
   ++ lib.optionals (profile == "desktop") [
     inputs.noctalia.homeModules.default
@@ -32,33 +34,14 @@
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
   };
 
+  # Lean shell helpers — present on every host. Heavier dev CLIs live in
+  # ../development/tools.nix (imported above for dev profiles only).
   home.packages = with pkgs; [
-    nushell
     fd
     lsd
     tldr
     jq
     yq
-    fzf
-    ripgrep
-    magic-wormhole
-    just
-    tokei
-    taskwarrior3
-    lefthook
-    cloudflared
-    github-copilot-cli
-    ollama
-    kubectl
-    sqlx-cli
-    supabase-cli
-    d2
-    nmap
-    maven
-    javaPackages.compiler.openjdk25
-    php
-    browsh
-    libqalculate
   ];
 
   programs.home-manager = {

@@ -1,6 +1,16 @@
-{ pkgs, me, ... }:
+{
+  pkgs,
+  me,
+  lib,
+  profile,
+  ...
+}:
 
 {
+  imports = lib.optionals (profile == "desktop" || profile == "workstation") [
+    ../development/dev.nix
+  ];
+
   time.timeZone = me.timeZone;
 
   nixpkgs.config.allowUnfree = true;
@@ -33,24 +43,11 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    fastfetch
     btop
     sops
     age
-    nixfmt
     ripgrep
     fzf
-    nodejs
-    pnpm
-    cargo
-    rustc
-    rust-analyzer
-    clippy
-    rustfmt
-    gcc
-    gnumake
     wireguard-tools
-    deploy-rs
-    nixos-anywhere
   ];
 }

@@ -2,8 +2,8 @@
 {
   programs.neovim = {
     enable = true;
-    withRuby = true;
-    withPython3 = true;
+    withRuby = false;
+    withPython3 = false;
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim

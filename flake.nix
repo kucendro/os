@@ -123,13 +123,13 @@
           format = "docker";
           specialArgs = {
             inherit inputs me;
-            profile = "headless";
+            profile = "workstation";
           };
           modules = [
             { networking.hostName = "workstation"; }
             ./targets/workstation
             home-manager.nixosModules.home-manager
-            (homeManagerConfig "headless")
+            (homeManagerConfig "workstation")
           ];
         };
 

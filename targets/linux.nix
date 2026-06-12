@@ -102,29 +102,5 @@
     };
   };
 
-  environment.systemPackages = (
-    with pkgs;
-    [
-      stdenv.cc.cc
-      zlib
-      libGL
-      glibc
-      glibc.dev
-      clang
-      autoconf
-      automake
-      libtool
-      pkg-config
-      dbus
-      oxker
-      gccgo15
-      python315
-      inetutils
-      putty
-      vulnix
-      openssl
-    ]
-  );
-
   system.stateVersion = "25.11";
 }

@@ -1,18 +1,10 @@
 { ... }:
 
-# OS disk layout, curated like targets/edge/disko.nix.
-# This only declares the boot/root disk — data disks (ZFS/btrfs pool etc.)
-# can be added as extra `disk.*` entries later.
-#
-# IMPORTANT: set `device` to the real NAS boot disk before deploying.
-# Find it with `lsblk -o NAME,SIZE,MODEL` on the box. Real hardware is
-# usually NVMe (/dev/nvme0n1) or SATA (/dev/sda).
-
 {
   disko.devices = {
     disk.main = {
       type = "disk";
-      device = "/dev/sda";
+      device = "/dev/disk/by-id/ata-PSSBN016GA27MC0_90530779030800976650";
       content = {
         type = "gpt";
         partitions = {

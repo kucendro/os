@@ -585,9 +585,9 @@
         "weatherTaliaMascotAlways": false
     },
     "network": {
-        "bluetoothAutoConnect": true,
+        "bluetoothAutoConnect": false,
         "bluetoothDetailsViewMode": "grid",
-        "bluetoothHideUnnamedDevices": false,
+        "bluetoothHideUnnamedDevices": true,
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": true,
         "disableDiscoverability": false,

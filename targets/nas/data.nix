@@ -46,5 +46,8 @@
     fileSystems = [ "/mnt/data" ];
   };
 
+  virtualisation.docker.daemon.settings.data-root = "/mnt/data/docker";
+  systemd.services.docker.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
+
   environment.systemPackages = [ pkgs.btrfs-progs ];
 }

@@ -1,4 +1,4 @@
-{ me, ... }:
+{ config, me, ... }:
 
 {
   security.acme = {
@@ -6,9 +6,16 @@
     defaults.email = me.emails.personal;
   };
 
+  security.acme.certs."home.kucendro.dev" = {
+    domain = "home.kucendro.dev";
+    extraDomainNames = [ "*.home.kucendro.dev" ];
+    dnsProvider = "cloudflare";
+    environmentFile = config.sops.templates."acme-cloudflare-env".path;
+    group = "nginx";
+  };
+
   services.nginx = {
     enable = true;
-
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;

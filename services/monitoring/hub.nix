@@ -1,27 +1,11 @@
-{ config, ... }:
+{ ... }:
 
 {
+  # The beszel hub itself. Its public ingress (monitoring.home.kucendro.dev) is
+  # declared with the other *.home reverse proxies in ../mesh/proxied/services.nix.
   services.beszel.hub = {
     enable = true;
     host = "127.0.0.1";
     port = 8090;
-  };
-
-  security.acme.certs."home.kucendro.dev" = {
-    domain = "home.kucendro.dev";
-    extraDomainNames = [ "*.home.kucendro.dev" ];
-    dnsProvider = "cloudflare";
-    environmentFile = config.sops.templates."acme-cloudflare-env".path;
-    group = "nginx";
-  };
-
-  services.nginx.virtualHosts."monitoring.home.kucendro.dev" = {
-    listenAddresses = [ "100.64.0.1" ];
-    useACMEHost = "home.kucendro.dev";
-    forceSSL = true;
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:8090";
-      proxyWebsockets = true;
-    };
   };
 }

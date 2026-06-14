@@ -1,7 +1,13 @@
-{ lib, ... }:
+{ lib, me, ... }:
 
 {
   boot.initrd.kernelModules = [ "amdgpu" ];
+
+  # Howdy lives only on this host, so its failed-attempt notifier (a
+  # home-manager module) is wired here rather than in the shared desktop profile.
+  home-manager.users.${me.name}.imports = [
+    ../../display/howdy-snapshot-notify.nix
+  ];
 
   services = {
     asus-numberpad-driver = {

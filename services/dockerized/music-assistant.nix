@@ -30,4 +30,6 @@
     1704
     1705
   ];
+
+  networking.firewall.allowedUDPPorts = [ 5353 ];
 }

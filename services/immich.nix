@@ -12,6 +12,7 @@
   systemd.services.immich-server.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 2283 ];
 
+  # Due the migration from Umbrel, the media needed to be transfered to ext mount.
   systemd.services.immich-fix-media-perms = {
     description = "Ensure Immich media dir exists and is owned by immich on the external mount";
     after = [ "mnt-data.mount" ];

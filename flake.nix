@@ -12,7 +12,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      # pinned to working version
+      url = "github:noctalia-dev/noctalia-shell/57be32b0a81471ef6c5dceff6faad23b534ec7f8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -116,23 +117,6 @@
           ++ extraModules;
         };
 
-      mkWorkstationDocker =
-        system:
-        nixos-generators.nixosGenerate {
-          inherit system;
-          format = "docker";
-          specialArgs = {
-            inherit inputs me;
-            profile = "workstation";
-          };
-          modules = [
-            { networking.hostName = "workstation"; }
-            ./targets/workstation
-            home-manager.nixosModules.home-manager
-            (homeManagerConfig "workstation")
-          ];
-        };
-
     in
 
     {
@@ -174,11 +158,6 @@
           targetModule = ./targets/mac;
         };
 
-      };
-
-      packages = {
-        aarch64-linux.workstation-docker = mkWorkstationDocker "aarch64-linux";
-        x86_64-linux.workstation-docker = mkWorkstationDocker "x86_64-linux";
       };
 
       deploy.nodes = {

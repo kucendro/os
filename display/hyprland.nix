@@ -1,9 +1,15 @@
 {
+  config,
   lib,
   me,
   ...
 }:
 
+let
+  # Pull colors from the active Stylix scheme so the lock screen follows the
+  # theme. Hex without the leading '#', wrapped here in rgb()/rgba() per field.
+  c = config.lib.stylix.colors;
+in
 {
   services.hypridle = {
     enable = true;
@@ -44,24 +50,82 @@
         grace = 3;
         disable_loading_bar = true;
       };
-      input-field = lib.mkForce [
-        {
-          fade_on_empty = true;
-          hide_input = false;
-          position = "0, -350";
-          halign = "center";
-          valign = "center";
-          size = "0, 0";
-          outer_color = "";
-          inner_color = "";
-        }
-      ];
-      label = lib.mkForce [
+
+      background = lib.mkForce [
         {
           monitor = "";
-          text = "$TIME";
-          font_size = 60;
-          position = "0, -200";
+          path = "${config.stylix.image}";
+          color = "rgb(${c.base00})";
+          blur_passes = 3;
+          blur_size = 7;
+          brightness = 0.7;
+          contrast = 0.9;
+          vibrancy = 0.17;
+          vibrancy_darkness = 0.15;
+          noise = 0.012;
+        }
+      ];
+
+      input-field = lib.mkForce [
+        {
+          monitor = "";
+          size = "280, 55";
+          position = "0, -265";
+          halign = "center";
+          valign = "center";
+          outline_thickness = 2;
+          rounding = 27;
+          dots_size = 0.28;
+          dots_spacing = 0.32;
+          dots_center = true;
+          dots_rounding = -1;
+          outer_color = "rgba(${c.base02}cc)";
+          inner_color = "rgba(${c.base00}99)";
+          font_color = "rgb(${c.base05})";
+          fade_on_empty = false;
+          hide_input = false;
+          placeholder_text = "";
+          check_color = "rgb(${c.base0B})";
+          fail_color = "rgb(${c.base08})";
+          fail_text = "<i>SON 🥀... $FAIL</i>";
+          capslock_color = "rgb(${c.base0E})";
+        }
+      ];
+
+      label = lib.mkForce [
+        # Clock
+        {
+          monitor = "";
+          text = "cmd[update:1000] date +'%H:%M'";
+          font_family = config.stylix.fonts.serif.name;
+          font_size = 96;
+          color = "rgb(${c.base05})";
+          position = "0, 95";
+          halign = "center";
+          valign = "center";
+          shadow_passes = 2;
+          shadow_size = 5;
+          shadow_color = "rgba(0, 0, 0, 0.45)";
+        }
+        # Date
+        {
+          monitor = "";
+          text = "cmd[update:60000] LC_ALL=C date +'%A, %d %B'";
+          font_family = config.stylix.fonts.serif.name;
+          font_size = 17;
+          color = "rgb(${c.base06})";
+          position = "0, 15";
+          halign = "center";
+          valign = "center";
+        }
+        # Greeting
+        {
+          monitor = "";
+          text = "Welcome back son 🥀🥀";
+          font_family = config.stylix.fonts.serif.name;
+          font_size = 15;
+          color = "rgb(${c.base04})";
+          position = "0, -190";
           halign = "center";
           valign = "center";
         }

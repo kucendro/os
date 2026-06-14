@@ -9,11 +9,8 @@
 
 let
   desktopPackages = with pkgs; [
-    inkscape
-    krita
     slack
     vscode
-    element-desktop
     orca-slicer
     prusa-slicer
     wireshark

@@ -8,7 +8,7 @@ let
   contexts = {
     localhost = "unix:///var/run/docker.sock";
     mac = "ssh://${me.name}@mac";
-    workstation = "ssh://${me.name}@workstation";
+    # workstation = "ssh://${me.name}@workstation";
     nas = "ssh://${me.name}@nas";
   };
 

@@ -260,6 +260,17 @@
                     "showPowerProfiles": false
                 },
                 {
+                    "blacklist": [
+                    ],
+                    "chevronColor": "none",
+                    "colorizeIcons": false,
+                    "drawerEnabled": true,
+                    "hidePassive": true,
+                    "id": "Tray",
+                    "pinned": [
+                    ]
+                },
+                {
                     "hideWhenZero": false,
                     "hideWhenZeroUnread": false,
                     "iconColor": "none",

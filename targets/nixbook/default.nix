@@ -13,6 +13,7 @@
     ../../services/kube.nix
     ../../services/sunshine.nix
     ../../services/scrcpy.nix
+    ../../services/kdrive.nix
     ../../services/share/client.nix
   ];
 

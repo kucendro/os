@@ -150,6 +150,7 @@ in
       exec-once = [
         "noctalia-shell"
         "beeper & slack"
+        "env QT_QPA_PLATFORM=xcb kdrive"
       ];
 
       ecosystem.enforce_permissions = 1;

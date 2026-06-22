@@ -262,7 +262,7 @@
                 {
                     "blacklist": [
                     ],
-                    "chevronColor": "none",
+                    "chevronColor": "primary",
                     "colorizeIcons": false,
                     "drawerEnabled": true,
                     "hidePassive": true,

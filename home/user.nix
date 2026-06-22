@@ -55,6 +55,7 @@ let
     gifski
     (python3.withPackages (ps: [ ps.pygobject3 ]))
     qt6.qtwebsockets
+    keyguard
   ];
 in
 

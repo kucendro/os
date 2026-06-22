@@ -26,6 +26,7 @@
   networking.firewall.allowedTCPPorts = [
     8095
     8097
+    8927
     1780
     1704
     1705

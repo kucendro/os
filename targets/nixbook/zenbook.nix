@@ -3,40 +3,38 @@
 {
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  # Howdy lives only on this host, so its failed-attempt notifier (a
-  # home-manager module) is wired here rather than in the shared desktop profile.
   home-manager.users.${me.name}.imports = [
     ../../display/howdy-snapshot-notify.nix
   ];
 
   services = {
-    asus-numberpad-driver = {
-      enable = true;
-      layout = "up5401ea";
-      wayland = true;
-      runtimeDir = "/run/user/1000/";
-      waylandDisplay = "wayland-1";
-      ignoreWaylandDisplayEnv = false;
-      config = {
-        "activation_time" = "0.3";
-      };
-    };
-
-    howdy = {
-      enable = true;
-      settings = {
-        core = {
-          detection_notice = true;
-          no_confirmation = false;
-        };
-        video = {
-          dark_threshold = 80;
-        };
-        snapshots = {
-          save_failed = true;
-        };
-      };
-    };
+    # asus-numberpad-driver = {
+    #   enable = true;
+    #   layout = "up5401ea";
+    #   wayland = true;
+    #   runtimeDir = "/run/user/1000/";
+    #   waylandDisplay = "wayland-1";
+    #   ignoreWaylandDisplayEnv = false;
+    #   config = {
+    #     "activation_time" = "0.3";
+    #   };
+    # };
+    #
+    # howdy = {
+    #   enable = true;
+    #   settings = {
+    #     core = {
+    #       detection_notice = true;
+    #       no_confirmation = false;
+    #     };
+    #     video = {
+    #       dark_threshold = 80;
+    #     };
+    #     snapshots = {
+    #       save_failed = true;
+    #     };
+    #   };
+    # };
   };
 
   security.pam.services = {

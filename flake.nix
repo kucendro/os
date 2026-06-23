@@ -4,10 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    asus-numberpad-driver = {
-      url = "github:asus-linux-drivers/asus-numberpad-driver";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # asus-numberpad-driver = {
+    #   url = "github:asus-linux-drivers/asus-numberpad-driver";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     sops-nix.url = "github:Mic92/sops-nix";
 
@@ -52,7 +52,7 @@
     {
       self,
       nixpkgs,
-      asus-numberpad-driver,
+      # asus-numberpad-driver,
       sops-nix,
       noctalia,
       home-manager,
@@ -127,7 +127,7 @@
           targetModule = ./targets/nixbook;
           hardwareModule = ./targets/nixbook/hw-configuration.nix;
           extraModules = [
-            asus-numberpad-driver.nixosModules.default
+            # asus-numberpad-driver.nixosModules.default
           ];
         };
 

@@ -10,6 +10,7 @@ let
     vault = "http://nas.ts.kucendro.dev:8222";
     gallery = "http://nas.ts.kucendro.dev:2283";
     grafana = "http://nas.ts.kucendro.dev:3000";
+    git = "http://nas.ts.kucendro.dev:3001";
   };
 
   mkVhost = upstream: {

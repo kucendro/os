@@ -10,6 +10,7 @@
     ../../services/vault.nix
     ../../services/share/server.nix
     ../../services/grafana.nix
+    ../../services/gitea.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

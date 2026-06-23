@@ -56,6 +56,7 @@ let
     (python3.withPackages (ps: [ ps.pygobject3 ]))
     qt6.qtwebsockets
     cisco-packet-tracer_9
+    showtime
   ];
 in
 

@@ -34,8 +34,6 @@
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
   };
 
-  # Lean shell helpers — present on every host. Heavier dev CLIs live in
-  # ../development/tools.nix (imported above for dev profiles only).
   home.packages = with pkgs; [
     fd
     lsd
@@ -79,7 +77,7 @@
         g = "https://www.google.com/search?hl=en&q={}";
         n = "https://search.nixos.org/packages?channel=25.11&query={}";
         w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
-        v = "https://vault.kucendro.dev/#/vault?search={}";
+        v = "https://vault.home.kucendro.dev/#/vault?search={}";
       };
       settings = {
         "colors.webpage.darkmode.enabled" = true;

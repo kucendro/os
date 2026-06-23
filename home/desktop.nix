@@ -5,6 +5,7 @@
 }:
 
 {
+
   services.kdeconnectRunCommands.commands = {
     "Vol DOWN" = "noctalia-shell ipc call volume decrease";
     "Vol UP" = "noctalia-shell ipc call volume increase";

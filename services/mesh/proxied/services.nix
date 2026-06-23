@@ -9,6 +9,7 @@ let
     music = "http://nas.ts.kucendro.dev:8095";
     vault = "http://nas.ts.kucendro.dev:8222";
     gallery = "http://nas.ts.kucendro.dev:2283";
+    grafana = "http://nas.ts.kucendro.dev:3000";
   };
 
   mkVhost = upstream: {

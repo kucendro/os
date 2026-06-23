@@ -9,6 +9,7 @@
     ../../services/immich.nix
     ../../services/vault.nix
     ../../services/share/server.nix
+    ../../services/grafana.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

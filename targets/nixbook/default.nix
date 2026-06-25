@@ -174,12 +174,13 @@
     openssl
   ];
 
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
-  };
+  # TODO: This shit uncomment before start of last year of high school
+  # virtualisation.virtualbox = {
+  #   host = {
+  #     enable = true;
+  #     enableExtensionPack = true;
+  #   };
+  # };
 
   users.extraGroups.vboxusers.members = [ me.name ];
 

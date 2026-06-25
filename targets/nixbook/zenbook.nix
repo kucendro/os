@@ -19,22 +19,22 @@
     #     "activation_time" = "0.3";
     #   };
     # };
-    #
-    # howdy = {
-    #   enable = true;
-    #   settings = {
-    #     core = {
-    #       detection_notice = true;
-    #       no_confirmation = false;
-    #     };
-    #     video = {
-    #       dark_threshold = 80;
-    #     };
-    #     snapshots = {
-    #       save_failed = true;
-    #     };
-    #   };
-    # };
+
+    howdy = {
+      enable = true;
+      settings = {
+        core = {
+          detection_notice = true;
+          no_confirmation = false;
+        };
+        video = {
+          dark_threshold = 80;
+        };
+        snapshots = {
+          save_failed = true;
+        };
+      };
+    };
   };
 
   security.pam.services = {

@@ -16,9 +16,11 @@
     ../dotfiles/symlinks.nix
     ../development/docker.nix
   ]
-  ++ lib.optionals (profile == "desktop" || profile == "workstation") [
+
+  ++ lib.optionals (profile == "desktop") [
     ../development/tools.nix
   ]
+
   ++ lib.optionals (profile == "desktop") [
     inputs.noctalia.homeModules.default
     ../display/hyprland.nix
@@ -32,7 +34,10 @@
 
   home.sessionVariables = {
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
+    PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm";
   };
+
+  home.sessionPath = [ "${config.home.homeDirectory}/.local/share/pnpm" ];
 
   home.packages = with pkgs; [
     fd

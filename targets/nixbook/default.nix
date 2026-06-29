@@ -58,6 +58,20 @@
     };
   };
 
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "DEEP";
+        location = "work";
+        deviceUri = "ipp://192.168.1.99/ipp/print";
+        model = "everywhere";
+        ppdOptions = {
+          PageSize = "A4";
+        };
+      }
+    ];
+  };
+
   security.rtkit.enable = true;
   security.pam.services.hyprlock = { };
 

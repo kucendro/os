@@ -1,4 +1,9 @@
-{ lib, profile, ... }:
+{
+  lib,
+  profile,
+  pkgs,
+  ...
+}:
 
 {
   services = {
@@ -18,9 +23,16 @@
     };
     fwupd.enable = true;
     fstrim.enable = true;
+    iperf3.enable = true;
   }
   // lib.optionalAttrs (profile == "desktop") {
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        cups-filters
+        cups-browsed
+      ];
+    };
     udisks2.enable = true;
     gvfs.enable = true;
     clamav = {
@@ -29,6 +41,8 @@
     };
     passSecretService.enable = true;
   };
+
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 5201 ];
 
   systemd = lib.mkIf (profile != "desktop") {
     services.fwupd-refresh.enable = false;

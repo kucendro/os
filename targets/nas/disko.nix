@@ -4,7 +4,7 @@
   disko.devices = {
     disk.main = {
       type = "disk";
-      device = "/dev/disk/by-id/ata-PSSBN016GA27MC0_90530779030800976650";
+      device = "/dev/disk/by-id/ata-SAMSUNG_SSD_PM871_2.5_7mm_256GB_S1ZTNSAGC07844";
       content = {
         type = "gpt";
         partitions = {

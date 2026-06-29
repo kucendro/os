@@ -15,6 +15,8 @@
     "ahci"
     "sd_mod"
     "sdhci_pci"
+    "usb_storage"
+    "uas"
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];

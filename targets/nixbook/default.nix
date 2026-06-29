@@ -13,6 +13,7 @@
     ../../services/kube.nix
     ../../services/sunshine.nix
     ../../services/scrcpy.nix
+    ../../services/termux.nix
     ../../services/kdrive.nix
     ../../services/share/client.nix
   ];
@@ -59,17 +60,17 @@
   };
 
   hardware.printers = {
-    ensurePrinters = [
-      {
-        name = "DEEP";
-        location = "work";
-        deviceUri = "ipp://192.168.1.99/ipp/print";
-        model = "everywhere";
-        ppdOptions = {
-          PageSize = "A4";
-        };
-      }
-    ];
+    # ensurePrinters = [
+    #   {
+    #     name = "DEEP";
+    #     location = "work";
+    #     deviceUri = "ipp://192.168.1.99/ipp/print";
+    #     model = "everywhere";
+    #     ppdOptions = {
+    #       PageSize = "A4";
+    #     };
+    #   }
+    # ];
   };
 
   security.rtkit.enable = true;

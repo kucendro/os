@@ -69,6 +69,18 @@
         mac.user = me.name;
         workstation.user = me.name;
         edge.user = me.name;
+        fold =
+          let
+            peer = import ../targets/fold/peer.nix;
+          in
+          {
+            hostname = lib.head (lib.splitString ":" me.phones.fold);
+            user = peer.ssh.user;
+            port = peer.ssh.port;
+            serverAliveInterval = 30;
+            serverAliveCountMax = 3;
+            extraOptions.ConnectionAttempts = "3";
+          };
       };
     };
 

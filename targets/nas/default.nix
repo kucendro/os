@@ -6,6 +6,8 @@
     ./disko.nix
     ./data.nix
     ../../services/dockerized/music-assistant.nix
+    ../../services/dockerized/home-assistant.nix
+    ../../services/dockerized/qore.nix
     ../../services/immich.nix
     ../../services/vault.nix
     ../../services/share/server.nix

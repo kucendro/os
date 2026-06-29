@@ -15,9 +15,6 @@
     ../development/git.nix
     ../dotfiles/symlinks.nix
     ../development/docker.nix
-  ]
-
-  ++ lib.optionals (profile == "desktop") [
     ../development/tools.nix
   ]
 

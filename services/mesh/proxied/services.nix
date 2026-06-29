@@ -11,6 +11,8 @@ let
     gallery = "http://nas.ts.kucendro.dev:2283";
     grafana = "http://nas.ts.kucendro.dev:3000";
     git = "http://nas.ts.kucendro.dev:3001";
+    assistant = "http://nas.ts.kucendro.dev:8123";
+    qore = "http://nas.ts.kucendro.dev:7673";
   };
 
   mkVhost = upstream: {

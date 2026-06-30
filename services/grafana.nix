@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   port = 3000;
@@ -16,6 +16,9 @@ in
       security.secret_key = "HDXUVSOyLOdXHkz7CxXZYlMonEUgqJJPlOn4kOjI7KjpuYen";
     };
   };
+
+  systemd.services.grafana.serviceConfig.EnvironmentFile =
+    config.sops.templates."grafana-strava-env".path;
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
 }

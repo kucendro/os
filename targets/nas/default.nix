@@ -10,6 +10,7 @@
     ../../services/dockerized/home-assistant.nix
     ../../services/dockerized/frigate.nix
     ../../services/dockerized/qore.nix
+    ../../services/dockerized/open-wearables.nix
     ../../services/immich.nix
     ../../services/vault.nix
     ../../services/share/server.nix

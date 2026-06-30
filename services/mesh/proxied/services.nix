@@ -14,6 +14,8 @@ let
     assistant = "nas.ts.kucendro.dev:8123";
     cameras = "nas.ts.kucendro.dev:5000";
     qore = "nas.ts.kucendro.dev:7673";
+    health = "nas.ts.kucendro.dev:3005";
+    healthapi = "nas.ts.kucendro.dev:8000"; # open-wearables API (API_PORT)
   };
 
   mkVhost = name: hostPort: {

@@ -20,12 +20,12 @@ let
           export SDL_APP_ID=scrcpy
           adb connect ${address} || true
           for _ in $(seq 1 10); do
-            if adb -s ${address} get-state 2>/dev/null | grep -q device; then
+            if adb -s ${address}:5555 get-state 2>/dev/null | grep -q device; then
               break
             fi
             sleep 0.5
           done
-          exec scrcpy -s ${address} "$@"
+          exec scrcpy -s ${address}:5555 "$@"
         '';
       };
     in

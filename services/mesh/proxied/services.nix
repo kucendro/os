@@ -5,28 +5,37 @@ let
   tailnetIP = "100.64.0.1";
 
   upstreams = {
-    monitoring = "http://127.0.0.1:8090";
-    music = "http://nas.ts.kucendro.dev:8095";
-    vault = "http://nas.ts.kucendro.dev:8222";
-    gallery = "http://nas.ts.kucendro.dev:2283";
-    grafana = "http://nas.ts.kucendro.dev:3000";
-    git = "http://nas.ts.kucendro.dev:3001";
-    assistant = "http://nas.ts.kucendro.dev:8123";
-    qore = "http://nas.ts.kucendro.dev:7673";
+    monitoring = "127.0.0.1:8090";
+    music = "nas.ts.kucendro.dev:8095";
+    vault = "nas.ts.kucendro.dev:8222";
+    gallery = "nas.ts.kucendro.dev:2283";
+    grafana = "nas.ts.kucendro.dev:3000";
+    git = "nas.ts.kucendro.dev:3001";
+    assistant = "nas.ts.kucendro.dev:8123";
+    qore = "nas.ts.kucendro.dev:7673";
   };
 
-  mkVhost = upstream: {
+  mkVhost = name: hostPort: {
     listenAddresses = [ tailnetIP ];
     useACMEHost = homeDomain;
     forceSSL = true;
     locations."/" = {
-      proxyPass = upstream;
+      proxyPass = "http://$upstream_${name}";
       proxyWebsockets = true;
+      extraConfig = ''
+        set $upstream_${name} ${hostPort};
+      '';
     };
   };
 in
 {
+  services.nginx.resolver = {
+    addresses = [ "100.100.100.100" ]; # tailscale MagicDNS
+    valid = "30s";
+    ipv6 = false;
+  };
+
   services.nginx.virtualHosts = lib.mapAttrs' (
-    name: upstream: lib.nameValuePair "${name}.${homeDomain}" (mkVhost upstream)
+    name: hostPort: lib.nameValuePair "${name}.${homeDomain}" (mkVhost name hostPort)
   ) upstreams;
 }

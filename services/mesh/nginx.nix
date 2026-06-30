@@ -26,4 +26,6 @@
     80
     443
   ];
+
+  boot.kernel.sysctl."net.ipv4.ip_nonlocal_bind" = 1;
 }

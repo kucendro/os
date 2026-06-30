@@ -12,6 +12,10 @@
     settings = {
       server_url = "https://edge.kucendro.dev";
       base_domain = "ts.kucendro.dev";
+      policy = {
+        mode = "file";
+        path = "${./acl.json}";
+      };
       dns = {
         magic_dns = true;
         base_domain = "ts.kucendro.dev";

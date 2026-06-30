@@ -1,0 +1,20 @@
+{
+  "groups": {
+    "group:admins": ["kucendro@"]
+  },
+
+  "tagOwners": {
+    "tag:guest": ["kucendro@"]
+  },
+
+  "hosts": {
+    "edge": "100.64.0.1/32",
+    "nas": "100.64.0.5/32"
+  },
+
+  "acls": [
+    { "action": "accept", "src": ["group:admins"], "dst": ["*:*"] },
+
+    { "action": "accept", "src": ["tag:guest"], "dst": ["edge:*", "nas:*"] }
+  ]
+}

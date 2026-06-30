@@ -12,6 +12,7 @@ let
     grafana = "nas.ts.kucendro.dev:3000";
     git = "nas.ts.kucendro.dev:3001";
     assistant = "nas.ts.kucendro.dev:8123";
+    cameras = "nas.ts.kucendro.dev:5000";
     qore = "nas.ts.kucendro.dev:7673";
   };
 

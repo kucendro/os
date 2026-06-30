@@ -5,8 +5,10 @@
     ../linux.nix
     ./disko.nix
     ./data.nix
+    ../../services/mesh/subnet-router.nix
     ../../services/dockerized/music-assistant.nix
     ../../services/dockerized/home-assistant.nix
+    ../../services/dockerized/frigate.nix
     ../../services/dockerized/qore.nix
     ../../services/immich.nix
     ../../services/vault.nix

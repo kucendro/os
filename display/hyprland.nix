@@ -286,6 +286,7 @@ in
         "$mainMod SHIFT, W, movetoworkspace, special:magic"
         "$mainMod CTRL, W, movetoworkspace, 1"
         "$mainMod, +, exec, tmux attach -d -t default"
+        "$mainMod, period, exec, rofimoji --selector fuzzel --action type --typer wtype"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
       ];

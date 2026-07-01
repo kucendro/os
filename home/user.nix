@@ -24,6 +24,8 @@ let
     libreoffice-qt-fresh
     wl-clipboard
     wtype
+    rofimoji
+    fuzzel
     gnome-calendar
     gnome-calculator
     discord

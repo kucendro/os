@@ -52,7 +52,10 @@
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
-      allowed-users = [ me.name ];
+      allowed-users = [
+        me.name
+        "root"
+      ];
     };
     gc = {
       automatic = true;
@@ -84,38 +87,38 @@
       };
     };
 
-    qutebrowser = lib.mkIf (profile == "desktop") {
-      enable = true;
-      searchEngines = {
-        DEFAULT = "https://duckduckgo.com/?q={}";
-        g = "https://www.google.com/search?hl=en&q={}";
-        n = "https://search.nixos.org/packages?channel=25.11&query={}";
-        w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
-        v = "https://vault.home.kucendro.dev/#/vault?search={}";
-      };
-      settings = {
-        "colors.webpage.darkmode.enabled" = true;
-        "content.cookies.accept" = "no-3rdparty";
-        "content.geolocation" = "ask";
-        "content.notifications.enabled" = "ask";
-        "content.autoplay" = true;
-        "downloads.location.directory" = "~/Downloads";
-        "downloads.location.prompt" = false;
-        "tabs.show" = "multiple";
-        "statusbar.show" = "in-mode";
-        "scrolling.smooth" = true;
-        "fonts.default_family" = "monospace";
-        "fonts.default_size" = "11pt";
-        "auto_save.session" = true;
-        "session.lazy_restore" = true;
-      };
-      keyBindings = {
-        normal = {
-          "J" = "tab-prev";
-          "K" = "tab-next";
-        };
-      };
-    };
+    # qutebrowser = lib.mkIf (profile == "desktop") {
+    #   enable = true;
+    #   searchEngines = {
+    #     DEFAULT = "https://duckduckgo.com/?q={}";
+    #     g = "https://www.google.com/search?hl=en&q={}";
+    #     n = "https://search.nixos.org/packages?channel=25.11&query={}";
+    #     w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
+    #     v = "https://vault.home.kucendro.dev/#/vault?search={}";
+    #   };
+    #   settings = {
+    #     "colors.webpage.darkmode.enabled" = true;
+    #     "content.cookies.accept" = "no-3rdparty";
+    #     "content.geolocation" = "ask";
+    #     "content.notifications.enabled" = "ask";
+    #     "content.autoplay" = true;
+    #     "downloads.location.directory" = "~/Downloads";
+    #     "downloads.location.prompt" = false;
+    #     "tabs.show" = "multiple";
+    #     "statusbar.show" = "in-mode";
+    #     "scrolling.smooth" = true;
+    #     "fonts.default_family" = "monospace";
+    #     "fonts.default_size" = "11pt";
+    #     "auto_save.session" = true;
+    #     "session.lazy_restore" = true;
+    #   };
+    #   keyBindings = {
+    #     normal = {
+    #       "J" = "tab-prev";
+    #       "K" = "tab-next";
+    #     };
+    #   };
+    # };
 
     zsh = {
       enable = true;
@@ -136,6 +139,7 @@
         ga = "git add .";
         gc = "git commit -m";
         gp = "git push";
+        gpl = "git pull";
         gd = "git diff";
         link-phone = "adb tcpip 5555";
 

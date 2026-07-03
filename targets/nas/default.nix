@@ -11,6 +11,7 @@
     ../../services/dockerized/frigate.nix
     ../../services/dockerized/qore.nix
     ../../services/dockerized/open-wearables.nix
+    ../../services/dockerized/ledfx.nix
     ../../services/dockerized/watchtower.nix
     ../../services/immich.nix
     ../../services/vault.nix

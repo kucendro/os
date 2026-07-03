@@ -6,6 +6,7 @@
     ./disko.nix
     ../../services/mesh/nginx.nix
     ../../services/mesh/headscale.nix
+    ../../services/mesh/party.nix
     ../../services/mesh/proxied/services.nix
     ../../services/monitoring/hub.nix
   ];

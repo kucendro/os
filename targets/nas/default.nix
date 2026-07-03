@@ -17,6 +17,7 @@
     ../../services/vault.nix
     ../../services/share/server.nix
     ../../services/grafana.nix
+    ../../services/monitoring/blackbox.nix
     ../../services/gitea.nix
   ];
 

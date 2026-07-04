@@ -1,3 +1,3 @@
 # KucendroOS
 
-![plymoth](.display/boot.png)
+![plymoth](display/boot.png)

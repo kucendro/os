@@ -42,6 +42,19 @@
     };
   };
 
+  launchd.daemons.iperf3-server = {
+    serviceConfig = {
+      ProgramArguments = [
+        "${pkgs.iperf3}/bin/iperf3"
+        "--server"
+        "--port"
+        "5201"
+      ];
+      KeepAlive = true;
+      RunAtLoad = true;
+    };
+  };
+
   launchd.user.agents.sunshine = {
     serviceConfig = {
       ProgramArguments = [

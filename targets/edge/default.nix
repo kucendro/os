@@ -9,6 +9,7 @@
     ../../services/mesh/party.nix
     ../../services/mesh/proxied/services.nix
     ../../services/monitoring/hub.nix
+    ../../services/monitoring/iperf3.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

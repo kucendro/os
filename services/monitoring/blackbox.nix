@@ -72,6 +72,11 @@ in
           }
         ];
       }
+      {
+        job_name = "iperf3";
+        honor_labels = true;
+        static_configs = [ { targets = [ "edge.ts.kucendro.dev:9091" ]; } ];
+      }
     ];
   };
 
@@ -91,6 +96,10 @@ in
       {
         name = "endpoints";
         options.path = ./blackbox-dashboard.json;
+      }
+      {
+        name = "speed";
+        options.path = ./iperf3-dashboard.json;
       }
     ];
     alerting.contactPoints.settings = {

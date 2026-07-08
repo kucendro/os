@@ -6,8 +6,10 @@
     fsType = "cifs";
     options = [
       "credentials=${config.sops.templates."smb-creds".path}"
-      "x-systemd.automount"
-      "noauto"
+      "_netdev"
+      "x-systemd.after=tailscaled.service"
+      "x-systemd.requires=tailscaled.service"
+      "x-systemd.mount-timeout=90"
       "nofail"
       "uid=1000"
       "gid=100"

@@ -97,7 +97,7 @@
         "overrides": [
           {
             "matcher": { "id": "byName", "options": "Throughput" },
-            "properties": [ { "id": "unit", "value": "bps" }, { "id": "custom.cellOptions", "value": { "type": "gauge" } } ]
+            "properties": [ { "id": "unit", "value": "bps" }, { "id": "min", "value": 0 }, { "id": "max", "value": 1000000000 }, { "id": "custom.cellOptions", "value": { "type": "gauge" } } ]
           },
           {
             "matcher": { "id": "byName", "options": "Direction" },

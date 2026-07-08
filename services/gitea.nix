@@ -9,6 +9,7 @@ in
 {
   services.gitea = {
     enable = true;
+    lfs.enable = true;
     stateDir = "/mnt/data/gitea";
     database.type = "sqlite3";
 

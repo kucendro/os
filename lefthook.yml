@@ -1,5 +1,5 @@
 pre-commit:
-  parallel: false
+  parallel: true
   commands:
     generating-diagrams:
       glob: "*.{nix,py,json}"
@@ -10,9 +10,9 @@ pre-commit:
         - merge
         - rebase
 
-    dry-build:
-      glob: "*.{nix}"
+    dry-check:
+      glob: "*.{nix,json}"
       run: |
-        nh os build .
+        nix flake check --all-systems
       skip:
         - merge

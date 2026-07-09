@@ -47,7 +47,7 @@ in
 
   services.prometheus = {
     enable = true;
-    listenAddress = "127.0.0.1";
+    listenAddress = "0.0.0.0";
     port = prometheusPort;
     globalConfig.scrape_interval = "30s";
 
@@ -79,6 +79,8 @@ in
       }
     ];
   };
+
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ prometheusPort ];
 
   services.grafana.provision = {
     enable = true;

@@ -54,6 +54,7 @@ services: "services" {
   monitoring: "monitoring" {
     agent_darwin_nix: "agent-darwin.nix" { shape: page }
     agent_nix: "agent.nix" { shape: page }
+    badges_nix: "badges.nix" { shape: page }
     blackbox_nix: "blackbox.nix" { shape: page
       svc_prometheus: "prometheus" { shape: oval; style.fill: "#e6f0ff" }
     }
@@ -162,6 +163,7 @@ targets.edge.default_nix -> services.mesh.headscale_nix
 targets.edge.default_nix -> services.mesh.nginx_nix
 targets.edge.default_nix -> services.mesh.party_nix
 targets.edge.default_nix -> services.mesh.proxied.services_nix
+targets.edge.default_nix -> services.monitoring.badges_nix
 targets.edge.default_nix -> services.monitoring.hub_nix
 targets.edge.default_nix -> services.monitoring.iperf3_nix
 targets.edge.default_nix -> targets.edge.disko_nix

@@ -5,7 +5,7 @@
   "time": { "from": "now-24h", "to": "now" },
   "refresh": "1m",
   "timezone": "browser",
-  "title": "Mesh speed (iperf3)",
+  "title": "Mesh speed",
   "uid": "mesh-iperf3",
   "schemaVersion": 39,
   "version": 1,
@@ -31,12 +31,26 @@
       "gridPos": { "h": 4, "w": 12, "x": 0, "y": 0 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
-        { "expr": "sum(iperf3_up{job=\"iperf3\"})", "legendFormat": "up", "refId": "A" }
+        {
+          "expr": "sum(iperf3_up{job=\"iperf3\"})",
+          "legendFormat": "up",
+          "refId": "A"
+        }
       ],
-      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "value", "graphMode": "none" },
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"] },
+        "colorMode": "value",
+        "graphMode": "none"
+      },
       "fieldConfig": {
         "defaults": {
-          "thresholds": { "mode": "absolute", "steps": [ { "color": "red", "value": null }, { "color": "green", "value": 1 } ] }
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "green", "value": 1 }
+            ]
+          }
         }
       }
     },
@@ -47,12 +61,26 @@
       "gridPos": { "h": 4, "w": 12, "x": 12, "y": 0 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
-        { "expr": "count(iperf3_up{job=\"iperf3\"} == 0) or vector(0)", "legendFormat": "down", "refId": "A" }
+        {
+          "expr": "count(iperf3_up{job=\"iperf3\"} == 0) or vector(0)",
+          "legendFormat": "down",
+          "refId": "A"
+        }
       ],
-      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "value", "graphMode": "none" },
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"] },
+        "colorMode": "value",
+        "graphMode": "none"
+      },
       "fieldConfig": {
         "defaults": {
-          "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": null }, { "color": "red", "value": 1 } ] }
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "red", "value": 1 }
+            ]
+          }
         }
       }
     },
@@ -63,15 +91,33 @@
       "gridPos": { "h": 11, "w": 24, "x": 0, "y": 4 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
-        { "expr": "iperf3_bandwidth_bits_per_second{job=\"iperf3\", target=~\"$target\"}", "legendFormat": "{{target}} {{direction}}", "refId": "A" }
+        {
+          "expr": "iperf3_bandwidth_bits_per_second{job=\"iperf3\", target=~\"$target\"}",
+          "legendFormat": "{{target}} {{direction}}",
+          "refId": "A"
+        }
       ],
       "fieldConfig": {
         "defaults": {
           "unit": "bps",
-          "custom": { "drawStyle": "line", "lineInterpolation": "smooth", "fillOpacity": 8, "showPoints": "always", "pointSize": 5, "spanNulls": false }
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "fillOpacity": 8,
+            "showPoints": "always",
+            "pointSize": 5,
+            "spanNulls": false
+          }
         }
       },
-      "options": { "legend": { "displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "mean", "max"] }, "tooltip": { "mode": "multi", "sort": "desc" } }
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "calcs": ["lastNotNull", "mean", "max"]
+        },
+        "tooltip": { "mode": "multi", "sort": "desc" }
+      }
     },
     {
       "id": 4,
@@ -80,29 +126,62 @@
       "gridPos": { "h": 9, "w": 24, "x": 0, "y": 15 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
-        { "expr": "iperf3_bandwidth_bits_per_second{job=\"iperf3\", target=~\"$target\"}", "format": "table", "instant": true, "refId": "A" }
+        {
+          "expr": "iperf3_bandwidth_bits_per_second{job=\"iperf3\", target=~\"$target\"}",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
       ],
       "transformations": [
         {
           "id": "organize",
           "options": {
-            "excludeByName": { "Time": true, "job": true, "instance": true, "exported_job": true, "__name__": true },
+            "excludeByName": {
+              "Time": true,
+              "job": true,
+              "instance": true,
+              "exported_job": true,
+              "__name__": true
+            },
             "indexByName": { "target": 0, "direction": 1, "Value": 2 },
-            "renameByName": { "target": "Target", "direction": "Direction", "Value": "Throughput" }
+            "renameByName": {
+              "target": "Target",
+              "direction": "Direction",
+              "Value": "Throughput"
+            }
           }
         }
       ],
       "fieldConfig": {
-        "defaults": { "custom": { "align": "auto", "cellOptions": { "type": "auto" } } },
+        "defaults": {
+          "custom": { "align": "auto", "cellOptions": { "type": "auto" } }
+        },
         "overrides": [
           {
             "matcher": { "id": "byName", "options": "Throughput" },
-            "properties": [ { "id": "unit", "value": "bps" }, { "id": "min", "value": 0 }, { "id": "max", "value": 1000000000 }, { "id": "custom.cellOptions", "value": { "type": "gauge" } } ]
+            "properties": [
+              { "id": "unit", "value": "bps" },
+              { "id": "min", "value": 0 },
+              { "id": "max", "value": 1000000000 },
+              { "id": "custom.cellOptions", "value": { "type": "gauge" } }
+            ]
           },
           {
             "matcher": { "id": "byName", "options": "Direction" },
             "properties": [
-              { "id": "mappings", "value": [ { "type": "value", "options": { "tx": { "text": "edge → target" }, "rx": { "text": "target → edge" } } } ] }
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "tx": { "text": "edge → target" },
+                      "rx": { "text": "target → edge" }
+                    }
+                  }
+                ]
+              }
             ]
           }
         ]

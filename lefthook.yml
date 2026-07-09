@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: false
+  commands:
+    diagrams:
+      glob: "*.{nix,py,json}"
+      run: |
+        nix run .#diagram
+        git add docs/topology.d2 docs/topology.svg docs/modules.d2 docs/modules.svg
+      skip:
+        - merge
+        - rebase

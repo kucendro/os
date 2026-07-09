@@ -12,8 +12,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     noctalia = {
-      # pinned to working version
-      url = "github:noctalia-dev/noctalia-shell/57be32b0a81471ef6c5dceff6faad23b534ec7f8";
+      url = "github:noctalia-dev/noctalia-shell/3abfa1fc09b62dc4cdeeb7b787886f075696f0b7";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -194,6 +193,30 @@
       };
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
+      apps = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          diagram = {
+            type = "app";
+            program = "${pkgs.writeShellScript "gen-diagram" ''
+              export PATH=${
+                nixpkgs.lib.makeBinPath [
+                  pkgs.python3
+                  pkgs.d2
+                ]
+              }:$PATH
+              set -e
+              scripts=${./scripts}
+              python3 "$scripts/gen-topology.py" "$@"
+              python3 "$scripts/gen-diagram.py" "$@"
+            ''}";
+          };
+        }
+      );
 
     };
 }

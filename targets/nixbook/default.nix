@@ -15,6 +15,7 @@
     ../../services/scrcpy.nix
     ../../services/termux.nix
     ../../services/kdrive.nix
+    ../../services/suuntool.nix
     ../../services/share/client.nix
   ];
 

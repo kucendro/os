@@ -1,0 +1,207 @@
+# Auto-generated from the Nix config. Do not edit by hand.
+# Regenerate: nix run .#diagram (or the lefthook pre-commit hook)
+direction: right
+
+edge: "edge" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
+nas: "nas" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
+nixbook: "nixbook" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
+mac: "mac" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
+
+development: "development" {
+  dev_nix: "dev.nix" { shape: page }
+  zsh_nix: "zsh.nix" { shape: page
+    prog_zsh: "zsh" { shape: hexagon; style.fill: "#eaffea" }
+  }
+}
+display: "display" {
+  howdy_snapshot_notify_nix: "howdy-snapshot-notify.nix" { shape: page }
+  plymouth_nix: "plymouth.nix" { shape: page }
+  stylix_nix: "stylix.nix" { shape: page }
+}
+home: "home" {
+  user_nix: "user.nix" { shape: page }
+}
+secrets: "secrets" {
+  sops_nix: "sops.nix" { shape: page }
+}
+services: "services" {
+  dockerized: "dockerized" {
+    frigate_nix: "frigate.nix" { shape: page }
+    home_assistant_nix: "home-assistant.nix" { shape: page }
+    ledfx_nix: "ledfx.nix" { shape: page }
+    music_assistant_nix: "music-assistant.nix" { shape: page }
+    open_wearables_nix: "open-wearables.nix" { shape: page }
+    open_webui_nix: "open-webui.nix" { shape: page }
+    qore_nix: "qore.nix" { shape: page }
+    update_containers_nix: "update-containers.nix" { shape: page }
+  }
+  mesh: "mesh" {
+    proxied: "proxied" {
+      services_nix: "services.nix" { shape: page }
+    }
+    headscale_nix: "headscale.nix" { shape: page
+      svc_headscale: "headscale" { shape: oval; style.fill: "#e6f0ff" }
+    }
+    nginx_nix: "nginx.nix" { shape: page
+      svc_nginx: "nginx" { shape: oval; style.fill: "#e6f0ff" }
+    }
+    party_nix: "party.nix" { shape: page }
+    subnet_router_nix: "subnet-router.nix" { shape: page }
+    tailscale_nix: "tailscale.nix" { shape: page
+      svc_tailscale: "tailscale" { shape: oval; style.fill: "#e6f0ff" }
+    }
+  }
+  monitoring: "monitoring" {
+    agent_darwin_nix: "agent-darwin.nix" { shape: page }
+    agent_nix: "agent.nix" { shape: page }
+    blackbox_nix: "blackbox.nix" { shape: page
+      svc_prometheus: "prometheus" { shape: oval; style.fill: "#e6f0ff" }
+    }
+    hub_nix: "hub.nix" { shape: page }
+    iperf3_nix: "iperf3.nix" { shape: page }
+  }
+  share: "share" {
+    client_nix: "client.nix" { shape: page }
+    server_nix: "server.nix" { shape: page
+      svc_samba: "samba" { shape: oval; style.fill: "#e6f0ff" }
+    }
+  }
+  vpn: "vpn" {
+    deep_nix: "deep.nix" { shape: page }
+  }
+  gitea_nix: "gitea.nix" { shape: page
+    svc_gitea: "gitea" { shape: oval; style.fill: "#e6f0ff" }
+  }
+  grafana_nix: "grafana.nix" { shape: page
+    svc_grafana: "grafana" { shape: oval; style.fill: "#e6f0ff" }
+  }
+  immich_nix: "immich.nix" { shape: page
+    svc_immich: "immich" { shape: oval; style.fill: "#e6f0ff" }
+  }
+  kdrive_nix: "kdrive.nix" { shape: page }
+  kube_nix: "kube.nix" { shape: page }
+  scrcpy_nix: "scrcpy.nix" { shape: page }
+  services_nix: "services.nix" { shape: page
+    svc_fstrim: "fstrim" { shape: oval; style.fill: "#e6f0ff" }
+    svc_fwupd: "fwupd" { shape: oval; style.fill: "#e6f0ff" }
+    svc_gvfs: "gvfs" { shape: oval; style.fill: "#e6f0ff" }
+    svc_iperf3: "iperf3" { shape: oval; style.fill: "#e6f0ff" }
+    svc_openssh: "openssh" { shape: oval; style.fill: "#e6f0ff" }
+    svc_passSecretService: "passSecretService" { shape: oval; style.fill: "#e6f0ff" }
+    svc_printing: "printing" { shape: oval; style.fill: "#e6f0ff" }
+    svc_resolved: "resolved" { shape: oval; style.fill: "#e6f0ff" }
+    svc_udisks2: "udisks2" { shape: oval; style.fill: "#e6f0ff" }
+  }
+  sunshine_nix: "sunshine.nix" { shape: page
+    svc_sunshine: "sunshine" { shape: oval; style.fill: "#e6f0ff" }
+  }
+  suuntool_nix: "suuntool.nix" { shape: page }
+  termux_nix: "termux.nix" { shape: page }
+  vault_nix: "vault.nix" { shape: page
+    svc_vaultwarden: "vaultwarden" { shape: oval; style.fill: "#e6f0ff" }
+  }
+}
+targets: "targets" {
+  edge: "edge" {
+    default_nix: "default.nix" { shape: page }
+    disko_nix: "disko.nix" { shape: page }
+    hw_configuration_nix: "hw-configuration.nix" { shape: page }
+  }
+  mac: "mac" {
+    default_nix: "default.nix" { shape: page }
+  }
+  nas: "nas" {
+    data_nix: "data.nix" { shape: page }
+    default_nix: "default.nix" { shape: page }
+    disko_nix: "disko.nix" { shape: page }
+    hw_configuration_nix: "hw-configuration.nix" { shape: page }
+  }
+  nixbook: "nixbook" {
+    default_nix: "default.nix" { shape: page
+      svc_avahi: "avahi" { shape: oval; style.fill: "#e6f0ff" }
+      svc_greetd: "greetd" { shape: oval; style.fill: "#e6f0ff" }
+      svc_pipewire: "pipewire" { shape: oval; style.fill: "#e6f0ff" }
+      svc_power_profiles_daemon: "power-profiles-daemon" { shape: oval; style.fill: "#e6f0ff" }
+      svc_upower: "upower" { shape: oval; style.fill: "#e6f0ff" }
+      prog_dconf: "dconf" { shape: hexagon; style.fill: "#eaffea" }
+      prog_evince: "evince" { shape: hexagon; style.fill: "#eaffea" }
+      prog_firefox: "firefox" { shape: hexagon; style.fill: "#eaffea" }
+      prog_hyprland: "hyprland" { shape: hexagon; style.fill: "#eaffea" }
+      prog_kdeconnect: "kdeconnect" { shape: hexagon; style.fill: "#eaffea" }
+      prog_nix_ld: "nix-ld" { shape: hexagon; style.fill: "#eaffea" }
+    }
+    hw_configuration_nix: "hw-configuration.nix" { shape: page }
+    zenbook_nix: "zenbook.nix" { shape: page
+      svc_howdy: "howdy" { shape: oval; style.fill: "#e6f0ff" }
+    }
+  }
+  common_nix: "common.nix" { shape: page }
+  darwin_nix: "darwin.nix" { shape: page
+    prog_zsh: "zsh" { shape: hexagon; style.fill: "#eaffea" }
+  }
+  linux_nix: "linux.nix" { shape: page
+    prog_nh: "nh" { shape: hexagon; style.fill: "#eaffea" }
+  }
+}
+
+# host -> entry module
+edge -> targets.edge.default_nix
+edge -> targets.edge.hw_configuration_nix
+nas -> targets.nas.default_nix
+nas -> targets.nas.hw_configuration_nix
+nixbook -> targets.nixbook.default_nix
+nixbook -> targets.nixbook.hw_configuration_nix
+mac -> targets.mac.default_nix
+
+# module imports
+targets.common_nix -> development.dev_nix
+targets.darwin_nix -> secrets.sops_nix
+targets.darwin_nix -> services.monitoring.agent_darwin_nix
+targets.darwin_nix -> targets.common_nix
+targets.edge.default_nix -> services.mesh.headscale_nix
+targets.edge.default_nix -> services.mesh.nginx_nix
+targets.edge.default_nix -> services.mesh.party_nix
+targets.edge.default_nix -> services.mesh.proxied.services_nix
+targets.edge.default_nix -> services.monitoring.hub_nix
+targets.edge.default_nix -> services.monitoring.iperf3_nix
+targets.edge.default_nix -> targets.edge.disko_nix
+targets.edge.default_nix -> targets.linux_nix
+targets.linux_nix -> development.zsh_nix
+targets.linux_nix -> display.plymouth_nix
+targets.linux_nix -> display.stylix_nix
+targets.linux_nix -> home.user_nix
+targets.linux_nix -> secrets.sops_nix
+targets.linux_nix -> services.mesh.tailscale_nix
+targets.linux_nix -> services.monitoring.agent_nix
+targets.linux_nix -> services.services_nix
+targets.linux_nix -> targets.common_nix
+targets.mac.default_nix -> targets.darwin_nix
+targets.nas.default_nix -> services.dockerized.frigate_nix
+targets.nas.default_nix -> services.dockerized.home_assistant_nix
+targets.nas.default_nix -> services.dockerized.ledfx_nix
+targets.nas.default_nix -> services.dockerized.music_assistant_nix
+targets.nas.default_nix -> services.dockerized.open_wearables_nix
+targets.nas.default_nix -> services.dockerized.open_webui_nix
+targets.nas.default_nix -> services.dockerized.qore_nix
+targets.nas.default_nix -> services.dockerized.update_containers_nix
+targets.nas.default_nix -> services.gitea_nix
+targets.nas.default_nix -> services.grafana_nix
+targets.nas.default_nix -> services.immich_nix
+targets.nas.default_nix -> services.mesh.subnet_router_nix
+targets.nas.default_nix -> services.monitoring.blackbox_nix
+targets.nas.default_nix -> services.share.server_nix
+targets.nas.default_nix -> services.vault_nix
+targets.nas.default_nix -> targets.linux_nix
+targets.nas.default_nix -> targets.nas.data_nix
+targets.nas.default_nix -> targets.nas.disko_nix
+targets.nixbook.default_nix -> services.kdrive_nix
+targets.nixbook.default_nix -> services.kube_nix
+targets.nixbook.default_nix -> services.scrcpy_nix
+targets.nixbook.default_nix -> services.share.client_nix
+targets.nixbook.default_nix -> services.sunshine_nix
+targets.nixbook.default_nix -> services.suuntool_nix
+targets.nixbook.default_nix -> services.termux_nix
+targets.nixbook.default_nix -> services.vpn.deep_nix
+targets.nixbook.default_nix -> targets.linux_nix
+targets.nixbook.default_nix -> targets.nixbook.zenbook_nix
+targets.nixbook.zenbook_nix -> display.howdy_snapshot_notify_nix

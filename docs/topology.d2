@@ -1,0 +1,74 @@
+# Auto-generated data-flow topology from the Nix config. Do not edit.
+# Regenerate: nix run .#diagram (or the lefthook pre-commit hook)
+direction: right
+classes: {
+  app: { style: { fill: "#e6f0ff"; stroke: "#4a76c4" } }
+  infra: { style: { fill: "#ffe9cc"; stroke: "#c47a29" } }
+  base: { style: { fill: "#f0f0f0"; stroke: "#999"; font-size: 13 } }
+}
+
+internet: "🌐 Internet" { shape: cloud; style.fill: "#fdecea" }
+lan: "🏠 LAN" { shape: cloud; style.fill: "#eafaf1" }
+
+edge: "🖥️ edge" {
+  style: { fill: "#fbfbfe"; stroke: "#333"; bold: true }
+  headscale: "headscale\n(mesh control)" { class: infra }
+  nginx: "nginx\n(reverse proxy)" { class: infra }
+  beszel_hub: "beszel hub" { class: infra }
+  base: "+ 17 system services" { class: base }
+}
+nas: "🖥️ nas" {
+  style: { fill: "#fbfbfe"; stroke: "#333"; bold: true }
+  prometheus: "prometheus" { class: infra }
+  blackbox: "blackbox exporter" { class: infra }
+  grafana: "grafana" { class: infra }
+  subnet_router: "subnet router" { class: infra }
+  assistant: "assistant" { class: app }
+  cameras: "cameras" { class: app }
+  chat: "chat" { class: app }
+  gallery: "gallery" { class: app }
+  git: "git" { class: app }
+  health: "health" { class: app }
+  healthapi: "healthapi" { class: app }
+  ledfx: "ledfx" { class: app }
+  music: "music" { class: app }
+  party: "party" { class: app }
+  qore: "qore" { class: app }
+  vault: "vault" { class: app }
+  base: "+ 22 system services" { class: base }
+}
+nixbook: "🖥️ nixbook" {
+  style: { fill: "#fbfbfe"; stroke: "#333"; bold: true }
+  base: "+ 28 system services" { class: base }
+}
+mac: "🍏 mac" {
+  style: { fill: "#fbfbfe"; stroke: "#333"; bold: true }
+  base: "+ 9 system services" { class: base }
+}
+
+# data-flow edges
+edge.nginx -> nas.assistant: "assistant :8123" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.cameras: "cameras :5000" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.chat: "chat :8080" { style.stroke: "#4a76c4" }
+edge.nginx -> edge.headscale: "edge :8080" { style.stroke: "#4a76c4" }
+internet -> edge.nginx: "edge" { style.stroke: "#c0392b" }
+edge.nginx -> nas.gallery: "gallery :2283" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.git: "git :3001" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.grafana: "grafana :3000" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.health: "health :3005" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.healthapi: "healthapi :8000" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.ledfx: "ledfx :8888" { style.stroke: "#4a76c4" }
+edge.nginx -> edge.beszel_hub: "monitoring :8090" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.music: "music :8095" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.party: "party :8095" { style.stroke: "#4a76c4" }
+internet -> edge.nginx: "party" { style.stroke: "#c0392b" }
+edge.nginx -> nas.qore: "qore :7673" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.vault: "vault :8222" { style.stroke: "#4a76c4" }
+nas -> edge.headscale: "tailnet" { style.stroke: "#7a4fb5" }
+nixbook -> edge.headscale: "tailnet" { style.stroke: "#7a4fb5" }
+mac -> edge.headscale: "tailnet" { style.stroke: "#7a4fb5" }
+nas.subnet_router -> lan: "advertise 192.168.1.0/24" { style.stroke: "#27893f" }
+nas -> edge.beszel_hub: "metrics" { style.stroke: "#888" }
+nixbook -> edge.beszel_hub: "metrics" { style.stroke: "#888" }
+mac -> edge.beszel_hub: "metrics" { style.stroke: "#888" }
+nas.prometheus -> edge: "scrape / probe" { style.stroke: "#888" }

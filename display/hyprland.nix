@@ -185,6 +185,7 @@ in
         "/nix/store/.*/bin/sunshine.*, screencopy, allow"
         "/nix/store/.*/libexec/xdg-desktop-portal-hyprland, screencopy, allow"
         "/nix/store/.*/bin/hyprpm, plugin, allow"
+        "/nix/store/.*/bin/hyprctl, plugin, allow"
       ];
 
       general = {

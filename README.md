@@ -1,5 +1,3 @@
-# KucendroOS
-
 ![plymoth](display/boot.png)
 
 ### Data-flow topology

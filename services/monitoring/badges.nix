@@ -57,6 +57,26 @@ let
               badge "$name" "down" "red" "svc_$name.json"
             fi
           done
+
+      # --- mesh reachability (measured from edge via iperf3) ---
+      donline=$(q 'sum(iperf3_up)'  | jq -r '.[0].value[1] // "0"' | cut -d. -f1)
+      dtotal=$(q 'count(iperf3_up)' | jq -r '.[0].value[1] // "0"' | cut -d. -f1)
+
+      dcolor=red
+      if [ "$dtotal" != "0" ] && [ "$donline" = "$dtotal" ]; then
+        dcolor=brightgreen
+      elif [ "$donline" != "0" ]; then
+        dcolor=orange
+      fi
+      badge "devices" "$donline/$dtotal reachable" "$dcolor" "devices.json"
+
+      # edge itself: whether Prometheus (on nas) can scrape edge's pushgateway
+      edge_up=$(q 'up{job="iperf3"}' | jq -r '.[0].value[1] // "0"' | cut -d. -f1)
+      if [ "$edge_up" = "1" ]; then
+        badge "edge" "online" "brightgreen" "edge.json"
+      else
+        badge "edge" "offline" "red" "edge.json"
+      fi
     '';
   };
 in

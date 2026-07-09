@@ -426,15 +426,16 @@
                 "name": "eDP-1",
                 "widgets": [
                     {
-                        "diskPath": "/",
-                        "id": "SystemStat",
-                        "layout": "bottom",
+                        "clockColor": "none",
+                        "clockStyle": "analog",
+                        "customFont": "",
+                        "format": "HH:mm\\nd MMMM yyyy",
+                        "id": "Clock",
                         "roundedCorners": true,
-                        "scale": 1,
                         "showBackground": false,
-                        "statType": "CPU",
-                        "x": 1660,
-                        "y": 1060
+                        "useCustomFont": false,
+                        "x": 1760,
+                        "y": 1040
                     }
                 ]
             },

@@ -79,7 +79,7 @@ in
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "2min";
-      OnUnitActiveSec = "2min";
+      OnCalendar = "*:0/2";
       Persistent = true;
     };
   };

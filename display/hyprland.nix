@@ -203,8 +203,8 @@ in
 
         rounding = 12;
         rounding_power = 2;
-        active_opacity = 1;
-        inactive_opacity = 1;
+        active_opacity = 0.9;
+        inactive_opacity = 0.9;
 
         shadow = {
           enabled = true;
@@ -213,19 +213,19 @@ in
         };
 
         blur = {
-          enabled = false;
+          enabled = true;
         };
 
       };
 
       plugin.hyprglass = {
         default_theme = "dark";
-        default_preset = "clear";
-        # glass_opacity = 0.85;
-        # blur_strength = 2.0;
-        # refraction_strength = 0.6;
-        # tint_color = "0x8899aa22";
-        # "dark:brightness" = 0.82;
+        default_preset = "default";
+        glass_opacity = 0.85;
+        blur_strength = 1.5;
+        refraction_strength = 0.6;
+        tint_color = "0x8899aa22";
+        "dark:brightness" = 0.82;
       };
 
       animations = {

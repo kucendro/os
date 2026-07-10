@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   httpPort = 3001;
@@ -26,7 +26,18 @@ in
         BUILTIN_SSH_SERVER_USER = "git";
       };
       service.DISABLE_REGISTRATION = false;
+      actions.ENABLED = true;
     };
+  };
+
+  services.gitea-actions-runner.instances.nas = {
+    enable = true;
+    name = "nas";
+    url = "https://${webDomain}";
+    tokenFile = config.sops.templates."gitea-runner-env".path;
+    labels = [
+      "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-latest"
+    ];
   };
 
   systemd.services.gitea.unitConfig.RequiresMountsFor = [ "/mnt/data" ];

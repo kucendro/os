@@ -1,9 +1,9 @@
 [book]
-title = "kucendro infrastructure wiki"
+title = "What the fuck i've been building?!"
 authors = ["Ondřej Kučera"]
 src = "src"
 
 [output.html]
-default-theme = "navy"
-preferred-dark-theme = "navy"
+default-theme = "light"
+preferred-dark-theme = "coal"
 no-section-label = true

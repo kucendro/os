@@ -441,14 +441,14 @@
                         "hideMode": "idle",
                         "id": "MediaPlayer",
                         "roundedCorners": true,
-                        "scale": 1.1,
+                        "scale": 1.7500000000000002,
                         "showAlbumArt": true,
                         "showBackground": false,
                         "showButtons": false,
                         "showVisualizer": false,
                         "visualizerType": "wave",
-                        "x": 1300,
-                        "y": 1080
+                        "x": 640,
+                        "y": 1040
                     }
                 ]
             },

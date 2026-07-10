@@ -14,8 +14,7 @@ let
     ];
     text = ''
       window="''${1:-180}"
-      echo "Opening a ''${window}s Bluetooth pairing window — pick this laptop on your phone now."
-      echo "When the phone shows a 6-digit code, confirm it matches the one printed here."
+      echo "Opening a ''${window}s Pick this laptop on your phone now."
       bluetoothctl power on
       bluetoothctl pairable on
       bluetoothctl discoverable on
@@ -24,7 +23,7 @@ let
       trap 'kill "$agent" 2>/dev/null || true; bluetoothctl discoverable off' EXIT
 
       sleep "$window"
-      echo "Pairing window closed. Paired phones will reconnect on their own from now on."
+      echo "Paired phones will reconnect on their own from now on."
     '';
   };
 in
@@ -56,7 +55,7 @@ in
   };
 
   systemd.services.bt-speaker-power = {
-    description = "Power Bluetooth adapter on for A2DP speaker use";
+    description = "Power Bluetooth adapter";
     after = [ "bluetooth.service" ];
     wantedBy = [ "bluetooth.target" ];
     serviceConfig.Type = "oneshot";
@@ -70,7 +69,7 @@ in
     pairScript
     (pkgs.makeDesktopItem {
       name = "bt-speaker-pair";
-      desktopName = "Audio from phone";
+      desktopName = "Pair phone via bluetooth";
       comment = "Open a pairing window so a phone can send audio to this laptop";
       exec = lib.getExe pairScript;
       icon = "audio-speakers-bluetooth";

@@ -181,7 +181,6 @@
     dconf.enable = true;
     hyprland.enable = true;
     hyprland.xwayland.enable = true;
-    nix-ld.enable = true;
   };
 
   programs.nix-ld.libraries = with pkgs; [

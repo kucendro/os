@@ -36,9 +36,12 @@
     ];
   };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = false;
+  programs = {
+    nix-ld.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = false;
+    };
   };
 
   environment.systemPackages = with pkgs; [

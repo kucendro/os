@@ -7,8 +7,9 @@
 
 let
   mkLauncher =
-    name: address:
+    name: phone:
     let
+      address = phone.ip;
       launcher = pkgs.writeShellApplication {
         inherit name;
         runtimeInputs = [
@@ -40,7 +41,9 @@ let
         categories = [ "Utility" ];
       })
     ];
+
+  androidPhones = lib.filterAttrs (_: phone: phone.os == "android") me.phones;
 in
 {
-  environment.systemPackages = lib.concatLists (lib.mapAttrsToList mkLauncher me.phones);
+  environment.systemPackages = lib.concatLists (lib.mapAttrsToList mkLauncher androidPhones);
 }

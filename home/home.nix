@@ -77,7 +77,7 @@
             peer = import ../targets/fold/peer.nix;
           in
           {
-            hostname = lib.head (lib.splitString ":" me.phones.fold);
+            hostname = lib.head (lib.splitString ":" me.phones.fold.ip);
             user = peer.ssh.user;
             port = peer.ssh.port;
             serverAliveInterval = 30;

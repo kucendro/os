@@ -15,10 +15,11 @@ let
     text = ''
       window="''${1:-180}"
       echo "Opening a ''${window}s Bluetooth pairing window — pick this laptop on your phone now."
+      echo "When the phone shows a 6-digit code, confirm it matches the one printed here."
       bluetoothctl power on
       bluetoothctl pairable on
       bluetoothctl discoverable on
-      bt-agent --capability=NoInputNoOutput &
+      bt-agent --capability=KeyboardDisplay &
       agent=$!
       trap 'kill "$agent" 2>/dev/null || true; bluetoothctl discoverable off' EXIT
 
@@ -33,7 +34,6 @@ in
       DiscoverableTimeout = 0;
       PairableTimeout = 0;
       Class = "0x200414";
-      JustWorksRepairing = "always";
     };
   };
 

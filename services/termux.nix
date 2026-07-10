@@ -35,7 +35,7 @@ let
     };
 
   termuxPhones = lib.filterAttrs (
-    name: _: builtins.pathExists (../targets + "/${name}/peer.nix")
+    name: phone: phone.os == "android" && builtins.pathExists (../targets + "/${name}/peer.nix")
   ) me.phones;
 in
 {

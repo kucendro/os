@@ -14,16 +14,16 @@ let
     ];
     text = ''
       window="''${1:-180}"
-      echo "Opening a ''${window}s Pick this laptop on your phone now."
+      echo "Opening a ''${window}s Bluetooth pairing window — pick this laptop on your phone now."
+      echo "When the phone shows a passkey, type those digits here and press Enter."
       bluetoothctl power on
       bluetoothctl pairable on
       bluetoothctl discoverable on
-      bt-agent --capability=KeyboardDisplay &
-      agent=$!
-      trap 'kill "$agent" 2>/dev/null || true; bluetoothctl discoverable off' EXIT
+      trap 'bluetoothctl discoverable off' EXIT
 
-      sleep "$window"
-      echo "Paired phones will reconnect on their own from now on."
+      timeout "$window" bt-agent --capability=KeyboardOnly || true
+
+      echo "Pairing window closed. Paired phones will reconnect on their own from now on."
     '';
   };
 in

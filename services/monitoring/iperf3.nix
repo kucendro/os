@@ -88,7 +88,7 @@ in
     description = "Hourly iperf3 speed tests";
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "15m";
+      OnCalendar = "*:0/15";
       Persistent = true;
       RandomizedDelaySec = "5m";
     };

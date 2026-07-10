@@ -5,7 +5,7 @@ pre-commit:
       glob: "*.{nix,py,json}"
       run: |
         nix run .#diagram
-        git add docs/topology.d2 docs/topology.svg docs/modules.d2 docs/modules.svg
+        git add docs
       skip:
         - merge
         - rebase

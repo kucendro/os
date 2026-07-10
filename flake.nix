@@ -213,6 +213,7 @@
               scripts=${./scripts}
               python3 "$scripts/gen-topology.py" "$@"
               python3 "$scripts/gen-diagram.py" "$@"
+              python3 "$scripts/gen-wiki.py" "$@"
             ''}";
           };
         }

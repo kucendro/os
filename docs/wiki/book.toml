@@ -1,0 +1,9 @@
+[book]
+title = "kucendro infrastructure wiki"
+authors = ["Ondřej Kučera"]
+src = "src"
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+no-section-label = true

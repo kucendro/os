@@ -11,7 +11,7 @@ pre-commit:
         - rebase
 
     dry-check:
-      glob: "*.{nix,json}"
+      glob: "*.{nix,json,lock}"
       run: |
         nix flake check --all-systems
       skip:

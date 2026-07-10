@@ -36,7 +36,7 @@ in
     url = "https://${webDomain}";
     tokenFile = config.sops.templates."gitea-runner-env".path;
     labels = [
-      "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-latest"
+      "native:host"
     ];
   };
 

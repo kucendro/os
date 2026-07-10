@@ -12,6 +12,7 @@
     ../../services/vpn/deep.nix
     ../../services/kube.nix
     ../../services/sunshine.nix
+    ../../services/bluetooth-sink.nix
     ../../services/scrcpy.nix
     ../../services/termux.nix
     ../../services/kdrive.nix

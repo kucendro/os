@@ -70,6 +70,7 @@ services: "services" {
   vpn: "vpn" {
     deep_nix: "deep.nix" { shape: page }
   }
+  bluetooth_sink_nix: "bluetooth-sink.nix" { shape: page }
   gitea_nix: "gitea.nix" { shape: page
     svc_gitea: "gitea" { shape: oval; style.fill: "#e6f0ff" }
   }
@@ -195,6 +196,7 @@ targets.nas.default_nix -> services.vault_nix
 targets.nas.default_nix -> targets.linux_nix
 targets.nas.default_nix -> targets.nas.data_nix
 targets.nas.default_nix -> targets.nas.disko_nix
+targets.nixbook.default_nix -> services.bluetooth_sink_nix
 targets.nixbook.default_nix -> services.kdrive_nix
 targets.nixbook.default_nix -> services.kube_nix
 targets.nixbook.default_nix -> services.scrcpy_nix

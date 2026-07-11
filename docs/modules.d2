@@ -26,6 +26,7 @@ secrets: "secrets" {
 }
 services: "services" {
   dockerized: "dockerized" {
+    cobalt_nix: "cobalt.nix" { shape: page }
     frigate_nix: "frigate.nix" { shape: page }
     home_assistant_nix: "home-assistant.nix" { shape: page }
     ledfx_nix: "ledfx.nix" { shape: page }
@@ -180,6 +181,7 @@ targets.linux_nix -> services.monitoring.agent_nix
 targets.linux_nix -> services.services_nix
 targets.linux_nix -> targets.common_nix
 targets.mac.default_nix -> targets.darwin_nix
+targets.nas.default_nix -> services.dockerized.cobalt_nix
 targets.nas.default_nix -> services.dockerized.frigate_nix
 targets.nas.default_nix -> services.dockerized.home_assistant_nix
 targets.nas.default_nix -> services.dockerized.ledfx_nix

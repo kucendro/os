@@ -13,6 +13,7 @@
     ../../services/dockerized/open-wearables.nix
     ../../services/dockerized/ledfx.nix
     ../../services/dockerized/open-webui.nix
+    ../../services/dockerized/cobalt.nix
     ../../services/dockerized/update-containers.nix
     ../../services/immich.nix
     ../../services/vault.nix

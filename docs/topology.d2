@@ -26,6 +26,7 @@ nas: "🖥️ nas" {
   assistant: "assistant" { class: app }
   cameras: "cameras" { class: app }
   chat: "chat" { class: app }
+  cobalt: "cobalt" { class: app }
   gallery: "gallery" { class: app }
   git: "git" { class: app }
   health: "health" { class: app }
@@ -50,6 +51,7 @@ mac: "🍏 mac" {
 edge.nginx -> nas.assistant: "assistant :8123" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.cameras: "cameras :5000" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.chat: "chat :8080" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.cobalt: "cobalt :9000" { style.stroke: "#4a76c4" }
 edge.nginx -> edge.headscale: "edge :8080" { style.stroke: "#4a76c4" }
 internet -> edge.nginx: "edge" { style.stroke: "#c0392b" }
 edge.nginx -> nas.gallery: "gallery :2283" { style.stroke: "#4a76c4" }

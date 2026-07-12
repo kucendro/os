@@ -26,12 +26,11 @@ nas: "🖥️ nas" {
   assistant: "assistant" { class: app }
   cameras: "cameras" { class: app }
   chat: "chat" { class: app }
-  cobalt: "cobalt" { class: app }
-  cobaltapi: "cobaltapi" { class: app }
   gallery: "gallery" { class: app }
   git: "git" { class: app }
   health: "health" { class: app }
   healthapi: "healthapi" { class: app }
+  kubicek: "kubicek" { class: app }
   ledfx: "ledfx" { class: app }
   music: "music" { class: app }
   party: "party" { class: app }
@@ -52,8 +51,6 @@ mac: "🍏 mac" {
 edge.nginx -> nas.assistant: "assistant :8123" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.cameras: "cameras :5000" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.chat: "chat :8080" { style.stroke: "#4a76c4" }
-edge.nginx -> nas.cobalt: "cobalt :8787" { style.stroke: "#4a76c4" }
-edge.nginx -> nas.cobaltapi: "cobaltapi :9000" { style.stroke: "#4a76c4" }
 edge.nginx -> edge.headscale: "edge :8080" { style.stroke: "#4a76c4" }
 internet -> edge.nginx: "edge" { style.stroke: "#c0392b" }
 edge.nginx -> nas.gallery: "gallery :2283" { style.stroke: "#4a76c4" }
@@ -61,6 +58,8 @@ edge.nginx -> nas.git: "git :3001" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.grafana: "grafana :3000" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.health: "health :3005" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.healthapi: "healthapi :8000" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.kubicek: "kubicek :3007" { style.stroke: "#4a76c4" }
+internet -> edge.nginx: "kubicek" { style.stroke: "#c0392b" }
 edge.nginx -> nas.ledfx: "ledfx :8888" { style.stroke: "#4a76c4" }
 edge.nginx -> edge.beszel_hub: "monitoring :8090" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.music: "music :8095" { style.stroke: "#4a76c4" }

@@ -9,14 +9,13 @@ nginx virtual hosts across the fleet. *tailnet* endpoints are bound to the mesh 
 | `assistant.home.kucendro.dev` | tailnet | edge |
 | `cameras.home.kucendro.dev` | tailnet | edge |
 | `chat.home.kucendro.dev` | tailnet | edge |
-| `cobalt.home.kucendro.dev` | tailnet | edge |
-| `cobaltapi.home.kucendro.dev` | tailnet | edge |
 | `edge.kucendro.dev` | public | edge |
 | `gallery.home.kucendro.dev` | tailnet | edge |
 | `git.home.kucendro.dev` | tailnet | edge |
 | `grafana.home.kucendro.dev` | tailnet | edge |
 | `health.home.kucendro.dev` | tailnet | edge |
 | `healthapi.home.kucendro.dev` | tailnet | edge |
+| `kubicek.kucendro.dev` | public | edge |
 | `ledfx.home.kucendro.dev` | tailnet | edge |
 | `localhost` | public | nas |
 | `localhost` | public | nixbook |

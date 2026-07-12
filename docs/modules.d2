@@ -26,7 +26,6 @@ secrets: "secrets" {
 }
 services: "services" {
   dockerized: "dockerized" {
-    cobalt_nix: "cobalt.nix" { shape: page }
     frigate_nix: "frigate.nix" { shape: page }
     home_assistant_nix: "home-assistant.nix" { shape: page }
     ledfx_nix: "ledfx.nix" { shape: page }
@@ -46,7 +45,7 @@ services: "services" {
     nginx_nix: "nginx.nix" { shape: page
       svc_nginx: "nginx" { shape: oval; style.fill: "#e6f0ff" }
     }
-    party_nix: "party.nix" { shape: page }
+    public_nix: "public.nix" { shape: page }
     subnet_router_nix: "subnet-router.nix" { shape: page }
     tailscale_nix: "tailscale.nix" { shape: page
       svc_tailscale: "tailscale" { shape: oval; style.fill: "#e6f0ff" }
@@ -84,6 +83,7 @@ services: "services" {
   }
   kdrive_nix: "kdrive.nix" { shape: page }
   kube_nix: "kube.nix" { shape: page }
+  kubicek_nix: "kubicek.nix" { shape: page }
   scrcpy_nix: "scrcpy.nix" { shape: page }
   services_nix: "services.nix" { shape: page
     svc_fstrim: "fstrim" { shape: oval; style.fill: "#e6f0ff" }
@@ -163,8 +163,8 @@ targets.darwin_nix -> services.monitoring.agent_darwin_nix
 targets.darwin_nix -> targets.common_nix
 targets.edge.default_nix -> services.mesh.headscale_nix
 targets.edge.default_nix -> services.mesh.nginx_nix
-targets.edge.default_nix -> services.mesh.party_nix
 targets.edge.default_nix -> services.mesh.proxied.services_nix
+targets.edge.default_nix -> services.mesh.public_nix
 targets.edge.default_nix -> services.mesh.wiki_nix
 targets.edge.default_nix -> services.monitoring.badges_nix
 targets.edge.default_nix -> services.monitoring.hub_nix
@@ -181,7 +181,6 @@ targets.linux_nix -> services.monitoring.agent_nix
 targets.linux_nix -> services.services_nix
 targets.linux_nix -> targets.common_nix
 targets.mac.default_nix -> targets.darwin_nix
-targets.nas.default_nix -> services.dockerized.cobalt_nix
 targets.nas.default_nix -> services.dockerized.frigate_nix
 targets.nas.default_nix -> services.dockerized.home_assistant_nix
 targets.nas.default_nix -> services.dockerized.ledfx_nix
@@ -193,6 +192,7 @@ targets.nas.default_nix -> services.dockerized.update_containers_nix
 targets.nas.default_nix -> services.gitea_nix
 targets.nas.default_nix -> services.grafana_nix
 targets.nas.default_nix -> services.immich_nix
+targets.nas.default_nix -> services.kubicek_nix
 targets.nas.default_nix -> services.mesh.subnet_router_nix
 targets.nas.default_nix -> services.monitoring.blackbox_nix
 targets.nas.default_nix -> services.share.server_nix

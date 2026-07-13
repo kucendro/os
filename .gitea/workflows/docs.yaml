@@ -1,0 +1,31 @@
+name: docs
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+
+jobs:
+  regen-docs:
+    runs-on: native:host
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate diagrams & wiki
+        run: nix --extra-experimental-features "nix-command flakes" run .#diagram
+
+      - name: Commit if docs changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs; then
+            echo "docs already up to date"
+            exit 0
+          fi
+          git config user.name "gitea-actions"
+          git config user.email "gitea-actions@kucendro.dev"
+          git add docs
+          git commit -m "docs: auto-regenerate [skip ci]"
+          git push origin HEAD:${{ github.ref_name }}

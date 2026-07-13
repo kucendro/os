@@ -15,13 +15,13 @@ let
     text = ''
       window="''${1:-180}"
       echo "Opening a ''${window}s Bluetooth pairing window — pick this laptop on your phone now."
-      echo "When the phone shows a passkey, type those digits here and press Enter."
+      echo "Pairing auto-approves; no passkey needed. Just confirm on the phone."
       bluetoothctl power on
       bluetoothctl pairable on
       bluetoothctl discoverable on
       trap 'bluetoothctl discoverable off' EXIT
 
-      timeout "$window" bt-agent --capability=KeyboardOnly || true
+      timeout "$window" bt-agent --capability=NoInputNoOutput || true
 
       echo "Pairing window closed. Paired phones will reconnect on their own from now on."
     '';

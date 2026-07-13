@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   httpPort = 3001;
@@ -37,6 +37,18 @@ in
     tokenFile = config.sops.templates."gitea-runner-env".path;
     labels = [
       "native:host"
+    ];
+
+    hostPackages = with pkgs; [
+      bash
+      coreutils
+      curl
+      gawk
+      gitMinimal
+      gnused
+      nodejs
+      wget
+      config.nix.package
     ];
   };
 

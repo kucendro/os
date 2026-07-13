@@ -32,16 +32,3 @@ jobs:
           else
             echo "nixbook offline — skipping"
           fi
-
-      - name: NAS
-        run: |
-          set -euo pipefail
-          src=/var/lib/gitea-runner/nas-deploy-src
-          rm -rf "$src"
-          cp -a "$PWD" "$src"
-          ssh $SSH_OPTS kucendro@nas \
-            "sudo systemd-run --collect --unit=gitea-nas-deploy \
-               --setenv=PATH=/run/current-system/sw/bin:/usr/bin:/bin \
-               --setenv=HOME=/root \
-               nixos-rebuild switch --flake '$src#nas'"
-          echo "nas rebuild launched detached — follow: journalctl -u gitea-nas-deploy -f"

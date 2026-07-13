@@ -4,8 +4,6 @@ let
   homeDomain = "home.kucendro.dev";
   tailnetIP = "100.64.0.1";
 
-  # The committed mdBook sources (regenerated on every commit by the lefthook
-  # pre-commit hook: `nix run .#diagram`, which now also runs gen-wiki.py).
   site = pkgs.stdenv.mkDerivation {
     name = "kucendro-wiki";
     src = ../../docs/wiki;

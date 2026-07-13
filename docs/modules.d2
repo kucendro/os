@@ -119,6 +119,7 @@ targets: "targets" {
     default_nix: "default.nix" { shape: page }
     disko_nix: "disko.nix" { shape: page }
     hw_configuration_nix: "hw-configuration.nix" { shape: page }
+    reliability_nix: "reliability.nix" { shape: page }
   }
   nixbook: "nixbook" {
     default_nix: "default.nix" { shape: page
@@ -200,6 +201,7 @@ targets.nas.default_nix -> services.vault_nix
 targets.nas.default_nix -> targets.linux_nix
 targets.nas.default_nix -> targets.nas.data_nix
 targets.nas.default_nix -> targets.nas.disko_nix
+targets.nas.default_nix -> targets.nas.reliability_nix
 targets.nixbook.default_nix -> services.bluetooth_sink_nix
 targets.nixbook.default_nix -> services.kdrive_nix
 targets.nixbook.default_nix -> services.kube_nix

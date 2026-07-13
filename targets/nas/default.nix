@@ -5,6 +5,7 @@
     ../linux.nix
     ./disko.nix
     ./data.nix
+    ./reliability.nix
     ../../services/mesh/subnet-router.nix
     ../../services/dockerized/music-assistant.nix
     ../../services/dockerized/home-assistant.nix

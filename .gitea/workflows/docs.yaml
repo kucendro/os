@@ -8,7 +8,7 @@ on:
 
 jobs:
   regen-docs:
-    runs-on: native:host
+    runs-on: native
     permissions:
       contents: write
     steps:

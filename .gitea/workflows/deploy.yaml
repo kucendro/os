@@ -1,0 +1,46 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+env:
+  HOME: /var/lib/gitea-runner
+  SSH_OPTS: >-
+    -i /var/lib/gitea-runner/.ssh/id_ed25519
+    -o StrictHostKeyChecking=accept-new
+    -o UserKnownHostsFile=/var/lib/gitea-runner/known_hosts
+
+jobs:
+  deploy:
+    runs-on: native
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: EDGE
+        run: |
+          set -euo pipefail
+          export NIX_SSHOPTS="$SSH_OPTS"
+          deploy --skip-checks --ssh-opts "$SSH_OPTS" .#edge
+
+      - name: NIXBOOK
+        run: |
+          set -euo pipefail
+          # laptop — often offline; skip cleanly if unreachable.
+          if ssh $SSH_OPTS -o ConnectTimeout=5 deploy@nixbook true 2>/dev/null; then
+            export NIX_SSHOPTS="$SSH_OPTS"
+            deploy --skip-checks --ssh-opts "$SSH_OPTS" .#nixbook
+          else
+            echo "nixbook offline — skipping"
+          fi
+
+      - name: NAS
+        run: |
+          set -euo pipefail
+          src=/var/lib/gitea-runner/nas-deploy-src
+          rm -rf "$src"
+          cp -a "$PWD" "$src"
+          ssh $SSH_OPTS kucendro@nas \
+            "sudo systemd-run --collect --unit=gitea-nas-deploy \
+               /run/current-system/sw/bin/nh os switch '$src' -H nas"
+          echo "nas rebuild launched detached — follow: journalctl -u gitea-nas-deploy -f"

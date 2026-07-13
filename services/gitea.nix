@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 let
   httpPort = 3001;
@@ -47,9 +47,27 @@ in
       gitMinimal
       gnused
       nodejs
+      openssh
       wget
       config.nix.package
+      inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
+  };
+
+  # Give the runner a stable identity + home so the sops-provisioned deploy
+  # key lives at a predictable, owner-readable path (DynamicUser has no fixed
+  # uid/home, which sops ownership and ~/.ssh both need).
+  users.users.gitea-runner = {
+    isSystemUser = true;
+    group = "gitea-runner";
+    home = "/var/lib/gitea-runner";
+  };
+  users.groups.gitea-runner = { };
+
+  systemd.services.gitea-runner-nas.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    User = "gitea-runner";
+    Group = "gitea-runner";
   };
 
   systemd.services.gitea.unitConfig.RequiresMountsFor = [ "/mnt/data" ];

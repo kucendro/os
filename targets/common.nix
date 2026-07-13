@@ -37,7 +37,6 @@
   };
 
   programs = {
-    nix-ld.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = false;

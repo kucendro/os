@@ -81,6 +81,8 @@
   services.gnome.gnome-keyring.enable = lib.mkIf (profile == "desktop") true;
   security.pam.services.login.enableGnomeKeyring = lib.mkIf (profile == "desktop") true;
 
+  programs.nix-ld.enable = true;
+
   programs.nh = {
     enable = true;
     flake = "~/nixos";

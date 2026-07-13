@@ -164,9 +164,20 @@
         edge = {
           hostname = "edge.kucendro.dev";
           sshUser = me.name;
+          remoteBuild = true;
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.edge;
+          };
+        };
+
+        nixbook = {
+          hostname = "nixbook";
+          sshUser = "deploy";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nixbook;
           };
         };
 

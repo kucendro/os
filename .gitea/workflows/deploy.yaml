@@ -43,5 +43,5 @@ jobs:
             "sudo systemd-run --collect --unit=gitea-nas-deploy \
                --setenv=PATH=/run/current-system/sw/bin:/usr/bin:/bin \
                --setenv=HOME=/root \
-               /run/current-system/sw/bin/nh os switch '$src' -H nas"
+               nixos-rebuild switch --flake '$src#nas'"
           echo "nas rebuild launched detached — follow: journalctl -u gitea-nas-deploy -f"

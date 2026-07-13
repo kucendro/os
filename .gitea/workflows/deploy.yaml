@@ -26,7 +26,6 @@ jobs:
       - name: NIXBOOK
         run: |
           set -euo pipefail
-          # laptop — often offline; skip cleanly if unreachable.
           if ssh $SSH_OPTS -o ConnectTimeout=5 deploy@nixbook true 2>/dev/null; then
             export NIX_SSHOPTS="$SSH_OPTS"
             deploy --skip-checks --ssh-opts "$SSH_OPTS" .#nixbook
@@ -42,5 +41,7 @@ jobs:
           cp -a "$PWD" "$src"
           ssh $SSH_OPTS kucendro@nas \
             "sudo systemd-run --collect --unit=gitea-nas-deploy \
+               --setenv=PATH=/run/current-system/sw/bin:/usr/bin:/bin \
+               --setenv=HOME=/root \
                /run/current-system/sw/bin/nh os switch '$src' -H nas"
           echo "nas rebuild launched detached — follow: journalctl -u gitea-nas-deploy -f"

@@ -6,6 +6,7 @@
     ./disko.nix
     ./data.nix
     ./reliability.nix
+    ./tethering.nix
     ../../services/mesh/subnet-router.nix
     ../../services/dockerized/music-assistant.nix
     ../../services/dockerized/home-assistant.nix

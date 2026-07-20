@@ -154,6 +154,7 @@
         gp = "git push";
         gpl = "git pull";
         gd = "git diff";
+        qore = "cd ~/qore/ && cargo run --release --bin qore";
         link-phone = "adb tcpip 5555";
 
       };

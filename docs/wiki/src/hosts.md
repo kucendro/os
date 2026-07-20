@@ -32,10 +32,10 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro |
-| System packages | 165 |
+| System packages | 166 |
 | Open TCP ports | 22, 1704, 1705, 1780, 8095, 8097, 8927 |
 | Open UDP ports | 5353 |
-| Repo-configured services | 12 |
+| Repo-configured services | 13 |
 
 **Services** (configured in this repo):
 
@@ -50,6 +50,7 @@
 - **resolved** — `services/services.nix`
 - **samba** — `services/share/server.nix`
 - **tailscale** — `services/mesh/tailscale.nix`
+- **usbmuxd** — `targets/nas/tethering.nix`
 - **vaultwarden** — `services/vault.nix`
 
 ## 🖥️ nixbook

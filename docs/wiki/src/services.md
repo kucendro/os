@@ -30,4 +30,5 @@ Every service this repo configures, the host(s) that run it, and the file that d
 | **tailscale** | edge, nas, nixbook | `services/mesh/tailscale.nix` |
 | **udisks2** | nixbook | `services/services.nix` |
 | **upower** | nixbook | `targets/nixbook/default.nix` |
+| **usbmuxd** | nas | `targets/nas/tethering.nix` |
 | **vaultwarden** | nas | `services/vault.nix` |

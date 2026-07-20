@@ -120,6 +120,9 @@ targets: "targets" {
     disko_nix: "disko.nix" { shape: page }
     hw_configuration_nix: "hw-configuration.nix" { shape: page }
     reliability_nix: "reliability.nix" { shape: page }
+    tethering_nix: "tethering.nix" { shape: page
+      svc_usbmuxd: "usbmuxd" { shape: oval; style.fill: "#e6f0ff" }
+    }
   }
   nixbook: "nixbook" {
     default_nix: "default.nix" { shape: page
@@ -203,6 +206,7 @@ targets.nas.default_nix -> targets.linux_nix
 targets.nas.default_nix -> targets.nas.data_nix
 targets.nas.default_nix -> targets.nas.disko_nix
 targets.nas.default_nix -> targets.nas.reliability_nix
+targets.nas.default_nix -> targets.nas.tethering_nix
 targets.nixbook.default_nix -> services.bluetooth_sink_nix
 targets.nixbook.default_nix -> services.kdrive_nix
 targets.nixbook.default_nix -> services.kube_nix

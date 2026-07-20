@@ -1,15 +1,6 @@
-pre-commit:
+pre-push:
   parallel: true
   commands:
-    # generating-diagrams:
-    #   glob: "*.{nix,py,json}"
-    #   run: |
-    #     nix run .#diagram
-    #     git add docs
-    #   skip:
-    #     - merge
-    #     - rebase
-
     dry-check:
       glob: "*.{nix,json,lock}"
       run: |

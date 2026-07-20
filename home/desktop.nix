@@ -23,6 +23,8 @@
     # inkscape.enable = false;
   };
 
+  home.pointerCursor.enable = true;
+
   services.kdeconnect = {
     enable = true;
     indicator = true;

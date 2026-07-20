@@ -68,21 +68,34 @@
 
     ssh = {
       enable = true;
-      matchBlocks = {
-        mac.user = me.name;
-        workstation.user = me.name;
-        edge.user = me.name;
+      enableDefaultConfig = false;
+      settings = {
+        "*" = {
+          ForwardAgent = false;
+          AddKeysToAgent = "no";
+          Compression = false;
+          ServerAliveInterval = 0;
+          ServerAliveCountMax = 3;
+          HashKnownHosts = false;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+          ControlMaster = "no";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "no";
+        };
+        mac.User = me.name;
+        workstation.User = me.name;
+        edge.User = me.name;
         fold =
           let
             peer = import ../targets/fold/peer.nix;
           in
           {
-            hostname = lib.head (lib.splitString ":" me.phones.fold.ip);
-            user = peer.ssh.user;
-            port = peer.ssh.port;
-            serverAliveInterval = 30;
-            serverAliveCountMax = 3;
-            extraOptions.ConnectionAttempts = "3";
+            HostName = lib.head (lib.splitString ":" me.phones.fold.ip);
+            User = peer.ssh.user;
+            Port = peer.ssh.port;
+            ServerAliveInterval = 30;
+            ServerAliveCountMax = 3;
+            ConnectionAttempts = 3;
           };
       };
     };

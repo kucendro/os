@@ -213,6 +213,7 @@
         {
           diagram = {
             type = "app";
+            meta.description = "Regenerate topology, diagrams and wiki from scripts";
             program = "${pkgs.writeShellScript "gen-diagram" ''
               export PATH=${
                 nixpkgs.lib.makeBinPath [

@@ -436,19 +436,6 @@
                         "useCustomFont": false,
                         "x": 1760,
                         "y": 1040
-                    },
-                    {
-                        "hideMode": "idle",
-                        "id": "MediaPlayer",
-                        "roundedCorners": true,
-                        "scale": 1.8000000000000003,
-                        "showAlbumArt": true,
-                        "showBackground": false,
-                        "showButtons": false,
-                        "showVisualizer": false,
-                        "visualizerType": "wave",
-                        "x": 620,
-                        "y": 1040
                     }
                 ]
             },

@@ -46,7 +46,6 @@ let
     tableplus
     worktrunk
     mkchromecast
-    qlcplus
     qalculate-gtk
     hyprpicker
     tesseract

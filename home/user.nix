@@ -33,7 +33,6 @@ let
     chromium
     google-chrome
     clickhouse
-    mongodb-compass
     kdePackages.qttools
     kicad
     witr

@@ -54,7 +54,7 @@
         "density": "default",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
-        "fontScale": 0.9,
+        "fontScale": 0.95,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -64,13 +64,13 @@
         "middleClickCommand": "",
         "middleClickFollowMouse": false,
         "monitors": [
-            "eDP-1",
-            "DP-1"
+            "DP-1",
+            "eDP-1"
         ],
         "mouseWheelAction": "none",
         "mouseWheelWrap": true,
         "outerCorners": true,
-        "position": "left",
+        "position": "top",
         "reverseScroll": false,
         "rightClickAction": "controlCenter",
         "rightClickCommand": "",
@@ -81,7 +81,7 @@
                 "name": "eDP-1"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "name": "DP-1",
                 "position": "top"
             }
@@ -508,9 +508,9 @@
         "enableBlurBehind": true,
         "enableLockScreenCountdown": true,
         "enableLockScreenMediaControls": false,
-        "enableShadows": true,
+        "enableShadows": false,
         "forceBlackScreenCorners": false,
-        "iRadiusRatio": 1,
+        "iRadiusRatio": 0.25,
         "keybinds": {
             "keyDown": [
                 "Down"
@@ -543,7 +543,7 @@
         ],
         "lockScreenTint": 0,
         "passwordChars": false,
-        "radiusRatio": 1,
+        "radiusRatio": 0.25,
         "reverseScroll": false,
         "scaleRatio": 0.9,
         "screenRadiusRatio": 1,
@@ -632,7 +632,7 @@
         "enableMarkdown": true,
         "enableMediaToast": false,
         "enabled": true,
-        "location": "top_right",
+        "location": "bottom_right",
         "lowUrgencyDuration": 3,
         "monitors": [
         ],
@@ -770,12 +770,12 @@
         "enableUserTheming": false
     },
     "ui": {
-        "boxBorderEnabled": true,
+        "boxBorderEnabled": false,
         "fontDefault": "Hack Nerd Font",
-        "fontDefaultScale": 1.06,
+        "fontDefaultScale": 1,
         "fontFixed": "Hack Nerd Font",
-        "fontFixedScale": 1.06,
-        "panelBackgroundOpacity": 0.93,
+        "fontFixedScale": 1,
+        "panelBackgroundOpacity": 0.9,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": false,
         "settingsPanelMode": "attached",

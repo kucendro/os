@@ -30,7 +30,7 @@ let
     gnome-calculator
     discord
     arduino-ide
-    chromium
+    (chromium.override { commandLineArgs = "--restore-last-session"; })
     google-chrome
     clickhouse
     kdePackages.qttools

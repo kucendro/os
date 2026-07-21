@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    # asus-numberpad-driver = {
-    #   url = "github:asus-linux-drivers/asus-numberpad-driver";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     sops-nix.url = "github:Mic92/sops-nix";
 
     noctalia = {
@@ -51,7 +46,6 @@
     {
       self,
       nixpkgs,
-      # asus-numberpad-driver,
       sops-nix,
       noctalia,
       home-manager,
@@ -126,7 +120,6 @@
           targetModule = ./targets/nixbook;
           hardwareModule = ./targets/nixbook/hw-configuration.nix;
           extraModules = [
-            # asus-numberpad-driver.nixosModules.default
           ];
         };
 
@@ -215,7 +208,7 @@
         {
           diagram = {
             type = "app";
-            meta.description = "Regenerate topology, diagrams and wiki from scripts";
+            meta.description = "Regenerate topology, diagrams and wiki";
             program = "${pkgs.writeShellScript "gen-diagram" ''
               export PATH=${
                 nixpkgs.lib.makeBinPath [

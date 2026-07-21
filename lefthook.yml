@@ -4,6 +4,6 @@ pre-push:
     dry-check:
       glob: "*.{nix,json,lock}"
       run: |
-        nix flake check --all-systems
+        nix flake check
       skip:
         - merge

@@ -14,7 +14,6 @@ development: "development" {
   }
 }
 display: "display" {
-  howdy_snapshot_notify_nix: "howdy-snapshot-notify.nix" { shape: page }
   plymouth_nix: "plymouth.nix" { shape: page }
   stylix_nix: "stylix.nix" { shape: page }
 }
@@ -138,9 +137,7 @@ targets: "targets" {
       prog_kdeconnect: "kdeconnect" { shape: hexagon; style.fill: "#eaffea" }
     }
     hw_configuration_nix: "hw-configuration.nix" { shape: page }
-    zenbook_nix: "zenbook.nix" { shape: page
-      svc_howdy: "howdy" { shape: oval; style.fill: "#e6f0ff" }
-    }
+    zenbook_nix: "zenbook.nix" { shape: page }
   }
   common_nix: "common.nix" { shape: page }
   darwin_nix: "darwin.nix" { shape: page
@@ -218,4 +215,3 @@ targets.nixbook.default_nix -> services.termux_nix
 targets.nixbook.default_nix -> services.vpn.deep_nix
 targets.nixbook.default_nix -> targets.linux_nix
 targets.nixbook.default_nix -> targets.nixbook.zenbook_nix
-targets.nixbook.zenbook_nix -> display.howdy_snapshot_notify_nix

@@ -14,7 +14,6 @@ Every service this repo configures, the host(s) that run it, and the file that d
 | **greetd** | nixbook | `targets/nixbook/default.nix` |
 | **gvfs** | nixbook | `services/services.nix` |
 | **headscale** | edge | `services/mesh/headscale.nix` |
-| **howdy** | nixbook | `targets/nixbook/zenbook.nix` |
 | **immich** | nas | `services/immich.nix` |
 | **iperf3** | edge, nas, nixbook | `services/services.nix` |
 | **nginx** | edge | `services/mesh/nginx.nix` |

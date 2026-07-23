@@ -3,10 +3,6 @@
 {
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  home-manager.users.${me.name}.imports = [
-    ../../display/howdy-snapshot-notify.nix
-  ];
-
   services = {
     # asus-numberpad-driver = {
     #   enable = true;
@@ -20,21 +16,21 @@
     #   };
     # };
 
-    howdy = {
-      enable = true;
-      settings = {
-        core = {
-          detection_notice = true;
-          no_confirmation = false;
-        };
-        video = {
-          dark_threshold = 80;
-        };
-        snapshots = {
-          save_failed = true;
-        };
-      };
-    };
+    # howdy = {
+    #   enable = true;
+    #   settings = {
+    #     core = {
+    #       detection_notice = true;
+    #       no_confirmation = false;
+    #     };
+    #     video = {
+    #       dark_threshold = 80;
+    #     };
+    #     snapshots = {
+    #       save_failed = true;
+    #     };
+    #   };
+    # };
   };
 
   security.pam.services = {

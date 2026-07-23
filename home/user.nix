@@ -19,14 +19,12 @@ let
     hashcat
     foremost
     sqlmap
-    freecad
     lycheeslicer
     libreoffice-qt-fresh
     wl-clipboard
     wtype
     rofimoji
     fuzzel
-    gnome-calendar
     gnome-calculator
     discord
     arduino-ide

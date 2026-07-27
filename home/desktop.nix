@@ -3,49 +3,52 @@
   lib,
   ...
 }:
-
 {
-
-  services.kdeconnectRunCommands.commands = {
-    "Vol DOWN" = "noctalia-shell ipc call volume decrease";
-    "Vol UP" = "noctalia-shell ipc call volume increase";
-    "MUTE" = "noctalia-shell ipc call volume muteOutput";
-    "LOCK" = "hyprlock";
-    "SUSPEND" = "noctalia-shell ipc call sessionMenu lockAndSuspend";
-  };
-
-  programs."noctalia-shell" = {
-    enable = true;
-  };
-
-  stylix.targets = {
-    # neovim.enable = false;
-    # inkscape.enable = false;
-  };
-
   home.pointerCursor.enable = true;
 
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
+  services = {
+    kdeconnect = {
+      enable = true;
+      indicator = true;
+    };
 
-  programs.kitty = lib.mkForce {
-    enable = true;
-    settings = {
-      confirm_os_window_close = 0;
-      dynamic_background_opacity = true;
-      enable_audio_bell = false;
-      mouse_hide_wait = "-1.0";
-      background_blur = 5;
+    kdeconnectRunCommands.commands = {
+      "vol down" = "noctalia-shell ipc call volume decrease";
+      "vol up" = "noctalia-shell ipc call volume increase";
+      "mute" = "noctalia-shell ipc call volume muteoutput";
+      "lock" = "hyprlock";
+      "suspend" = "noctalia-shell ipc call sessionmenu lockandsuspend";
+    };
+
+    udiskie = {
+      enable = true;
+      settings = {
+        program_options = {
+          file_manager = "${pkgs.nautilus}/bin/nautilus";
+        };
+      };
     };
   };
 
-  services.udiskie = {
-    enable = true;
-    settings = {
-      program_options = {
-        file_manager = "${pkgs.nautilus}/bin/nautilus";
+  programs = {
+    noctalia-shell.enable = true;
+
+    chromium = {
+      enable = true;
+      commandLineArgs = [
+        "--hide-crash-restore-bubble"
+        "--restore-last-session"
+      ];
+    };
+
+    kitty = lib.mkForce {
+      enable = true;
+      settings = {
+        confirm_os_window_close = 0;
+        dynamic_background_opacity = true;
+        enable_audio_bell = false;
+        mouse_hide_wait = "-1.0";
+        background_blur = 5;
       };
     };
   };

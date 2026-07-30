@@ -16,6 +16,7 @@ Every service this repo configures, the host(s) that run it, and the file that d
 | **headscale** | edge | `services/mesh/headscale.nix` |
 | **immich** | nas | `services/immich.nix` |
 | **iperf3** | edge, nas, nixbook | `services/services.nix` |
+| **irlume** | nixbook | `targets/nixbook/zenbook.nix` |
 | **nginx** | edge | `services/mesh/nginx.nix` |
 | **openssh** | edge, nas, nixbook | `services/services.nix` |
 | **passSecretService** | nixbook | `services/services.nix` |

@@ -8,28 +8,6 @@
 
 let
   c = config.lib.stylix.colors;
-
-  hyprglass = pkgs.hyprlandPlugins.mkHyprlandPlugin {
-    pluginName = "hyprglass";
-    version = "0.6.2";
-    hyprland = config.wayland.windowManager.hyprland.package;
-    src = pkgs.fetchFromGitHub {
-      owner = "hyprnux";
-      repo = "hyprglass";
-      rev = "v0.6.2";
-      hash = "sha256-6qa0PoeKfGSpXpILgp2yuYfRmrQKjDSQWpy8q27u1uE=";
-    };
-
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out/lib
-      install -Dm755 "$(find . -name 'hyprglass.so' -o -name 'libhyprglass.so' | head -n1)" \
-        $out/lib/libhyprglass.so
-      runHook postInstall
-    '';
-
-    meta.description = "Liquid Glass effects for Hyprland";
-  };
 in
 {
   services.hypridle = {
@@ -158,8 +136,6 @@ in
     enable = true;
     configType = "hyprlang";
 
-    plugins = [ hyprglass ];
-
     settings = {
       xwayland = {
         force_zero_scaling = true;
@@ -216,16 +192,6 @@ in
           enabled = true;
         };
 
-      };
-
-      plugin.hyprglass = {
-        default_theme = "dark";
-        default_preset = "default";
-        glass_opacity = 0.85;
-        blur_strength = 1.5;
-        refraction_strength = 0.6;
-        tint_color = "0x8899aa22";
-        "dark:brightness" = 0.82;
       };
 
       animations = {

@@ -1,59 +1,26 @@
-{ lib, me, ... }:
+{ inputs, pkgs, ... }:
 
 {
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   services = {
-    # asus-numberpad-driver = {
-    #   enable = true;
-    #   layout = "up5401ea";
-    #   wayland = true;
-    #   runtimeDir = "/run/user/1000/";
-    #   waylandDisplay = "wayland-1";
-    #   ignoreWaylandDisplayEnv = false;
-    #   config = {
-    #     "activation_time" = "0.3";
-    #   };
-    # };
 
-    # howdy = {
-    #   enable = true;
-    #   settings = {
-    #     core = {
-    #       detection_notice = true;
-    #       no_confirmation = false;
-    #     };
-    #     video = {
-    #       dark_threshold = 80;
-    #     };
-    #     snapshots = {
-    #       save_failed = true;
-    #     };
-    #   };
-    # };
+    irlume = {
+      enable = true;
+      # fix the missing package
+      package = inputs.irlume.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.libxcrypt ];
+      });
+      rgbDevice = "/dev/video0";
+      irDevice = "/dev/video2";
+      pam.services = {
+        sudo = {
+          profile = "lock";
+        };
+        greetd = { };
+        login = { };
+        hyprlock = { };
+      };
+    };
   };
-
-  # security.pam.services = {
-  #
-  #   sudo.rules.auth = {
-  #     howdy.control = lib.mkForce "sufficient";
-  #     unix.control = lib.mkForce "sufficient";
-  #   };
-  #
-  #   greetd.rules.auth = {
-  #     howdy.control = lib.mkForce "sufficient";
-  #     unix.control = lib.mkForce "sufficient";
-  #   };
-  #
-  #   login.rules.auth = {
-  #     howdy.control = lib.mkForce "sufficient";
-  #     unix.control = lib.mkForce "sufficient";
-  #   };
-  #
-  #   hyprlock.rules.auth = {
-  #     howdy.control = lib.mkForce "sufficient";
-  #     unix.control = lib.mkForce "sufficient";
-  #   };
-  #
-  # };
 }

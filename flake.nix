@@ -40,6 +40,11 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    irlume = {
+      url = "github:archledger/irlume";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -54,6 +59,7 @@
       nix-darwin,
       nixos-generators,
       deploy-rs,
+      irlume,
       ...
     }@inputs:
     let
@@ -120,6 +126,7 @@
           targetModule = ./targets/nixbook;
           hardwareModule = ./targets/nixbook/hw-configuration.nix;
           extraModules = [
+            irlume.nixosModules.irlume
           ];
         };
 

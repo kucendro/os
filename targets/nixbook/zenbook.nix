@@ -17,7 +17,6 @@
         sudo = {
           profile = "lock";
         };
-        greetd = { };
         login = { };
         hyprlock = { };
       };

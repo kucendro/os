@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 
 let
   port = 3006;
@@ -14,6 +14,15 @@ in
       NEXTAUTH_URL = "https://${domain}";
       DISABLE_NEW_RELEASE_CHECK = "true";
     };
+  };
+
+  services.meilisearch.settings = lib.mkForce {
+    http_addr = "${config.services.meilisearch.listenAddress}:${toString config.services.meilisearch.listenPort}";
+    db_path = "/var/lib/meilisearch";
+    dump_dir = "/var/lib/meilisearch/dumps";
+    snapshot_dir = "/var/lib/meilisearch/snapshots";
+    no_analytics = true;
+    upgrade_db = true;
   };
 
   systemd.tmpfiles.rules = [

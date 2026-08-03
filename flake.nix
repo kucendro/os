@@ -173,7 +173,7 @@
 
         nixbook = {
           hostname = "nixbook";
-          sshUser = "deploy";
+          sshUser = me.name;
           remoteBuild = true;
           profiles.system = {
             user = "root";

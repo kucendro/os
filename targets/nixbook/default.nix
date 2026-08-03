@@ -200,25 +200,25 @@
 
   users.extraGroups.vboxusers.members = [ me.name ];
 
-  users.users.deploy = {
-    isNormalUser = true;
-    description = "deploy-rs";
-    home = "/home/deploy";
-    shell = pkgs.bashInteractive;
-  };
-
-  nix.settings.trusted-users = [ "deploy" ];
-
-  security.sudo.extraRules = [
-    {
-      users = [ "deploy" ];
-      commands = [
-        {
-          command = "ALL";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
+  # users.users.deploy = {
+  #   isNormalUser = true;
+  #   description = "deploy-rs";
+  #   home = "/home/deploy";
+  #   shell = pkgs.bashInteractive;
+  # };
+  #
+  # nix.settings.trusted-users = [ "deploy" ];
+  #
+  # security.sudo.extraRules = [
+  #   {
+  #     users = [ "deploy" ];
+  #     commands = [
+  #       {
+  #         command = "ALL";
+  #         options = [ "NOPASSWD" ];
+  #       }
+  #     ];
+  #   }
+  # ];
 
 }

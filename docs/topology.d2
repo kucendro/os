@@ -30,13 +30,14 @@ nas: "🖥️ nas" {
   git: "git" { class: app }
   health: "health" { class: app }
   healthapi: "healthapi" { class: app }
+  karakeep: "karakeep" { class: app }
   kubicek: "kubicek" { class: app }
   ledfx: "ledfx" { class: app }
   music: "music" { class: app }
   party: "party" { class: app }
   qore: "qore" { class: app }
   vault: "vault" { class: app }
-  base: "+ 24 system services" { class: base }
+  base: "+ 26 system services" { class: base }
 }
 nixbook: "🖥️ nixbook" {
   style: { fill: "#fbfbfe"; stroke: "#333"; bold: true }
@@ -58,6 +59,7 @@ edge.nginx -> nas.git: "git :3001" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.grafana: "grafana :3000" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.health: "health :3005" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.healthapi: "healthapi :8000" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.karakeep: "karakeep :3006" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.kubicek: "kubicek :3007" { style.stroke: "#4a76c4" }
 internet -> edge.nginx: "kubicek" { style.stroke: "#c0392b" }
 edge.nginx -> nas.ledfx: "ledfx :8888" { style.stroke: "#4a76c4" }

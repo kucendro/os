@@ -80,6 +80,9 @@ services: "services" {
   immich_nix: "immich.nix" { shape: page
     svc_immich: "immich" { shape: oval; style.fill: "#e6f0ff" }
   }
+  karakeep_nix: "karakeep.nix" { shape: page
+    svc_karakeep: "karakeep" { shape: oval; style.fill: "#e6f0ff" }
+  }
   kdrive_nix: "kdrive.nix" { shape: page }
   kube_nix: "kube.nix" { shape: page }
   kubicek_nix: "kubicek.nix" { shape: page }
@@ -196,6 +199,7 @@ targets.nas.default_nix -> services.dockerized.update_containers_nix
 targets.nas.default_nix -> services.gitea_nix
 targets.nas.default_nix -> services.grafana_nix
 targets.nas.default_nix -> services.immich_nix
+targets.nas.default_nix -> services.karakeep_nix
 targets.nas.default_nix -> services.kubicek_nix
 targets.nas.default_nix -> services.mesh.subnet_router_nix
 targets.nas.default_nix -> services.monitoring.blackbox_nix

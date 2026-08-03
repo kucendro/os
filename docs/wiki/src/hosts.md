@@ -32,10 +32,10 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro |
-| System packages | 166 |
+| System packages | 169 |
 | Open TCP ports | 22, 1704, 1705, 1780, 8095, 8097, 8927 |
 | Open UDP ports | 5353 |
-| Repo-configured services | 13 |
+| Repo-configured services | 14 |
 
 **Services** (configured in this repo):
 
@@ -45,6 +45,7 @@
 - **grafana** — `services/grafana.nix`
 - **immich** — `services/immich.nix`
 - **iperf3** — `services/services.nix`
+- **karakeep** — `services/karakeep.nix`
 - **openssh** — `services/services.nix`
 - **prometheus** — `services/monitoring/blackbox.nix`
 - **resolved** — `services/services.nix`
@@ -59,8 +60,8 @@
 |---|---|
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
-| Users | deploy, kucendro |
-| System packages | 248 |
+| Users | kucendro |
+| System packages | 247 |
 | Open TCP ports | 22, 443, 9901, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 1111, 2408, 5353, 6001, 6002, 9901, 47998, 47999, 48000, 48002, 48010, 57425, 57426 |
 | Repo-configured services | 17 |

@@ -23,6 +23,7 @@
     ../../services/grafana.nix
     ../../services/monitoring/blackbox.nix
     ../../services/gitea.nix
+    ../../services/karakeep.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

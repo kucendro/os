@@ -12,4 +12,5 @@
   healthapi = "nas.ts.kucendro.dev:8000";
   ledfx = "nas.ts.kucendro.dev:8888";
   chat = "nas.ts.kucendro.dev:8080";
+  karakeep = "nas.ts.kucendro.dev:3006";
 }

@@ -1,1 +1,0 @@
-This folder contains all targets not directly correlating with my setup / they are maintained occasionally. In future invocations or addinggs, the folder names may not be clearly understandable, cause they are primarily the names of physical locations.

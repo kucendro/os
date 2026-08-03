@@ -23,6 +23,7 @@
     ../../services/grafana.nix
     ../../services/monitoring/blackbox.nix
     ../../services/gitea.nix
+    ../../services/mcp.nix
     ../../services/karakeep.nix
   ];
 

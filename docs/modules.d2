@@ -86,6 +86,7 @@ services: "services" {
   kdrive_nix: "kdrive.nix" { shape: page }
   kube_nix: "kube.nix" { shape: page }
   kubicek_nix: "kubicek.nix" { shape: page }
+  mcp_nix: "mcp.nix" { shape: page }
   scrcpy_nix: "scrcpy.nix" { shape: page }
   services_nix: "services.nix" { shape: page
     svc_fstrim: "fstrim" { shape: oval; style.fill: "#e6f0ff" }
@@ -201,6 +202,7 @@ targets.nas.default_nix -> services.grafana_nix
 targets.nas.default_nix -> services.immich_nix
 targets.nas.default_nix -> services.karakeep_nix
 targets.nas.default_nix -> services.kubicek_nix
+targets.nas.default_nix -> services.mcp_nix
 targets.nas.default_nix -> services.mesh.subnet_router_nix
 targets.nas.default_nix -> services.monitoring.blackbox_nix
 targets.nas.default_nix -> services.share.server_nix

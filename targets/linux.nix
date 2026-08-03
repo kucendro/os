@@ -95,8 +95,8 @@
     extraPackages = [ pkgs.docker-buildx ];
     daemon.settings = {
       features.cdi = true;
-      max-concurrent-downloads = 5;
-      max-concurrent-uploads = 5;
+      max-concurrent-downloads = 10;
+      max-concurrent-uploads = 10;
       builder.gc = {
         enabled = true;
         defaultKeepStorage = "40GB";

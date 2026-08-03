@@ -4,7 +4,7 @@ let
   homeDomain = "home.kucendro.dev";
   tailnetIP = "100.64.0.1";
   upstreams = import ./endpoints.nix;
-  mkVhost = name: hostPort: {
+  mkVhost = name: cfg: {
     listenAddresses = [ tailnetIP ];
     useACMEHost = homeDomain;
     forceSSL = true;
@@ -15,9 +15,10 @@ let
       proxyPass = "http://$upstream_${name}";
       proxyWebsockets = true;
       extraConfig = ''
-        set $upstream_${name} ${hostPort};
+        set $upstream_${name} ${cfg.address};
         proxy_read_timeout 600s;
         proxy_send_timeout 600s;
+        ${cfg.extraConfig or ""}
       '';
     };
   };
@@ -30,6 +31,6 @@ in
   };
 
   services.nginx.virtualHosts = lib.mapAttrs' (
-    name: hostPort: lib.nameValuePair "${name}.${homeDomain}" (mkVhost name hostPort)
+    name: cfg: lib.nameValuePair "${name}.${homeDomain}" (mkVhost name cfg)
   ) upstreams;
 }

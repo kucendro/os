@@ -33,6 +33,7 @@ nas: "🖥️ nas" {
   karakeep: "karakeep" { class: app }
   kubicek: "kubicek" { class: app }
   ledfx: "ledfx" { class: app }
+  mcp: "mcp" { class: app }
   music: "music" { class: app }
   party: "party" { class: app }
   qore: "qore" { class: app }
@@ -63,6 +64,7 @@ edge.nginx -> nas.karakeep: "karakeep :3006" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.kubicek: "kubicek :3007" { style.stroke: "#4a76c4" }
 internet -> edge.nginx: "kubicek" { style.stroke: "#c0392b" }
 edge.nginx -> nas.ledfx: "ledfx :8888" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.mcp: "mcp :8092" { style.stroke: "#4a76c4" }
 edge.nginx -> edge.beszel_hub: "monitoring :8090" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.music: "music :8095" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.party: "party :8095" { style.stroke: "#4a76c4" }

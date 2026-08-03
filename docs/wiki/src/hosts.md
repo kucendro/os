@@ -61,7 +61,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro |
-| System packages | 247 |
+| System packages | 248 |
 | Open TCP ports | 22, 443, 9901, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 1111, 2408, 5353, 6001, 6002, 9901, 47998, 47999, 48000, 48002, 48010, 57425, 57426 |
 | Repo-configured services | 17 |

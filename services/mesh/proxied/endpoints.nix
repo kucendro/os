@@ -1,16 +1,48 @@
 {
-  monitoring = "127.0.0.1:8090";
-  music = "nas.ts.kucendro.dev:8095";
-  vault = "nas.ts.kucendro.dev:8222";
-  gallery = "nas.ts.kucendro.dev:2283";
-  grafana = "nas.ts.kucendro.dev:3000";
-  git = "nas.ts.kucendro.dev:3001";
-  assistant = "nas.ts.kucendro.dev:8123";
-  cameras = "nas.ts.kucendro.dev:5000";
-  qore = "nas.ts.kucendro.dev:7673";
-  health = "nas.ts.kucendro.dev:3005";
-  healthapi = "nas.ts.kucendro.dev:8000";
-  ledfx = "nas.ts.kucendro.dev:8888";
-  chat = "nas.ts.kucendro.dev:8080";
-  karakeep = "nas.ts.kucendro.dev:3006";
+  monitoring = {
+    address = "127.0.0.1:8090";
+  };
+  music = {
+    address = "nas.ts.kucendro.dev:8095";
+  };
+  vault = {
+    address = "nas.ts.kucendro.dev:8222";
+  };
+  gallery = {
+    address = "nas.ts.kucendro.dev:2283";
+  };
+  grafana = {
+    address = "nas.ts.kucendro.dev:3000";
+  };
+  git = {
+    address = "nas.ts.kucendro.dev:3001";
+  };
+  assistant = {
+    address = "nas.ts.kucendro.dev:8123";
+  };
+  cameras = {
+    address = "nas.ts.kucendro.dev:5000";
+  };
+  qore = {
+    address = "nas.ts.kucendro.dev:7673";
+  };
+  health = {
+    address = "nas.ts.kucendro.dev:3005";
+  };
+  healthapi = {
+    address = "nas.ts.kucendro.dev:8000";
+  };
+  ledfx = {
+    address = "nas.ts.kucendro.dev:8888";
+  };
+  chat = {
+    address = "nas.ts.kucendro.dev:8080";
+  };
+  karakeep = {
+    address = "nas.ts.kucendro.dev:3006";
+  };
+  mcp = {
+    address = "nas.ts.kucendro.dev:8092";
+    extraConfig = "proxy_buffering off;";
+  };
 }

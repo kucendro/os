@@ -20,6 +20,7 @@ nginx virtual hosts across the fleet. *tailnet* endpoints are bound to the mesh 
 | `ledfx.home.kucendro.dev` | tailnet | edge |
 | `localhost` | public | nas |
 | `localhost` | public | nixbook |
+| `mcp.home.kucendro.dev` | tailnet | edge |
 | `monitoring.home.kucendro.dev` | tailnet | edge |
 | `music.home.kucendro.dev` | tailnet | edge |
 | `party.kucendro.dev` | public | edge |

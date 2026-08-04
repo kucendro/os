@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 let
   httpPort = 3001;
@@ -54,9 +60,6 @@ in
     ];
   };
 
-  # Give the runner a stable identity + home so the sops-provisioned deploy
-  # key lives at a predictable, owner-readable path (DynamicUser has no fixed
-  # uid/home, which sops ownership and ~/.ssh both need).
   users.users.gitea-runner = {
     isSystemUser = true;
     group = "gitea-runner";

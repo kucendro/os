@@ -20,9 +20,6 @@ display: "display" {
 home: "home" {
   user_nix: "user.nix" { shape: page }
 }
-secrets: "secrets" {
-  sops_nix: "sops.nix" { shape: page }
-}
 services: "services" {
   dockerized: "dockerized" {
     frigate_nix: "frigate.nix" { shape: page }
@@ -166,7 +163,6 @@ mac -> targets.mac.default_nix
 
 # module imports
 targets.common_nix -> development.dev_nix
-targets.darwin_nix -> secrets.sops_nix
 targets.darwin_nix -> services.monitoring.agent_darwin_nix
 targets.darwin_nix -> targets.common_nix
 targets.edge.default_nix -> services.mesh.headscale_nix
@@ -183,7 +179,6 @@ targets.linux_nix -> development.zsh_nix
 targets.linux_nix -> display.plymouth_nix
 targets.linux_nix -> display.stylix_nix
 targets.linux_nix -> home.user_nix
-targets.linux_nix -> secrets.sops_nix
 targets.linux_nix -> services.mesh.tailscale_nix
 targets.linux_nix -> services.monitoring.agent_nix
 targets.linux_nix -> services.services_nix

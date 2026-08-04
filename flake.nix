@@ -45,6 +45,11 @@
       url = "github:archledger/irlume";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    secrets = {
+      url = "git+ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git";
+      flake = false;
+    };
   };
 
   outputs =
@@ -60,6 +65,7 @@
       nixos-generators,
       deploy-rs,
       irlume,
+      secrets,
       ...
     }@inputs:
     let
@@ -82,7 +88,10 @@
           extraModules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs me profile; };
+          specialArgs = {
+            inherit inputs me profile;
+            secretsDir = inputs.secrets;
+          };
           modules = [
             { networking.hostName = hostName; }
             targetModule
@@ -90,6 +99,23 @@
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             (homeManagerConfig profile)
+            (
+              {
+                secretsDir,
+                config,
+                lib,
+                me,
+                ...
+              }:
+              import (inputs.secrets + "/sops.nix") {
+                inherit
+                  secretsDir
+                  config
+                  lib
+                  me
+                  ;
+              }
+            )
           ]
           ++ nixpkgs.lib.optionals (profile == "desktop") [
             stylix.nixosModules.stylix
@@ -105,13 +131,33 @@
           extraModules ? [ ],
         }:
         nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs me profile; };
+          specialArgs = {
+            inherit inputs me profile;
+            secretsDir = inputs.secrets;
+          };
           modules = [
             { networking.hostName = hostName; }
             targetModule
             sops-nix.darwinModules.sops
             home-manager.darwinModules.home-manager
             (homeManagerConfig profile)
+            (
+              {
+                secretsDir,
+                config,
+                lib,
+                me,
+                ...
+              }:
+              import (inputs.secrets + "/sops.nix") {
+                inherit
+                  secretsDir
+                  config
+                  lib
+                  me
+                  ;
+              }
+            )
           ]
           ++ extraModules;
         };

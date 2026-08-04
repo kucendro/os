@@ -426,6 +426,7 @@
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
+        "secrets": "secrets",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
       }
@@ -449,6 +450,22 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785845757,
+        "narHash": "sha256-KjEb9AGbdjD0tTU1/QGw1vhAHRj+iOt9hE47xPexTDw=",
+        "ref": "refs/heads/main",
+        "rev": "e0558a953e8d8b8a398683925f7757dfd6d1a7a5",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git"
       }
     },
     "sops-nix": {

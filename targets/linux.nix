@@ -9,7 +9,6 @@
 {
   imports = [
     ./common.nix
-    ../secrets/sops.nix
     ../development/zsh.nix
     ../home/user.nix
     ../services/services.nix

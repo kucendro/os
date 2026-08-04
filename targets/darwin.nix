@@ -7,7 +7,6 @@
 {
   imports = [
     ./common.nix
-    ../secrets/sops.nix
     ../services/monitoring/agent-darwin.nix
   ];
 

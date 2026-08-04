@@ -2,6 +2,7 @@
   lib,
   pkgs,
   me,
+  secretsDir,
   ...
 }:
 
@@ -27,7 +28,7 @@ let
         export DOMAIN=ts.kucendro.dev
         export REACHES=${lib.escapeShellArg (lib.concatStringsSep " " peer.reaches)}
         export TRUSTED_PUBKEY_NAMES=${lib.escapeShellArg (lib.concatStringsSep " " peer.trustedBy)}
-        export SECRETS_FILE=${../secrets/secrets.yaml}
+        export SECRETS_FILE=${secretsDir + "/secrets.yaml"}
         export THEME_FILE=${../display/carbonfox.yaml}
         export FONT_URL=https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/HackNerdFontMono-Regular.ttf
       ''

@@ -47,7 +47,7 @@
     };
 
     secrets = {
-      url = "https://git.home.kucendro.dev/kucendro/secrets.git";
+      url = "git+ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git";
       flake = false;
     };
   };

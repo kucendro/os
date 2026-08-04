@@ -65,6 +65,8 @@ edge.nginx -> nas.kubicek: "kubicek :3007" { style.stroke: "#4a76c4" }
 internet -> edge.nginx: "kubicek" { style.stroke: "#c0392b" }
 edge.nginx -> nas.ledfx: "ledfx :8888" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.mcp: "mcp :8092" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.mcp: "mcp :8092" { style.stroke: "#4a76c4" }
+internet -> edge.nginx: "mcp" { style.stroke: "#c0392b" }
 edge.nginx -> edge.beszel_hub: "monitoring :8090" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.music: "music :8095" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.party: "party :8095" { style.stroke: "#4a76c4" }

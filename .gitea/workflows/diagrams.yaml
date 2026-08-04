@@ -1,0 +1,30 @@
+name: diagrams
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: native
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate diagrams & wiki
+        run: nix --extra-experimental-features "nix-command flakes" run .#diagram
+
+      - name: Commit if docs changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs; then
+            echo "docs already up to date"
+          else
+            git config user.name "actions"
+            git config user.email "actions@kucendro.dev"
+            git add docs
+            git commit -m "docs: auto-regenerate [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi

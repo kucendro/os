@@ -1,11 +1,10 @@
 name: deploy
 
 on:
-  push:
+  workflow_run:
+    workflows: [diagrams]
+    types: [completed]
     branches: [main]
-
-permissions:
-  contents: write
 
 env:
   HOME: /var/lib/gitea-runner
@@ -17,24 +16,9 @@ env:
 jobs:
   deploy:
     runs-on: native
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Regenerate diagrams & wiki
-        run: nix --extra-experimental-features "nix-command flakes" run .#diagram
-
-      - name: Commit if docs changed
-        run: |
-          set -euo pipefail
-          if git diff --quiet -- docs; then
-            echo "docs already up to date"
-          else
-            git config user.name "actions"
-            git config user.email "actions@kucendro.dev"
-            git add docs
-            git commit -m "docs: auto-regenerate [skip ci]"
-            git push origin HEAD:${{ github.ref_name }}
-          fi
 
       - name: EDGE
         run: |
@@ -42,12 +26,12 @@ jobs:
           export NIX_SSHOPTS="$SSH_OPTS"
           deploy --skip-checks --ssh-opts "$SSH_OPTS" .#edge
 
-      # - name: NIXBOOK
-      #   run: |
-      #     set -euo pipefail
-      #     if ssh $SSH_OPTS -o ConnectTimeout=5 deploy@nixbook true 2>/dev/null; then
-      #       export NIX_SSHOPTS="$SSH_OPTS"
-      #       deploy --skip-checks --ssh-opts "$SSH_OPTS" .#nixbook
-      #     else
-      #       echo "nixbook offline — skipping"
-      #     fi
+      - name: NIXBOOK
+        run: |
+          set -euo pipefail
+          if ssh $SSH_OPTS -o ConnectTimeout=5 deploy@nixbook true 2>/dev/null; then
+            export NIX_SSHOPTS="$SSH_OPTS"
+            deploy --skip-checks --ssh-opts "$SSH_OPTS" .#nixbook
+          else
+            echo "nixbook offline — skipping"
+          fi

@@ -29,8 +29,8 @@ jobs:
           if git diff --quiet -- docs; then
             echo "docs already up to date"
           else
-            git config user.name "gitea-actions"
-            git config user.email "gitea-actions@kucendro.dev"
+            git config user.name "actions"
+            git config user.email "actions@kucendro.dev"
             git add docs
             git commit -m "docs: auto-regenerate [skip ci]"
             git push origin HEAD:${{ github.ref_name }}

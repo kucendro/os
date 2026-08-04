@@ -67,6 +67,14 @@ in
   };
   users.groups.gitea-runner = { };
 
+  system.activationScripts.gitea-runner-ssh = ''
+    mkdir -p /var/lib/gitea-runner/.ssh
+    chmod 700 /var/lib/gitea-runner/.ssh
+    printf 'Host nas.ts.kucendro.dev\n  IdentityFile /var/lib/gitea-runner/.ssh/id_ed25519\n  StrictHostKeyChecking accept-new\n  Port ${toString sshPort}\n' > /var/lib/gitea-runner/.ssh/config
+    chmod 600 /var/lib/gitea-runner/.ssh/config
+    chown gitea-runner:gitea-runner /var/lib/gitea-runner/.ssh/config
+  '';
+
   systemd.services.gitea-runner-nas.serviceConfig = {
     DynamicUser = lib.mkForce false;
     User = "gitea-runner";

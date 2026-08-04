@@ -4,6 +4,7 @@ let
   publics = {
     party = "nas.ts.kucendro.dev:8095";
     kubicek = "nas.ts.kucendro.dev:3007";
+    mcp = "nas.ts.kucendro.dev:8092";
   };
 
   mkVhost = name: hostPort: {

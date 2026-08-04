@@ -32,7 +32,6 @@ let
     google-chrome
     clickhouse
     kdePackages.qttools
-    kicad
     witr
     beeper
     setxkbmap

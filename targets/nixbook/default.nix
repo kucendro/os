@@ -169,6 +169,7 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
+    COLI_MODEL = "/home/kucendro/ai";
   };
 
   xdg.portal = {

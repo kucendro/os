@@ -13,8 +13,6 @@ nginx virtual hosts across the fleet. *tailnet* endpoints are bound to the mesh 
 | `gallery.home.kucendro.dev` | tailnet | edge |
 | `git.home.kucendro.dev` | tailnet | edge |
 | `grafana.home.kucendro.dev` | tailnet | edge |
-| `health.home.kucendro.dev` | tailnet | edge |
-| `healthapi.home.kucendro.dev` | tailnet | edge |
 | `karakeep.home.kucendro.dev` | tailnet | edge |
 | `kubicek.kucendro.dev` | public | edge |
 | `ledfx.home.kucendro.dev` | tailnet | edge |

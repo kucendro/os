@@ -7,7 +7,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/3abfa1fc09b62dc4cdeeb7b787886f075696f0b7";
+      url = "github:noctalia-dev/noctalia/cachix/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

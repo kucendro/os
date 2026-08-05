@@ -147,7 +147,7 @@ in
       ];
 
       exec-once = [
-        "noctalia-shell"
+        "noctalia"
         "beeper & slack"
         "env QT_QPA_PLATFORM=xcb kdrive"
       ];
@@ -257,11 +257,10 @@ in
 
       "$mainMod" = "SUPER";
 
-      bindr = "SUPER, SUPER_L, exec, noctalia-shell ipc call launcher toggle";
+      bindr = "SUPER, SUPER_L, exec, noctalia msg panel-toggle launcher";
 
       bind = [
-        "$mainMod, A, exec, noctalia-shell ipc call controlCenter toggle"
-        "$mainMod, H, exec, noctalia-shell ipc call plugin:keybind-cheatsheet toggle"
+        "$mainMod, A, exec, noctalia msg panel-toggle control-center"
         "$mainMod, L, exec, hyprlock"
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"

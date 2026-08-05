@@ -1,0 +1,231 @@
+[audio]
+enable_overdrive = false
+enable_sounds = false
+
+[backdrop]
+enabled = false
+
+[bar.main]
+auto_hide = false
+center = [ "workspaces", "spacer", "media", "bar" ]
+end = [ "cat", "spacer", "volume", "brightness", "network", "bluetooth", "battery", "tray", "spacer", "notifications" ]
+position = "top"
+reserve_space = true
+start = [ "control-center", "spacer", "active_window" ]
+
+[brightness]
+enable_ddcutil = true
+
+[calendar]
+enabled = false
+
+[control_center.calendar]
+show_events_card = true
+show_week_numbers = false
+
+[dock]
+background_opacity = 1.0
+enabled = false
+
+[idle.behavior.lock]
+action = "lock"
+enabled = false
+timeout = 60
+
+[idle.behavior.screen-off]
+action = "screen_off"
+enabled = false
+timeout = 120
+
+[location]
+address = "Pardubice"
+auto_locate = false
+
+[lockscreen]
+enabled = false
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1720.0
+    cy = 1258.0
+    output = "DP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 1018.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[nightlight]
+enabled = true
+force = false
+temperature_day = 5880
+temperature_night = 4013
+
+[notification]
+background_opacity = 1.0
+enable_daemon = true
+layer = "overlay"
+show_actions = false
+show_app_name = true
+
+[osd]
+background_opacity = 1.0
+position = "top_center"
+
+[plugin_settings."icefish/phone-connect"]
+custom_image = "/home/kucendro/nixos/display/fold.png"
+device_alias = "Fold"
+state_update_interval = 60
+
+[plugin_settings."noctalia/bitwarden"]
+vault_timeout = "30"
+
+[plugins]
+auto_update = true
+enabled = [ "icefish/phone-connect", "noctalia/bongocat" ]
+
+[shell]
+avatar_path = "/home/kucendro/nixos/home/profile.jpg"
+clipboard_auto_paste = "off"
+clipboard_enabled = true
+font_family = "Inter"
+lang = "en"
+settings_show_advanced = true
+telemetry_enabled = false
+
+    [shell.launcher]
+    app_grid = true
+    categories = true
+    show_icons = true
+    sort_by_usage = true
+
+    [shell.panel]
+    control_center_placement = "attached"
+    launcher_placement = "floating"
+    launcher_position = "center"
+    session_placement = "attached"
+    wallpaper_placement = "attached"
+
+[system.monitor]
+enabled = true
+
+[theme]
+custom_palette = "stylix"
+mode = "dark"
+source = "custom"
+
+[wallpaper]
+directory = "/home/kucendro/nixos/display/wallpapers"
+enabled = false
+
+    [wallpaper.automation]
+    enabled = false
+    interval_seconds = 300
+    order = "alphabetical"
+    recursive = true
+
+    [wallpaper.default]
+    path = "/nix/store/48f7w7mcmcp3xc1nmzmrjsxlxn90dd5m-noctalia-5.0.0/share/noctalia/assets/noctalia-wallpaper.png"
+
+    [wallpaper.last]
+    path = "/nix/store/48f7w7mcmcp3xc1nmzmrjsxlxn90dd5m-noctalia-5.0.0/share/noctalia/assets/noctalia-wallpaper.png"
+
+[weather]
+effects = true
+enabled = true
+unit = "celsius"
+
+[widget.active_window]
+display = "icon_only"
+title_scroll = "on_hover"
+
+[widget.bar]
+type = "icefish/phone-connect:bar"
+
+[widget.battery]
+display_mode = "glyph"
+show_label = false
+
+[widget.bluetooth]
+show_label = false
+
+[widget.brightness]
+show_label = false
+
+[widget.cat]
+type = "noctalia/bongocat:cat"
+
+[widget.media]
+artist_first = false
+hide_when_no_media = true
+title_scroll = "on_hover"
+
+[widget.network]
+show_label = false
+vpn_status = "both"
+
+[widget.notifications]
+hide_when_no_unread = false
+
+[widget.tray]
+drawer = true
+
+[widget.volume]
+show_label = false
+
+    [widget.volume.actions]
+    middle = "exec pwvucontrol"
+
+[widget.workspaces]
+focused_output_only = true
+hide_when_empty = false
+show_labels = false

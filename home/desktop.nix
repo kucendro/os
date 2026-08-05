@@ -6,7 +6,7 @@
 {
   home.pointerCursor.enable = true;
 
-  home.packages = [ pkgs.sshfs ];
+  home.packages = [ pkgs.sshfs pkgs.glib ];
 
   services = {
     kdeconnect = {
@@ -141,7 +141,11 @@
         };
 
         plugin_settings = {
-          "icefish/phone-connect".device_alias = "Fold";
+          "icefish/phone-connect" = {
+            device_alias = "Fold";
+            custom_image = "/home/kucendro/nixos/display/fold.png";
+            state_update_interval = 60;
+          };
         };
 
         bar.main = {
@@ -194,7 +198,12 @@
 
           bar.type = "icefish/phone-connect:bar";
 
-          cat.type = "noctalia/bongocat:cat";
+          cat = {
+            type = "noctalia/bongocat:cat";
+            audio_spectrum = true;
+            tappy_mode = true;
+            rave_mode = true;
+          };
 
           volume = {
             show_label = false;

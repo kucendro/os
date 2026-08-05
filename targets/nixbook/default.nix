@@ -62,17 +62,17 @@
   };
 
   hardware.printers = {
-    # ensurePrinters = [
-    #   {
-    #     name = "DEEP";
-    #     location = "work";
-    #     deviceUri = "ipp://192.168.1.99/ipp/print";
-    #     model = "everywhere";
-    #     ppdOptions = {
-    #       PageSize = "A4";
-    #     };
-    #   }
-    # ];
+    ensurePrinters = [
+      {
+        name = "WORK";
+        location = "work";
+        deviceUri = "ipp://192.168.1.99/ipp/print";
+        model = "drv:///sample.drv/generic.ppd";
+        ppdOptions = {
+          PageSize = "A4";
+        };
+      }
+    ];
   };
 
   security.rtkit.enable = true;

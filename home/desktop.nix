@@ -168,6 +168,7 @@
             "workspaces"
             "spacer"
             "media"
+            "spacer"
             "bar"
           ];
           end = [

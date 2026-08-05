@@ -26,12 +26,12 @@
   qore = {
     address = "nas.ts.kucendro.dev:7673";
   };
-  health = {
-    address = "nas.ts.kucendro.dev:3005";
-  };
-  healthapi = {
-    address = "nas.ts.kucendro.dev:8000";
-  };
+  # health = {
+  #   address = "nas.ts.kucendro.dev:3005";
+  # };
+  # healthapi = {
+  #   address = "nas.ts.kucendro.dev:8000";
+  # };
   ledfx = {
     address = "nas.ts.kucendro.dev:8888";
   };

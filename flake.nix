@@ -46,6 +46,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    colibri = {
+      url = "github:JustVugg/colibri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     secrets = {
       url = "git+ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git";
       flake = false;
@@ -65,6 +70,7 @@
       nixos-generators,
       deploy-rs,
       irlume,
+      colibri,
       secrets,
       ...
     }@inputs:

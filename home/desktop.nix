@@ -6,7 +6,10 @@
 {
   home.pointerCursor.enable = true;
 
-  home.packages = [ pkgs.sshfs pkgs.glib ];
+  home.packages = [
+    pkgs.sshfs
+    pkgs.glib
+  ];
 
   services = {
     kdeconnect = {
@@ -136,7 +139,10 @@
         dock.enabled = false;
 
         plugins = {
-          enabled = [ "icefish/phone-connect" "noctalia/bongocat" ];
+          enabled = [
+            "icefish/phone-connect"
+            "noctalia/bongocat"
+          ];
           auto_update = true;
         };
 
@@ -202,7 +208,6 @@
             type = "noctalia/bongocat:cat";
             audio_spectrum = true;
             tappy_mode = true;
-            rave_mode = true;
           };
 
           volume = {

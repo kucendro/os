@@ -354,6 +354,13 @@ in
         float = yes
         center = yes
       }
+
+      windowrule {
+        name = float-simulator
+        match:class = ^(Emulator)$
+        float = yes
+        center = yes
+      }
     '';
   };
 }

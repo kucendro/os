@@ -53,4 +53,15 @@ in
   ];
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+
+  networking.firewall.interfaces."enp1s0".allowedTCPPorts = [
+    9999
+    80
+    443
+  ];
+  networking.firewall.interfaces."enp1s0".allowedUDPPorts = [
+    9999
+    20002
+    1900
+  ];
 }

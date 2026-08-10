@@ -21,10 +21,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build termux setup script
-        run: >-
-          nix --extra-experimental-features "nix-command flakes"
-          build .#termux-setup-fold -o result-termux
+      - name: Build termux setup scripts
+        run: |
+          set -euo pipefail
+          nix_cmd="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
+          phones=$($nix_cmd eval --raw .#packages.x86_64-linux --apply \
+            'attrs: builtins.concatStringsSep " " (builtins.filter (n: builtins.match "termux-setup-.*" n != null) (builtins.attrNames attrs))')
+          for pkg in $phones; do
+            $nix_cmd build ".#$pkg" -o "result-$pkg"
+          done
 
       - name: Send QR + one-liner to Telegram
         env:
@@ -37,21 +42,24 @@ jobs:
             exit 0
           fi
           tmp=$(mktemp -d)
-          ./result-termux/bin/termux-setup-fold > "$tmp/fold.sh"
-          ./result-termux/bin/termux-setup-fold --png "$tmp/fold.png"
-          oneliner="echo $(gzip -9 < "$tmp/fold.sh" | base64 | tr -d '\n')|base64 -d|gzip -d|bash"
           api="https://api.telegram.org/bot$TG_TOKEN"
-          curl -fsS -X POST "$api/sendPhoto" \
-            -F chat_id="$TG_CHAT" \
-            -F photo=@"$tmp/fold.png" \
-            -F caption="fold termux bootstrap: scan from any other screen, or copy the text below on the phone"
-          if [ "${#oneliner}" -le 4000 ]; then
-            curl -fsS -X POST "$api/sendMessage" \
-              --data-urlencode chat_id="$TG_CHAT" \
-              --data-urlencode text="$oneliner"
-          else
-            curl -fsS -X POST "$api/sendDocument" \
+          for bin in result-termux-setup-*/bin/termux-setup-*; do
+            phone=${bin##*termux-setup-}
+            "$bin" > "$tmp/$phone.sh"
+            "$bin" --png "$tmp/$phone.png"
+            oneliner="echo $(gzip -9 < "$tmp/$phone.sh" | base64 | tr -d '\n')|base64 -d|gzip -d|bash"
+            curl -fsS -X POST "$api/sendPhoto" \
               -F chat_id="$TG_CHAT" \
-              -F document=@"$tmp/fold.sh" \
-              -F caption="payload too long for a message; paste this file into Termux instead"
-          fi
+              -F photo=@"$tmp/$phone.png" \
+              -F caption="$phone termux bootstrap: scan from any other screen, or copy the text below on the phone"
+            if [ "${#oneliner}" -le 4000 ]; then
+              curl -fsS -X POST "$api/sendMessage" \
+                --data-urlencode chat_id="$TG_CHAT" \
+                --data-urlencode text="$oneliner"
+            else
+              curl -fsS -X POST "$api/sendDocument" \
+                -F chat_id="$TG_CHAT" \
+                -F document=@"$tmp/$phone.sh" \
+                -F caption="payload too long for a message; paste this file into Termux instead"
+            fi
+          done

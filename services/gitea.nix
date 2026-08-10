@@ -52,6 +52,7 @@ in
       gawk
       gitMinimal
       gnused
+      gzip
       nodejs
       openssh
       wget

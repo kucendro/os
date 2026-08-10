@@ -5,4 +5,3 @@
 - [Hosts](./hosts.md)
 - [Services](./services.md)
 - [Endpoints](./endpoints.md)
-- [Termux](./termux.md)

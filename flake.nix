@@ -248,6 +248,7 @@
         nas = {
           hostname = "nas";
           sshUser = me.name;
+          remoteBuild = true;
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nas;
@@ -261,8 +262,7 @@
           import ./services/termux-setup.nix {
             lib = nixpkgs.lib;
             inherit me;
-          }
-            nixpkgs.legacyPackages.${system}
+          } nixpkgs.legacyPackages.${system}
         )
       );
 

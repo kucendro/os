@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, me, ... }:
 
 {
+  environment.localBinInPath = true;
+
   environment.systemPackages = (
     with pkgs;
     [
@@ -37,4 +39,14 @@
       binwalk
     ]
   );
+
+  home-manager.users.${me.name}.programs = {
+    uv = {
+      enable = true;
+      tool.packages = [
+        "graphifyy"
+      ];
+      tool.prune = true;
+    };
+  };
 }

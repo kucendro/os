@@ -11,7 +11,7 @@
     package = pkgs.opencode;
     settings = lib.optionalAttrs (profile == "desktop") {
       mcp = {
-        nix-homelab = {
+        homelab = {
           type = "remote";
           url = "https://mcp.home.kucendro.dev/mcp";
           enabled = true;

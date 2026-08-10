@@ -257,11 +257,13 @@
 
       packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
         system:
-        (import ./services/termux-setup.nix {
-          lib = nixpkgs.lib;
-          inherit me;
-        })
-          nixpkgs.legacyPackages.${system}
+        nixpkgs.lib.mapAttrs' (n: v: nixpkgs.lib.nameValuePair "termux-setup-${n}" v) (
+          import ./services/termux-setup.nix {
+            lib = nixpkgs.lib;
+            inherit me;
+          }
+            nixpkgs.legacyPackages.${system}
+        )
       );
 
       checks = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (

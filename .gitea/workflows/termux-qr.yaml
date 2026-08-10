@@ -1,0 +1,57 @@
+name: termux-qr
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/termux-setup.sh
+      - services/termux.nix
+      - services/termux-setup.nix
+      - targets/mobile/peer.nix
+      - display/carbonfox.yaml
+      - me.nix
+  workflow_dispatch:
+
+env:
+  HOME: /var/lib/gitea-runner
+
+jobs:
+  send:
+    runs-on: native
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build termux setup script
+        run: >-
+          nix --extra-experimental-features "nix-command flakes"
+          build .#termux-setup-fold -o result-termux
+
+      - name: Send QR + one-liner to Telegram
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TG_TOKEN:-}" ] || [ -z "${TG_CHAT:-}" ]; then
+            echo "TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set, skipping"
+            exit 0
+          fi
+          tmp=$(mktemp -d)
+          ./result-termux/bin/termux-setup-fold > "$tmp/fold.sh"
+          ./result-termux/bin/termux-setup-fold --png "$tmp/fold.png"
+          oneliner="echo $(gzip -9 < "$tmp/fold.sh" | base64 | tr -d '\n')|base64 -d|gzip -d|bash"
+          api="https://api.telegram.org/bot$TG_TOKEN"
+          curl -fsS -X POST "$api/sendPhoto" \
+            -F chat_id="$TG_CHAT" \
+            -F photo=@"$tmp/fold.png" \
+            -F caption="fold termux bootstrap: scan from any other screen, or copy the text below on the phone"
+          if [ "${#oneliner}" -le 4000 ]; then
+            curl -fsS -X POST "$api/sendMessage" \
+              --data-urlencode chat_id="$TG_CHAT" \
+              --data-urlencode text="$oneliner"
+          else
+            curl -fsS -X POST "$api/sendDocument" \
+              -F chat_id="$TG_CHAT" \
+              -F document=@"$tmp/fold.sh" \
+              -F caption="payload too long for a message; paste this file into Termux instead"
+          fi

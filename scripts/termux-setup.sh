@@ -1,15 +1,5 @@
 : "${PHONE_NAME:?}" "${ME_NAME:?}" "${DOMAIN:?}" "${REACHES:?}"
-: "${TRUSTED_PUBKEY_NAMES:?}" "${SECRETS_FILE:?}" "${THEME_FILE:?}" "${FONT_URL:?}"
-
-AUTH_KEYS=""
-for k in $TRUSTED_PUBKEY_NAMES; do
-  v=$(sops decrypt --extract "[\"$k\"]" "$SECRETS_FILE") ||
-    {
-      echo "termux-setup: sops could not decrypt '$k' from $SECRETS_FILE" >&2
-      exit 1
-    }
-  AUTH_KEYS="${AUTH_KEYS}${v}"$'\n'
-done
+: "${DEFAULT_REMOTE:?}" "${THEME_FILE:?}" "${FONT_URL:?}"
 
 SSH_CONFIG=""
 for h in $REACHES; do
@@ -52,20 +42,30 @@ color13=${b0E}
 color14=${b0C}
 color15=${b07}"
 
-OUT=$(cat <<EOF
+EXTRA_KEYS="extra-keys = [['ESC','/','-','HOME','UP','END'],['TAB','CTRL','ALT','LEFT','DOWN','RIGHT']]"
+
+AUTO_CONNECT=$(
+  cat <<AC_EOF
+if [[ \$- == *i* && -z \$TMUX && -z \$SSH_CONNECTION ]]; then
+  if ssh -o ConnectTimeout=3 -o BatchMode=yes ${DEFAULT_REMOTE} true 2>/dev/null; then
+    exec mosh ${DEFAULT_REMOTE} -- tmux new-session -A -s main
+  else
+    exec tmux new-session -A -s local
+  fi
+fi
+AC_EOF
+)
+
+OUT=$(
+  cat <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
 
 pkg update -y
-pkg install -y openssh mosh curl
+pkg install -y openssh mosh tmux curl
 
 [ -d ~/storage ] || termux-setup-storage
-mkdir -p ~/.ssh ~/.termux ~/.termux/boot
-
-cat > ~/.ssh/authorized_keys <<'KEYS_EOF'
-${AUTH_KEYS}KEYS_EOF
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
+mkdir -p ~/.ssh ~/.termux
 
 cat > ~/.ssh/config <<'CONFIG_EOF'
 ${SSH_CONFIG}CONFIG_EOF
@@ -78,44 +78,41 @@ cat > ~/.termux/colors.properties <<'COLORS_EOF'
 ${COLORS}
 COLORS_EOF
 
+cat > ~/.termux/termux.properties <<'PROPS_EOF'
+${EXTRA_KEYS}
+fullscreen = true
+PROPS_EOF
+
 [ -f ~/.termux/font.ttf ] || curl -fsSL '${FONT_URL}' -o ~/.termux/font.ttf
 
-cat > ~/.termux/boot/start-sshd <<'BOOT_EOF'
-#!/data/data/com.termux/files/usr/bin/sh
-termux-wake-lock
-sshd
-BOOT_EOF
-chmod +x ~/.termux/boot/start-sshd
+cat >> ~/.bashrc <<'BASHRC_EOF'
+${AUTO_CONNECT}
+BASHRC_EOF
 
-# Hold a wakelock now so Android doesn't suspend Termux (and drop sshd) on lock.
-termux-wake-lock
-if [ -n "\${SSH_CONNECTION:-}" ]; then
-  echo "Running over SSH — leaving sshd up."
-else
-  pkill sshd 2>/dev/null || true
-  sshd
-fi
 termux-reload-settings
 
 echo
-echo "Termux linked: sshd on :8022, carbonfox + Hack Nerd Font applied."
+echo "Termux linked. Open it and you land in tmux session 'main' on ${DEFAULT_REMOTE} via mosh."
+echo "If ${DEFAULT_REMOTE} is asleep or offline, you get a plain local tmux instead."
+echo "Nothing runs in the background on the phone. No sshd, no boot scripts, no battery whitelisting needed."
 echo "Phone public key — this must match fold-pubkey in sops (else update sops + redeploy hosts):"
 cat ~/.ssh/id_ed25519.pub
-echo "Install Termux:Boot from F-Droid so sshd autostarts on reboot."
-echo "Wakelock is held. Also exempt Termux + Tailscale from battery optimization"
-echo "and add them to Samsung 'Never sleeping apps' so ssh survives screen lock."
 EOF
 )
 
-# --qr: render a self-extracting one-liner as a terminal QR. The full script is
-# too big to QR raw (~2.2 KB → unscannable v40), so ship it gzip+base64-wrapped.
-# Scan it on the phone, paste the decoded text into Termux, Enter.
-if [ "${1:-}" = "--qr" ]; then
+case "${1:-}" in
+--qr | --png)
   payload=$(printf '%s\n' "$OUT" | gzip -9 | base64 | tr -d '\n')
   oneliner="echo $payload|base64 -d|gzip -d|bash"
-  printf '%s' "$oneliner" | qrencode -t ANSIUTF8 -l L
-  printf '\nScan → paste into Termux → Enter (%d-char payload).\n' "${#oneliner}" >&2
-  printf 'It is a dense QR; shrink the terminal font so the whole code fits on screen.\n' >&2
-else
+  if [ "$1" = "--qr" ]; then
+    printf '%s' "$oneliner" | qrencode -t ANSIUTF8 -l L
+    printf '\nScan → paste into Termux → Enter (%d-char payload).\n' "${#oneliner}" >&2
+    printf 'It is a dense QR; shrink the terminal font so the whole code fits on screen.\n' >&2
+  else
+    printf '%s' "$oneliner" | qrencode -o "${2:?--png needs an output path}" -s 6 -l L
+  fi
+  ;;
+*)
   printf '%s\n' "$OUT"
-fi
+  ;;
+esac

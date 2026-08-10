@@ -255,6 +255,15 @@
         };
       };
 
+      packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
+        system:
+        (import ./services/termux-setup.nix {
+          lib = nixpkgs.lib;
+          inherit me;
+        })
+          nixpkgs.legacyPackages.${system}
+      );
+
       checks = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
         system: deploy-rs.lib.${system}.deployChecks self.deploy
       );
@@ -281,6 +290,28 @@
               python3 "$scripts/gen-diagram.py" "$@"
               python3 "$scripts/gen-wiki.py" "$@"
             ''}";
+          };
+
+          termux-artifacts = {
+            type = "app";
+            meta.description = "Render termux bootstrap scripts + QRs into docs/termux";
+            program =
+              let
+                setups = import ./services/termux-setup.nix {
+                  lib = nixpkgs.lib;
+                  inherit me;
+                } pkgs;
+                render = nixpkgs.lib.mapAttrsToList (phone: drv: ''
+                  ${drv}/bin/termux-setup-${phone} > "$out/${phone}.sh"
+                  ${drv}/bin/termux-setup-${phone} --png "$out/${phone}.png"
+                '') setups;
+              in
+              "${pkgs.writeShellScript "gen-termux-artifacts" ''
+                set -euo pipefail
+                out="''${1:-docs/termux}"
+                mkdir -p "$out"
+                ${builtins.concatStringsSep "\n" render}
+              ''}";
           };
         }
       );

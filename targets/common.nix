@@ -39,6 +39,8 @@
   };
 
   programs = {
+    mosh.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = false;

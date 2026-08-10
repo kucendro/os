@@ -16,6 +16,9 @@ jobs:
       - name: Regenerate diagrams & wiki
         run: nix --extra-experimental-features "nix-command flakes" run .#diagram
 
+      - name: Regenerate termux bootstrap artifacts
+        run: nix --extra-experimental-features "nix-command flakes" run .#termux-artifacts
+
       - name: Commit if docs changed
         run: |
           set -euo pipefail

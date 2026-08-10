@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
 
-pkg update -y
+pkg upgrade -y
 pkg install -y openssh mosh tmux curl
 
 [ -d ~/storage ] || termux-setup-storage

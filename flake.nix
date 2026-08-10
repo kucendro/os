@@ -296,7 +296,7 @@
 
           termux-artifacts = {
             type = "app";
-            meta.description = "Render termux bootstrap scripts + QRs into docs/termux";
+            meta.description = "Render termux bootstrap scripts + QRs into docs/termux and the wiki";
             program =
               let
                 setups = import ./services/termux-setup.nix {
@@ -306,12 +306,17 @@
                 render = nixpkgs.lib.mapAttrsToList (phone: drv: ''
                   ${drv}/bin/termux-setup-${phone} > "$out/${phone}.sh"
                   ${drv}/bin/termux-setup-${phone} --png "$out/${phone}.png"
+                  cp "$out/${phone}.png" "$wiki/${phone}.png"
+                  printf '## %s\n\n![%s](termux/%s.png)\n\n' '${phone}' '${phone}' '${phone}' >> "$page"
                 '') setups;
               in
               "${pkgs.writeShellScript "gen-termux-artifacts" ''
                 set -euo pipefail
                 out="''${1:-docs/termux}"
-                mkdir -p "$out"
+                wiki="docs/wiki/src/termux"
+                page="docs/wiki/src/termux.md"
+                mkdir -p "$out" "$wiki"
+                printf '# Termux bootstrap\n\nScan into Termux; scripts live in docs/termux.\n\n' > "$page"
                 ${builtins.concatStringsSep "\n" render}
               ''}";
           };

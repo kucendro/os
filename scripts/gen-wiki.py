@@ -125,7 +125,8 @@ def page_summary(src: Path):
         "- [Architecture](./architecture.md)\n"
         "- [Hosts](./hosts.md)\n"
         "- [Services](./services.md)\n"
-        "- [Endpoints](./endpoints.md)\n",
+        "- [Endpoints](./endpoints.md)\n"
+        "- [Termux](./termux.md)\n",
     )
 
 

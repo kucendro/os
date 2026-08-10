@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   port = 3000;
@@ -13,7 +13,7 @@ in
         domain = "grafana.home.kucendro.dev";
         root_url = "https://grafana.home.kucendro.dev";
       };
-      security.secret_key = "HDXUVSOyLOdXHkz7CxXZYlMonEUgqJJPlOn4kOjI7KjpuYen";
+      security.secret_key = "$__file{${config.sops.secrets.grafana-secret-key.path}}";
     };
   };
 

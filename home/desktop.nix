@@ -41,7 +41,7 @@
 
       settings = {
         shell = {
-          avatar_path = "/home/kucendro/nixos/home/profile.jpg";
+          avatar_path = "${inputs.secrets}/home/profile.jpg";
           lang = "en";
           telemetry_enabled = false;
           clipboard_enabled = true;

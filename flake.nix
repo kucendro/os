@@ -75,7 +75,7 @@
       ...
     }@inputs:
     let
-      me = import ./me.nix;
+      me = import (inputs.secrets + "/me.nix");
 
       homeManagerConfig = profile: {
         home-manager.useGlobalPkgs = true;

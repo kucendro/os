@@ -284,11 +284,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1786366533,
-        "narHash": "sha256-Mn9YRJezqCOQGmy5IkHmFYp/51P6yCG07uo+qJ32H/I=",
+        "lastModified": 1786389256,
+        "narHash": "sha256-SQE9/tTAthiStpRLZEjmc5EMXRk8VhjIwUHXUzzEg0I=",
         "owner": "archledger",
         "repo": "irlume",
-        "rev": "92c7b8b892fc59995e9644ce8d5a2a4641bd0c2d",
+        "rev": "f2a357edcda2bf300752ad030a165ba00de65587",
         "type": "github"
       },
       "original": {
@@ -392,11 +392,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786338498,
-        "narHash": "sha256-qy3Cheg/FQ9ZaBPTIgdq4IkmkNtC6XBpmtC8nT+wU/Y=",
+        "lastModified": 1786388579,
+        "narHash": "sha256-PSfJXN6qwRkpWae6Ff6Wg5PyDniBRICOTYRA9F123Y4=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "45e721ba0fb47d6efc00ca47e156237954037c99",
+        "rev": "ec33edcddc296ba7c304adb0d5d8b0f6b43a0e9f",
         "type": "github"
       },
       "original": {
@@ -471,11 +471,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1785845757,
-        "narHash": "sha256-KjEb9AGbdjD0tTU1/QGw1vhAHRj+iOt9hE47xPexTDw=",
+        "lastModified": 1786397288,
+        "narHash": "sha256-QGcDE1sRkzz8na1xWx4l+rAFZXKH3nqVRw9MCSCHBRk=",
         "ref": "refs/heads/main",
-        "rev": "e0558a953e8d8b8a398683925f7757dfd6d1a7a5",
-        "revCount": 1,
+        "rev": "4dc48d8e158d5e0576789d2ed0415828b501ea75",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git"
       },
@@ -489,11 +489,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1783174389,
-        "narHash": "sha256-aCWC8ngycU7OdJrU2+Je3qf+1a2ykuBvpPhZT/9tXMc=",
+        "lastModified": 1786375908,
+        "narHash": "sha256-G7qDAT98nywA4EFmJCwIRO5wKvDlBBN3BWpsOnjAto8=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "f1406619a3884cd5c47992a70b8b35c9c0fcb4c9",
+        "rev": "d1337e05ba0a8e88a75d2c0e1595d82f3b3e2ac4",
         "type": "github"
       },
       "original": {
@@ -522,11 +522,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1786216702,
-        "narHash": "sha256-fOOmw9tUYeqWVnK2w2NiuMTmGIbluj8xiBFTTFDCcEE=",
+        "lastModified": 1786382682,
+        "narHash": "sha256-rWN1IYcqZD+rNA7PuNcMctjZgEzp83iPboeVVvgUHBM=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "b67debfd2db1eb1f0fd8740b950f598bbaf74b8f",
+        "rev": "4e328a8a98eceeb25ee19c88b36b355b400a7f68",
         "type": "github"
       },
       "original": {

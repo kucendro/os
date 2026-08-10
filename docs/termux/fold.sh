@@ -31,7 +31,6 @@ Host mac
 CONFIG_EOF
 chmod 600 ~/.ssh/config
 
-# Keep an existing key (its pubkey is fold-pubkey in sops); only mint if absent.
 [ -f ~/.ssh/id_ed25519 ] || ssh-keygen -t ed25519 -N "" -C "kucendro@fold" -f ~/.ssh/id_ed25519
 
 cat > ~/.termux/colors.properties <<'COLORS_EOF'
@@ -66,9 +65,9 @@ PROPS_EOF
 cat >> ~/.bashrc <<'BASHRC_EOF'
 if [[ $- == *i* && -z $TMUX && -z $SSH_CONNECTION ]]; then
   if ssh -o ConnectTimeout=3 -o BatchMode=yes nixbook true 2>/dev/null; then
-    exec mosh nixbook -- tmux new-session -A -s main
+    exec mosh nixbook -- tmux a
   else
-    exec tmux new-session -A -s local
+  exec tmux new-session -A -s fold
   fi
 fi
 BASHRC_EOF
@@ -76,8 +75,8 @@ BASHRC_EOF
 termux-reload-settings
 
 echo
-echo "Termux linked. Open it and you land in tmux session 'main' on nixbook via mosh."
-echo "If nixbook is asleep or offline, you get a plain local tmux instead."
-echo "Nothing runs in the background on the phone. No sshd, no boot scripts, no battery whitelisting needed."
-echo "Phone public key — this must match fold-pubkey in sops (else update sops + redeploy hosts):"
+echo "------------------------------------"
+echo "fold LINKED SON"
+echo "------------------------------------"
+
 cat ~/.ssh/id_ed25519.pub

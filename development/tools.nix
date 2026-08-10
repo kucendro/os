@@ -20,7 +20,7 @@
     # maven
     # javaPackages.compiler.openjdk25
     # php
-    # browsh
+    browsh
     libqalculate
     iperf3
   ];

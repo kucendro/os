@@ -1,3 +1,7 @@
+#
+#script for linking termux
+#
+
 : "${PHONE_NAME:?}" "${ME_NAME:?}" "${DOMAIN:?}" "${REACHES:?}"
 : "${DEFAULT_REMOTE:?}" "${THEME_FILE:?}" "${FONT_URL:?}"
 
@@ -11,6 +15,9 @@ for h in $REACHES; do
 "
 done
 
+#
+# theme polysh
+#
 get() { sed -n "s/^[[:space:]]*$1:[[:space:]]*\"\\(#[0-9a-fA-F]\\{6\\}\\)\".*/\\1/p" "$THEME_FILE"; }
 b00=$(get base00)
 b03=$(get base03)
@@ -42,15 +49,23 @@ color13=${b0E}
 color14=${b0C}
 color15=${b07}"
 
+#
+# keyboard fixes
+#
+
 EXTRA_KEYS="extra-keys = [['ESC','/','-','HOME','UP','END'],['TAB','CTRL','ALT','LEFT','DOWN','RIGHT']]"
+
+#
+# try to autoattach session on default remote
+#
 
 AUTO_CONNECT=$(
   cat <<AC_EOF
 if [[ \$- == *i* && -z \$TMUX && -z \$SSH_CONNECTION ]]; then
   if ssh -o ConnectTimeout=3 -o BatchMode=yes ${DEFAULT_REMOTE} true 2>/dev/null; then
-    exec mosh ${DEFAULT_REMOTE} -- tmux new-session -A -s main
+    exec mosh ${DEFAULT_REMOTE} -- tmux a
   else
-    exec tmux new-session -A -s local
+  exec tmux new-session -A -s ${PHONE_NAME}
   fi
 fi
 AC_EOF
@@ -71,7 +86,6 @@ cat > ~/.ssh/config <<'CONFIG_EOF'
 ${SSH_CONFIG}CONFIG_EOF
 chmod 600 ~/.ssh/config
 
-# Keep an existing key (its pubkey is fold-pubkey in sops); only mint if absent.
 [ -f ~/.ssh/id_ed25519 ] || ssh-keygen -t ed25519 -N "" -C "${ME_NAME}@${PHONE_NAME}" -f ~/.ssh/id_ed25519
 
 cat > ~/.termux/colors.properties <<'COLORS_EOF'
@@ -92,24 +106,28 @@ BASHRC_EOF
 termux-reload-settings
 
 echo
-echo "Termux linked. Open it and you land in tmux session 'main' on ${DEFAULT_REMOTE} via mosh."
-echo "If ${DEFAULT_REMOTE} is asleep or offline, you get a plain local tmux instead."
-echo "Nothing runs in the background on the phone. No sshd, no boot scripts, no battery whitelisting needed."
-echo "Phone public key — this must match fold-pubkey in sops (else update sops + redeploy hosts):"
+echo "------------------------------------"
+echo "${PHONE_NAME} LINKED SON"
+echo "------------------------------------"
+
 cat ~/.ssh/id_ed25519.pub
 EOF
 )
+
+#
+# setup cheat
+#
 
 case "${1:-}" in
 --qr | --png)
   payload=$(printf '%s\n' "$OUT" | gzip -9 | base64 | tr -d '\n')
   oneliner="echo $payload|base64 -d|gzip -d|bash"
+
   if [ "$1" = "--qr" ]; then
     printf '%s' "$oneliner" | qrencode -t ANSIUTF8 -l L
-    printf '\nScan → paste into Termux → Enter (%d-char payload).\n' "${#oneliner}" >&2
-    printf 'It is a dense QR; shrink the terminal font so the whole code fits on screen.\n' >&2
+    printf '\nScan & paste into Termux (%d-char payload).\n' "${#oneliner}" >&2
   else
-    printf '%s' "$oneliner" | qrencode -o "${2:?--png needs an output path}" -s 6 -l L
+    printf '%s' "$oneliner" | qrencode -o "${2:?--png needs an output path SON}" -s 6 -l L
   fi
   ;;
 *)

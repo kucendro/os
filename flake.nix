@@ -296,7 +296,7 @@
 
           termux-artifacts = {
             type = "app";
-            meta.description = "Render termux bootstrap scripts + QRs into docs/termux and the wiki";
+            meta.description = "Render termux bootstrap scripts";
             program =
               let
                 setups = import ./services/termux-setup.nix {

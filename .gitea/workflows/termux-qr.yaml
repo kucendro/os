@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build termux setup scripts
+      - name: Build setup scripts
         run: |
           set -euo pipefail
           nix_cmd="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
@@ -31,7 +31,7 @@ jobs:
             $nix_cmd build ".#$pkg" -o "result-$pkg"
           done
 
-      - name: Send QR + one-liner to Telegram
+      - name: Send to Telegram
         env:
           TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}

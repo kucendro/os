@@ -9,7 +9,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro |
-| System packages | 154 |
+| System packages | 155 |
 | Open TCP ports | 22, 80, 443 |
 | Open UDP ports | 3478 |
 | Repo-configured services | 8 |
@@ -32,7 +32,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro |
-| System packages | 169 |
+| System packages | 170 |
 | Open TCP ports | 22, 1704, 1705, 1780, 8095, 8097, 8927 |
 | Open UDP ports | 5353 |
 | Repo-configured services | 14 |
@@ -61,7 +61,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | deploy, kucendro |
-| System packages | 250 |
+| System packages | 251 |
 | Open TCP ports | 22, 443, 9901, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 1111, 2408, 5353, 6001, 6002, 9901, 47998, 47999, 48000, 48002, 48010, 57425, 57426 |
 | Repo-configured services | 17 |
@@ -89,9 +89,3 @@
 ## 🍏 mac
 
 _nix-darwin host._
-
-**LaunchDaemons:** activate-system, beszel-agent, caffeinate, iperf3-server, nix-daemon, sops-install-secrets
-
-**User agents:** exo, gnupg-agent, sunshine
-
-**Homebrew casks:** tailscale-app

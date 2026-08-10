@@ -44,7 +44,7 @@ nixbook: "🖥️ nixbook" {
 }
 mac: "🍏 mac" {
   style: { fill: "#fbfbfe"; stroke: "#333"; bold: true }
-  base: "+ 9 system services" { class: base }
+  base: "+ 0 system services" { class: base }
 }
 
 # data-flow edges
@@ -71,9 +71,7 @@ edge.nginx -> nas.qore: "qore :7673" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.vault: "vault :8222" { style.stroke: "#4a76c4" }
 nas -> edge.headscale: "tailnet" { style.stroke: "#7a4fb5" }
 nixbook -> edge.headscale: "tailnet" { style.stroke: "#7a4fb5" }
-mac -> edge.headscale: "tailnet" { style.stroke: "#7a4fb5" }
 nas.subnet_router -> lan: "advertise 192.168.1.0/24" { style.stroke: "#27893f" }
 nas -> edge.beszel_hub: "metrics" { style.stroke: "#888" }
 nixbook -> edge.beszel_hub: "metrics" { style.stroke: "#888" }
-mac -> edge.beszel_hub: "metrics" { style.stroke: "#888" }
 nas.prometheus -> edge: "scrape / probe" { style.stroke: "#888" }

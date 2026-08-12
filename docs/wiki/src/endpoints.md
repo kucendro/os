@@ -7,6 +7,7 @@ nginx virtual hosts across the fleet. *tailnet* endpoints are bound to the mesh 
 | Endpoint | Scope | Host |
 |---|---|---|
 | `assistant.home.kucendro.dev` | tailnet | edge |
+| `budget.home.kucendro.dev` | tailnet | edge |
 | `cameras.home.kucendro.dev` | tailnet | edge |
 | `chat.home.kucendro.dev` | tailnet | edge |
 | `edge.kucendro.dev` | public | edge |

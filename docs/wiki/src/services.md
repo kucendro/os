@@ -6,6 +6,7 @@ Every service this repo configures, the host(s) that run it, and the file that d
 
 | Service | Hosts | Defined in |
 |---|---|---|
+| **actual** | nas | `services/actual.nix` |
 | **avahi** | nixbook | `targets/nixbook/default.nix` |
 | **fstrim** | edge, nas, nixbook | `services/services.nix` |
 | **fwupd** | edge, nas, nixbook | `services/services.nix` |

@@ -35,10 +35,11 @@
 | System packages | 170 |
 | Open TCP ports | 22, 1704, 1705, 1780, 8095, 8097, 8927 |
 | Open UDP ports | 5353 |
-| Repo-configured services | 14 |
+| Repo-configured services | 15 |
 
 **Services** (configured in this repo):
 
+- **actual** — `services/actual.nix`
 - **fstrim** — `services/services.nix`
 - **fwupd** — `services/services.nix`
 - **gitea** — `services/gitea.nix`

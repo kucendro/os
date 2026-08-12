@@ -67,6 +67,9 @@ services: "services" {
   vpn: "vpn" {
     deep_nix: "deep.nix" { shape: page }
   }
+  actual_nix: "actual.nix" { shape: page
+    svc_actual: "actual" { shape: oval; style.fill: "#e6f0ff" }
+  }
   bluetooth_sink_nix: "bluetooth-sink.nix" { shape: page }
   gitea_nix: "gitea.nix" { shape: page
     svc_gitea: "gitea" { shape: oval; style.fill: "#e6f0ff" }
@@ -184,6 +187,7 @@ targets.linux_nix -> services.monitoring.agent_nix
 targets.linux_nix -> services.services_nix
 targets.linux_nix -> targets.common_nix
 targets.mac.default_nix -> targets.darwin_nix
+targets.nas.default_nix -> services.actual_nix
 targets.nas.default_nix -> services.dockerized.frigate_nix
 targets.nas.default_nix -> services.dockerized.home_assistant_nix
 targets.nas.default_nix -> services.dockerized.ledfx_nix

@@ -24,6 +24,7 @@ nas: "🖥️ nas" {
   grafana: "grafana" { class: infra }
   subnet_router: "subnet router" { class: infra }
   assistant: "assistant" { class: app }
+  budget: "budget" { class: app }
   cameras: "cameras" { class: app }
   chat: "chat" { class: app }
   gallery: "gallery" { class: app }
@@ -36,7 +37,7 @@ nas: "🖥️ nas" {
   party: "party" { class: app }
   qore: "qore" { class: app }
   vault: "vault" { class: app }
-  base: "+ 26 system services" { class: base }
+  base: "+ 27 system services" { class: base }
 }
 nixbook: "🖥️ nixbook" {
   style: { fill: "#fbfbfe"; stroke: "#333"; bold: true }
@@ -49,6 +50,7 @@ mac: "🍏 mac" {
 
 # data-flow edges
 edge.nginx -> nas.assistant: "assistant :8123" { style.stroke: "#4a76c4" }
+edge.nginx -> nas.budget: "budget :5006" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.cameras: "cameras :5000" { style.stroke: "#4a76c4" }
 edge.nginx -> nas.chat: "chat :8080" { style.stroke: "#4a76c4" }
 edge.nginx -> edge.headscale: "edge :8080" { style.stroke: "#4a76c4" }

@@ -26,12 +26,6 @@
   qore = {
     address = "nas.ts.kucendro.dev:7673";
   };
-  # health = {
-  #   address = "nas.ts.kucendro.dev:3005";
-  # };
-  # healthapi = {
-  #   address = "nas.ts.kucendro.dev:8000";
-  # };
   ledfx = {
     address = "nas.ts.kucendro.dev:8888";
   };
@@ -40,6 +34,9 @@
   };
   karakeep = {
     address = "nas.ts.kucendro.dev:3006";
+  };
+  budget = {
+    address = "nas.ts.kucendro.dev:5006";
   };
   mcp = {
     address = "nas.ts.kucendro.dev:8092";

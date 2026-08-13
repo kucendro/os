@@ -95,7 +95,7 @@
         }:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs me profile;
+            inherit inputs me profile hostNames;
             secretsDir = inputs.secrets;
           };
           modules = [
@@ -138,7 +138,7 @@
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit inputs me profile;
+            inherit inputs me profile hostNames;
             secretsDir = inputs.secrets;
           };
           modules = [
@@ -168,10 +168,7 @@
           ++ extraModules;
         };
 
-    in
-
-    {
-      nixosConfigurations = nixpkgs.lib.mapAttrs mkSystem {
+      nixosHosts = {
 
         nixbook = {
           profile = "desktop";
@@ -202,7 +199,7 @@
 
       };
 
-      darwinConfigurations = nixpkgs.lib.mapAttrs mkDarwin {
+      darwinHosts = {
 
         mac = {
           profile = "darwin";
@@ -210,6 +207,15 @@
         };
 
       };
+
+      hostNames = builtins.attrNames nixosHosts ++ builtins.attrNames darwinHosts;
+
+    in
+
+    {
+      nixosConfigurations = nixpkgs.lib.mapAttrs mkSystem nixosHosts;
+
+      darwinConfigurations = nixpkgs.lib.mapAttrs mkDarwin darwinHosts;
 
       deploy.nodes = {
 
@@ -262,6 +268,7 @@
           import ./services/termux-setup.nix {
             lib = nixpkgs.lib;
             inherit me;
+            hosts = hostNames;
           } nixpkgs.legacyPackages.${system}
         )
       );
@@ -302,6 +309,7 @@
                 setups = import ./services/termux-setup.nix {
                   lib = nixpkgs.lib;
                   inherit me;
+                  hosts = hostNames;
                 } pkgs;
                 render = nixpkgs.lib.mapAttrsToList (phone: drv: ''
                   ${drv}/bin/termux-setup-${phone} > "$out/${phone}.sh"

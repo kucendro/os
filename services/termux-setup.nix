@@ -1,4 +1,4 @@
-{ lib, me }:
+{ lib, me, hosts }:
 pkgs:
 
 let
@@ -19,7 +19,7 @@ let
         export PHONE_NAME=${name}
         export ME_NAME=${me.name}
         export DOMAIN=ts.kucendro.dev
-        export REACHES=${lib.escapeShellArg (lib.concatStringsSep " " peer.reaches)}
+        export REACHES=${lib.escapeShellArg (lib.concatStringsSep " " hosts)}
         export DEFAULT_REMOTE=${peer.defaultRemote}
         export THEME_FILE=${../display/carbonfox.yaml}
         export FONT_URL=https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/HackNerdFontMono-Regular.ttf

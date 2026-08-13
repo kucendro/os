@@ -62,10 +62,27 @@ EXTRA_KEYS="extra-keys = [['ESC','/','-','HOME','UP','END'],['TAB','CTRL','ALT',
 AUTO_CONNECT=$(
   cat <<AC_EOF
 if [[ \$- == *i* && -z \$TMUX && -z \$SSH_CONNECTION ]]; then
-  if ssh -o ConnectTimeout=3 -o BatchMode=yes ${DEFAULT_REMOTE} true 2>/dev/null; then
-    exec mosh ${DEFAULT_REMOTE} -- tmux a
+  remotes=(${REACHES})
+  default=${DEFAULT_REMOTE}
+  echo "pick target (enter=\$default, l=local, 3s timeout):"
+  i=1
+  for r in "\${remotes[@]}"; do
+    mark=" "; [ "\$r" = "\$default" ] && mark="*"
+    printf '  %d) %s%s\n' "\$i" "\$r" "\$mark"
+    i=\$((i+1))
+  done
+  read -r -t 3 -p "> " choice || choice=""
+  case "\$choice" in
+    "")        target="\$default" ;;
+    l|local)   target="" ;;
+    *[!0-9]*)  target="\$choice" ;;
+    *)         target="\${remotes[\$((choice-1))]:-\$default}" ;;
+  esac
+  if [ -n "\$target" ] && ssh -o ConnectTimeout=3 -o BatchMode=yes "\$target" true 2>/dev/null; then
+    exec mosh "\$target" -- tmux new -A -s ${PHONE_NAME}
   else
-  exec tmux new-session -A -s ${PHONE_NAME}
+    [ -n "\$target" ] && echo "\$target unreachable -> local tmux"
+    exec tmux new-session -A -s ${PHONE_NAME}
   fi
 fi
 AC_EOF

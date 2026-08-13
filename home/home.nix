@@ -100,6 +100,7 @@
         ex = "exit";
         k = "kubectl";
         n = "nvim .";
+        c = "claude";
         d = "docker";
         dc = "docker compose";
         d-clean-non-destruct = "docker builder prune -a && docker image prune -a";

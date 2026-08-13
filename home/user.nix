@@ -27,7 +27,6 @@ let
     fuzzel
     gnome-calculator
     discord
-    arduino-ide
     (chromium.override { commandLineArgs = "--restore-last-session"; })
     google-chrome
     clickhouse
@@ -35,7 +34,6 @@ let
     witr
     beeper
     setxkbmap
-    postman
     obsidian
     kiwix
     lmms

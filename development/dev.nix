@@ -37,6 +37,7 @@
       putty
       inetutils
       binwalk
+      awscli2
     ]
   );
 

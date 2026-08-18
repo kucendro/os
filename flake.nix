@@ -123,7 +123,7 @@
               }
             )
           ]
-          ++ nixpkgs.lib.optionals (profile == "desktop") [
+          ++ nixpkgs.lib.optionals (profile == "desktop" || profile == "workstation") [
             stylix.nixosModules.stylix
           ]
           ++ extraModules;
@@ -197,6 +197,15 @@
           ];
         };
 
+        workstation = {
+          profile = "workstation";
+          targetModule = ./targets/workstation;
+          hardwareModule = ./targets/workstation/hw-configuration.nix;
+          extraModules = [
+            disko.nixosModules.disko
+          ];
+        };
+
       };
 
       darwinHosts = {
@@ -258,6 +267,16 @@
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nas;
+          };
+        };
+
+        workstation = {
+          hostname = "workstation.ts.kucendro.dev";
+          sshUser = me.name;
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.workstation;
           };
         };
       };

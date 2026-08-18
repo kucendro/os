@@ -158,6 +158,7 @@
     hypridle
     clamav
     android-tools
+    zoom-us
   ];
 
   environment.sessionVariables = {

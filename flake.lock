@@ -284,11 +284,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1787034360,
-        "narHash": "sha256-e/wn+M5bkh54pqByhQ0gBn7pYcSwCZywFvtqc7Xfm5g=",
+        "lastModified": 1787039429,
+        "narHash": "sha256-/PhX3ub4Vc0XO4IvlZ/jkvcVevumVczpvbYFzY3nXhs=",
         "owner": "archledger",
         "repo": "irlume",
-        "rev": "17d7fac09bdf3d7ad7f71418684567f5b83810e8",
+        "rev": "f705f02dba25203839355d89df55755c15486818",
         "type": "github"
       },
       "original": {
@@ -355,11 +355,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1786862985,
-        "narHash": "sha256-FBJRXmbGXiSUDvYEbfLYRkckayyZ6SK1UEqhCrIZ2Cs=",
+        "lastModified": 1787001381,
+        "narHash": "sha256-Ue1Yo8gfHdD4TMtNewhA4tkSYeFqXThju0nCyJc3ALo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e5bdc4a41d4c072fe1e3787eaa0320a384741d44",
+        "rev": "ec2d622de0773551768cf98f3fc50cbcc003b9c5",
         "type": "github"
       },
       "original": {
@@ -392,11 +392,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787021519,
-        "narHash": "sha256-OtaVtZZgyeRKzgqkk/js06EglglHCPMA4xyryp7eYzk=",
+        "lastModified": 1787066558,
+        "narHash": "sha256-nDiJkzVkxRmPQ/FRb8ZKDungVh88+Qzw5su6LXKC91M=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "b5c1bfaace0c3b1b36f227970e389f9d20295937",
+        "rev": "356a41a5cacd544730d40b936d2e66ed99e9995a",
         "type": "github"
       },
       "original": {
@@ -471,11 +471,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1786606785,
-        "narHash": "sha256-KoUJ9BvB0HDgUDf0VTwh9Hmldg2psCCkyBluJLPq7As=",
+        "lastModified": 1787063364,
+        "narHash": "sha256-LXvfQ9vEd4HBZ7u47ZRJu2ioL0VKTUAw4RqMh1WsrAY=",
         "ref": "refs/heads/main",
-        "rev": "8eef114b97898e0df6120a0a50c5bfce3e518d61",
-        "revCount": 5,
+        "rev": "556e803f56f0fb0b4827bd70dc7aea3637aea3aa",
+        "revCount": 6,
         "type": "git",
         "url": "ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git"
       },

@@ -297,13 +297,27 @@
 
       packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
         system:
-        nixpkgs.lib.mapAttrs' (n: v: nixpkgs.lib.nameValuePair "termux-setup-${n}" v) (
-          import ./services/termux-setup.nix {
-            lib = nixpkgs.lib;
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          termux = nixpkgs.lib.mapAttrs' (n: v: nixpkgs.lib.nameValuePair "termux-setup-${n}" v) (
+            import ./services/termux-setup.nix {
+              lib = nixpkgs.lib;
+              inherit me;
+              hosts = hostNames;
+            } pkgs
+          );
+        in
+        termux
+        // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
+          workstation = import ./packages/workstation.nix {
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
             inherit me;
-            hosts = hostNames;
-          } nixpkgs.legacyPackages.${system}
-        )
+            lib = nixpkgs.lib;
+          };
+        }
       );
 
       checks = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
@@ -315,7 +329,23 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
         in
-        {
+        nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
+          runpod = {
+            type = "app";
+            meta.description = "Push the workstation image to GHCR and manage the RunPod pod";
+            program = nixpkgs.lib.getExe (pkgs.writeShellApplication {
+              name = "runpod";
+              runtimeInputs = [
+                pkgs.skopeo
+                pkgs.runpodctl
+                pkgs.gzip
+                pkgs.coreutils
+              ];
+              text = builtins.readFile ./automations/runpod.sh;
+            });
+          };
+        }
+        // {
           diagram = {
             type = "app";
             meta.description = "Regenerate topology, diagrams and wiki";

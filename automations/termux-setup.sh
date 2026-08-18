@@ -2,18 +2,8 @@
 #script for linking termux
 #
 
-: "${PHONE_NAME:?}" "${ME_NAME:?}" "${DOMAIN:?}" "${REACHES:?}"
+: "${PHONE_NAME:?}" "${ME_NAME:?}" "${SSH_CONFIG:?}" "${REACHES:?}"
 : "${DEFAULT_REMOTE:?}" "${THEME_FILE:?}" "${FONT_URL:?}"
-
-SSH_CONFIG=""
-for h in $REACHES; do
-  SSH_CONFIG="${SSH_CONFIG}Host ${h}
-  HostName ${h}.${DOMAIN}
-  User ${ME_NAME}
-  Port 22
-  IdentityFile ~/.ssh/id_ed25519
-"
-done
 
 #
 # theme polysh

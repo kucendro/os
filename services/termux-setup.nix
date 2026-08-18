@@ -1,12 +1,21 @@
-{ lib, me, hosts }:
+{
+  lib,
+  me,
+  hosts,
+}:
 pkgs:
 
 let
   peer = import ../hosts/mobile/peer.nix;
 
   orderedHosts =
-    (builtins.filter (h: builtins.elem h hosts) peer.order)
-    ++ (lib.subtractLists peer.order hosts);
+    (builtins.filter (h: builtins.elem h hosts) peer.order) ++ (lib.subtractLists peer.order hosts);
+
+  sshConfig = ''
+    Host ${lib.concatStringsSep " " orderedHosts}
+      User ${me.name}
+      IdentityFile ~/.ssh/id_ed25519
+  '';
 
   mkTermuxSetup =
     name: _phone:
@@ -22,7 +31,7 @@ let
       text = ''
         export PHONE_NAME=${name}
         export ME_NAME=${me.name}
-        export DOMAIN=ts.kucendro.dev
+        export SSH_CONFIG=${lib.escapeShellArg sshConfig}
         export REACHES=${lib.escapeShellArg (lib.concatStringsSep " " orderedHosts)}
         export DEFAULT_REMOTE=${peer.defaultRemote}
         export THEME_FILE=${../display/carbonfox.yaml}

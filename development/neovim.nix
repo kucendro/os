@@ -28,10 +28,10 @@
              },
             },
           },
-          { "echasnovski/mini.nvim", lazy = false },
-          { "echasnovski/mini.icons",
+          { "nvim-mini/mini.nvim", lazy = false },
+          { "nvim-mini/mini.icons",
              dir = "${pkgs.vimPlugins.mini-icons}",
-             lazy = true,
+             lazy = false,
           },
           {
             "iamcco/markdown-preview.nvim",

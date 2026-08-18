@@ -77,11 +77,20 @@
     let
       me = import (inputs.secrets + "/me.nix");
 
+      flakeDir = "brain";
+
       homeManagerConfig = profile: {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
-        home-manager.extraSpecialArgs = { inherit inputs me profile; };
+        home-manager.extraSpecialArgs = {
+          inherit
+            inputs
+            me
+            profile
+            flakeDir
+            ;
+        };
         home-manager.users.${me.name} = import ./home/home.nix;
       };
 
@@ -95,7 +104,13 @@
         }:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs me profile hostNames;
+            inherit
+              inputs
+              me
+              profile
+              hostNames
+              flakeDir
+              ;
             secretsDir = inputs.secrets;
           };
           modules = [
@@ -135,7 +150,13 @@
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit inputs me profile hostNames;
+            inherit
+              inputs
+              me
+              profile
+              hostNames
+              flakeDir
+              ;
             secretsDir = inputs.secrets;
           };
           modules = [

@@ -1,7 +1,9 @@
 {
+  config,
   pkgs,
   lib,
   profile,
+  flakeDir,
   ...
 }:
 
@@ -9,7 +11,7 @@
   programs.opencode = {
     enable = true;
     package = pkgs.opencode;
-    context = "~/nixos/development/rules.md";
+    context = "${config.home.homeDirectory}/${flakeDir}/development/rules.md";
     settings = lib.optionalAttrs (profile == "desktop") {
       mcp = {
         homelab = {

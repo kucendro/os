@@ -1,7 +1,9 @@
 {
+  config,
   pkgs,
   lib,
   inputs,
+  flakeDir,
   ...
 }:
 {
@@ -54,7 +56,7 @@
 
         wallpaper = {
           enabled = false;
-          directory = "/home/kucendro/nixos/display/wallpapers";
+          directory = "${config.home.homeDirectory}/${flakeDir}/display/wallpapers";
           automation = {
             enabled = false;
             interval_seconds = 300;
@@ -137,7 +139,7 @@
         plugin_settings = {
           "icefish/phone-connect" = {
             device_alias = "Fold";
-            custom_image = "/home/kucendro/nixos/display/fold.png";
+            custom_image = "${config.home.homeDirectory}/${flakeDir}/display/fold.png";
             state_update_interval = 60;
           };
         };

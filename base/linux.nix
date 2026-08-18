@@ -2,6 +2,7 @@
   pkgs,
   lib,
   me,
+  flakeDir,
   ...
 }:
 
@@ -83,7 +84,7 @@
 
   programs.nh = {
     enable = true;
-    flake = "~/nixos";
+    flake = "/home/${me.name}/${flakeDir}";
   };
 
   virtualisation.docker = {

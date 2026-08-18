@@ -291,7 +291,6 @@ in
         "$mainMod, S, exec, grim -g \"$(slurp)\" \"$HOME/kDrive/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png\""
         "$mainMod, F, togglefloating,"
         "$mainMod, Q, killactive,"
-        "$mainMod, I, exec, ~/nixos/secrets/toggle-password.sh"
         "$mainMod, TAB, workspace, e+1"
         "$mainMod SHIFT, TAB, movetoworkspace, e+1"
         "$mainMod, W, togglespecialworkspace, magic"

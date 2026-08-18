@@ -2,8 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
-  profile,
   me,
   ...
 }:
@@ -16,13 +14,6 @@
     ../dotfiles/symlinks.nix
     ../development/docker.nix
     ../development/tools.nix
-  ]
-
-  ++ lib.optionals (profile == "desktop") [
-    inputs.noctalia.homeModules.default
-    ../display/hyprland.nix
-    ../services/kdeconnect.nix
-    ./desktop.nix
   ];
 
   home.username = me.name;
@@ -83,7 +74,7 @@
           ControlPersist = "no";
         };
         mac.User = me.name;
-        workstation.User = me.name;
+        stockholm.User = me.name;
         edge.User = me.name;
       };
     };

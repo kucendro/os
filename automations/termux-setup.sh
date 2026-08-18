@@ -64,11 +64,14 @@ AUTO_CONNECT=$(
 if [[ \$- == *i* && -z \$TMUX && -z \$SSH_CONNECTION ]]; then
   remotes=(${REACHES})
   default=${DEFAULT_REMOTE}
-  echo "pick target (enter=\$default, l=local, 3s timeout):"
+  echo ""
+  echo ""
+  echo "  pick target (enter=\$default, l=local, 3s timeout):"
+  echo ""
   i=1
   for r in "\${remotes[@]}"; do
-    mark=" "; [ "\$r" = "\$default" ] && mark="*"
-    printf '  %d) %s%s\n' "\$i" "\$r" "\$mark"
+    mark=""; [ "\$r" = "\$default" ] && mark="  *"
+    printf '    %d)  %s%s\n\n' "\$i" "\$r" "\$mark"
     i=\$((i+1))
   done
   read -r -t 3 -p "> " choice || choice=""
@@ -78,11 +81,12 @@ if [[ \$- == *i* && -z \$TMUX && -z \$SSH_CONNECTION ]]; then
     *[!0-9]*)  target="\$choice" ;;
     *)         target="\${remotes[\$((choice-1))]:-\$default}" ;;
   esac
-  if [ -n "\$target" ] && ssh -o ConnectTimeout=3 -o BatchMode=yes "\$target" true 2>/dev/null; then
-    exec mosh "\$target" -- tmux new -A -s ${PHONE_NAME}
-  else
-    [ -n "\$target" ] && echo "\$target unreachable -> local tmux"
-    exec tmux new-session -A -s ${PHONE_NAME}
+  if [ -n "\$target" ]; then
+    if ssh -o ConnectTimeout=3 -o BatchMode=yes "\$target" true 2>/dev/null; then
+      exec mosh "\$target" -- tmux new -A -s ${PHONE_NAME}
+    else
+      echo "\$target unreachable"
+    fi
   fi
 fi
 AC_EOF

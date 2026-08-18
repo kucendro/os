@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../linux.nix
+    ../../base/linux.nix
     ./disko.nix
     ../../services/mesh/nginx.nix
     ../../services/mesh/headscale.nix

@@ -5,20 +5,90 @@ direction: right
 edge: "edge" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
 nas: "nas" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
 nixbook: "nixbook" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
+stockholm: "stockholm" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
 mac: "mac" { shape: cloud; style.fill: "#fff3cd"; style.bold: true }
 
+base: "base" {
+  common_nix: "common.nix" { shape: page }
+  darwin_nix: "darwin.nix" { shape: page
+    prog_zsh: "zsh" { shape: hexagon; style.fill: "#eaffea" }
+  }
+  linux_nix: "linux.nix" { shape: page
+    prog_mosh: "mosh" { shape: hexagon; style.fill: "#eaffea" }
+    prog_nh: "nh" { shape: hexagon; style.fill: "#eaffea" }
+    prog_nix_ld: "nix-ld" { shape: hexagon; style.fill: "#eaffea" }
+  }
+}
 development: "development" {
-  dev_nix: "dev.nix" { shape: page }
   zsh_nix: "zsh.nix" { shape: page
     prog_zsh: "zsh" { shape: hexagon; style.fill: "#eaffea" }
   }
 }
 display: "display" {
+  hyprland_nix: "hyprland.nix" { shape: page }
   plymouth_nix: "plymouth.nix" { shape: page }
   stylix_nix: "stylix.nix" { shape: page }
 }
 home: "home" {
+  graphical_nix: "graphical.nix" { shape: page }
+  laptop_nix: "laptop.nix" { shape: page }
   user_nix: "user.nix" { shape: page }
+}
+hosts: "hosts" {
+  aws: "aws" {
+    stockholm_nix: "stockholm.nix" { shape: page }
+  }
+  edge: "edge" {
+    default_nix: "default.nix" { shape: page }
+    disko_nix: "disko.nix" { shape: page }
+    hw_configuration_nix: "hw-configuration.nix" { shape: page }
+  }
+  mac: "mac" {
+    default_nix: "default.nix" { shape: page }
+  }
+  nas: "nas" {
+    data_nix: "data.nix" { shape: page }
+    default_nix: "default.nix" { shape: page }
+    disko_nix: "disko.nix" { shape: page }
+    hw_configuration_nix: "hw-configuration.nix" { shape: page }
+    reliability_nix: "reliability.nix" { shape: page }
+    tethering_nix: "tethering.nix" { shape: page
+      svc_usbmuxd: "usbmuxd" { shape: oval; style.fill: "#e6f0ff" }
+    }
+  }
+  nixbook: "nixbook" {
+    default_nix: "default.nix" { shape: page }
+    hw_configuration_nix: "hw-configuration.nix" { shape: page }
+    zenbook_nix: "zenbook.nix" { shape: page
+      svc_irlume: "irlume" { shape: oval; style.fill: "#e6f0ff" }
+    }
+  }
+}
+profiles: "profiles" {
+  workstation: "workstation" {
+    default_nix: "default.nix" { shape: page }
+    gpu_nix: "gpu.nix" { shape: page }
+    session_nix: "session.nix" { shape: page
+      svc_greetd: "greetd" { shape: oval; style.fill: "#e6f0ff" }
+      svc_pipewire: "pipewire" { shape: oval; style.fill: "#e6f0ff" }
+      prog_hyprland: "hyprland" { shape: hexagon; style.fill: "#eaffea" }
+    }
+  }
+  aws_nix: "aws.nix" { shape: page }
+  dev_nix: "dev.nix" { shape: page }
+  graphical_nix: "graphical.nix" { shape: page }
+  laptop_nix: "laptop.nix" { shape: page
+    svc_avahi: "avahi" { shape: oval; style.fill: "#e6f0ff" }
+    svc_greetd: "greetd" { shape: oval; style.fill: "#e6f0ff" }
+    svc_pipewire: "pipewire" { shape: oval; style.fill: "#e6f0ff" }
+    svc_power_profiles_daemon: "power-profiles-daemon" { shape: oval; style.fill: "#e6f0ff" }
+    svc_upower: "upower" { shape: oval; style.fill: "#e6f0ff" }
+    prog_dconf: "dconf" { shape: hexagon; style.fill: "#eaffea" }
+    prog_evince: "evince" { shape: hexagon; style.fill: "#eaffea" }
+    prog_firefox: "firefox" { shape: hexagon; style.fill: "#eaffea" }
+    prog_hyprland: "hyprland" { shape: hexagon; style.fill: "#eaffea" }
+    prog_kdeconnect: "kdeconnect" { shape: hexagon; style.fill: "#eaffea" }
+  }
 }
 services: "services" {
   dockerized: "dockerized" {
@@ -83,6 +153,7 @@ services: "services" {
   karakeep_nix: "karakeep.nix" { shape: page
     svc_karakeep: "karakeep" { shape: oval; style.fill: "#e6f0ff" }
   }
+  kdeconnect_nix: "kdeconnect.nix" { shape: page }
   kdrive_nix: "kdrive.nix" { shape: page }
   kube_nix: "kube.nix" { shape: page }
   kubicek_nix: "kubicek.nix" { shape: page }
@@ -108,117 +179,86 @@ services: "services" {
     svc_vaultwarden: "vaultwarden" { shape: oval; style.fill: "#e6f0ff" }
   }
 }
-targets: "targets" {
-  edge: "edge" {
-    default_nix: "default.nix" { shape: page }
-    disko_nix: "disko.nix" { shape: page }
-    hw_configuration_nix: "hw-configuration.nix" { shape: page }
-  }
-  mac: "mac" {
-    default_nix: "default.nix" { shape: page }
-  }
-  nas: "nas" {
-    data_nix: "data.nix" { shape: page }
-    default_nix: "default.nix" { shape: page }
-    disko_nix: "disko.nix" { shape: page }
-    hw_configuration_nix: "hw-configuration.nix" { shape: page }
-    reliability_nix: "reliability.nix" { shape: page }
-    tethering_nix: "tethering.nix" { shape: page
-      svc_usbmuxd: "usbmuxd" { shape: oval; style.fill: "#e6f0ff" }
-    }
-  }
-  nixbook: "nixbook" {
-    default_nix: "default.nix" { shape: page
-      svc_avahi: "avahi" { shape: oval; style.fill: "#e6f0ff" }
-      svc_greetd: "greetd" { shape: oval; style.fill: "#e6f0ff" }
-      svc_pipewire: "pipewire" { shape: oval; style.fill: "#e6f0ff" }
-      svc_power_profiles_daemon: "power-profiles-daemon" { shape: oval; style.fill: "#e6f0ff" }
-      svc_upower: "upower" { shape: oval; style.fill: "#e6f0ff" }
-      prog_dconf: "dconf" { shape: hexagon; style.fill: "#eaffea" }
-      prog_evince: "evince" { shape: hexagon; style.fill: "#eaffea" }
-      prog_firefox: "firefox" { shape: hexagon; style.fill: "#eaffea" }
-      prog_hyprland: "hyprland" { shape: hexagon; style.fill: "#eaffea" }
-      prog_kdeconnect: "kdeconnect" { shape: hexagon; style.fill: "#eaffea" }
-    }
-    hw_configuration_nix: "hw-configuration.nix" { shape: page }
-    zenbook_nix: "zenbook.nix" { shape: page
-      svc_irlume: "irlume" { shape: oval; style.fill: "#e6f0ff" }
-    }
-  }
-  common_nix: "common.nix" { shape: page
-    prog_mosh: "mosh" { shape: hexagon; style.fill: "#eaffea" }
-  }
-  darwin_nix: "darwin.nix" { shape: page }
-  linux_nix: "linux.nix" { shape: page
-    prog_nh: "nh" { shape: hexagon; style.fill: "#eaffea" }
-    prog_nix_ld: "nix-ld" { shape: hexagon; style.fill: "#eaffea" }
-  }
-}
 
 # host -> entry module
-edge -> targets.edge.default_nix
-edge -> targets.edge.hw_configuration_nix
-nas -> targets.nas.default_nix
-nas -> targets.nas.hw_configuration_nix
-nixbook -> targets.nixbook.default_nix
-nixbook -> targets.nixbook.hw_configuration_nix
-mac -> targets.mac.default_nix
+edge -> hosts.edge.default_nix
+edge -> hosts.edge.hw_configuration_nix
+nas -> hosts.nas.default_nix
+nas -> hosts.nas.hw_configuration_nix
+nixbook -> hosts.nixbook.default_nix
+nixbook -> hosts.nixbook.hw_configuration_nix
+stockholm -> hosts.aws.stockholm_nix
+mac -> hosts.mac.default_nix
 
 # module imports
-targets.common_nix -> development.dev_nix
-targets.darwin_nix -> services.monitoring.agent_darwin_nix
-targets.darwin_nix -> targets.common_nix
-targets.edge.default_nix -> services.mesh.headscale_nix
-targets.edge.default_nix -> services.mesh.nginx_nix
-targets.edge.default_nix -> services.mesh.proxied.services_nix
-targets.edge.default_nix -> services.mesh.public_nix
-targets.edge.default_nix -> services.mesh.wiki_nix
-targets.edge.default_nix -> services.monitoring.badges_nix
-targets.edge.default_nix -> services.monitoring.hub_nix
-targets.edge.default_nix -> services.monitoring.iperf3_nix
-targets.edge.default_nix -> targets.edge.disko_nix
-targets.edge.default_nix -> targets.linux_nix
-targets.linux_nix -> development.zsh_nix
-targets.linux_nix -> display.plymouth_nix
-targets.linux_nix -> display.stylix_nix
-targets.linux_nix -> home.user_nix
-targets.linux_nix -> services.mesh.tailscale_nix
-targets.linux_nix -> services.monitoring.agent_nix
-targets.linux_nix -> services.services_nix
-targets.linux_nix -> targets.common_nix
-targets.mac.default_nix -> targets.darwin_nix
-targets.nas.default_nix -> services.actual_nix
-targets.nas.default_nix -> services.dockerized.frigate_nix
-targets.nas.default_nix -> services.dockerized.home_assistant_nix
-targets.nas.default_nix -> services.dockerized.ledfx_nix
-targets.nas.default_nix -> services.dockerized.music_assistant_nix
-targets.nas.default_nix -> services.dockerized.open_wearables_nix
-targets.nas.default_nix -> services.dockerized.open_webui_nix
-targets.nas.default_nix -> services.dockerized.qore_nix
-targets.nas.default_nix -> services.dockerized.update_containers_nix
-targets.nas.default_nix -> services.gitea_nix
-targets.nas.default_nix -> services.grafana_nix
-targets.nas.default_nix -> services.immich_nix
-targets.nas.default_nix -> services.karakeep_nix
-targets.nas.default_nix -> services.kubicek_nix
-targets.nas.default_nix -> services.mcp_nix
-targets.nas.default_nix -> services.mesh.subnet_router_nix
-targets.nas.default_nix -> services.monitoring.blackbox_nix
-targets.nas.default_nix -> services.share.server_nix
-targets.nas.default_nix -> services.vault_nix
-targets.nas.default_nix -> targets.linux_nix
-targets.nas.default_nix -> targets.nas.data_nix
-targets.nas.default_nix -> targets.nas.disko_nix
-targets.nas.default_nix -> targets.nas.reliability_nix
-targets.nas.default_nix -> targets.nas.tethering_nix
-targets.nixbook.default_nix -> services.bluetooth_sink_nix
-targets.nixbook.default_nix -> services.kdrive_nix
-targets.nixbook.default_nix -> services.kube_nix
-targets.nixbook.default_nix -> services.scrcpy_nix
-targets.nixbook.default_nix -> services.share.client_nix
-targets.nixbook.default_nix -> services.sunshine_nix
-targets.nixbook.default_nix -> services.suuntool_nix
-targets.nixbook.default_nix -> services.termux_nix
-targets.nixbook.default_nix -> services.vpn.deep_nix
-targets.nixbook.default_nix -> targets.linux_nix
-targets.nixbook.default_nix -> targets.nixbook.zenbook_nix
+base.darwin_nix -> base.common_nix
+base.darwin_nix -> services.monitoring.agent_darwin_nix
+base.linux_nix -> base.common_nix
+base.linux_nix -> development.zsh_nix
+base.linux_nix -> home.user_nix
+base.linux_nix -> services.mesh.tailscale_nix
+base.linux_nix -> services.monitoring.agent_nix
+base.linux_nix -> services.services_nix
+home.laptop_nix -> services.kdeconnect_nix
+hosts.aws.stockholm_nix -> base.linux_nix
+hosts.aws.stockholm_nix -> profiles.aws_nix
+hosts.aws.stockholm_nix -> profiles.workstation.default_nix
+hosts.edge.default_nix -> base.linux_nix
+hosts.edge.default_nix -> hosts.edge.disko_nix
+hosts.edge.default_nix -> services.mesh.headscale_nix
+hosts.edge.default_nix -> services.mesh.nginx_nix
+hosts.edge.default_nix -> services.mesh.proxied.services_nix
+hosts.edge.default_nix -> services.mesh.public_nix
+hosts.edge.default_nix -> services.mesh.wiki_nix
+hosts.edge.default_nix -> services.monitoring.badges_nix
+hosts.edge.default_nix -> services.monitoring.hub_nix
+hosts.edge.default_nix -> services.monitoring.iperf3_nix
+hosts.mac.default_nix -> base.darwin_nix
+hosts.nas.default_nix -> base.linux_nix
+hosts.nas.default_nix -> hosts.nas.data_nix
+hosts.nas.default_nix -> hosts.nas.disko_nix
+hosts.nas.default_nix -> hosts.nas.reliability_nix
+hosts.nas.default_nix -> hosts.nas.tethering_nix
+hosts.nas.default_nix -> services.actual_nix
+hosts.nas.default_nix -> services.dockerized.frigate_nix
+hosts.nas.default_nix -> services.dockerized.home_assistant_nix
+hosts.nas.default_nix -> services.dockerized.ledfx_nix
+hosts.nas.default_nix -> services.dockerized.music_assistant_nix
+hosts.nas.default_nix -> services.dockerized.open_wearables_nix
+hosts.nas.default_nix -> services.dockerized.open_webui_nix
+hosts.nas.default_nix -> services.dockerized.qore_nix
+hosts.nas.default_nix -> services.dockerized.update_containers_nix
+hosts.nas.default_nix -> services.gitea_nix
+hosts.nas.default_nix -> services.grafana_nix
+hosts.nas.default_nix -> services.immich_nix
+hosts.nas.default_nix -> services.karakeep_nix
+hosts.nas.default_nix -> services.kubicek_nix
+hosts.nas.default_nix -> services.mcp_nix
+hosts.nas.default_nix -> services.mesh.subnet_router_nix
+hosts.nas.default_nix -> services.monitoring.blackbox_nix
+hosts.nas.default_nix -> services.share.server_nix
+hosts.nas.default_nix -> services.vault_nix
+hosts.nixbook.default_nix -> base.linux_nix
+hosts.nixbook.default_nix -> hosts.nixbook.zenbook_nix
+hosts.nixbook.default_nix -> profiles.laptop_nix
+hosts.nixbook.default_nix -> services.bluetooth_sink_nix
+hosts.nixbook.default_nix -> services.kdrive_nix
+hosts.nixbook.default_nix -> services.kube_nix
+hosts.nixbook.default_nix -> services.scrcpy_nix
+hosts.nixbook.default_nix -> services.share.client_nix
+hosts.nixbook.default_nix -> services.sunshine_nix
+hosts.nixbook.default_nix -> services.suuntool_nix
+hosts.nixbook.default_nix -> services.termux_nix
+hosts.nixbook.default_nix -> services.vpn.deep_nix
+profiles.graphical_nix -> display.hyprland_nix
+profiles.graphical_nix -> display.stylix_nix
+profiles.graphical_nix -> home.graphical_nix
+profiles.laptop_nix -> display.plymouth_nix
+profiles.laptop_nix -> home.laptop_nix
+profiles.laptop_nix -> profiles.dev_nix
+profiles.laptop_nix -> profiles.graphical_nix
+profiles.workstation.default_nix -> profiles.dev_nix
+profiles.workstation.default_nix -> profiles.graphical_nix
+profiles.workstation.default_nix -> profiles.workstation.gpu_nix
+profiles.workstation.default_nix -> profiles.workstation.session_nix
+profiles.workstation.default_nix -> services.sunshine_nix

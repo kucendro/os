@@ -2,7 +2,6 @@
   pkgs,
   lib,
   me,
-  profile,
   ...
 }:
 
@@ -14,10 +13,6 @@
     ../services/services.nix
     ../services/mesh/tailscale.nix
     ../services/monitoring/agent.nix
-  ]
-  ++ lib.optionals (profile == "desktop") [
-    ../display/stylix.nix
-    ../display/plymouth.nix
   ];
 
   boot = {
@@ -58,7 +53,7 @@
 
   hardware.enableRedistributableFirmware = true;
 
-  security.sudo.wheelNeedsPassword = profile == "desktop";
+  security.sudo.wheelNeedsPassword = lib.mkDefault false;
 
   networking.networkmanager.enable = true;
 
@@ -77,8 +72,12 @@
     };
   };
 
-  services.gnome.gnome-keyring.enable = lib.mkIf (profile == "desktop") true;
-  security.pam.services.login.enableGnomeKeyring = lib.mkIf (profile == "desktop") true;
+  programs.mosh.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = false;
+  };
 
   programs.nix-ld.enable = true;
 

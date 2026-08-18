@@ -7,30 +7,30 @@ Every service this repo configures, the host(s) that run it, and the file that d
 | Service | Hosts | Defined in |
 |---|---|---|
 | **actual** | nas | `services/actual.nix` |
-| **avahi** | nixbook | `targets/nixbook/default.nix` |
-| **fstrim** | edge, nas, nixbook | `services/services.nix` |
+| **avahi** | nixbook | `profiles/laptop.nix` |
+| **fstrim** | edge, nas, nixbook, stockholm | `services/services.nix` |
 | **fwupd** | edge, nas, nixbook | `services/services.nix` |
 | **gitea** | nas | `services/gitea.nix` |
 | **grafana** | nas | `services/grafana.nix` |
-| **greetd** | nixbook | `targets/nixbook/default.nix` |
+| **greetd** | nixbook, stockholm | `profiles/laptop.nix` `profiles/workstation/session.nix` |
 | **gvfs** | nixbook | `services/services.nix` |
 | **headscale** | edge | `services/mesh/headscale.nix` |
 | **immich** | nas | `services/immich.nix` |
-| **iperf3** | edge, nas, nixbook | `services/services.nix` |
-| **irlume** | nixbook | `targets/nixbook/zenbook.nix` |
+| **iperf3** | edge, nas, nixbook, stockholm | `services/services.nix` |
+| **irlume** | nixbook | `hosts/nixbook/zenbook.nix` |
 | **karakeep** | nas | `services/karakeep.nix` |
 | **nginx** | edge | `services/mesh/nginx.nix` |
-| **openssh** | edge, nas, nixbook | `services/services.nix` |
+| **openssh** | edge, nas, nixbook, stockholm | `services/services.nix` |
 | **passSecretService** | nixbook | `services/services.nix` |
-| **pipewire** | nixbook | `targets/nixbook/default.nix` |
-| **power-profiles-daemon** | nixbook | `targets/nixbook/default.nix` |
+| **pipewire** | nixbook, stockholm | `profiles/laptop.nix` `profiles/workstation/session.nix` |
+| **power-profiles-daemon** | nixbook | `profiles/laptop.nix` |
 | **printing** | nixbook | `services/services.nix` |
 | **prometheus** | nas | `services/monitoring/blackbox.nix` |
-| **resolved** | edge, nas, nixbook | `services/services.nix` |
+| **resolved** | edge, nas, nixbook, stockholm | `services/services.nix` |
 | **samba** | nas | `services/share/server.nix` |
-| **sunshine** | nixbook | `services/sunshine.nix` |
-| **tailscale** | edge, nas, nixbook | `services/mesh/tailscale.nix` |
+| **sunshine** | nixbook, stockholm | `services/sunshine.nix` |
+| **tailscale** | edge, nas, nixbook, stockholm | `services/mesh/tailscale.nix` |
 | **udisks2** | nixbook | `services/services.nix` |
-| **upower** | nixbook | `targets/nixbook/default.nix` |
-| **usbmuxd** | nas | `targets/nas/tethering.nix` |
+| **upower** | nixbook | `profiles/laptop.nix` |
+| **usbmuxd** | nas | `hosts/nas/tethering.nix` |
 | **vaultwarden** | nas | `services/vault.nix` |

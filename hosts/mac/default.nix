@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ../darwin.nix
+    ../../base/darwin.nix
   ];
 
   users.users.${me.name} = {

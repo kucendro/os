@@ -7,6 +7,7 @@
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim
+      mini-icons
       d2-vim
       rustaceanvim
       markdown-preview-nvim
@@ -28,6 +29,10 @@
             },
           },
           { "echasnovski/mini.nvim", lazy = false },
+          { "echasnovski/mini.icons",
+             dir = "${pkgs.vimPlugins.mini-icons}",
+             lazy = true,
+          },
           {
             "iamcco/markdown-preview.nvim",
             dir = "${pkgs.vimPlugins.markdown-preview-nvim}",

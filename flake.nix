@@ -89,7 +89,7 @@
         hostName:
         {
           targetModule,
-          hardwareModule,
+          hardwareModule ? { },
           profile,
           extraModules ? [ ],
         }:
@@ -122,9 +122,6 @@
                   ;
               }
             )
-          ]
-          ++ nixpkgs.lib.optionals (profile == "desktop" || profile == "workstation") [
-            stylix.nixosModules.stylix
           ]
           ++ extraModules;
         };
@@ -172,8 +169,8 @@
 
         nixbook = {
           profile = "desktop";
-          targetModule = ./targets/nixbook;
-          hardwareModule = ./targets/nixbook/hw-configuration.nix;
+          targetModule = ./hosts/nixbook;
+          hardwareModule = ./hosts/nixbook/hw-configuration.nix;
           extraModules = [
             irlume.nixosModules.irlume
           ];
@@ -181,8 +178,8 @@
 
         edge = {
           profile = "headless";
-          targetModule = ./targets/edge;
-          hardwareModule = ./targets/edge/hw-configuration.nix;
+          targetModule = ./hosts/edge;
+          hardwareModule = ./hosts/edge/hw-configuration.nix;
           extraModules = [
             disko.nixosModules.disko
           ];
@@ -190,20 +187,16 @@
 
         nas = {
           profile = "headless";
-          targetModule = ./targets/nas;
-          hardwareModule = ./targets/nas/hw-configuration.nix;
+          targetModule = ./hosts/nas;
+          hardwareModule = ./hosts/nas/hw-configuration.nix;
           extraModules = [
             disko.nixosModules.disko
           ];
         };
 
-        workstation = {
+        stockholm = {
           profile = "workstation";
-          targetModule = ./targets/workstation;
-          hardwareModule = ./targets/workstation/hw-configuration.nix;
-          extraModules = [
-            disko.nixosModules.disko
-          ];
+          targetModule = ./hosts/aws/stockholm.nix;
         };
 
       };
@@ -212,7 +205,7 @@
 
         mac = {
           profile = "darwin";
-          targetModule = ./targets/mac;
+          targetModule = ./hosts/mac;
         };
 
       };
@@ -270,13 +263,13 @@
           };
         };
 
-        workstation = {
-          hostname = "workstation.ts.kucendro.dev";
+        stockholm = {
+          hostname = "stockholm.ts.kucendro.dev";
           sshUser = me.name;
           remoteBuild = true;
           profiles.system = {
             user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.workstation;
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.stockholm;
           };
         };
       };
@@ -313,7 +306,7 @@
                 ]
               }:$PATH
               set -e
-              scripts=${./scripts}
+              scripts=${./automations}
               python3 "$scripts/gen-topology.py" "$@"
               python3 "$scripts/gen-diagram.py" "$@"
               python3 "$scripts/gen-wiki.py" "$@"

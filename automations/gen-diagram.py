@@ -50,7 +50,7 @@ def host_entry_modules(host: str, flake_text: str):
             if p.exists():
                 files.append(p)
     if not files:  # convention fallback
-        cand = REPO / "targets" / host / "default.nix"
+        cand = REPO / "hosts" / host / "default.nix"
         if cand.exists():
             files.append(cand)
     return files

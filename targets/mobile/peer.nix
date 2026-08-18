@@ -1,3 +1,0 @@
-{
-  defaultRemote = "nixbook";
-}

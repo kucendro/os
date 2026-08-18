@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../linux.nix
+    ../../base/linux.nix
     ./disko.nix
     ./data.nix
     ./reliability.nix

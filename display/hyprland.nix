@@ -3,15 +3,37 @@
   lib,
   pkgs,
   me,
+  profile,
   ...
 }:
 
 let
   c = config.lib.stylix.colors;
+
+  isStream = profile == "workstation";
+
+  monitorConf =
+    if isStream then
+      { monitor = ",preferred,auto,1"; }
+    else
+      {
+        source = [
+          "$HOME/.config/hypr/monitors.conf"
+          "$HOME/.config/hypr/workspaces.conf"
+        ];
+      };
+
+  execOnce = [
+    "noctalia"
+  ]
+  ++ lib.optionals (!isStream) [
+    "beeper & slack"
+    "env QT_QPA_PLATFORM=xcb kdrive"
+  ];
 in
 {
   services.hypridle = {
-    enable = true;
+    enable = !isStream;
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
@@ -141,16 +163,7 @@ in
         force_zero_scaling = true;
       };
 
-      source = [
-        "$HOME/.config/hypr/monitors.conf"
-        "$HOME/.config/hypr/workspaces.conf"
-      ];
-
-      exec-once = [
-        "noctalia"
-        "beeper & slack"
-        "env QT_QPA_PLATFORM=xcb kdrive"
-      ];
+      exec-once = execOnce;
 
       ecosystem.enforce_permissions = 1;
 
@@ -303,7 +316,8 @@ in
         ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
         ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
       ];
-    };
+    }
+    // monitorConf;
 
     extraConfig = ''
       windowrule {

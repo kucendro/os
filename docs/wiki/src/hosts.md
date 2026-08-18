@@ -52,7 +52,7 @@
 - **resolved** — `services/services.nix`
 - **samba** — `services/share/server.nix`
 - **tailscale** — `services/mesh/tailscale.nix`
-- **usbmuxd** — `targets/nas/tethering.nix`
+- **usbmuxd** — `hosts/nas/tethering.nix`
 - **vaultwarden** — `services/vault.nix`
 
 ## 🖥️ nixbook
@@ -62,31 +62,60 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | deploy, kucendro |
-| System packages | 251 |
+| System packages | 253 |
 | Open TCP ports | 22, 443, 9901, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 1111, 2408, 5353, 6001, 6002, 9901, 47998, 47999, 48000, 48002, 48010, 57425, 57426 |
 | Repo-configured services | 17 |
 
 **Services** (configured in this repo):
 
-- **avahi** — `targets/nixbook/default.nix`
+- **avahi** — `profiles/laptop.nix`
 - **fstrim** — `services/services.nix`
 - **fwupd** — `services/services.nix`
-- **greetd** — `targets/nixbook/default.nix`
+- **greetd** — `profiles/laptop.nix`
 - **gvfs** — `services/services.nix`
 - **iperf3** — `services/services.nix`
-- **irlume** — `targets/nixbook/zenbook.nix`
+- **irlume** — `hosts/nixbook/zenbook.nix`
 - **openssh** — `services/services.nix`
 - **passSecretService** — `services/services.nix`
-- **pipewire** — `targets/nixbook/default.nix`
-- **power-profiles-daemon** — `targets/nixbook/default.nix`
+- **pipewire** — `profiles/laptop.nix`
+- **power-profiles-daemon** — `profiles/laptop.nix`
 - **printing** — `services/services.nix`
 - **resolved** — `services/services.nix`
 - **sunshine** — `services/sunshine.nix`
 - **tailscale** — `services/mesh/tailscale.nix`
 - **udisks2** — `services/services.nix`
-- **upower** — `targets/nixbook/default.nix`
+- **upower** — `profiles/laptop.nix`
+
+## 🖥️ stockholm
+
+| | |
+|---|---|
+| Platform | `x86_64-linux` |
+| State version | `25.11` |
+| Users | kucendro, ssm-user |
+| System packages | 206 |
+| Open TCP ports | 22, 47984, 47989, 47990, 48010 |
+| Open UDP ports | 5353, 47998, 47999, 48000, 48002, 48010 |
+| Repo-configured services | 8 |
+
+**Services** (configured in this repo):
+
+- **fstrim** — `services/services.nix`
+- **greetd** — `profiles/workstation/session.nix`
+- **iperf3** — `services/services.nix`
+- **openssh** — `services/services.nix`
+- **pipewire** — `profiles/workstation/session.nix`
+- **resolved** — `services/services.nix`
+- **sunshine** — `services/sunshine.nix`
+- **tailscale** — `services/mesh/tailscale.nix`
 
 ## 🍏 mac
 
 _nix-darwin host._
+
+**LaunchDaemons:** activate-system, beszel-agent, caffeinate, iperf3-server, nix-daemon, sops-install-secrets
+
+**User agents:** exo, sunshine
+
+**Homebrew casks:** tailscale-app

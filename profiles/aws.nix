@@ -12,7 +12,7 @@
 
   ec2.efi = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;

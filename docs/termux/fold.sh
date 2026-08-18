@@ -8,25 +8,8 @@ pkg install -y openssh mosh tmux curl
 mkdir -p ~/.ssh ~/.termux
 
 cat > ~/.ssh/config <<'CONFIG_EOF'
-Host edge
-  HostName edge.ts.kucendro.dev
+Host nixbook stockholm edge nas mac
   User kucendro
-  Port 22
-  IdentityFile ~/.ssh/id_ed25519
-Host nas
-  HostName nas.ts.kucendro.dev
-  User kucendro
-  Port 22
-  IdentityFile ~/.ssh/id_ed25519
-Host nixbook
-  HostName nixbook.ts.kucendro.dev
-  User kucendro
-  Port 22
-  IdentityFile ~/.ssh/id_ed25519
-Host mac
-  HostName mac.ts.kucendro.dev
-  User kucendro
-  Port 22
   IdentityFile ~/.ssh/id_ed25519
 CONFIG_EOF
 chmod 600 ~/.ssh/config
@@ -64,13 +47,16 @@ PROPS_EOF
 
 cat >> ~/.bashrc <<'BASHRC_EOF'
 if [[ $- == *i* && -z $TMUX && -z $SSH_CONNECTION ]]; then
-  remotes=(edge nas nixbook mac)
+  remotes=(nixbook stockholm edge nas mac)
   default=nixbook
-  echo "pick target (enter=$default, l=local, 3s timeout):"
+  echo ""
+  echo ""
+  echo "  pick target (enter=$default, l=local, 3s timeout):"
+  echo ""
   i=1
   for r in "${remotes[@]}"; do
-    mark=" "; [ "$r" = "$default" ] && mark="*"
-    printf '  %d) %s%s\n' "$i" "$r" "$mark"
+    mark=""; [ "$r" = "$default" ] && mark="  *"
+    printf '    %d)  %s%s\n\n' "$i" "$r" "$mark"
     i=$((i+1))
   done
   read -r -t 3 -p "> " choice || choice=""
@@ -80,11 +66,12 @@ if [[ $- == *i* && -z $TMUX && -z $SSH_CONNECTION ]]; then
     *[!0-9]*)  target="$choice" ;;
     *)         target="${remotes[$((choice-1))]:-$default}" ;;
   esac
-  if [ -n "$target" ] && ssh -o ConnectTimeout=3 -o BatchMode=yes "$target" true 2>/dev/null; then
-    exec mosh "$target" -- tmux new -A -s fold
-  else
-    [ -n "$target" ] && echo "$target unreachable -> local tmux"
-    exec tmux new-session -A -s fold
+  if [ -n "$target" ]; then
+    if ssh -o ConnectTimeout=3 -o BatchMode=yes "$target" true 2>/dev/null; then
+      exec mosh "$target" -- tmux new -A -s fold
+    else
+      echo "$target unreachable"
+    fi
   fi
 fi
 BASHRC_EOF

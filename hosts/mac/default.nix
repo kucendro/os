@@ -18,7 +18,6 @@
     docker
     docker-compose
     colima
-    exo
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -66,20 +65,6 @@
       ProcessType = "Interactive";
       StandardOutPath = "/Users/${me.name}/Library/Logs/sunshine.log";
       StandardErrorPath = "/Users/${me.name}/Library/Logs/sunshine.log";
-    };
-  };
-
-  launchd.user.agents.exo = {
-    serviceConfig = {
-      ProgramArguments = [ "${pkgs.exo}/bin/exo" ];
-      KeepAlive = true;
-      RunAtLoad = true;
-      ProcessType = "Interactive";
-      StandardOutPath = "/Users/${me.name}/Library/Logs/exo.log";
-      StandardErrorPath = "/Users/${me.name}/Library/Logs/exo.log";
-      EnvironmentVariables = {
-        PATH = "/run/current-system/sw/bin:/usr/bin:/bin:/usr/sbin:/sbin";
-      };
     };
   };
 

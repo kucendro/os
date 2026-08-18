@@ -79,112 +79,10 @@
 
       flakeDir = "brain";
 
-      homeManagerConfig = profile: {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "backup";
-        home-manager.extraSpecialArgs = {
-          inherit
-            inputs
-            me
-            profile
-            flakeDir
-            ;
-        };
-        home-manager.users.${me.name} = import ./home/home.nix;
-      };
-
-      mkSystem =
-        hostName:
-        {
-          targetModule,
-          hardwareModule ? { },
-          profile,
-          extraModules ? [ ],
-        }:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit
-              inputs
-              me
-              profile
-              hostNames
-              flakeDir
-              ;
-            secretsDir = inputs.secrets;
-          };
-          modules = [
-            { networking.hostName = hostName; }
-            targetModule
-            hardwareModule
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            (homeManagerConfig profile)
-            (
-              {
-                secretsDir,
-                config,
-                lib,
-                me,
-                ...
-              }:
-              import (inputs.secrets + "/sops.nix") {
-                inherit
-                  secretsDir
-                  config
-                  lib
-                  me
-                  ;
-              }
-            )
-          ]
-          ++ extraModules;
-        };
-
-      mkDarwin =
-        hostName:
-        {
-          targetModule,
-          profile,
-          extraModules ? [ ],
-        }:
-        nix-darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit
-              inputs
-              me
-              profile
-              hostNames
-              flakeDir
-              ;
-            secretsDir = inputs.secrets;
-          };
-          modules = [
-            { networking.hostName = hostName; }
-            targetModule
-            sops-nix.darwinModules.sops
-            home-manager.darwinModules.home-manager
-            (homeManagerConfig profile)
-            (
-              {
-                secretsDir,
-                config,
-                lib,
-                me,
-                ...
-              }:
-              import (inputs.secrets + "/sops.nix") {
-                inherit
-                  secretsDir
-                  config
-                  lib
-                  me
-                  ;
-              }
-            )
-          ]
-          ++ extraModules;
-        };
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
 
       nixosHosts = {
 
@@ -233,6 +131,19 @@
 
       hostNames = builtins.attrNames nixosHosts ++ builtins.attrNames darwinHosts;
 
+      inherit
+        (import ./lib/mk-system.nix {
+          inherit
+            inputs
+            me
+            flakeDir
+            hostNames
+            ;
+        })
+        mkSystem
+        mkDarwin
+        ;
+
     in
 
     {
@@ -240,62 +151,11 @@
 
       darwinConfigurations = nixpkgs.lib.mapAttrs mkDarwin darwinHosts;
 
-      deploy.nodes = {
-
-        edge = {
-          hostname = "edge.kucendro.dev";
-          sshUser = me.name;
-          remoteBuild = true;
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.edge;
-          };
-        };
-
-        nixbook = {
-          hostname = "nixbook";
-          sshUser = me.name;
-          remoteBuild = true;
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nixbook;
-          };
-        };
-
-        # mac = {
-        #   hostname = "mac";
-        #   sshUser = me.name;
-        #   remoteBuild = true;
-        #   interactiveSudo = true;
-        #   magicRollback = false;
-        #   profiles.system = {
-        #     user = "root";
-        #     path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mac;
-        #   };
-        # };
-
-        nas = {
-          hostname = "nas";
-          sshUser = me.name;
-          remoteBuild = true;
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nas;
-          };
-        };
-
-        stockholm = {
-          hostname = "stockholm.ts.kucendro.dev";
-          sshUser = me.name;
-          remoteBuild = true;
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.stockholm;
-          };
-        };
+      deploy = import ./flake/deploy.nix {
+        inherit deploy-rs me self;
       };
 
-      packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
+      packages = nixpkgs.lib.genAttrs systems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
@@ -320,77 +180,11 @@
         }
       );
 
-      checks = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
-        system: deploy-rs.lib.${system}.deployChecks self.deploy
-      );
+      checks = nixpkgs.lib.genAttrs systems (system: deploy-rs.lib.${system}.deployChecks self.deploy);
 
-      apps = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
-          runpod = {
-            type = "app";
-            meta.description = "Push the workstation image to GHCR and manage the RunPod pod";
-            program = nixpkgs.lib.getExe (pkgs.writeShellApplication {
-              name = "runpod";
-              runtimeInputs = [
-                pkgs.skopeo
-                pkgs.runpodctl
-                pkgs.gzip
-                pkgs.coreutils
-              ];
-              text = builtins.readFile ./automations/runpod.sh;
-            });
-          };
-        }
-        // {
-          diagram = {
-            type = "app";
-            meta.description = "Regenerate topology, diagrams and wiki";
-            program = "${pkgs.writeShellScript "gen-diagram" ''
-              export PATH=${
-                nixpkgs.lib.makeBinPath [
-                  pkgs.python3
-                  pkgs.d2
-                ]
-              }:$PATH
-              set -e
-              scripts=${./automations}
-              python3 "$scripts/gen-topology.py" "$@"
-              python3 "$scripts/gen-diagram.py" "$@"
-              python3 "$scripts/gen-wiki.py" "$@"
-            ''}";
-          };
-
-          termux-artifacts = {
-            type = "app";
-            meta.description = "Render termux bootstrap scripts";
-            program =
-              let
-                setups = import ./services/termux-setup.nix {
-                  lib = nixpkgs.lib;
-                  inherit me;
-                  hosts = hostNames;
-                } pkgs;
-                render = nixpkgs.lib.mapAttrsToList (phone: drv: ''
-                  ${drv}/bin/termux-setup-${phone} > "$out/${phone}.sh"
-                  ${drv}/bin/termux-setup-${phone} --png "$out/${phone}.png"
-                  cp "$out/${phone}.png" "$wiki/${phone}.png"
-                  printf '## %s\n\n![%s](termux/%s.png)\n\n' '${phone}' '${phone}' '${phone}' >> "$page"
-                '') setups;
-              in
-              "${pkgs.writeShellScript "gen-termux-artifacts" ''
-                set -euo pipefail
-                out="''${1:-docs/termux}"
-                wiki="docs/wiki/src/termux"
-                page="docs/wiki/src/termux.md"
-                mkdir -p "$out" "$wiki"
-                printf '# Termux bootstrap\n\nScan into Termux; scripts live in docs/termux.\n\n' > "$page"
-                ${builtins.concatStringsSep "\n" render}
-              ''}";
-          };
+      apps = nixpkgs.lib.genAttrs systems (
+        import ./flake/apps.nix {
+          inherit nixpkgs me hostNames;
         }
       );
 

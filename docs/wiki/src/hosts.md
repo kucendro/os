@@ -116,6 +116,6 @@ _nix-darwin host._
 
 **LaunchDaemons:** activate-system, beszel-agent, caffeinate, iperf3-server, nix-daemon, sops-install-secrets
 
-**User agents:** exo, sunshine
+**User agents:** sunshine
 
 **Homebrew casks:** tailscale-app

@@ -89,7 +89,7 @@
 
   environment.systemPackages = with pkgs; [
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.colibri.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.colibri.packages.${pkgs.stdenv.hostPlatform.system}.default
     nautilus
     loupe
     qdirstat

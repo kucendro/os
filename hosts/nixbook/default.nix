@@ -8,6 +8,7 @@
   imports = [
     ../../base/linux.nix
     ../../profiles/laptop.nix
+    ../../profiles/vr.nix
     ./zenbook.nix
     ../../services/vpn/deep.nix
     ../../services/kube.nix

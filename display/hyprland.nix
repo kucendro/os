@@ -9,7 +9,6 @@
 
 let
   c = config.lib.stylix.colors;
-
   isStream = profile == "workstation";
 
   monitorConf =

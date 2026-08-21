@@ -1,7 +1,13 @@
+pre-commit:
+  commands:
+    format:
+      glob: "*.{nix}"
+      run: nixfmt {staged_files}
+      stage_fixed: true
 pre-push:
   parallel: true
   commands:
-    dry-check:
+    check:
       glob: "*.{nix,json,lock}"
       run: |
         nix flake check

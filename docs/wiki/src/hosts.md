@@ -59,12 +59,13 @@
 
 | | |
 |---|---|
-| Platform | `?` |
-| Users | — |
-| System packages | ? |
-| Open TCP ports | — |
-| Open UDP ports | — |
-| Repo-configured services | 17 |
+| Platform | `x86_64-linux` |
+| State version | `25.11` |
+| Users | deploy, kucendro |
+| System packages | 257 |
+| Open TCP ports | 22, 443, 9901, 47984, 47989, 47990, 48010 |
+| Open UDP ports | 1111, 2408, 5353, 6001, 6002, 9901, 47998, 47999, 48000, 48002, 48010, 57425, 57426 |
+| Repo-configured services | 18 |
 
 **Services** (configured in this repo):
 
@@ -75,6 +76,7 @@
 - **gvfs** — `services/services.nix`
 - **iperf3** — `services/services.nix`
 - **irlume** — `hosts/nixbook/zenbook.nix`
+- **monado** — `display/vr.nix`
 - **openssh** — `services/services.nix`
 - **passSecretService** — `services/services.nix`
 - **pipewire** — `profiles/laptop.nix`

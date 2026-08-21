@@ -77,7 +77,9 @@
     let
       me = import (inputs.secrets + "/me.nix");
 
-      flakeDir = "brain";
+      # Checkout directory of this repo, relative to $HOME. Renaming the
+      # folder on disk is this one line plus a rebuild.
+      flakeDir = "os";
 
       systems = [
         "x86_64-linux"

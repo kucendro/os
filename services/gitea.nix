@@ -76,10 +76,20 @@ in
     chown gitea-runner:gitea-runner /var/lib/gitea-runner/.ssh/config
   '';
 
-  systemd.services.gitea-runner-nas.serviceConfig = {
-    DynamicUser = lib.mkForce false;
-    User = "gitea-runner";
-    Group = "gitea-runner";
+  systemd.services.gitea-runner-nas = {
+    after = [ "gitea.service" ];
+    preStart = ''
+      for _ in $(seq 30); do
+        ${lib.getExe pkgs.curl} -fsS -o /dev/null --max-time 2 "https://${webDomain}/api/healthz" && break
+        sleep 1
+      done
+      :
+    '';
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      User = "gitea-runner";
+      Group = "gitea-runner";
+    };
   };
 
   systemd.services.gitea.unitConfig.RequiresMountsFor = [ "/mnt/data" ];

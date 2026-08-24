@@ -182,7 +182,9 @@
         }
       );
 
-      checks = nixpkgs.lib.genAttrs systems (system: deploy-rs.lib.${system}.deployChecks self.deploy);
+      checks = nixpkgs.lib.genAttrs systems (system: {
+        inherit (deploy-rs.lib.${system}.deployChecks self.deploy) deploy-schema;
+      });
 
       apps = nixpkgs.lib.genAttrs systems (
         import ./flake/apps.nix {

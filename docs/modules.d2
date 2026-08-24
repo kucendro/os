@@ -165,6 +165,7 @@ services: "services" {
   kube_nix: "kube.nix" { shape: page }
   kubicek_nix: "kubicek.nix" { shape: page }
   mcp_nix: "mcp.nix" { shape: page }
+  remarkable_setup_nix: "remarkable-setup.nix" { shape: page }
   remarkable_nix: "remarkable.nix" { shape: page
     svc_rmfakecloud: "rmfakecloud" { shape: oval; style.fill: "#e6f0ff" }
   }
@@ -256,6 +257,7 @@ hosts.nixbook.default_nix -> profiles.vr_nix
 hosts.nixbook.default_nix -> services.bluetooth_sink_nix
 hosts.nixbook.default_nix -> services.kdrive_nix
 hosts.nixbook.default_nix -> services.kube_nix
+hosts.nixbook.default_nix -> services.remarkable_setup_nix
 hosts.nixbook.default_nix -> services.scrcpy_nix
 hosts.nixbook.default_nix -> services.share.client_nix
 hosts.nixbook.default_nix -> services.sunshine_nix

@@ -26,5 +26,6 @@ nginx virtual hosts across the fleet. *tailnet* endpoints are bound to the mesh 
 | `music.home.kucendro.dev` | tailnet | edge |
 | `party.kucendro.dev` | public | edge |
 | `qore.home.kucendro.dev` | tailnet | edge |
+| `remarkable.home.kucendro.dev` | tailnet | edge |
 | `vault.home.kucendro.dev` | tailnet | edge |
 | `wiki.home.kucendro.dev` | tailnet | edge |

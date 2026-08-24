@@ -26,6 +26,7 @@ development: "development" {
 }
 display: "display" {
   hyprland_nix: "hyprland.nix" { shape: page }
+  noctalia_nix: "noctalia.nix" { shape: page }
   plymouth_nix: "plymouth.nix" { shape: page }
   stylix_nix: "stylix.nix" { shape: page }
   vr_nix: "vr.nix" { shape: page
@@ -164,6 +165,9 @@ services: "services" {
   kube_nix: "kube.nix" { shape: page }
   kubicek_nix: "kubicek.nix" { shape: page }
   mcp_nix: "mcp.nix" { shape: page }
+  remarkable_nix: "remarkable.nix" { shape: page
+    svc_rmfakecloud: "rmfakecloud" { shape: oval; style.fill: "#e6f0ff" }
+  }
   scrcpy_nix: "scrcpy.nix" { shape: page }
   services_nix: "services.nix" { shape: page
     svc_fstrim: "fstrim" { shape: oval; style.fill: "#e6f0ff" }
@@ -242,6 +246,7 @@ hosts.nas.default_nix -> services.kubicek_nix
 hosts.nas.default_nix -> services.mcp_nix
 hosts.nas.default_nix -> services.mesh.subnet_router_nix
 hosts.nas.default_nix -> services.monitoring.blackbox_nix
+hosts.nas.default_nix -> services.remarkable_nix
 hosts.nas.default_nix -> services.share.server_nix
 hosts.nas.default_nix -> services.vault_nix
 hosts.nixbook.default_nix -> base.linux_nix
@@ -258,6 +263,7 @@ hosts.nixbook.default_nix -> services.suuntool_nix
 hosts.nixbook.default_nix -> services.termux_nix
 hosts.nixbook.default_nix -> services.vpn.deep_nix
 profiles.graphical_nix -> display.hyprland_nix
+profiles.graphical_nix -> display.noctalia_nix
 profiles.graphical_nix -> display.stylix_nix
 profiles.graphical_nix -> home.graphical_nix
 profiles.laptop_nix -> display.plymouth_nix

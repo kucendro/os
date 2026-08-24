@@ -9,7 +9,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro |
-| System packages | 155 |
+| System packages | 156 |
 | Open TCP ports | 22, 80, 443 |
 | Open UDP ports | 3478 |
 | Repo-configured services | 8 |
@@ -32,10 +32,10 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro |
-| System packages | 170 |
+| System packages | 171 |
 | Open TCP ports | 22, 1704, 1705, 1780, 8095, 8097, 8927 |
 | Open UDP ports | 5353 |
-| Repo-configured services | 15 |
+| Repo-configured services | 16 |
 
 **Services** (configured in this repo):
 
@@ -50,6 +50,7 @@
 - **openssh** — `services/services.nix`
 - **prometheus** — `services/monitoring/blackbox.nix`
 - **resolved** — `services/services.nix`
+- **rmfakecloud** — `services/remarkable.nix`
 - **samba** — `services/share/server.nix`
 - **tailscale** — `services/mesh/tailscale.nix`
 - **usbmuxd** — `hosts/nas/tethering.nix`
@@ -62,7 +63,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | deploy, kucendro |
-| System packages | 257 |
+| System packages | 258 |
 | Open TCP ports | 22, 443, 9901, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 1111, 2408, 5353, 6001, 6002, 9901, 47998, 47999, 48000, 48002, 48010, 57425, 57426 |
 | Repo-configured services | 18 |
@@ -95,7 +96,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro, ssm-user |
-| System packages | 206 |
+| System packages | 207 |
 | Open TCP ports | 22, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 5353, 47998, 47999, 48000, 48002, 48010 |
 | Repo-configured services | 8 |

@@ -28,6 +28,7 @@ Every service this repo configures, the host(s) that run it, and the file that d
 | **printing** | nixbook | `services/services.nix` |
 | **prometheus** | nas | `services/monitoring/blackbox.nix` |
 | **resolved** | edge, nas, nixbook, stockholm | `services/services.nix` |
+| **rmfakecloud** | nas | `services/remarkable.nix` |
 | **samba** | nas | `services/share/server.nix` |
 | **sunshine** | nixbook, stockholm | `services/sunshine.nix` |
 | **tailscale** | edge, nas, nixbook, stockholm | `services/mesh/tailscale.nix` |

@@ -16,6 +16,7 @@
     ../../services/bluetooth-sink.nix
     ../../services/scrcpy.nix
     ../../services/termux.nix
+    ../../services/remarkable-setup.nix
     ../../services/kdrive.nix
     ../../services/suuntool.nix
     ../../services/share/client.nix

@@ -26,6 +26,7 @@
     ../../services/mcp.nix
     ../../services/karakeep.nix
     ../../services/actual.nix
+    ../../services/remarkable.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

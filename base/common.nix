@@ -41,5 +41,6 @@
     fzf
     wireguard-tools
     fastfetch
+    manix
   ];
 }

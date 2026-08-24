@@ -104,6 +104,7 @@
         j = "just";
         qore = "cd ~/qore/ && cargo run --release --bin qore";
         link-phone = "adb tcpip 5555";
+        options = "manix";
 
       };
       initContent = ''

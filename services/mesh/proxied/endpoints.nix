@@ -38,6 +38,9 @@
   budget = {
     address = "nas.ts.kucendro.dev:5006";
   };
+  remarkable = {
+    address = "nas.ts.kucendro.dev:5007";
+  };
   mcp = {
     address = "nas.ts.kucendro.dev:8092";
     extraConfig = "proxy_buffering off;";

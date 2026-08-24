@@ -12,15 +12,15 @@ in
   };
 
   systemd.tmpfiles.rules = [
-    "d /mnt/data/remarkable 0700 root root -"
+    "d /mnt/data/remarkable 0700 - - -"
   ];
 
-  fileSystems."/var/lib/rmfakecloud" = {
+  fileSystems."/var/lib/private/rmfakecloud" = {
     device = "/mnt/data/remarkable";
     fsType = "none";
     options = [ "bind" ];
   };
 
-  systemd.services.rmfakecloud.unitConfig.RequiresMountsFor = [ "/var/lib/rmfakecloud" ];
+  systemd.services.rmfakecloud.unitConfig.RequiresMountsFor = [ "/var/lib/private/rmfakecloud" ];
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
 }

@@ -27,7 +27,7 @@
       Type = "oneshot";
       ExecStart = pkgs.writeShellScript "iphone-keepalive" ''
         ${pkgs.iproute2}/bin/ip link show iphone0 >/dev/null 2>&1 || exit 0
-        exec ${pkgs.iputils}/bin/ping -I iphone0 -c1 -W5 -n 1.1.1.1
+        ${pkgs.iputils}/bin/ping -I iphone0 -c1 -W5 -n 1.1.1.1 || true
       '';
     };
   };

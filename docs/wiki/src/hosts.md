@@ -63,7 +63,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | deploy, kucendro |
-| System packages | 259 |
+| System packages | 251 |
 | Open TCP ports | 22, 443, 9901, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 1111, 2408, 5353, 6001, 6002, 9901, 47998, 47999, 48000, 48002, 48010, 57425, 57426 |
 | Repo-configured services | 18 |
@@ -96,7 +96,7 @@
 | Platform | `x86_64-linux` |
 | State version | `25.11` |
 | Users | kucendro, ssm-user |
-| System packages | 207 |
+| System packages | 196 |
 | Open TCP ports | 22, 47984, 47989, 47990, 48010 |
 | Open UDP ports | 5353, 47998, 47999, 48000, 48002, 48010 |
 | Repo-configured services | 8 |

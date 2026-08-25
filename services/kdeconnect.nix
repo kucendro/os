@@ -32,7 +32,7 @@ in
     type = lib.types.attrsOf lib.types.str;
     default = { };
     example = {
-      "LOCK" = "hyprlock";
+      "LOCK" = "noctalia msg session lock";
     };
     description = ''
       Declarative kdeconnect "run command" entries, as name -> shell command.

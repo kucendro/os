@@ -18,7 +18,6 @@
           profile = "lock";
         };
         login = { };
-        hyprlock = { };
       };
     };
   };

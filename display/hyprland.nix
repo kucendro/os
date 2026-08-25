@@ -35,7 +35,7 @@ in
     enable = !isStream;
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = "noctalia msg session lock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };
@@ -62,97 +62,6 @@ in
     };
   };
 
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = {
-        hide_cursor = false;
-        grace = 3;
-        disable_loading_bar = true;
-      };
-
-      background = lib.mkForce [
-        {
-          monitor = "";
-          path = "${config.stylix.image}";
-          color = "rgb(${c.base00})";
-          blur_passes = 3;
-          blur_size = 7;
-          brightness = 0.7;
-          contrast = 0.9;
-          vibrancy = 0.17;
-          vibrancy_darkness = 0.15;
-          noise = 0.012;
-        }
-      ];
-
-      input-field = lib.mkForce [
-        {
-          monitor = "";
-          size = "280, 55";
-          position = "0, -265";
-          halign = "center";
-          valign = "center";
-          outline_thickness = 2;
-          rounding = 27;
-          dots_size = 0.28;
-          dots_spacing = 0.32;
-          dots_center = true;
-          dots_rounding = -1;
-          outer_color = "rgba(${c.base02}cc)";
-          inner_color = "rgba(${c.base00}99)";
-          font_color = "rgb(${c.base05})";
-          fade_on_empty = false;
-          hide_input = false;
-          placeholder_text = "";
-          check_color = "rgb(${c.base0B})";
-          fail_color = "rgb(${c.base08})";
-          fail_text = "<i>SON 🥀... $FAIL</i>";
-          capslock_color = "rgb(${c.base0E})";
-        }
-      ];
-
-      label = lib.mkForce [
-        # Clock
-        {
-          monitor = "";
-          text = "cmd[update:1000] date +'%H:%M'";
-          font_family = config.stylix.fonts.serif.name;
-          font_size = 96;
-          color = "rgb(${c.base05})";
-          position = "0, 95";
-          halign = "center";
-          valign = "center";
-          shadow_passes = 2;
-          shadow_size = 5;
-          shadow_color = "rgba(0, 0, 0, 0.45)";
-        }
-        # Date
-        {
-          monitor = "";
-          text = "cmd[update:60000] LC_ALL=C date +'%A, %d %B'";
-          font_family = config.stylix.fonts.serif.name;
-          font_size = 17;
-          color = "rgb(${c.base06})";
-          position = "0, 15";
-          halign = "center";
-          valign = "center";
-        }
-        # Greeting
-        {
-          monitor = "";
-          text = "Welcome back son 🥀🥀";
-          font_family = config.stylix.fonts.serif.name;
-          font_size = 15;
-          color = "rgb(${c.base04})";
-          position = "0, -190";
-          halign = "center";
-          valign = "center";
-        }
-      ];
-    };
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang";
@@ -168,9 +77,9 @@ in
 
       permission = [
         "/nix/store/.*/bin/grim, screencopy, allow"
-        "/nix/store/.*/bin/hyprlock, screencopy, allow"
         "/nix/store/.*/bin/slurp, screencopy, allow"
         "/nix/store/.*/bin/sunshine.*, screencopy, allow"
+        "/nix/store/.*/bin/.*noctalia.*, screencopy, allow"
         "/nix/store/.*/libexec/xdg-desktop-portal-hyprland, screencopy, allow"
         "/nix/store/.*/bin/hyprpm, plugin, allow"
         "/nix/store/.*/bin/hyprctl, plugin, allow"
@@ -273,7 +182,7 @@ in
 
       bind = [
         "$mainMod, A, exec, noctalia msg panel-toggle control-center"
-        "$mainMod, L, exec, hyprlock"
+        "$mainMod, L, exec, noctalia msg session lock"
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"

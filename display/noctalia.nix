@@ -57,7 +57,11 @@
         position = "top_center";
       };
 
-      lockscreen.enabled = false;
+      lockscreen = {
+        enabled = true;
+        allow_empty_password = true;
+        blurred_desktop = true;
+      };
 
       idle.behavior = {
         lock = {

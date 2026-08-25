@@ -2,9 +2,10 @@
 {
   home.pointerCursor.enable = true;
 
-  home.packages = [
-    pkgs.sshfs
-    pkgs.glib
+  home.packages = with pkgs; [
+    sshfs
+    glib
+    vial
   ];
 
   services = {

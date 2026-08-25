@@ -18,4 +18,5 @@
       "suspend" = "noctalia msg session lock-and-suspend";
     };
   };
+
 }

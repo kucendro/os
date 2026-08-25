@@ -9,6 +9,16 @@ let
 
   devPackages = import ../development/dev-packages.nix pkgs;
 
+  baseLibs = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    glibc
+    glibc.dev
+    libGL
+    openssl
+    dbus
+  ];
+
   glue = with pkgs; [
     tailscale
     coreutils
@@ -23,7 +33,7 @@ let
     nvtopPackages.nvidia
   ];
 
-  contents = devPackages ++ glue;
+  contents = devPackages ++ baseLibs ++ glue;
 
   entrypoint = pkgs.writeShellApplication {
     name = "workstation-entrypoint";

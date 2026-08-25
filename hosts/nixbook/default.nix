@@ -69,14 +69,6 @@
     SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", GROUP="dialout", MODE="0660", ENV{ID_MM_DEVICE_IGNORE}="1"
   '';
 
-  # TODO: This shit uncomment before start of last year of high school
-  # virtualisation.virtualbox = {
-  #   host = {
-  #     enable = true;
-  #     enableExtensionPack = true;
-  #   };
-  # };
-
   users.extraGroups.vboxusers.members = [ me.name ];
 
   users.users.deploy = {

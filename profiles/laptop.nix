@@ -140,6 +140,18 @@
     openssl
   ];
 
+  virtualisation = {
+    virtualbox = {
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
+    };
+    waydroid = {
+      enable = true;
+    };
+  };
+
   home-manager.users.${me.name}.imports = [
     ../home/laptop.nix
   ];

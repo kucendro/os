@@ -60,7 +60,8 @@
       lockscreen = {
         enabled = true;
         allow_empty_password = true;
-        blurred_desktop = true;
+        blurred_desktop = false;
+        wallpaper = "${config.stylix.image}";
       };
 
       idle.behavior = {

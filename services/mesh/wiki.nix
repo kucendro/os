@@ -1,6 +1,11 @@
 # Serves the nixdiag-generated wiki (`packages.docs`) straight from the store:
 # it ships atomically with every deploy of this host.
-{ inputs, pkgs, me, ... }:
+{
+  inputs,
+  pkgs,
+  me,
+  ...
+}:
 
 let
   homeDomain = me.domains.home;
@@ -10,7 +15,7 @@ in
   imports = [ inputs.nixdiag.nixosModules.default ];
 
   #: wiki
-  #: expose 443 mesh
+  #: expose 443 mesh name=wiki@home
   services.nixdiag.serve = {
     enable = true;
     docs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.docs;

@@ -38,4 +38,5 @@ nixdiag.lib.mkDocs {
   bookToml = ../wiki/book.toml;
   extraPages.Termux = "${termux}/termux.md";
   extraAssets.termux = "${termux}/termux";
+  domains = me.domains;
 }

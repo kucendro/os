@@ -167,6 +167,7 @@
         out = "docs";
         title = "kucendro infrastructure wiki";
         extraLinks.Termux = "termux.md";
+        domains = me.domains;
       };
 
       packages = nixpkgs.lib.genAttrs systems (

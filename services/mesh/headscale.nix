@@ -10,15 +10,15 @@
     address = "127.0.0.1";
     port = 8080;
     settings = {
-      server_url = "https://edge.kucendro.dev";
-      base_domain = "ts.kucendro.dev";
+      server_url = "https://${me.domains.edge}";
+      base_domain = me.domains.mesh;
       policy = {
         mode = "file";
         path = "${./acl.json}";
       };
       dns = {
         magic_dns = true;
-        base_domain = "ts.kucendro.dev";
+        base_domain = me.domains.mesh;
         nameservers.global = [
           "1.1.1.1"
           "9.9.9.9"
@@ -37,7 +37,7 @@
     };
   };
 
-  services.nginx.virtualHosts."edge.kucendro.dev" = {
+  services.nginx.virtualHosts.${me.domains.edge} = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {

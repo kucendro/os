@@ -1,4 +1,4 @@
-{ ... }:
+{ me, ... }:
 
 let
   port = 5007;
@@ -7,7 +7,7 @@ in
   services.rmfakecloud = {
     enable = true;
     port = port;
-    storageUrl = "https://remarkable.home.kucendro.dev";
+    storageUrl = "https://remarkable.${me.domains.home}";
     logLevel = "warn";
   };
 

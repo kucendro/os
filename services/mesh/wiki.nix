@@ -1,9 +1,9 @@
 # Serves the nixdiag-generated wiki (`packages.docs`) straight from the store:
 # it ships atomically with every deploy of this host.
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, me, ... }:
 
 let
-  homeDomain = "home.kucendro.dev";
+  homeDomain = me.domains.home;
   tailnetIP = "100.64.0.1";
 in
 {

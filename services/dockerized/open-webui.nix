@@ -1,8 +1,8 @@
-{ ... }:
+{ me, ... }:
 
 let
   webPort = 8080;
-  ollamaUrl = "http://stockholm.ts.kucendro.dev:11434";
+  ollamaUrl = "http://stockholm.${me.domains.mesh}:11434";
 in
 {
   virtualisation.oci-containers = {

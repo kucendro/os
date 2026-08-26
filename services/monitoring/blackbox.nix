@@ -2,12 +2,13 @@
   config,
   lib,
   pkgs,
+  me,
   ...
 }:
 
 let
-  homeDomain = "home.kucendro.dev";
-  endpoints = import ../mesh/proxied/endpoints.nix;
+  homeDomain = me.domains.home;
+  endpoints = import ../mesh/proxied/endpoints.nix me;
   targets = lib.mapAttrsToList (name: _: "https://${name}.${homeDomain}") endpoints;
   blackboxPort = 9115;
   prometheusPort = 9090;
@@ -75,7 +76,7 @@ in
       {
         job_name = "iperf3";
         honor_labels = true;
-        static_configs = [ { targets = [ "edge.ts.kucendro.dev:9091" ]; } ];
+        static_configs = [ { targets = [ "edge.${me.domains.mesh}:9091" ]; } ];
       }
       {
         job_name = "containers";

@@ -2,12 +2,13 @@
   config,
   lib,
   pkgs,
+  me,
   ...
 }:
 
 let
-  prometheus = "http://nas.ts.kucendro.dev:9090";
-  publicHost = "edge.kucendro.dev";
+  prometheus = "http://nas.${me.domains.mesh}:9090";
+  publicHost = me.domains.edge;
   webroot = "/var/www/metrics";
   gen = pkgs.writeShellApplication {
     name = "gen-metric-badges";

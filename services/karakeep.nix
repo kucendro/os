@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ config, lib, me, ... }:
 
 let
   port = 3006;
-  domain = "karakeep.home.kucendro.dev";
+  domain = "karakeep.${me.domains.home}";
 in
 {
   nixpkgs.config.permittedInsecurePackages = [ "pnpm-9.15.9" ];

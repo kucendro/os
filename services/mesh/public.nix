@@ -1,15 +1,17 @@
-{ lib, ... }:
+{ lib, me, ... }:
 
 let
+  nas = "nas.${me.domains.mesh}";
+
   publics = {
     party = {
-      address = "nas.ts.kucendro.dev:8095";
+      address = "${nas}:8095";
     };
     kubicek = {
-      address = "nas.ts.kucendro.dev:3007";
+      address = "${nas}:3007";
     };
     # mcp = {
-    #   address = "nas.ts.kucendro.dev:8092";
+    #   address = "${nas}:8092";
     #   extraConfig = "proxy_buffering off;";
     # };
   };
@@ -31,6 +33,6 @@ let
 in
 {
   services.nginx.virtualHosts = lib.mapAttrs' (
-    name: cfg: lib.nameValuePair "${name}.kucendro.dev" (mkVhost name cfg)
+    name: cfg: lib.nameValuePair "${name}.${me.domains.root}" (mkVhost name cfg)
   ) publics;
 }

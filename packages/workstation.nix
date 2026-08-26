@@ -5,7 +5,7 @@
 }:
 
 let
-  loginServer = "https://edge.kucendro.dev";
+  loginServer = "https://${me.domains.edge}";
 
   devPackages = import ../development/dev-packages.nix pkgs;
 

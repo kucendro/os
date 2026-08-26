@@ -27,8 +27,8 @@ let
       openssh
     ];
     text = ''
-      export CLOUD_URL=https://remarkable.home.kucendro.dev
-      export LOGIN_SERVER=https://edge.kucendro.dev
+      export CLOUD_URL=https://remarkable.${me.domains.home}
+      export LOGIN_SERVER=https://${me.domains.edge}
       export SSH_CONFIG=${lib.escapeShellArg sshConfig}
       export REACHES=${lib.escapeShellArg (lib.concatStringsSep " " orderedHosts)}
       export DEFAULT_REMOTE=${peer.defaultRemote}

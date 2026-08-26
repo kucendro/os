@@ -6,9 +6,9 @@
     defaults.email = me.emails.personal;
   };
 
-  security.acme.certs."home.kucendro.dev" = {
-    domain = "home.kucendro.dev";
-    extraDomainNames = [ "*.home.kucendro.dev" ];
+  security.acme.certs.${me.domains.home} = {
+    domain = me.domains.home;
+    extraDomainNames = [ "*.${me.domains.home}" ];
     dnsProvider = "cloudflare";
     environmentFile = config.sops.templates."acme-cloudflare-env".path;
     group = "nginx";

@@ -8,7 +8,7 @@
   nodes = {
 
     edge = {
-      hostname = "edge.kucendro.dev";
+      hostname = me.domains.edge;
       sshUser = me.name;
       remoteBuild = true;
       profiles.system = {
@@ -50,7 +50,7 @@
     };
 
     stockholm = {
-      hostname = "stockholm.ts.kucendro.dev";
+      hostname = "stockholm.${me.domains.mesh}";
       sshUser = me.name;
       remoteBuild = true;
       profiles.system = {

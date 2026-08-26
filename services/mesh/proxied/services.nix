@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ lib, me, ... }:
 
 let
-  homeDomain = "home.kucendro.dev";
+  homeDomain = me.domains.home;
   tailnetIP = "100.64.0.1";
-  upstreams = import ./endpoints.nix;
+  upstreams = import ./endpoints.nix me;
   mkVhost = name: cfg: {
     listenAddresses = [ tailnetIP ];
     useACMEHost = homeDomain;

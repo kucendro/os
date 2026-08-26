@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, me, ... }:
 
 {
   fileSystems."/mnt/nas" = {
-    device = "//nas.ts.kucendro.dev/data";
+    device = "//nas.${me.domains.mesh}/data";
     fsType = "cifs";
     options = [
       "credentials=${config.sops.templates."smb-creds".path}"

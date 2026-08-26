@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  me,
   ...
 }:
 
@@ -9,9 +10,9 @@ let
   duration = 5;
 
   targets = {
-    nas = "nas.ts.kucendro.dev";
-    nixbook = "nixbook.ts.kucendro.dev";
-    mac = "mac.ts.kucendro.dev";
+    nas = "nas.${me.domains.mesh}";
+    nixbook = "nixbook.${me.domains.mesh}";
+    mac = "mac.${me.domains.mesh}";
   };
 
   targetLines = lib.concatStringsSep "\n" (

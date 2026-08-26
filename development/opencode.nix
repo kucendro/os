@@ -4,6 +4,7 @@
   lib,
   profile,
   flakeDir,
+  me,
   ...
 }:
 
@@ -16,7 +17,7 @@
       mcp = {
         homelab = {
           type = "remote";
-          url = "https://mcp.home.kucendro.dev/mcp";
+          url = "https://mcp.${me.domains.home}/mcp";
           enabled = true;
           headers.Authorization = "Bearer {file:/run/secrets/gitea-mcp-token}";
         };

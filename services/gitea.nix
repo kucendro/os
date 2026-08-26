@@ -3,14 +3,15 @@
   pkgs,
   lib,
   inputs,
+  me,
   ...
 }:
 
 let
   httpPort = 3001;
   sshPort = 2222;
-  webDomain = "git.home.kucendro.dev";
-  sshDomain = "nas.ts.kucendro.dev";
+  webDomain = "git.${me.domains.home}";
+  sshDomain = "nas.${me.domains.mesh}";
 in
 {
   services.gitea = {
@@ -71,7 +72,7 @@ in
   system.activationScripts.gitea-runner-ssh = ''
     mkdir -p /var/lib/gitea-runner/.ssh
     chmod 700 /var/lib/gitea-runner/.ssh
-    printf 'Host nas.ts.kucendro.dev\n  IdentityFile /var/lib/gitea-runner/.ssh/id_ed25519\n  StrictHostKeyChecking accept-new\n  Port ${toString sshPort}\n' > /var/lib/gitea-runner/.ssh/config
+    printf 'Host ${sshDomain}\n  IdentityFile /var/lib/gitea-runner/.ssh/id_ed25519\n  StrictHostKeyChecking accept-new\n  Port ${toString sshPort}\n' > /var/lib/gitea-runner/.ssh/config
     chmod 600 /var/lib/gitea-runner/.ssh/config
     chown gitea-runner:gitea-runner /var/lib/gitea-runner/.ssh/config
   '';

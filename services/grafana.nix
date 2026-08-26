@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, me, ... }:
 
 let
   port = 3000;
@@ -10,8 +10,8 @@ in
       server = {
         http_addr = "0.0.0.0";
         http_port = port;
-        domain = "grafana.home.kucendro.dev";
-        root_url = "https://grafana.home.kucendro.dev";
+        domain = "grafana.${me.domains.home}";
+        root_url = "https://grafana.${me.domains.home}";
       };
       security.secret_key = "$__file{${config.sops.secrets.grafana-secret-key.path}}";
     };

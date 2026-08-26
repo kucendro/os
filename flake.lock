@@ -317,6 +317,26 @@
         "type": "github"
       }
     },
+    "nixdiag": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787740221,
+        "narHash": "sha256-KNpmVBQX9oHOdh9UlAIQ/M6F4ltE5T3CBnFJQZe+Ews=",
+        "owner": "kucendro",
+        "repo": "nixdiag",
+        "rev": "ae073c9acc9169221b2c942ecb3ce8cd42f7174a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kucendro",
+        "repo": "nixdiag",
+        "type": "github"
+      }
+    },
     "nixlib": {
       "locked": {
         "lastModified": 1736643958,
@@ -439,6 +459,7 @@
         "home-manager": "home-manager",
         "irlume": "irlume",
         "nix-darwin": "nix-darwin",
+        "nixdiag": "nixdiag",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",

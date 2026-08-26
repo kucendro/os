@@ -1,9 +1,7 @@
 name: deploy
 
 on:
-  workflow_run:
-    workflows: [diagrams]
-    types: [completed]
+  push:
     branches: [main]
 
 env:
@@ -16,7 +14,6 @@ env:
 jobs:
   deploy:
     runs-on: native
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
 

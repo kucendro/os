@@ -55,6 +55,11 @@
       url = "git+ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git";
       flake = false;
     };
+
+    nixdiag = {
+      url = "github:kucendro/nixdiag";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -72,13 +77,12 @@
       irlume,
       colibri,
       secrets,
+      nixdiag,
       ...
     }@inputs:
     let
       me = import (inputs.secrets + "/me.nix");
 
-      # Checkout directory of this repo, relative to $HOME. Renaming the
-      # folder on disk is this one line plus a rebuild.
       flakeDir = "os";
 
       systems = [
@@ -157,6 +161,14 @@
         inherit deploy-rs me self;
       };
 
+      # Mode-A defaults for ad-hoc `nixdiag gen` runs; `packages.docs` below
+      # is the canonical pure build.
+      nixdiag = {
+        out = "docs";
+        title = "kucendro infrastructure wiki";
+        extraLinks.Termux = "termux.md";
+      };
+
       packages = nixpkgs.lib.genAttrs systems (
         system:
         let
@@ -179,16 +191,31 @@
             inherit me;
             lib = nixpkgs.lib;
           };
+          docs = import ./flake/docs.nix {
+            inherit
+              nixdiag
+              nixpkgs
+              self
+              me
+              hostNames
+              ;
+          } system;
         }
       );
 
-      checks = nixpkgs.lib.genAttrs systems (system: {
-        inherit (deploy-rs.lib.${system}.deployChecks self.deploy) deploy-schema;
-      });
+      checks = nixpkgs.lib.genAttrs systems (
+        system:
+        {
+          inherit (deploy-rs.lib.${system}.deployChecks self.deploy) deploy-schema;
+        }
+        // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
+          docs = self.packages.${system}.docs;
+        }
+      );
 
       apps = nixpkgs.lib.genAttrs systems (
         import ./flake/apps.nix {
-          inherit nixpkgs me hostNames;
+          inherit nixpkgs;
         }
       );
 

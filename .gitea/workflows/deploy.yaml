@@ -23,12 +23,12 @@ jobs:
           export NIX_SSHOPTS="$SSH_OPTS"
           deploy --skip-checks --ssh-opts "$SSH_OPTS" .#edge
 
-      - name: NIXBOOK
-        run: |
-          set -euo pipefail
-          if ssh $SSH_OPTS -o ConnectTimeout=5 deploy@nixbook true 2>/dev/null; then
-            export NIX_SSHOPTS="$SSH_OPTS"
-            deploy --skip-checks --ssh-opts "$SSH_OPTS" .#nixbook
-          else
-            echo "nixbook offline — skipping"
-          fi
+      # - name: NIXBOOK
+      #   run: |
+      #     set -euo pipefail
+      #     if ssh $SSH_OPTS -o ConnectTimeout=5 deploy@nixbook true 2>/dev/null; then
+      #       export NIX_SSHOPTS="$SSH_OPTS"
+      #       deploy --skip-checks --ssh-opts "$SSH_OPTS" .#nixbook
+      #     else
+      #       echo "nixbook offline — skipping"
+      #     fi

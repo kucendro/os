@@ -1,27 +1,22 @@
-{ pkgs, ... }:
+# Serves the nixdiag-generated wiki (`packages.docs`) straight from the store:
+# it ships atomically with every deploy of this host.
+{ inputs, pkgs, ... }:
 
 let
   homeDomain = "home.kucendro.dev";
   tailnetIP = "100.64.0.1";
-
-  site = pkgs.stdenv.mkDerivation {
-    name = "kucendro-wiki";
-    src = ../../docs/wiki;
-    nativeBuildInputs = [ pkgs.mdbook ];
-    dontConfigure = true;
-    dontBuild = true;
-    installPhase = ''
-      export HOME=$TMPDIR
-      mkdir -p $out
-      mdbook build --dest-dir $out
-    '';
-  };
 in
 {
-  services.nginx.virtualHosts."wiki.${homeDomain}" = {
-    listenAddresses = [ tailnetIP ];
-    useACMEHost = homeDomain;
-    forceSSL = true;
-    root = site;
+  imports = [ inputs.nixdiag.nixosModules.default ];
+
+  services.nixdiag.serve = {
+    enable = true;
+    docs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.docs;
+    virtualHost = "wiki.${homeDomain}";
+    virtualHostExtra = {
+      listenAddresses = [ tailnetIP ];
+      useACMEHost = homeDomain;
+      forceSSL = true;
+    };
   };
 }

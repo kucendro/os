@@ -8,10 +8,10 @@ let
     kubicek = {
       address = "nas.ts.kucendro.dev:3007";
     };
-    mcp = {
-      address = "nas.ts.kucendro.dev:8092";
-      extraConfig = "proxy_buffering off;";
-    };
+    # mcp = {
+    #   address = "nas.ts.kucendro.dev:8092";
+    #   extraConfig = "proxy_buffering off;";
+    # };
   };
 
   mkVhost = name: cfg: {

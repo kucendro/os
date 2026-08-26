@@ -498,11 +498,11 @@
         "rev": "6b19cb397e463a3050d3cb5fa7555f59b69301db",
         "revCount": 8,
         "type": "git",
-        "url": "ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git"
+        "url": "ssh://git@nas:2222/kucendro/secrets.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@nas.ts.kucendro.dev:2222/kucendro/secrets.git"
+        "url": "ssh://git@nas:2222/kucendro/secrets.git"
       }
     },
     "sops-nix": {

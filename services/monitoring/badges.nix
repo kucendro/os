@@ -51,7 +51,7 @@ let
         | jq -r '.[] | "\(.metric.instance)\t\(.value[1])"' \
         | while IFS=$'\t' read -r inst val; do
             name=$(printf '%s' "$inst" \
-              | sed -E 's#^https?://##; s#\.home\.kucendro\.dev/?$##; s#[^A-Za-z0-9_-]#_#g')
+              | sed -E 's#^https?://##; s#\.${lib.escapeRegex me.domains.home}/?$##; s#[^A-Za-z0-9_-]#_#g')
             if [ "''${val%%.*}" = "1" ]; then
               badge "$name" "up" "brightgreen" "svc_$name.json"
             else

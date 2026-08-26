@@ -2,3 +2,6 @@
 __pycache__/
 .sops.yaml
 .claude/
+
+# nixdiag mode-A output (generated docs are never committed)
+/docs/

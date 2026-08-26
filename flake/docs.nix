@@ -19,7 +19,7 @@ let
 
   termux = pkgs.runCommand "termux-docs" { } ''
     mkdir -p $out/termux
-    printf '# Termux bootstrap\n\nScan into Termux; scripts live in docs/termux.\n\n' > $out/termux.md
+    printf '# Termux bootstrap\n\nScan into Termux; raw scripts live under termux/.\n\n' > $out/termux.md
     ${lib.concatStringsSep "\n" (
       lib.mapAttrsToList (phone: drv: ''
         ${drv}/bin/termux-setup-${phone} > $out/termux/${phone}.sh
@@ -34,8 +34,8 @@ nixdiag.lib.mkDocs {
   inherit pkgs;
   flake = self;
   title = "kucendro infrastructure wiki";
-  indexPage = ../docs/wiki/src/index.md;
-  bookToml = ../docs/wiki/book.toml;
+  indexPage = ../wiki/index.md;
+  bookToml = ../wiki/book.toml;
   extraPages.Termux = "${termux}/termux.md";
   extraAssets.termux = "${termux}/termux";
 }

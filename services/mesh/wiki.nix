@@ -9,6 +9,8 @@ in
 {
   imports = [ inputs.nixdiag.nixosModules.default ];
 
+  #: wiki
+  #: expose 443 mesh
   services.nixdiag.serve = {
     enable = true;
     docs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.docs;

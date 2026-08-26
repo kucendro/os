@@ -5,6 +5,7 @@ let
   dir = "/home/kucendro/kubicek";
 in
 {
+  #: unit kubicek
   systemd.services.kubicek = {
     description = "kubicek Next.js server";
     after = [ "network.target" ];

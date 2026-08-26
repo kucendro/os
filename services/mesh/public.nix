@@ -32,6 +32,8 @@ let
   };
 in
 {
+  #: -> nas/music-assistant party
+  #: -> nas/kubicek kubicek
   services.nginx.virtualHosts = lib.mapAttrs' (
     name: cfg: lib.nameValuePair "${name}.${me.domains.root}" (mkVhost name cfg)
   ) publics;

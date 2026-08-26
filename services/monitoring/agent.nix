@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
+  #: unit beszel-agent
+  #: -> edge/beszel metrics
   services.beszel.agent = {
     enable = true;
     openFirewall = false;

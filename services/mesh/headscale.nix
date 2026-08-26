@@ -5,6 +5,8 @@
 }:
 
 {
+  #: mesh-control
+  #: expose 3478/udp public
   services.headscale = {
     enable = true;
     address = "127.0.0.1";
@@ -37,6 +39,7 @@
     };
   };
 
+  #: -> edge/headscale headscale :8080
   services.nginx.virtualHosts.${me.domains.edge} = {
     enableACME = true;
     forceSSL = true;

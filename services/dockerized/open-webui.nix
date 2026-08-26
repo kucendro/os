@@ -8,6 +8,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
 
+    #: unit open-webui
     containers.open-webui = {
       image = "ghcr.io/open-webui/open-webui:latest";
       volumes = [ "/var/lib/open-webui:/app/backend/data" ];

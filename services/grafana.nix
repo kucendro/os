@@ -4,6 +4,8 @@ let
   port = 3000;
 in
 {
+  #: monitor
+  #: -> nas/prometheus metrics
   services.grafana = {
     enable = true;
     settings = {

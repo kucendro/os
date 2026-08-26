@@ -4,6 +4,7 @@
   virtualisation.oci-containers = {
     backend = "docker";
 
+    #: unit music-assistant
     containers.music-assistant = {
       image = "ghcr.io/music-assistant/server:latest";
       volumes = [ "/var/lib/music-assistant:/data" ];

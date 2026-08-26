@@ -26,6 +26,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
 
+    #: unit home-assistant
     containers.home-assistant = {
       image = "ghcr.io/home-assistant/home-assistant:stable";
       volumes = [

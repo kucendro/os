@@ -46,6 +46,8 @@ in
     );
   };
 
+  #: monitor
+  #: -> edge/nginx probes
   services.prometheus = {
     enable = true;
     listenAddress = "0.0.0.0";

@@ -13,6 +13,7 @@ let
   };
 in
 {
+  #: unit mcp
   systemd.services = lib.mapAttrs' (
     name: srv:
     lib.nameValuePair "mcp-${name}" {

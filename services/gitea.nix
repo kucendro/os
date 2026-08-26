@@ -14,6 +14,7 @@ let
   sshDomain = "nas.${me.domains.mesh}";
 in
 {
+  #: expose 2222 mesh
   services.gitea = {
     enable = true;
     lfs.enable = true;

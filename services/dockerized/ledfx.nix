@@ -33,6 +33,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
 
+    #: unit ledfx
     containers.ledfx = {
       image = "ghcr.io/ledfx/ledfx:latest";
       volumes = [ "/var/lib/ledfx:/home/ledfx/ledfx-config" ];

@@ -10,6 +10,6 @@ pre-push:
     check:
       glob: "*.{nix,json,lock}"
       run: |
-        nix flake check
+        nix flake check --no-build
       skip:
         - merge

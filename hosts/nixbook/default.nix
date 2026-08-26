@@ -1,6 +1,7 @@
 {
   pkgs,
   me,
+  inputs,
   ...
 }:
 
@@ -10,8 +11,7 @@
     ../../profiles/laptop.nix
     ../../profiles/vr.nix
     ./zenbook.nix
-    ../../services/vpn/deep.nix
-    ../../services/kube.nix
+    (inputs.secrets + "/work.nix")
     ../../services/sunshine.nix
     ../../services/bluetooth-sink.nix
     ../../services/scrcpy.nix
@@ -46,20 +46,6 @@
         }
       ];
     };
-  };
-
-  hardware.printers = {
-    ensurePrinters = [
-      {
-        name = "WORK";
-        location = "work";
-        deviceUri = "ipp://192.168.1.99/ipp/print";
-        model = "drv:///sample.drv/generic.ppd";
-        ppdOptions = {
-          PageSize = "A4";
-        };
-      }
-    ];
   };
 
   services.udev.extraRules = ''

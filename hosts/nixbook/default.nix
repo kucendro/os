@@ -18,6 +18,7 @@
     ../../services/termux.nix
     ../../services/remarkable-setup.nix
     ../../services/kdrive.nix
+    ../../services/printer.nix
     ../../services/suuntool.nix
     ../../services/share/client.nix
   ];

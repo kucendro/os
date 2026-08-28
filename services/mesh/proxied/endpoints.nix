@@ -1,6 +1,4 @@
 /**
-  Upstream table for the mesh proxy vhosts; annotations attach to nginx.
-
   #: unit edge/nginx
   #: scope mesh
 */

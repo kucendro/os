@@ -27,6 +27,7 @@
     ../../services/karakeep.nix
     ../../services/actual.nix
     ../../services/remarkable.nix
+    ../../services/lazybaka.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

@@ -297,6 +297,26 @@
         "type": "github"
       }
     },
+    "lazybaka": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788112165,
+        "narHash": "sha256-1DNwpfFZOfl1G8rmWXmvofBSnR0521yWDz0MjDcHTQc=",
+        "ref": "refs/heads/main",
+        "rev": "307296ef68f1962fa75a9c5193b80b4ae5e50352",
+        "revCount": 5,
+        "type": "git",
+        "url": "ssh://git@nas:2222/kucendro/lazybaka.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@nas:2222/kucendro/lazybaka.git"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -458,6 +478,7 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "irlume": "irlume",
+        "lazybaka": "lazybaka",
         "nix-darwin": "nix-darwin",
         "nixdiag": "nixdiag",
         "nixos-generators": "nixos-generators",

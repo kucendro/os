@@ -60,6 +60,11 @@
       url = "github:kucendro/nixdiag";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lazybaka = {
+      url = "git+ssh://git@nas:2222/kucendro/lazybaka.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

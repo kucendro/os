@@ -11,7 +11,7 @@
         name = "EPSON";
         location = "home";
         deviceUri = "socket://192.168.1.5:9100";
-        model = "drv:///sample.drv/generic.ppd";
+        model = "epson-inkjet-printer-escpr/Epson-L3060_Series-epson-escpr-en.ppd";
         ppdOptions = {
           PageSize = "A4";
         };

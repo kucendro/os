@@ -116,6 +116,9 @@
         enabled = [
           "icefish/phone-connect"
           "noctalia/bongocat"
+          "rylos/tailnet"
+          "rylos/syncthing"
+          "lowcache/claude-companion"
         ];
         auto_update = true;
       };
@@ -151,6 +154,9 @@
           "volume"
           "brightness"
           "network"
+          "tailnet"
+          "syncthing"
+          "pulse"
           "bluetooth"
           "battery"
           "tray"
@@ -194,6 +200,9 @@
           show_label = false;
           vpn_status = "both";
         };
+        tailnet.type = "rylos/tailnet:bar";
+        syncthing.type = "rylos/syncthing:bar";
+        pulse.type = "lowcache/claude-companion:pulse";
         bluetooth.show_label = false;
         battery = {
           display_mode = "glyph";

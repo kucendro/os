@@ -119,6 +119,7 @@
           "rylos/tailnet"
           "rylos/syncthing"
           "lowcache/claude-companion"
+          "pozzoo/hassio"
         ];
         auto_update = "all";
       };
@@ -134,9 +135,10 @@
         auto_hide = false;
         reserve_space = true;
         margin_edge = 8;
-        margin_ends = 0;
+        margin_ends = 8;
         radius = 12;
         concave_edge_corners = false;
+        background_opacity = 0.75;
 
         start = [
           "clock"
@@ -156,13 +158,15 @@
           "volume"
           "brightness"
           "network"
-          "tailnet"
-          "syncthing"
-          "pulse"
           "bluetooth"
           "battery"
           "tray"
-          "spacer"
+          "divider"
+          "tailnet"
+          "syncthing"
+          "pulse"
+          "hassio"
+          "divider"
           "notifications"
         ];
       };
@@ -180,8 +184,7 @@
         };
 
         media = {
-          artist_first = false;
-          title_scroll = "on_hover";
+          album_art_only = true;
           hide_when_no_media = true;
         };
 
@@ -202,8 +205,24 @@
           show_label = false;
           vpn_status = "both";
         };
-        tailnet.type = "rylos/tailnet:bar";
-        syncthing.type = "rylos/syncthing:bar";
+        tailnet = {
+          type = "rylos/tailnet:bar";
+          show_count = false;
+          show_ip = false;
+        };
+        syncthing = {
+          type = "rylos/syncthing:bar";
+          show_pending = false;
+        };
+        hassio = {
+          type = "pozzoo/hassio:status";
+          show_entity_count = false;
+        };
+        divider = {
+          type = "text";
+          text = "│";
+          color = "outline";
+        };
         pulse.type = "lowcache/claude-companion:pulse";
         bluetooth.show_label = false;
         battery = {

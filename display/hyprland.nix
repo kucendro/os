@@ -196,7 +196,7 @@ in
         "$mainMod SHIFT, up, resizeactive, 0 -20"
         "$mainMod SHIFT, down, resizeactive, 0 20"
         "$mainMod, P, pseudo,"
-        "$mainMod, S, exec, grim -g \"$(slurp)\" \"$HOME/kDrive/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png\""
+        "$mainMod, S, exec, grim -g \"$(slurp)\" \"$HOME/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png\""
         "$mainMod, F, togglefloating,"
         "$mainMod, Q, killactive,"
         "$mainMod, TAB, workspace, e+1"

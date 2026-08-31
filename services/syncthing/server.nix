@@ -32,13 +32,22 @@ in
           addresses = [ "tcp://fold.${me.domains.mesh}:${toString syncPort}" ];
         };
       };
-      folders.sync = {
-        path = "/mnt/data/syncthing/sync";
-        devices = [
-          "nixbook"
-          "fold"
-        ];
-      };
+      folders =
+        let
+          shared = name: {
+            path = "/mnt/data/syncthing/${name}";
+            devices = [
+              "nixbook"
+              "fold"
+            ];
+          };
+        in
+        {
+          documents = shared "documents";
+          screenshots = shared "screenshots";
+          knowledge = shared "knowledge";
+          drop = shared "drop";
+        };
     };
   };
 

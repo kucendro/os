@@ -26,9 +26,23 @@ in
         id = "TCH5BXD-5XBUVYJ-WKEMZCL-JEQXSGZ-NHTKQJT-OWEZ2NU-P7RFVLY-YUA7FAG";
         addresses = [ "tcp://nas.${me.domains.mesh}:${toString syncPort}" ];
       };
-      folders.sync = {
-        path = "/home/${me.name}/sync";
-        devices = [ "nas" ];
+      folders = {
+        documents = {
+          path = "/home/${me.name}/Documents";
+          devices = [ "nas" ];
+        };
+        screenshots = {
+          path = "/home/${me.name}/screenshots";
+          devices = [ "nas" ];
+        };
+        knowledge = {
+          path = "/home/${me.name}/knowledge";
+          devices = [ "nas" ];
+        };
+        drop = {
+          path = "/home/${me.name}/drop";
+          devices = [ "nas" ];
+        };
       };
     };
   };
@@ -37,4 +51,5 @@ in
     allowedTCPPorts = [ syncPort ];
     allowedUDPPorts = [ syncPort ];
   };
+
 }

@@ -6,7 +6,7 @@
   #: unit bakasync
   services.bakasync = {
     enable = true;
-    classId = "2D";
+    classId = "2T";
     expectedClassName = "4.D";
     groups = [
       "S2"

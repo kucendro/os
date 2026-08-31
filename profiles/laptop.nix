@@ -103,7 +103,6 @@
     grim
     slurp
     hypridle
-    clamav
     android-tools
     zoom-us
   ];

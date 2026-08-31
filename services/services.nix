@@ -2,6 +2,7 @@
   lib,
   profile,
   pkgs,
+  me,
   ...
 }:
 
@@ -37,15 +38,30 @@
     gvfs.enable = true;
     clamav = {
       daemon.enable = true;
+      daemon.settings = {
+        OnAccessIncludePath = "/home/${me.name}/Downloads";
+        OnAccessPrevention = true;
+      };
+      clamonacc.enable = true;
       updater.enable = true;
+      fangfrisch.enable = true;
+      scanner = {
+        enable = true;
+        interval = "Sat *-*-* 12:00:00";
+      };
     };
     passSecretService.enable = true;
   };
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 5201 ];
 
-  systemd = lib.mkIf (profile != "desktop") {
-    services.fwupd-refresh.enable = false;
-    timers.fwupd-refresh.enable = false;
-  };
+  systemd = lib.mkMerge [
+    (lib.mkIf (profile != "desktop") {
+      services.fwupd-refresh.enable = false;
+      timers.fwupd-refresh.enable = false;
+    })
+    (lib.mkIf (profile == "desktop") {
+      timers.clamdscan.timerConfig.Persistent = true;
+    })
+  ];
 }

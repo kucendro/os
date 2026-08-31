@@ -12,8 +12,8 @@ in
     group = "users";
     dataDir = "/home/${me.name}";
 
-    overrideDevices = false;
-    overrideFolders = false;
+    overrideDevices = true;
+    overrideFolders = true;
 
     settings = {
       options = {
@@ -22,14 +22,14 @@ in
         relaysEnabled = false;
         natEnabled = false;
       };
-      # devices.nas = {
-      #   id = "DEVICE-ID-FROM-syncthing --device-id";
-      #   addresses = [ "tcp://nas.${me.domains.mesh}:${toString syncPort}" ];
-      # };
-      # folders.sync = {
-      #   path = "/home/${me.name}/sync";
-      #   devices = [ "nas" ];
-      # };
+      devices.nas = {
+        id = "TCH5BXD-5XBUVYJ-WKEMZCL-JEQXSGZ-NHTKQJT-OWEZ2NU-P7RFVLY-YUA7FAG";
+        addresses = [ "tcp://nas.${me.domains.mesh}:${toString syncPort}" ];
+      };
+      folders.sync = {
+        path = "/home/${me.name}/sync";
+        devices = [ "nas" ];
+      };
     };
   };
 

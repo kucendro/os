@@ -12,8 +12,8 @@ in
     dataDir = "/mnt/data/syncthing";
     guiAddress = "0.0.0.0:${toString guiPort}";
 
-    overrideDevices = false;
-    overrideFolders = false;
+    overrideDevices = true;
+    overrideFolders = true;
 
     settings = {
       options = {
@@ -22,14 +22,14 @@ in
         relaysEnabled = false;
         natEnabled = false;
       };
-      # devices.nixbook = {
-      #   id = "DEVICE-ID-FROM-syncthing --device-id";
-      #   addresses = [ "tcp://nixbook.${me.domains.mesh}:${toString syncPort}" ];
-      # };
-      # folders.sync = {
-      #   path = "/mnt/data/syncthing/sync";
-      #   devices = [ "nixbook" ];
-      # };
+      devices.nixbook = {
+        id = "WVEIFL3-ZPPU7BB-BDBW52J-OMZRSRO-QUTOL6F-Q5RDSUO-DGU6TVO-G7457AU";
+        addresses = [ "tcp://nixbook.${me.domains.mesh}:${toString syncPort}" ];
+      };
+      folders.sync = {
+        path = "/mnt/data/syncthing/sync";
+        devices = [ "nixbook" ];
+      };
     };
   };
 

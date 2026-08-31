@@ -22,13 +22,22 @@ in
         relaysEnabled = false;
         natEnabled = false;
       };
-      devices.nixbook = {
-        id = "WVEIFL3-ZPPU7BB-BDBW52J-OMZRSRO-QUTOL6F-Q5RDSUO-DGU6TVO-G7457AU";
-        addresses = [ "tcp://nixbook.${me.domains.mesh}:${toString syncPort}" ];
+      devices = {
+        nixbook = {
+          id = "WVEIFL3-ZPPU7BB-BDBW52J-OMZRSRO-QUTOL6F-Q5RDSUO-DGU6TVO-G7457AU";
+          addresses = [ "tcp://nixbook.${me.domains.mesh}:${toString syncPort}" ];
+        };
+        fold = {
+          id = "JHIZPBP-NPI5FXX-PGAH3IM-AZ3J4IG-44ELB4E-ENDRQL3-QRBGXJB-GIIGDQW";
+          addresses = [ "tcp://fold.${me.domains.mesh}:${toString syncPort}" ];
+        };
       };
       folders.sync = {
         path = "/mnt/data/syncthing/sync";
-        devices = [ "nixbook" ];
+        devices = [
+          "nixbook"
+          "fold"
+        ];
       };
     };
   };

@@ -21,6 +21,7 @@
     ../../services/printer.nix
     ../../services/suuntool.nix
     ../../services/share/client.nix
+    ../../services/syncthing/client.nix
   ];
 
   networking = {

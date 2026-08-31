@@ -166,13 +166,12 @@
         inherit deploy-rs me self;
       };
 
-      # Mode-A defaults for ad-hoc `nixdiag gen` runs; `packages.docs` below
-      # is the canonical pure build.
       nixdiag = {
         out = "docs";
         title = "kucendro infrastructure wiki";
         extraLinks.Termux = "termux.md";
         domains = me.domains;
+        theme = "light";
       };
 
       packages = nixpkgs.lib.genAttrs systems (

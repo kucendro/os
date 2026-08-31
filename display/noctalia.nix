@@ -120,13 +120,11 @@
           "rylos/syncthing"
           "lowcache/claude-companion"
         ];
-        auto_update = true;
+        auto_update = "all";
       };
 
       plugin_settings = {
         "icefish/phone-connect" = {
-          device_alias = "Fold";
-          custom_image = "${config.home.homeDirectory}/${flakeDir}/display/fold.png";
           state_update_interval = 60;
         };
       };
@@ -135,6 +133,10 @@
         position = "top";
         auto_hide = false;
         reserve_space = true;
+        margin_edge = 8;
+        margin_ends = 0;
+        radius = 12;
+        concave_edge_corners = false;
 
         start = [
           "clock"

@@ -1,0 +1,49 @@
+name: update
+
+on:
+  schedule:
+    - cron: "0 4 * * 6"
+  workflow_dispatch:
+
+env:
+  HOME: /var/lib/gitea-runner
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: native
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: UPDATE
+        run: nix --extra-experimental-features "nix-command flakes" flake update
+
+      - name: CHECK
+        run: nix --extra-experimental-features "nix-command flakes" flake check
+
+      - name: BUILD
+        run: |
+          set -euo pipefail
+          mkdir -p /var/lib/gitea-runner/gcroots
+          for host in nas edge nixbook; do
+            nix --extra-experimental-features "nix-command flakes" build \
+              ".#nixosConfigurations.$host.config.system.build.toplevel" \
+              --out-link "/var/lib/gitea-runner/gcroots/$host"
+          done
+
+      - name: COMMIT
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- flake.lock; then
+            echo "flake.lock unchanged - nothing to commit"
+            exit 0
+          fi
+          git config user.name "flake-update"
+          git config user.email "actions@nas"
+          git add flake.lock
+          git commit -m "chore: weekly flake.lock update"
+          git push ssh://git@nas:2222/kucendro/os.git HEAD:main

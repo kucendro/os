@@ -47,6 +47,12 @@
     memoryPercent = 50;
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   systemd.services = {
     NetworkManager-wait-online.enable = false;
     systemd-networkd-wait-online.enable = false;

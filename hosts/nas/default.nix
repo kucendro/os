@@ -24,6 +24,7 @@
     ../../services/grafana.nix
     ../../services/monitoring/blackbox.nix
     ../../services/gitea.nix
+    ../../services/cache.nix
     ../../services/mcp.nix
     ../../services/karakeep.nix
     ../../services/actual.nix

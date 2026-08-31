@@ -96,6 +96,10 @@ in
 
   systemd.services.gitea.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
 
+  systemd.tmpfiles.rules = [
+    "d /var/lib/gitea-runner/gcroots 0755 gitea-runner gitea-runner - -"
+  ];
+
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
     httpPort
     sshPort

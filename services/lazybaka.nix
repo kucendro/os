@@ -9,8 +9,7 @@
     classId = "2D";
     expectedClassName = "4.D";
     groups = [
-      "S1"
-      "PX2"
+      "S2"
     ];
     calendarId = "8a589d924652a0a312c6ba832efcbb187f455fe945246a5f406b587fa2ff3521@group.calendar.google.com";
     serviceAccountKeyFile = config.sops.secrets.bakasync-service-account.path;

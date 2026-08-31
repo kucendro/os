@@ -118,7 +118,6 @@
           "noctalia/bongocat"
           "rylos/tailnet"
           "rylos/syncthing"
-          "lowcache/claude-companion"
           "pozzoo/hassio"
         ];
         auto_update = "all";
@@ -148,11 +147,10 @@
         center = [
           "workspaces"
           "spacer"
-          "media"
-          "spacer"
           "bar"
         ];
         end = [
+          "media"
           "cat"
           "spacer"
           "volume"
@@ -164,7 +162,6 @@
           "divider"
           "tailnet"
           "syncthing"
-          "pulse"
           "hassio"
           "divider"
           "notifications"
@@ -184,7 +181,9 @@
         };
 
         media = {
-          album_art_only = true;
+          album_art_only = false;
+          hide_artist = true;
+          title_scroll = "on_hover";
           hide_when_no_media = true;
         };
 
@@ -223,7 +222,6 @@
           text = "│";
           color = "outline";
         };
-        pulse.type = "lowcache/claude-companion:pulse";
         bluetooth.show_label = false;
         battery = {
           display_mode = "glyph";

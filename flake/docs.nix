@@ -42,6 +42,6 @@ nixdiag.lib.mkDocs {
 
   closures = [
     "nas"
-    # "nixbook"
+    "nixbook"
   ];
 }

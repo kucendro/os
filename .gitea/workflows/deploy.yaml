@@ -24,7 +24,12 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p /var/lib/gitea-runner/gcroots
-          for host in nas edge nixbook; do
+
+          hosts=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
+            ".#nixosConfigurations" \
+            --apply 'cfgs: builtins.concatStringsSep " " (builtins.attrNames cfgs)')
+
+          for host in $hosts; do
             nix --extra-experimental-features "nix-command flakes" build \
               ".#nixosConfigurations.$host.config.system.build.toplevel" \
               --out-link "/var/lib/gitea-runner/gcroots/$host"

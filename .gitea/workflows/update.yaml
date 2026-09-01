@@ -32,8 +32,8 @@ jobs:
             echo "flake.lock unchanged - nothing to commit"
             exit 0
           fi
-          git config user.name "update"
-          git config user.email "actions@nas"
+          git config user.name "actions"
+          git config user.email "actions@kucendro.dev"
           git add flake.lock
           git commit -m "chore: weekly flake update"
           git push ssh://git@nas:2222/kucendro/os.git HEAD:main

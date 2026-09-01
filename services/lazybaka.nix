@@ -6,6 +6,7 @@
   #: unit bakasync
   services.bakasync = {
     enable = true;
+    baseUrl = "https://bakalari.spse.cz/bakaweb";
     classId = "2T";
     expectedClassName = "4.D";
     groups = [

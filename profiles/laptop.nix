@@ -104,6 +104,7 @@
     slurp
     hypridle
     android-tools
+    geteduroam
     zoom-us
   ];
 

@@ -12,6 +12,22 @@ let
   sshPort = 2222;
   webDomain = "git.${me.domains.home}";
   sshDomain = "nas.${me.domains.mesh}";
+
+  runnerService = {
+    after = [ "gitea.service" ];
+    preStart = ''
+      for _ in $(seq 30); do
+        ${lib.getExe pkgs.curl} -fsS -o /dev/null --max-time 2 "https://${webDomain}/api/healthz" && break
+        sleep 1
+      done
+      :
+    '';
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      User = "gitea-runner";
+      Group = "gitea-runner";
+    };
+  };
 in
 {
   #: expose 2222 mesh
@@ -38,29 +54,41 @@ in
     };
   };
 
-  services.gitea-actions-runner.instances.nas = {
-    enable = true;
-    name = "nas";
-    url = "https://${webDomain}";
-    tokenFile = config.sops.templates."gitea-runner-env".path;
-    labels = [
-      "native:host"
-    ];
+  services.gitea-actions-runner.instances = {
+    nas = {
+      enable = true;
+      name = "nas";
+      url = "https://${webDomain}";
+      tokenFile = config.sops.templates."gitea-runner-env".path;
+      labels = [
+        "native:host"
+      ];
 
-    hostPackages = with pkgs; [
-      bash
-      coreutils
-      curl
-      gawk
-      gitMinimal
-      gnused
-      gzip
-      nodejs
-      openssh
-      wget
-      config.nix.package
-      inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ];
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        curl
+        gawk
+        gitMinimal
+        gnused
+        gzip
+        nodejs
+        openssh
+        wget
+        config.nix.package
+        inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
+    };
+
+    ubuntu = {
+      enable = true;
+      name = "ubuntu-24.04";
+      url = "https://${webDomain}";
+      tokenFile = config.sops.templates."gitea-runner-env".path;
+      labels = [
+        "ubuntu-24.04:docker://catthehacker/ubuntu:act-24.04"
+      ];
+    };
   };
 
   users.users.gitea-runner = {
@@ -78,21 +106,8 @@ in
     chown gitea-runner:gitea-runner /var/lib/gitea-runner/.ssh/config
   '';
 
-  systemd.services.gitea-runner-nas = {
-    after = [ "gitea.service" ];
-    preStart = ''
-      for _ in $(seq 30); do
-        ${lib.getExe pkgs.curl} -fsS -o /dev/null --max-time 2 "https://${webDomain}/api/healthz" && break
-        sleep 1
-      done
-      :
-    '';
-    serviceConfig = {
-      DynamicUser = lib.mkForce false;
-      User = "gitea-runner";
-      Group = "gitea-runner";
-    };
-  };
+  systemd.services.gitea-runner-nas = runnerService;
+  systemd.services.gitea-runner-ubuntu = runnerService;
 
   systemd.services.gitea.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
 

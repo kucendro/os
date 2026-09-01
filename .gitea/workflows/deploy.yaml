@@ -17,18 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: BUILD
+        run: |
+          set -euo pipefail
+          mkdir -p /var/lib/gitea-runner/gcroots
+          for host in nas edge nixbook; do
+            nix --extra-experimental-features "nix-command flakes" build \
+              ".#nixosConfigurations.$host.config.system.build.toplevel" \
+              --out-link "/var/lib/gitea-runner/gcroots/$host"
+          done
+
       - name: EDGE
         run: |
           set -euo pipefail
           export NIX_SSHOPTS="$SSH_OPTS"
           deploy --skip-checks --ssh-opts "$SSH_OPTS" .#edge
-
-      # - name: NIXBOOK
-      #   run: |
-      #     set -euo pipefail
-      #     if ssh $SSH_OPTS -o ConnectTimeout=5 deploy@nixbook true 2>/dev/null; then
-      #       export NIX_SSHOPTS="$SSH_OPTS"
-      #       deploy --skip-checks --ssh-opts "$SSH_OPTS" .#nixbook
-      #     else
-      #       echo "nixbook offline — skipping"
-      #     fi

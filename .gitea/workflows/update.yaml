@@ -25,16 +25,6 @@ jobs:
       - name: CHECK
         run: nix --extra-experimental-features "nix-command flakes" flake check
 
-      - name: BUILD
-        run: |
-          set -euo pipefail
-          mkdir -p /var/lib/gitea-runner/gcroots
-          for host in nas edge nixbook; do
-            nix --extra-experimental-features "nix-command flakes" build \
-              ".#nixosConfigurations.$host.config.system.build.toplevel" \
-              --out-link "/var/lib/gitea-runner/gcroots/$host"
-          done
-
       - name: COMMIT
         run: |
           set -euo pipefail
@@ -42,8 +32,8 @@ jobs:
             echo "flake.lock unchanged - nothing to commit"
             exit 0
           fi
-          git config user.name "flake-update"
+          git config user.name "update"
           git config user.email "actions@nas"
           git add flake.lock
-          git commit -m "chore: weekly flake.lock update"
+          git commit -m "chore: weekly flake update"
           git push ssh://git@nas:2222/kucendro/os.git HEAD:main

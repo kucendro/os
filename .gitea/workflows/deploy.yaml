@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: CHECK
+        run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
+
       - name: BUILD
         run: |
           set -euo pipefail

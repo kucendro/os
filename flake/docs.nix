@@ -39,10 +39,7 @@ nixdiag.lib.mkDocs {
   extraPages.Termux = "${termux}/termux.md";
   extraAssets.termux = "${termux}/termux";
   domains = me.domains;
-
-  closures = [
-    "nas"
-    "nixbook"
-    "stockholm"
+  excludesClosures = [
+    "edge"
   ];
 }

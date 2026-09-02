@@ -183,7 +183,7 @@ in
         "SUPER, SUPER_L, exec, noctalia msg panel-toggle launcher"
       ]
       ++ lib.optionals (!isStream) [
-        "$mainMod, V, exec, voxtype record stop"
+        "SUPER SHIFT, F23, exec, voxtype record stop"
       ];
 
       bind = [
@@ -216,7 +216,8 @@ in
         "$mainMod, mouse_up, workspace, e-1"
       ]
       ++ lib.optionals (!isStream) [
-        "$mainMod, V, exec, voxtype record start"
+        # copilot key sends SUPER + SHIFT + F23
+        "SUPER SHIFT, F23, exec, voxtype record start"
       ];
 
       bindm = [

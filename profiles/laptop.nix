@@ -88,6 +88,7 @@
 
   environment.systemPackages = with pkgs; [
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.colibri.packages.${pkgs.stdenv.hostPlatform.system}.default
     nautilus
     loupe
@@ -106,6 +107,7 @@
     android-tools
     geteduroam
     zoom-us
+    voxtype
   ];
 
   environment.sessionVariables = {

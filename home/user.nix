@@ -65,6 +65,7 @@ in
       "vboxusers"
       "docker"
       "dialout"
+      "input"
     ];
     packages = lib.optionals (profile == "desktop") desktopPackages;
   };

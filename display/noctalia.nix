@@ -116,6 +116,8 @@
         enabled = [
           "icefish/phone-connect"
           "noctalia/bongocat"
+          "felipeartur/ai-usagebar"
+          "gabedunn/voxtype"
           "rylos/tailnet"
           "rylos/syncthing"
           "pozzoo/hassio"
@@ -152,6 +154,8 @@
         end = [
           "media"
           "cat"
+          "divider"
+          "ai_usage"
           "spacer"
           "volume"
           "brightness"
@@ -163,6 +167,8 @@
           "tailnet"
           "syncthing"
           "hassio"
+          "divider"
+          "voxtype"
           "divider"
           "notifications"
         ];
@@ -195,6 +201,8 @@
           tappy_mode = true;
         };
 
+        ai_usage.type = "felipeartur/ai-usagebar:bar";
+
         volume = {
           show_label = false;
           actions.middle = "exec pwvucontrol";
@@ -217,6 +225,7 @@
           type = "pozzoo/hassio:status";
           show_entity_count = false;
         };
+        voxtype.type = "gabedunn/voxtype:status";
         divider = {
           type = "text";
           text = "│";

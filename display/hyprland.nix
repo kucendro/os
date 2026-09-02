@@ -28,6 +28,7 @@ let
   ++ lib.optionals (!isStream) [
     "beeper & slack"
     "env QT_QPA_PLATFORM=xcb kdrive"
+    "voxtype daemon"
   ];
 in
 {
@@ -178,7 +179,12 @@ in
 
       "$mainMod" = "SUPER";
 
-      bindr = "SUPER, SUPER_L, exec, noctalia msg panel-toggle launcher";
+      bindr = [
+        "SUPER, SUPER_L, exec, noctalia msg panel-toggle launcher"
+      ]
+      ++ lib.optionals (!isStream) [
+        "$mainMod, V, exec, voxtype record stop"
+      ];
 
       bind = [
         "$mainMod, A, exec, noctalia msg panel-toggle control-center"
@@ -208,6 +214,9 @@ in
         "$mainMod, period, exec, rofimoji --selector fuzzel --action type --typer wtype"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+      ]
+      ++ lib.optionals (!isStream) [
+        "$mainMod, V, exec, voxtype record start"
       ];
 
       bindm = [

@@ -1,6 +1,8 @@
 { pkgs, me, ... }:
 
 {
+  imports = [ ../development/fhs.nix ];
+
   environment.localBinInPath = true;
 
   environment.systemPackages = import ../development/dev-packages.nix pkgs;

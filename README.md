@@ -19,7 +19,7 @@ declaring your vision.</samp>
 
 <hr>
 
-### Module tree
+### Topology
 
 ![topology](diagrams/topology.svg)
 

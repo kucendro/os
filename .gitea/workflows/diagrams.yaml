@@ -30,7 +30,7 @@ jobs:
       - name: EXTRACTING
         run: |
           set -euo pipefail
-          for name in modules inputs closures; do
+          for name in modules inputs closures topology; do
             svg=$(find -L result-docs -name "$name.svg" -print -quit)
             if [ -z "$svg" ]; then
               echo "$name.svg missing"

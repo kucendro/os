@@ -534,11 +534,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1788183385,
-        "narHash": "sha256-v+66lyT5WgAgZa+lsq9wC3n8mEm+k7907F54XpqV4XA=",
+        "lastModified": 1788432308,
+        "narHash": "sha256-GXn0vI+FSa6IB/RmydJ+QCXO03VNZEl5sSZj3jpXQ2c=",
         "ref": "refs/heads/main",
-        "rev": "ab7c011d4c2a4ef1e48bcb65511730baab775823",
-        "revCount": 11,
+        "rev": "41f7fc13dbee3ae97c7436b27a2c1a634fba3a2f",
+        "revCount": 13,
         "type": "git",
         "url": "ssh://git@nas:2222/kucendro/secrets.git"
       },

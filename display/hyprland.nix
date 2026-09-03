@@ -104,6 +104,10 @@ in
         active_opacity = 0.9;
         inactive_opacity = 0.9;
 
+        dim_inactive = true;
+        dim_strength = 0.15;
+        dim_special = 0.3;
+
         shadow = {
           enabled = true;
           range = 4;
@@ -129,8 +133,8 @@ in
           "global,        1,     10,    default"
           "border,        1,     5.39,  easeOutQuint"
           "windows,       1,     4.79,  easeOutQuint"
-          "windowsIn,     1,     4.1,   easeOutQuint, popin 87%"
-          "windowsOut,    1,     1.49,  linear,       popin 87%"
+          "windowsIn,     1,     4.1,   easeOutQuint, slide top"
+          "windowsOut,    1,     1.49,  linear,       slide bottom"
           "fadeIn,        1,     1.73,  almostLinear"
           "fadeOut,       1,     1.46,  almostLinear"
           "fade,          1,     3.03,  quick"
@@ -142,6 +146,7 @@ in
           "workspaces,    1,     1.94,  almostLinear, fade"
           "workspacesIn,  1,     1.21,  almostLinear, fade"
           "workspacesOut, 1,     1.94,  almostLinear, fade"
+          "specialWorkspace, 1,  4,     easeOutQuint, slidevert"
           "zoomFactor,    1,     7,     quick"
         ];
       };
@@ -260,17 +265,27 @@ in
       }
       windowrule {
         name = beeper-to-special
-        match:class = ^(Beeper|beeper).*$
+        match:class = ^Beeper$
         workspace = special:magic silent
       }
       windowrule {
-        name = slack-to-special
-        match:class = ^(Slack|slack).*$
-        workspace = special:magic silent
+        name = float-slack
+        match:class = ^slack$
+        float = yes
+        center = yes
+        size = 70% 80%
+        no_initial_focus = yes
+      }
+      windowrule {
+        name = float-nautilus
+        match:class = ^(org.gnome.Nautilus)$
+        float = yes
+        center = yes
+        size = 60% 70%
       }
       windowrule {
         name = kitty-opacity
-        match:class = ^(Kitty|kitty).*$
+        match:class = ^kitty$
         opacity = 0.95
       }
       windowrule {

@@ -85,7 +85,7 @@
       };
 
       location = {
-        auto_locate = false;
+        auto_locate = true;
         address = "Pardubice";
       };
 
@@ -149,26 +149,29 @@
         center = [
           "workspaces"
           "spacer"
-          "bar"
+          "cat"
         ];
+
         end = [
           "media"
-          "cat"
+          "spacer"
+          "bar"
           "divider"
           "ai_usage"
-          "spacer"
+          "divider"
           "volume"
           "brightness"
           "network"
+          "tailnet"
           "bluetooth"
           "battery"
           "tray"
           "divider"
-          "tailnet"
+          "voxtype"
           "syncthing"
           "hassio"
           "divider"
-          "voxtype"
+          "clipboard"
           "divider"
           "notifications"
         ];
@@ -183,7 +186,7 @@
         workspaces = {
           show_labels = false;
           focused_output_only = true;
-          hide_when_empty = false;
+          hide_when_empty = true;
         };
 
         media = {
@@ -193,7 +196,10 @@
           hide_when_no_media = true;
         };
 
-        bar.type = "icefish/phone-connect:bar";
+        bar = {
+          type = "icefish/phone-connect:bar";
+          battery_display = "percentage";
+        };
 
         cat = {
           type = "noctalia/bongocat:cat";

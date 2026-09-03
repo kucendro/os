@@ -154,6 +154,7 @@ in
       dwindle = {
         preserve_split = true;
         smart_split = true;
+        force_split = 2;
       };
 
       master.new_status = "master";
@@ -282,6 +283,13 @@ in
         float = yes
         center = yes
         size = 60% 70%
+      }
+      windowrule {
+        name = float-dialogs
+        match:class = ^$
+        match:title = ^$
+        float = yes
+        center = yes
       }
       windowrule {
         name = kitty-opacity

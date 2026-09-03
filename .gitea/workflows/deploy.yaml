@@ -92,8 +92,9 @@ jobs:
             exit 0
           fi
 
-          changes=$(nix --extra-experimental-features "nix-command flakes" \
-            store diff-closures "$current" "$closure" | head -20)
+          diff=$(nix --extra-experimental-features "nix-command flakes" \
+            store diff-closures "$current" "$closure")
+          changes=$(head -20 <<<"$diff")
 
           text=$(printf '%s needs a switch\n\n%s\n\ndeploy .#%s\n\n%s' \
             "$self" "$(git log -1 --pretty='%h %s')" "$self" "$changes")

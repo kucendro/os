@@ -31,7 +31,7 @@ jobs:
         run: |
           set -euo pipefail
           for name in modules inputs closures; do
-            svg=$(find -L result-docs -name "$name.svg" | head -1)
+            svg=$(find -L result-docs -name "$name.svg" -print -quit)
             if [ -z "$svg" ]; then
               echo "$name.svg missing"
               exit 1

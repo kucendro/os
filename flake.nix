@@ -213,15 +213,9 @@
         }
       );
 
-      checks = nixpkgs.lib.genAttrs systems (
-        system:
-        {
-          inherit (deploy-rs.lib.${system}.deployChecks self.deploy) deploy-schema;
-        }
-        // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
-          docs = self.packages.${system}.docs;
-        }
-      );
+      checks = nixpkgs.lib.genAttrs systems (system: {
+        inherit (deploy-rs.lib.${system}.deployChecks self.deploy) deploy-schema;
+      });
 
       apps = nixpkgs.lib.genAttrs systems (
         import ./flake/apps.nix {

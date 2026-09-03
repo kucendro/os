@@ -21,6 +21,10 @@ declaring your vision.</samp>
 
 ### Module tree
 
+![topology](diagrams/topology.svg)
+
+### Module tree
+
 ![module tree](diagrams/modules.svg)
 
 ### Flake inputs

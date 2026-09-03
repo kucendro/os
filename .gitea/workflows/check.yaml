@@ -13,5 +13,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: nix flake check
+      - name: CHECKING
         run: nix --extra-experimental-features "nix-command flakes" flake check --no-build

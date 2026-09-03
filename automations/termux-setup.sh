@@ -1,7 +1,3 @@
-#
-#script for linking termux
-#
-
 : "${PHONE_NAME:?}" "${ME_NAME:?}" "${SSH_CONFIG:?}" "${REACHES:?}"
 : "${DEFAULT_REMOTE:?}" "${THEME_FILE:?}" "${FONT_URL:?}"
 

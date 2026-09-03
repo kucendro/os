@@ -6,6 +6,7 @@ on:
 
 env:
   HOME: /var/lib/gitea-runner
+  SKIP_NODES: nixbook
   SSH_OPTS: >-
     -i /var/lib/gitea-runner/.ssh/id_ed25519
     -o StrictHostKeyChecking=accept-new
@@ -17,10 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: CHECK
+      - name: CHECKING
         run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
 
-      - name: BUILD
+      - name: BUILDING
         run: |
           set -euo pipefail
           mkdir -p /var/lib/gitea-runner/gcroots
@@ -35,8 +36,66 @@ jobs:
               --out-link "/var/lib/gitea-runner/gcroots/$host"
           done
 
-      - name: EDGE
+      - name: DEPLOYING
         run: |
           set -euo pipefail
           export NIX_SSHOPTS="$SSH_OPTS"
-          deploy --skip-checks --ssh-opts "$SSH_OPTS" .#edge
+
+          nodes=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
+            ".#deploy.nodes" \
+            --apply 'ns: builtins.concatStringsSep " " (builtins.attrNames ns)')
+
+          self=$(cat /proc/sys/kernel/hostname)
+          failed=""
+
+          for node in $nodes; do
+            if [ "$node" = "$self" ]; then
+              echo "skipping $node"
+              continue
+            fi
+
+            case " $SKIP_NODES " in
+              *" $node "*)
+                echo "skipping $node"
+                continue
+                ;;
+            esac
+
+            host=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
+              ".#deploy.nodes.$node.hostname")
+            user=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
+              ".#deploy.nodes.$node.sshUser")
+
+            if ! ssh $SSH_OPTS -o BatchMode=yes -o ConnectTimeout=5 "$user@$host" true 2>/dev/null; then
+              echo "skip $node ($host unreachable)"
+              continue
+            fi
+
+            echo "deploy $node ($host)"
+            deploy --skip-checks --ssh-opts "$SSH_OPTS" ".#$node" || failed="$failed $node"
+          done
+
+          if [ -n "$failed" ]; then
+            echo "failed:$failed"
+            exit 1
+          fi
+
+      - name: NOTIFYING
+        run: |
+          set -euo pipefail
+          self=$(cat /proc/sys/kernel/hostname)
+          closure=$(readlink -f "/var/lib/gitea-runner/gcroots/$self")
+          current=$(readlink -f /run/current-system)
+
+          if [ "$closure" = "$current" ]; then
+            echo "$self up to date"
+            exit 0
+          fi
+
+          changes=$(nix --extra-experimental-features "nix-command flakes" \
+            store diff-closures "$current" "$closure" | head -20)
+
+          text=$(printf '%s needs a switch\n\n%s\n\ndeploy .#%s\n\n%s' \
+            "$self" "$(git log -1 --pretty='%h %s')" "$self" "$changes")
+
+          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "$text"

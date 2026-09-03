@@ -7,10 +7,26 @@ system:
 let
   pkgs = nixpkgs.legacyPackages.${system};
 in
-nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
+{
+  tg = {
+    type = "app";
+    meta.description = "Send Telegram message";
+    program = nixpkgs.lib.getExe (
+      pkgs.writeShellApplication {
+        name = "tg";
+        runtimeInputs = [
+          pkgs.curl
+          pkgs.coreutils
+        ];
+        text = builtins.readFile ../automations/telegram.sh;
+      }
+    );
+  };
+}
+// nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
   runpod = {
     type = "app";
-    meta.description = "Push the workstation image to GHCR and manage the RunPod pod";
+    meta.description = "Push image";
     program = nixpkgs.lib.getExe (
       pkgs.writeShellApplication {
         name = "runpod";

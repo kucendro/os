@@ -1,0 +1,54 @@
+name: diagrams
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - diagrams/**
+      - README.md
+  workflow_dispatch:
+
+env:
+  HOME: /var/lib/gitea-runner
+
+concurrency:
+  group: diagrams
+  cancel-in-progress: false
+
+jobs:
+  diagrams:
+    runs-on: native
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: BUILDING
+        run: |
+          nix --extra-experimental-features "nix-command flakes" build \
+            .#docs --out-link result-docs
+
+      - name: EXTRACTING
+        run: |
+          set -euo pipefail
+          for name in modules inputs closures; do
+            svg=$(find -L result-docs -name "$name.svg" | head -1)
+            if [ -z "$svg" ]; then
+              echo "$name.svg missing"
+              exit 1
+            fi
+            install -Dm644 "$svg" "diagrams/$name.svg"
+          done
+
+      - name: COMMITING
+        run: |
+          set -euo pipefail
+          git add diagrams
+          if git diff --cached --quiet; then
+            echo "unchanged skipping"
+            exit 0
+          fi
+          git config user.name "actions"
+          git config user.email "actions@kucendro.dev"
+          git commit -m "diagrams [skip ci]"
+      - name: PUSHING
+        run: git push ssh://git@nas:2222/kucendro/os.git HEAD:main

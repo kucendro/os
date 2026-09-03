@@ -4,12 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - scripts/termux-setup.sh
+      - automations/termux-setup.sh
       - services/termux.nix
       - services/termux-setup.nix
-      - targets/mobile/peer.nix
+      - hosts/mobile/peer.nix
       - display/carbonfox.yaml
-      - me.nix
   workflow_dispatch:
 
 env:
@@ -21,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build setup scripts
+      - name: BUILDING SETUP SCRIPTS
         run: |
           set -euo pipefail
           nix_cmd="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
@@ -31,35 +30,16 @@ jobs:
             $nix_cmd build ".#$pkg" -o "result-$pkg"
           done
 
-      - name: Send to Telegram
-        env:
-          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - name: SENDING TO TELEGRAM
         run: |
           set -euo pipefail
-          if [ -z "${TG_TOKEN:-}" ] || [ -z "${TG_CHAT:-}" ]; then
-            echo "TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set, skipping"
-            exit 0
-          fi
+          nix_cmd="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
           tmp=$(mktemp -d)
-          api="https://api.telegram.org/bot$TG_TOKEN"
           for bin in result-termux-setup-*/bin/termux-setup-*; do
             phone=${bin##*termux-setup-}
             "$bin" > "$tmp/$phone.sh"
             "$bin" --png "$tmp/$phone.png"
-            oneliner="echo $(gzip -9 < "$tmp/$phone.sh" | base64 | tr -d '\n')|base64 -d|gzip -d|bash"
-            curl -fsS -X POST "$api/sendPhoto" \
-              -F chat_id="$TG_CHAT" \
-              -F photo=@"$tmp/$phone.png" \
-              -F caption="Termux setup for $phone"
-            if [ "${#oneliner}" -le 4000 ]; then
-              curl -fsS -X POST "$api/sendMessage" \
-                --data-urlencode chat_id="$TG_CHAT" \
-                --data-urlencode text="$oneliner"
-            else
-              curl -fsS -X POST "$api/sendDocument" \
-                -F chat_id="$TG_CHAT" \
-                -F document=@"$tmp/$phone.sh" \
-                -F caption="payload too long for a message; paste this file into Termux instead"
-            fi
+
+            $nix_cmd run .#tg -- photo "$tmp/$phone.png" "Termux setup for $phone"
+            $nix_cmd run .#tg -- document "$tmp/$phone.sh" "bash $phone.sh in Termux"
           done

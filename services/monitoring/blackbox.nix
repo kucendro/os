@@ -128,7 +128,7 @@ in
               type = "telegram";
               settings = {
                 bottoken = "$__file{${config.sops.secrets.grafana-telegram-bottoken.path}}";
-                chatid = "8323605619";
+                chatid = me.telegram.chatId;
                 disable_notification = false;
                 disable_web_page_preview = false;
                 message = ''{{ template "telegram.default.message" . }}'';

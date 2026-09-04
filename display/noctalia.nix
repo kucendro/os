@@ -80,8 +80,8 @@
       nightlight = {
         enabled = true;
         force = false;
-        temperature_day = 5880;
-        temperature_night = 4013;
+        temperature_day = 5000;
+        temperature_night = 4000;
       };
 
       location = {
@@ -181,6 +181,7 @@
         active_window = {
           display = "icon_only";
           title_scroll = "on_hover";
+          min_length = 14;
         };
 
         workspaces = {

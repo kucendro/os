@@ -12,20 +12,20 @@
   <text x="716" y="49" font-size="12" fill="#8b949e" text-anchor="end">not measured</text>
   <text x="67" y="75" font-size="13" fill="#c9d1d9" text-anchor="end">nas</text>
   <rect x="75" y="64" width="541" height="14" fill="#2a2a2e"/>
-  <rect x="75" y="64" width="115" height="14" fill="#7fa7e8"/>
-  <rect x="190" y="64" width="17" height="14" fill="#d9995a"/>
-  <rect x="207" y="64" width="92" height="14" fill="#2ecc71"/>
+  <rect x="75" y="64" width="116" height="14" fill="#7fa7e8"/>
+  <rect x="191" y="64" width="17" height="14" fill="#d9995a"/>
+  <rect x="208" y="64" width="93" height="14" fill="#2ecc71"/>
   <text x="716" y="75" font-size="12" fill="#c9d1d9" text-anchor="end">13.4 GiB</text>
   <text x="67" y="101" font-size="13" fill="#c9d1d9" text-anchor="end">nixbook</text>
   <rect x="75" y="90" width="541" height="14" fill="#2a2a2e"/>
-  <rect x="75" y="90" width="115" height="14" fill="#7fa7e8"/>
-  <rect x="190" y="90" width="156" height="14" fill="#d9995a"/>
-  <rect x="346" y="90" width="270" height="14" fill="#2ecc71"/>
-  <text x="716" y="101" font-size="12" fill="#c9d1d9" text-anchor="end">32.3 GiB</text>
+  <rect x="75" y="90" width="116" height="14" fill="#7fa7e8"/>
+  <rect x="191" y="90" width="157" height="14" fill="#d9995a"/>
+  <rect x="348" y="90" width="268" height="14" fill="#2ecc71"/>
+  <text x="716" y="101" font-size="12" fill="#c9d1d9" text-anchor="end">32.0 GiB</text>
   <text x="67" y="127" font-size="13" fill="#c9d1d9" text-anchor="end">stockholm</text>
   <rect x="75" y="116" width="541" height="14" fill="#2a2a2e"/>
-  <rect x="75" y="116" width="115" height="14" fill="#7fa7e8"/>
-  <rect x="190" y="116" width="139" height="14" fill="#d9995a"/>
-  <rect x="329" y="116" width="32" height="14" fill="#2ecc71"/>
+  <rect x="75" y="116" width="116" height="14" fill="#7fa7e8"/>
+  <rect x="191" y="116" width="140" height="14" fill="#d9995a"/>
+  <rect x="331" y="116" width="32" height="14" fill="#2ecc71"/>
   <text x="716" y="127" font-size="12" fill="#c9d1d9" text-anchor="end">17.1 GiB</text>
 </svg>

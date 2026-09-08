@@ -10,6 +10,7 @@
     ./graphical.nix
     ./dev.nix
     ../display/plymouth.nix
+    ../services/virtualization/win.nix
   ];
 
   security.sudo.wheelNeedsPassword = true;

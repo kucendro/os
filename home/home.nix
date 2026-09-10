@@ -105,6 +105,7 @@
         gp = "git push";
         gpl = "git pull";
         gd = "git diff";
+        gstats = "tokei";
         j = "just";
         qore = "cd ~/qore/ && cargo run --release --bin qore";
         link-phone = "adb tcpip 5555";

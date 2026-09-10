@@ -66,8 +66,8 @@
 
       idle.behavior = {
         lock = {
-          enabled = false;
-          timeout = 60;
+          enabled = true;
+          timeout = 300;
           action = "lock";
         };
         "screen-off" = {

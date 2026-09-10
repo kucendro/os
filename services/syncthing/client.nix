@@ -22,28 +22,32 @@ in
         relaysEnabled = false;
         natEnabled = false;
       };
-      devices.nas = {
-        id = "TCH5BXD-5XBUVYJ-WKEMZCL-JEQXSGZ-NHTKQJT-OWEZ2NU-P7RFVLY-YUA7FAG";
-        addresses = [ "tcp://nas.${me.domains.mesh}:${toString syncPort}" ];
-      };
-      folders = {
-        documents = {
-          path = "/home/${me.name}/Documents";
-          devices = [ "nas" ];
+      devices = {
+        nas = {
+          id = "TCH5BXD-5XBUVYJ-WKEMZCL-JEQXSGZ-NHTKQJT-OWEZ2NU-P7RFVLY-YUA7FAG";
+          addresses = [ "tcp://nas.${me.domains.mesh}:${toString syncPort}" ];
         };
-        screenshots = {
-          path = "/home/${me.name}/screenshots";
-          devices = [ "nas" ];
-        };
-        knowledge = {
-          path = "/home/${me.name}/knowledge";
-          devices = [ "nas" ];
-        };
-        drop = {
-          path = "/home/${me.name}/drop";
-          devices = [ "nas" ];
+        fold = {
+          id = "JHIZPBP-NPI5FXX-PGAH3IM-AZ3J4IG-44ELB4E-ENDRQL3-QRBGXJB-GIIGDQW";
+          addresses = [ "tcp://fold.${me.domains.mesh}:${toString syncPort}" ];
         };
       };
+      folders =
+        let
+          shared = path: {
+            inherit path;
+            devices = [
+              "nas"
+              "fold"
+            ];
+          };
+        in
+        {
+          documents = shared "/home/${me.name}/Documents";
+          screenshots = shared "/home/${me.name}/screenshots";
+          knowledge = shared "/home/${me.name}/knowledge";
+          drop = shared "/home/${me.name}/drop";
+        };
     };
   };
 

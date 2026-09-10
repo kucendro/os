@@ -183,42 +183,14 @@
       };
 
       packages = nixpkgs.lib.genAttrs systems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          setups =
-            file: prefix:
-            nixpkgs.lib.mapAttrs' (n: v: nixpkgs.lib.nameValuePair "${prefix}-${n}" v) (
-              import file {
-                lib = nixpkgs.lib;
-                inherit me;
-                hosts = hostNames;
-              } pkgs
-            );
-        in
-        setups ./services/phones/android/termux-setup.nix "termux-setup"
-        // setups ./services/phones/ios/blink-setup.nix "blink-setup"
-        // {
-          phone-theme = import ./services/phones/theme.nix { inherit me; } pkgs;
-        }
-        // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
-          workstation = import ./packages/workstation.nix {
-            pkgs = import nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            inherit me;
-            lib = nixpkgs.lib;
-          };
-          docs = import ./flake/docs.nix {
-            inherit
-              nixdiag
-              nixpkgs
-              self
-              me
-              hostNames
-              ;
-          } system;
+        import ./flake/packages.nix {
+          inherit
+            nixpkgs
+            nixdiag
+            self
+            me
+            hostNames
+            ;
         }
       );
 

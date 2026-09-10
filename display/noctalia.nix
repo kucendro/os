@@ -120,7 +120,6 @@
           "gabedunn/voxtype"
           "rylos/tailnet"
           "rylos/syncthing"
-          "pozzoo/hassio"
         ];
         auto_update = "all";
       };
@@ -169,7 +168,6 @@
           "divider"
           "voxtype"
           "syncthing"
-          "hassio"
           "divider"
           "clipboard"
           "divider"
@@ -227,10 +225,6 @@
         syncthing = {
           type = "rylos/syncthing:bar";
           show_pending = false;
-        };
-        hassio = {
-          type = "pozzoo/hassio:status";
-          show_entity_count = false;
         };
         voxtype.type = "gabedunn/voxtype:status";
         divider = {

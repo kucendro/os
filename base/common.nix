@@ -33,7 +33,10 @@
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
 
-    connect-timeout = 5;
+    fallback = true;
+    connect-timeout = 2;
+    stalled-download-timeout = 1;
+    download-attempts = 1;
   };
 
   environment.systemPackages = with pkgs; [

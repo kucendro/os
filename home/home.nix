@@ -23,9 +23,13 @@
   home.sessionVariables = {
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
     PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm";
+    NPM_CONFIG_PREFIX = "${config.home.homeDirectory}/.npm";
   };
 
-  home.sessionPath = [ "${config.home.homeDirectory}/.local/share/pnpm" ];
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/share/pnpm"
+    "${config.home.homeDirectory}/.npm/bin"
+  ];
 
   home.packages = with pkgs; [
     fd
@@ -158,7 +162,7 @@
             style = "bold blue";
           };
           darwin = {
-            command = "echo ";
+            command = "echo 🍏";
             when = ''[ "$(uname)" = "Darwin" ]'';
             format = "[$output]($style) ";
             style = "bold white";

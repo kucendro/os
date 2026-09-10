@@ -14,8 +14,9 @@
     (inputs.secrets + "/work.nix")
     ../../services/sunshine.nix
     ../../services/bluetooth-sink.nix
-    ../../services/scrcpy.nix
-    ../../services/termux.nix
+    ../../services/phones/android/scrcpy.nix
+    ../../services/phones/android/termux.nix
+    ../../services/phones/ios/blink.nix
     ../../services/remarkable-setup.nix
     ../../services/kdrive.nix
     ../../services/printer.nix

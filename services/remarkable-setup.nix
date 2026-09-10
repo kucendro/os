@@ -7,7 +7,7 @@
 }:
 
 let
-  peer = import ../hosts/mobile/peer.nix;
+  peer = import ./phones/peer.nix;
 
   orderedHosts =
     (builtins.filter (h: builtins.elem h hostNames) peer.order)

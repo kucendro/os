@@ -174,7 +174,10 @@
       nixdiag = {
         out = "docs";
         title = "kucendro infrastructure wiki";
-        extraLinks.Termux = "termux.md";
+        extraLinks = {
+          Termux = "termux.md";
+          Blink = "blink.md";
+        };
         domains = me.domains;
         theme = "light";
       };
@@ -183,15 +186,21 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          termux = nixpkgs.lib.mapAttrs' (n: v: nixpkgs.lib.nameValuePair "termux-setup-${n}" v) (
-            import ./services/termux-setup.nix {
-              lib = nixpkgs.lib;
-              inherit me;
-              hosts = hostNames;
-            } pkgs
-          );
+          setups =
+            file: prefix:
+            nixpkgs.lib.mapAttrs' (n: v: nixpkgs.lib.nameValuePair "${prefix}-${n}" v) (
+              import file {
+                lib = nixpkgs.lib;
+                inherit me;
+                hosts = hostNames;
+              } pkgs
+            );
         in
-        termux
+        setups ./services/phones/android/termux-setup.nix "termux-setup"
+        // setups ./services/phones/ios/blink-setup.nix "blink-setup"
+        // {
+          phone-theme = import ./services/phones/theme.nix { inherit me; } pkgs;
+        }
         // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
           workstation = import ./packages/workstation.nix {
             pkgs = import nixpkgs {

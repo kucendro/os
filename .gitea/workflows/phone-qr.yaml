@@ -1,13 +1,10 @@
-name: termux-qr
+name: phone-qr
 
 on:
   push:
     branches: [main]
     paths:
-      - automations/termux-setup.sh
-      - services/termux.nix
-      - services/termux-setup.nix
-      - hosts/mobile/peer.nix
+      - services/phones/**
       - display/carbonfox.yaml
   workflow_dispatch:
 
@@ -25,7 +22,7 @@ jobs:
           set -euo pipefail
           nix_cmd="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
           phones=$($nix_cmd eval --raw .#packages.x86_64-linux --apply \
-            'attrs: builtins.concatStringsSep " " (builtins.filter (n: builtins.match "termux-setup-.*" n != null) (builtins.attrNames attrs))')
+            'attrs: builtins.concatStringsSep " " (builtins.filter (n: builtins.match "(termux|blink)-setup-.*" n != null) (builtins.attrNames attrs))')
           for pkg in $phones; do
             $nix_cmd build ".#$pkg" -o "result-$pkg"
           done
@@ -42,4 +39,12 @@ jobs:
 
             $nix_cmd run .#tg -- photo "$tmp/$phone.png" "Termux setup for $phone"
             $nix_cmd run .#tg -- document "$tmp/$phone.sh" "bash $phone.sh in Termux"
+          done
+          for bin in result-blink-setup-*/bin/blink-setup-*; do
+            phone=${bin##*blink-setup-}
+            "$bin" > "$tmp/$phone.txt"
+            "$bin" --png "$tmp/$phone.png"
+
+            $nix_cmd run .#tg -- photo "$tmp/$phone.png" "Blink setup for $phone"
+            $nix_cmd run .#tg -- document "$tmp/$phone.txt" "paste into Blink on $phone, theme and font at wiki/blink"
           done

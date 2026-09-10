@@ -2,6 +2,7 @@
   defaultRemote = "nixbook";
   order = [
     "nixbook"
-    "stockholm"
+    "nas"
+    # "stockholm"
   ];
 }

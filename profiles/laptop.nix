@@ -109,6 +109,7 @@
     geteduroam
     zoom-us
     voxtype
+    audacity
   ];
 
   environment.sessionVariables = {

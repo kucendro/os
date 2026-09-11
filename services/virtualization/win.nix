@@ -8,8 +8,8 @@
       launcher = "windows";
       desktopName = "Windows";
       comment = "Windows 11";
-      workspace = 9;
-      key = "O";
+      workspace = 11;
+      key = "";
       categories = [
         "System"
         "Office"

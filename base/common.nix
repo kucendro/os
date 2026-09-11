@@ -34,9 +34,9 @@
     ];
 
     fallback = true;
-    connect-timeout = 2;
-    stalled-download-timeout = 1;
-    download-attempts = 1;
+    connect-timeout = 5;
+    stalled-download-timeout = 30;
+    download-attempts = 3;
   };
 
   environment.systemPackages = with pkgs; [

@@ -23,6 +23,7 @@
     ../../services/suuntool.nix
     ../../services/share/client.nix
     ../../services/syncthing/client.nix
+    ../../services/apt-cache.nix
   ];
 
   networking = {

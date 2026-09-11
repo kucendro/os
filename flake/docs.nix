@@ -55,6 +55,7 @@ nixdiag.lib.mkDocs {
   extraPages = {
     Termux = "${termux}/termux.md";
     Blink = "${blink}/blink.md";
+    "Apt cache" = "${../wiki}/apt-cache.md";
   };
   extraAssets = {
     termux = "${termux}/termux";

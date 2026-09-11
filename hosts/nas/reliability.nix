@@ -11,4 +11,7 @@
 
   boot.kernelParams = [ "panic=10" ];
   boot.kernel.sysctl."kernel.panic_on_oops" = 1;
+
+  # setting added after fatal crash of nas during build
+  nix.settings.fsync-store-paths = true;
 }

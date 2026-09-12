@@ -3,7 +3,7 @@
 let
   port = 8123;
   reverseProxyIP = "100.64.0.1";
-  lanInterface = "enp1s0";
+  lanInterface = "wlp2s0";
 
   configYaml = pkgs.writeText "home-assistant-configuration.yaml" ''
     default_config:
@@ -27,6 +27,7 @@ in
 
     #: unit home-assistant
     #: -> nas/matter-server matter :5580
+    #: -> nas/otbr thread :8081
     containers.home-assistant = {
       image = "ghcr.io/home-assistant/home-assistant:stable";
       volumes = [
@@ -47,10 +48,7 @@ in
       image = "ghcr.io/matter-js/matterjs-server:stable";
       volumes = [ "/mnt/data/matter-server:/data" ];
 
-      environment = {
-        TZ = "Europe/Prague";
-        PRIMARY_INTERFACE = lanInterface;
-      };
+      environment.TZ = "Europe/Prague";
 
       extraOptions = [
         "--network=host"

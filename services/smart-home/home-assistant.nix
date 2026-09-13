@@ -7,8 +7,8 @@ let
   configDir = "/mnt/data/home-assistant";
 in
 {
-  #: -> nas/matterjs-server matter :5580
-  #: -> nas/openthread-border-router thread :8081
+  #: -> matterjs-server matter :5580
+  #: -> openthread-border-router thread :8081
   services.home-assistant = {
     enable = true;
     inherit configDir;

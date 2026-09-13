@@ -8,20 +8,15 @@
     ./reliability.nix
     ./tethering.nix
     ../../services/mesh/subnet-router.nix
-    ../../services/dockerized/music-assistant.nix
-    ../../services/home-assistant.nix
-    ../../services/otbr.nix
-    ../../services/dockerized/frigate.nix
+    ../../services/smart-home
     ../../services/dockerized/qore.nix
     ../../services/dockerized/open-wearables.nix
-    ../../services/ledfx.nix
     ../../services/open-webui.nix
     ../../services/dockerized/update-containers.nix
     ../../services/kubicek.nix
     ../../services/immich.nix
     ../../services/vault.nix
-    ../../services/share/server.nix
-    ../../services/syncthing/server.nix
+    ../../services/sync/server.nix
     ../../services/grafana.nix
     ../../services/monitoring/blackbox.nix
     ../../services/gitea.nix

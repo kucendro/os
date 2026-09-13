@@ -9,8 +9,8 @@
     ./tethering.nix
     ../../services/mesh/subnet-router.nix
     ../../services/dockerized/music-assistant.nix
-    ../../services/dockerized/home-assistant.nix
-    ../../services/dockerized/otbr.nix
+    ../../services/home-assistant.nix
+    ../../services/otbr.nix
     ../../services/dockerized/frigate.nix
     ../../services/dockerized/qore.nix
     ../../services/dockerized/open-wearables.nix

@@ -56,10 +56,6 @@ in
   karakeep = {
     address = "${nas}:3006";
   };
-  #: -> nas/actual budget :5006 name=budget@home:443
-  budget = {
-    address = "${nas}:5006";
-  };
   #: -> nas/rmfakecloud remarkable :5007 name=remarkable@home:443
   remarkable = {
     address = "${nas}:5007";

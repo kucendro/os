@@ -12,7 +12,6 @@
     ../../services/dockerized/qore.nix
     ../../services/dockerized/open-wearables.nix
     ../../services/open-webui.nix
-    ../../services/dockerized/update-containers.nix
     ../../services/kubicek.nix
     ../../services/immich.nix
     ../../services/vault.nix

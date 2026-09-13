@@ -80,11 +80,6 @@ in
         honor_labels = true;
         static_configs = [ { targets = [ "edge.${me.domains.mesh}:9091" ]; } ];
       }
-      {
-        job_name = "containers";
-        honor_labels = true;
-        static_configs = [ { targets = [ "127.0.0.1:9091" ]; } ];
-      }
     ];
   };
 
@@ -110,10 +105,6 @@ in
       {
         name = "speed";
         options.path = ./iperf3-dashboard.json;
-      }
-      {
-        name = "containers";
-        options.path = ./containers-dashboard.json;
       }
     ];
     alerting.contactPoints.settings = {

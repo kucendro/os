@@ -10,7 +10,6 @@
     ../../services/mesh/subnet-router.nix
     ../../services/smart-home
     ../../services/dockerized/qore.nix
-    ../../services/dockerized/open-wearables.nix
     ../../services/open-webui.nix
     ../../services/kubicek.nix
     ../../services/immich.nix

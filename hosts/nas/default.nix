@@ -14,8 +14,8 @@
     ../../services/dockerized/frigate.nix
     ../../services/dockerized/qore.nix
     ../../services/dockerized/open-wearables.nix
-    ../../services/dockerized/ledfx.nix
-    ../../services/dockerized/open-webui.nix
+    ../../services/ledfx.nix
+    ../../services/open-webui.nix
     ../../services/dockerized/update-containers.nix
     ../../services/kubicek.nix
     ../../services/immich.nix

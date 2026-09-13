@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   webPort = 8888;
   playerName = "LedFx";
+  configDir = "/var/lib/ledfx";
 in
 {
   boot.kernelModules = [ "snd-aloop" ];
@@ -30,24 +31,24 @@ in
     };
   };
 
-  virtualisation.oci-containers = {
-    backend = "docker";
-
-    #: unit ledfx
-    containers.ledfx = {
-      image = "ghcr.io/ledfx/ledfx:latest";
-      volumes = [ "/var/lib/ledfx:/home/ledfx/ledfx-config" ];
-
-      extraOptions = [
-        "--network=host"
-        "--device=/dev/snd"
-      ];
+  #: unit ledfx
+  systemd.services.ledfx = {
+    description = "LedFx";
+    wantedBy = [ "multi-user.target" ];
+    after = [
+      "network-online.target"
+      "sound.target"
+    ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      ExecStart = "${lib.getExe pkgs.ledfx} --offline --config ${configDir} --host 0.0.0.0 --port ${toString webPort}";
+      DynamicUser = true;
+      StateDirectory = "ledfx";
+      SupplementaryGroups = [ "audio" ];
+      Restart = "on-failure";
+      RestartSec = 5;
     };
   };
-
-  systemd.tmpfiles.rules = [
-    "d /var/lib/ledfx 0755 1000 1000 -"
-  ];
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ webPort ];
 }

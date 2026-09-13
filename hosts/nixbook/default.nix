@@ -20,7 +20,6 @@
     ../../services/remarkable-setup.nix
     ../../services/kdrive.nix
     ../../services/printer.nix
-    ../../services/suuntool.nix
     ../../services/sync/client.nix
     ../../services/apt-cache.nix
   ];

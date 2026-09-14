@@ -4,7 +4,8 @@ Candidate services for nas, ranked by impact. All have a NixOS module in the pin
 
 ## High
 
-- [ ] Backups: btrbk hourly snapshots into `/mnt/data/.snapshots` (currently empty) and `services.restic.backups` offsite (Hetzner Storage Box, Backblaze B2, or kDrive via rclone). Pre-hook `pg_dump` for immich, set vaultwarden `backupDir`. Covers immich, vaultwarden, gitea, karakeep, home-assistant.
+- [x] Snapshots: btrbk hourly into `/mnt/data/.snapshots`, all kept 2 days, then 14 dailies and 8 weeklies (`services/backup/snapshots.nix`, 2026-09-14).
+- [ ] Offsite: `services.restic.backups` reading the newest `data.*` snapshot (Hetzner Storage Box, Backblaze B2, or kDrive via rclone). Pre-hook `pg_dump` for immich, set vaultwarden `backupDir`. Covers immich, vaultwarden, gitea, karakeep, home-assistant. Second local disk later: btrbk `target` on it, same instance.
 - [ ] Paperless-ngx: scanned and mailed documents with OCR and search. Pairs with the printer, reMarkable and karakeep.
 - [ ] Glance start page: one page for all `*@home` vhosts, config generated from `services/mesh/proxied/endpoints.nix`. Widgets for immich, gitea, grafana, syncthing, RSS.
 - [ ] Home Assistant voice: `services.wyoming.faster-whisper` and `services.wyoming.piper` on nas, HA Ollama integration pointed at stockholm for the Assist pipeline.
@@ -25,7 +26,8 @@ Candidate services for nas, ranked by impact. All have a NixOS module in the pin
 ## Torrents
 
 - [ ] Mullvad WireGuard key for nas in sops, tunnel in its own network namespace, qBittorrent the only service inside (kill switch by construction). Web UI via veth as `torrent@home`, category `audiobooks` saves to `/mnt/data/audiobooks` for Audiobookshelf. Prowlarr for indexer search. Private trackers, ratio cap. Do not route through edge.
-- [ ] Mullvad key for edge as tailnet exit node: policy rule `iif tailscale0` into the tunnel, edge's own default route untouched. Deploy from home with plain SSH reachable.
+- [ ] Plain exit node on edge first, no Mullvad yet. New `services/mesh/exit-node.nix` mirroring `subnet-router.nix` (`useRoutingFeatures = "server"`, `--advertise-exit-node`), import in `hosts/edge/default.nix`, in `acl.json` add `autoApprovers.exitNode` and `autogroup:internet` for admins. Covers foreign WiFi, websites see the Hetzner IP. Cost measured from nixbook 2026-09-14: edge RTT 18 ms vs 6 ms direct, so about 12 ms added; throughput capped by the edge iperf3 numbers in Grafana.
+- [ ] Mullvad key for edge behind that exit node, only if the VPS IP should stay hidden: policy rule `iif tailscale0` into the tunnel, edge's own default route untouched, DNS and IPv6 through the tunnel too. Deploy from home with plain SSH reachable.
 - [ ] Mullvad has no port forwarding, so not connectable. If torrents matter more than the exit node, use AirVPN or Proton instead.
 
 ## Hygiene

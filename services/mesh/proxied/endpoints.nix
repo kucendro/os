@@ -56,10 +56,10 @@ in
   karakeep = {
     address = "${nas}:3006";
   };
-  #: -> nas/rmfakecloud remarkable :5007 name=remarkable@home:443
-  remarkable = {
-    address = "${nas}:5007";
-  };
+  ##: -> nas/rmfakecloud remarkable :5007 name=remarkable@home:443
+  #remarkable = {
+  #  address = "${nas}:5007";
+  #};
   #: -> nas/syncthing sync :8384 name=sync@home:443
   sync = {
     address = "${nas}:8384";

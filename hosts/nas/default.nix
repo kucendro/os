@@ -21,7 +21,7 @@
     ../../services/cache.nix
     ../../services/mcp.nix
     ../../services/karakeep.nix
-    ../../services/remarkable.nix
+    # ../../services/remarkable.nix
     ../../services/lazybaka.nix
   ];
 

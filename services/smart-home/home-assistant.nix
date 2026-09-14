@@ -34,6 +34,8 @@ in
       "thread"
       "tplink"
       "webostv"
+      "karakeep"
+      "syncthing"
       "zeroconf"
     ];
 

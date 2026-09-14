@@ -22,6 +22,8 @@ in
       "ecovacs"
       "esphome"
       "go2rtc"
+      "google"
+      "immich"
       "matter"
       "mcp_server"
       "met"

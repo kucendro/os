@@ -65,7 +65,10 @@ in
     after = [ "matterjs-server.service" ];
   };
 
-  boot.kernelModules = [ "nf_conntrack" ];
+  boot.kernelModules = [
+    "nf_conntrack"
+    "cdc_acm"
+  ];
   boot.kernel.sysctl."net.netfilter.nf_conntrack_udp_timeout_stream" = 3600;
 
   systemd.tmpfiles.rules = [

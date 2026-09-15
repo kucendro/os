@@ -1,6 +1,8 @@
 { lib, pkgs, ... }:
 
 let
+  streamOutput = "sunshine";
+
   ensureHis = ''
     if [ -z "''${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
       runtime_dir="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
@@ -27,15 +29,15 @@ let
       fps="''${SUNSHINE_CLIENT_FPS:-60}"
       scale="''${SUNSHINE_CLIENT_SCALE:-1}"
 
-      monitors=$(hyprctl monitors -j)
-      primary=$(jq -r '.[0].name' <<<"$monitors")
+      if ! hyprctl monitors all -j | jq -e '.[] | select(.name == "${streamOutput}")' >/dev/null; then
+        hyprctl output create headless ${streamOutput}
+      fi
+      hyprctl keyword monitor "${streamOutput},''${width}x''${height}@''${fps},0x0,''${scale}"
 
-      jq -r ".[] | select(.name != \"$primary\") | .name" <<<"$monitors" \
+      hyprctl monitors -j | jq -r '.[] | select(.name != "${streamOutput}") | .name' \
         | while read -r mon; do
-            hyprctl keyword monitor "$mon,disabled"
+            hyprctl keyword monitor "$mon,disable"
           done
-
-      hyprctl keyword monitor "$primary,''${width}x''${height}@''${fps},0x0,''${scale}"
     '';
   };
 
@@ -49,6 +51,7 @@ let
     text = ''
       ${ensureHis}
       hyprctl reload
+      hyprctl output remove ${streamOutput}
     '';
   };
 in
@@ -56,10 +59,9 @@ in
   services.sunshine = {
     enable = true;
     autoStart = true;
-    capSysAdmin = true;
     openFirewall = true;
     settings = {
-      capture = "kms";
+      capture = "wlr";
       global_prep_cmd = ''[{"do":"${lib.getExe configureMonitors}","undo":"${lib.getExe restoreMonitors}"}]'';
     };
   };

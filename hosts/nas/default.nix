@@ -6,7 +6,7 @@
     ./disko.nix
     ./data.nix
     ./reliability.nix
-    ./tethering.nix
+    # ./tethering.nix
     ../../services/mesh/subnet-router.nix
     ../../services/smart-home
     ../../services/dockerized/qore.nix

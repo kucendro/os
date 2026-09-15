@@ -6,6 +6,7 @@ in
 {
   services.vaultwarden = {
     enable = true;
+    backupDir = "/var/backup/vaultwarden";
     config = {
       DOMAIN = "https://vault.${me.domains.home}";
       ROCKET_ADDRESS = "0.0.0.0";

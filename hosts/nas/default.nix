@@ -23,7 +23,7 @@
     ../../services/karakeep.nix
     # ../../services/remarkable.nix
     ../../services/lazybaka.nix
-    ../../services/backup/snapshots.nix
+    ../../services/backup
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

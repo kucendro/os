@@ -5,7 +5,8 @@ Candidate services for nas, ranked by impact. All have a NixOS module in the pin
 ## High
 
 - [x] Snapshots: btrbk hourly into `/mnt/data/.snapshots`, all kept 2 days, then 14 dailies and 8 weeklies (`services/backup/snapshots.nix`, 2026-09-14).
-- [ ] Offsite: `services.restic.backups` reading the newest `data.*` snapshot (Hetzner Storage Box, Backblaze B2, or kDrive via rclone). Pre-hook `pg_dump` for immich, set vaultwarden `backupDir`. Covers immich, vaultwarden, gitea, karakeep, home-assistant. Second local disk later: btrbk `target` on it, same instance.
+- [x] Offsite: restic over SFTP to the Hetzner Storage Box, nightly 03:30 from its own read-only snapshot, plus nightly `pg_dumpall` and the vaultwarden backup dir. Excludes docker and immich thumbs and encoded video. Heartbeat to the edge pushgateway, Grafana rule `Backups stale` to Telegram, `OnFailure` Telegram with journal lines (`services/backup/`, 2026-09-15).
+- [ ] Offsite rollout: deploy nas, first run by hand, then daily snapshots on the box in the Hetzner console. Second local disk later: btrbk `target` on it, same instance.
 - [ ] Paperless-ngx: scanned and mailed documents with OCR and search. Pairs with the printer, reMarkable and karakeep.
 - [ ] Glance start page: one page for all `*@home` vhosts, config generated from `services/mesh/proxied/endpoints.nix`. Widgets for immich, gitea, grafana, syncthing, RSS.
 - [ ] Home Assistant voice: `services.wyoming.faster-whisper` and `services.wyoming.piper` on nas, HA Ollama integration pointed at stockholm for the Assist pipeline.

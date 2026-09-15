@@ -17,6 +17,7 @@ in
       "default_config"
       "analytics"
       "backup"
+      "bluetooth"
       "co2signal"
       "dhcp"
       "ecovacs"
@@ -69,6 +70,8 @@ in
     "nf_conntrack"
     "cdc_acm"
   ];
+
+  hardware.bluetooth.enable = true;
   boot.kernel.sysctl."net.netfilter.nf_conntrack_udp_timeout_stream" = 3600;
 
   systemd.tmpfiles.rules = [

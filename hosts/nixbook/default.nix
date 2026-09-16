@@ -22,6 +22,7 @@
     ../../services/printer.nix
     ../../services/sync/client.nix
     ../../services/apt-cache.nix
+    ../../services/netreg.nix
   ];
 
   networking = {

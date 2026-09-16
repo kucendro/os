@@ -315,6 +315,14 @@ in
         float = yes
         center = yes
       }
+      windowrule {
+        name = float-netreg
+        match:class = ^(netreg\.exe)$
+        match:title = ^(NetReg - .*)$
+        float = yes
+        center = yes
+        size = 75% 80%
+      }
     '';
   };
 }

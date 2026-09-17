@@ -34,3 +34,7 @@ declaring your vision.</samp>
 ### Closure sizes
 
 ![closure sizes](diagrams/closures.svg)
+
+---
+
+<a href="https://www.buymeacoffee.com/kucendro"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a matcha&emoji=&slug=kucendro&button_colour=5f5ca7&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00" /></a>

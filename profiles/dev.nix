@@ -5,7 +5,7 @@
 
   environment.localBinInPath = true;
 
-  environment.systemPackages = import ../development/dev-packages.nix pkgs;
+  environment.systemPackages = import ../development/packages.nix pkgs;
 
   home-manager.users.${me.name}.programs = {
     uv = {

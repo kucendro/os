@@ -7,7 +7,7 @@
 let
   loginServer = "https://${me.domains.edge}";
 
-  devPackages = import ../development/dev-packages.nix pkgs;
+  devPackages = import ../development/packages.nix pkgs;
 
   baseLibs = with pkgs; [
     stdenv.cc.cc

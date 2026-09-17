@@ -4,6 +4,13 @@ let
   nas = "nas.${me.domains.mesh}";
 
   publics = {
+    portfolio = {
+      host = me.domains.root;
+      address = "${nas}:80";
+    };
+    archive = {
+      address = "${nas}:80";
+    };
     party = {
       address = "${nas}:8095";
     };
@@ -32,9 +39,11 @@ let
   };
 in
 {
+  #: -> nas/nginx portfolio
+  #: -> nas/nginx archive
   #: -> nas/music-assistant party
   #: -> nas/kubicek kubicek
   services.nginx.virtualHosts = lib.mapAttrs' (
-    name: cfg: lib.nameValuePair "${name}.${me.domains.root}" (mkVhost name cfg)
+    name: cfg: lib.nameValuePair (cfg.host or "${name}.${me.domains.root}") (mkVhost name cfg)
   ) publics;
 }

@@ -23,6 +23,7 @@
     ../../services/karakeep.nix
     # ../../services/remarkable.nix
     ../../services/lazybaka.nix
+    ../../services/portfolio.nix
     ../../services/backup
   ];
 

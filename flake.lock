@@ -491,6 +491,28 @@
         "type": "github"
       }
     },
+    "portfolio": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789678147,
+        "lfs": true,
+        "narHash": "sha256-bG/UPo3INKzZDunWhA75JbgP++1KkVZ+DyyTWdY5v/s=",
+        "ref": "refs/heads/main",
+        "rev": "b0df9c5e54f7bd2d474a9480c2dbb2afa36d2e8b",
+        "revCount": 24,
+        "type": "git",
+        "url": "ssh://git@nas:2222/kucendro/portfolio.git"
+      },
+      "original": {
+        "lfs": true,
+        "type": "git",
+        "url": "ssh://git@nas:2222/kucendro/portfolio.git"
+      }
+    },
     "root": {
       "inputs": {
         "ai-usagebar": "ai-usagebar",
@@ -505,6 +527,7 @@
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
+        "portfolio": "portfolio",
         "secrets": "secrets",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
@@ -534,11 +557,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1789461506,
-        "narHash": "sha256-uOH0Xp0P7VzdGWafKeDqUson8JtbuzkInrEpvm5FNEY=",
+        "lastModified": 1789679072,
+        "narHash": "sha256-hJEN7ddLFw3dZxGya43w7Sh/0VKwYwSAOssrPUrhFOo=",
         "ref": "refs/heads/main",
-        "rev": "17c06170394cd9a5a213956d3a7bdbdcb7f71e39",
-        "revCount": 14,
+        "rev": "0bbf3318d3140f26e1fac351d9b6c8169d2ca05a",
+        "revCount": 15,
         "type": "git",
         "url": "ssh://git@nas:2222/kucendro/secrets.git"
       },

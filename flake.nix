@@ -70,6 +70,11 @@
       url = "git+ssh://git@nas:2222/kucendro/lazybaka.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    portfolio = {
+      url = "git+ssh://git@nas:2222/kucendro/portfolio.git?lfs=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

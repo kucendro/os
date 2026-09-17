@@ -69,6 +69,7 @@ in
         coreutils
         curl
         gawk
+        git-lfs
         gitMinimal
         gnused
         gzip

@@ -498,12 +498,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1789680261,
+        "lastModified": 1789681389,
         "lfs": true,
-        "narHash": "sha256-rK6QyDX/bXNrrdFeER4rGN60oyXNMIM91W4xsLs0/cE=",
+        "narHash": "sha256-Q21EdyjyvogcKYXyaozi0ETMpoR05zCWc/fg4Yktqxo=",
         "ref": "refs/heads/main",
-        "rev": "06291d53388d44249c42a09d90a4d8f809bcce29",
-        "revCount": 25,
+        "rev": "256272eaca6837c041bf75cea4afd18c7db451bb",
+        "revCount": 26,
         "type": "git",
         "url": "ssh://git@nas:2222/kucendro/portfolio.git"
       },

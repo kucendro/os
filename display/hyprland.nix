@@ -27,7 +27,7 @@ let
   ]
   ++ lib.optionals (!isStream) [
     "beeper & slack"
-    "env QT_QPA_PLATFORM=xcb kdrive"
+    # "env QT_QPA_PLATFORM=xcb kdrive"
     "voxtype daemon"
   ];
 in

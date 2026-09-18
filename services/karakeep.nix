@@ -1,4 +1,9 @@
-{ config, lib, me, ... }:
+{
+  config,
+  lib,
+  me,
+  ...
+}:
 
 let
   port = 3006;
@@ -13,6 +18,9 @@ in
       PORT = toString port;
       NEXTAUTH_URL = "https://${domain}";
       DISABLE_NEW_RELEASE_CHECK = "true";
+      CRAWLER_FULL_PAGE_ARCHIVE = "true";
+      CRAWLER_VIDEO_DOWNLOAD = "true";
+      CRAWLER_VIDEO_DOWNLOAD_MAX_SIZE = "-1";
     };
   };
 

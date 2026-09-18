@@ -11,6 +11,15 @@ Candidate services for nas, ranked by impact. All have a NixOS module in the pin
 - [ ] Glance start page: one page for all `*@home` vhosts, config generated from `services/mesh/proxied/endpoints.nix`. Widgets for immich, gitea, grafana, syncthing, RSS.
 - [ ] Home Assistant voice: `services.wyoming.faster-whisper` and `services.wyoming.piper` on nas, HA Ollama integration pointed at stockholm for the Assist pipeline.
 
+## Archive
+
+Own copy of what gets read and watched. cobalt has no nixpkgs package or module and keeps nothing on the server, so it stays out.
+
+- [x] karakeep keeps a full offline page and a yt-dlp video for every saved link, module already ships `monolith` and `yt-dlp` (`services/karakeep.nix`, 2026-09-18). Deploy nas, then watch the restic size, `/mnt/data/karakeep` is not excluded.
+- [ ] Pinchflat: YouTube channel and playlist subscriptions into `/mnt/data/media/youtube`, Jellyfin layout, `videos@home`. Feeds the Jellyfin item below.
+- [ ] changedetection.io: dated snapshots of chosen pages, only if a few pages matter.
+- [ ] cobalt: on-demand paste-a-URL download, Docker image next to qore, `dl@home`. Last resort, only if karakeep and Pinchflat leave a gap.
+
 ## Medium
 
 - [ ] Miniflux: RSS reader, keepers go to karakeep, feed shown in Glance.

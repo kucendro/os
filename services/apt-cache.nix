@@ -6,6 +6,14 @@ let
     interface = "wlp98s0";
     ip = "10.42.0.1";
   };
+  setup = pkgs.runCommand "apt-cache-setup" { } ''
+    install -Dm444 ${
+      pkgs.replaceVars ./apt-cache/apt.sh {
+        ip = hotspot.ip;
+        port = toString port;
+      }
+    } $out/apt.sh
+  '';
 in
 {
   #: unit apt-packages-cache
@@ -23,6 +31,7 @@ in
         "BindAddress=0.0.0.0"
         "CacheDir=/var/cache/apt-cacher-ng"
         "LogDir=/var/log/apt-cacher-ng"
+        ''"LocalDirs=setup ${setup}"''
         # "Offlinemode=1"
       ];
       DynamicUser = true;
@@ -32,7 +41,16 @@ in
     };
   };
 
-  networking.firewall.interfaces.${hotspot.interface}.allowedTCPPorts = [ port ];
+  networking.firewall.interfaces.${hotspot.interface} = {
+    allowedTCPPorts = [
+      port
+      53
+    ];
+    allowedUDPPorts = [
+      53
+      67
+    ];
+  };
 
   networking.networkmanager.ensureProfiles.profiles.cache = {
     connection = {

@@ -12,6 +12,7 @@ let
     slack
     vscode
     orca-slicer
+    bambu-studio
     prusa-slicer
     wireshark
     metasploit

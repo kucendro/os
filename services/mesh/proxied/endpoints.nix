@@ -44,10 +44,10 @@ in
   qore = {
     address = "${nas}:7673";
   };
-  #: -> nas/ledfx ledfx :8888 name=ledfx@home:443
-  ledfx = {
-    address = "${nas}:8888";
-  };
+  ##: -> nas/ledfx ledfx :8888 name=ledfx@home:443
+  #ledfx = {
+  #  address = "${nas}:8888";
+  #};
   #: -> nas/open-webui chat :8080 name=chat@home:443
   chat = {
     address = "${nas}:8080";

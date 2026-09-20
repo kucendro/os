@@ -44,3 +44,4 @@ Own copy of what gets read and watched. cobalt has no nixpkgs package or module 
 
 - [ ] Vaultwarden: disable signups, accounts exist.
 - [ ] remarkable (rmfakecloud): commented out on nas and in endpoints, finish or remove `services/remarkable.nix`.
+- [ ] ledfx: import commented out in `services/smart-home/default.nix` (2026-09-20), nixpkgs `sendspin` 7.5.0 needs `aiosendspin~=6.0.1` but the set ships 9.1.1, so the nas build fails. Upstream fixed on main 2026-09-17, no release yet. Re-enable once nixpkgs gets sendspin > 7.5.0, `ledfx@home` commented out in endpoints too.

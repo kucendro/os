@@ -14,7 +14,8 @@ let
 in
 {
   #: unit calibre-web
-  #: expose 8083 mesh+lan
+  #: expose 8083 mesh
+  #: expose 8083 lan
   services.calibre-web = {
     enable = true;
     listen = {

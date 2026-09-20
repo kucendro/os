@@ -6,6 +6,6 @@
     ./otbr.nix
     ./music-assistant.nix
     ./frigate.nix
-    ./ledfx.nix
+    # ./ledfx.nix
   ];
 }

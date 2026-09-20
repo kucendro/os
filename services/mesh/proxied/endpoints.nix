@@ -56,6 +56,10 @@ in
   karakeep = {
     address = "${nas}:3006";
   };
+  #: -> nas/calibre-web shelf :8083 name=shelf@home:443
+  shelf = {
+    address = "${nas}:8083";
+  };
   ##: -> nas/rmfakecloud remarkable :5007 name=remarkable@home:443
   #remarkable = {
   #  address = "${nas}:5007";

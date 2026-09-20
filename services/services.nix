@@ -36,20 +36,20 @@
     };
     udisks2.enable = true;
     gvfs.enable = true;
-    clamav = {
-      daemon.enable = true;
-      daemon.settings = {
-        OnAccessIncludePath = "/home/${me.name}/Downloads";
-        OnAccessPrevention = true;
-      };
-      clamonacc.enable = true;
-      updater.enable = true;
-      fangfrisch.enable = true;
-      scanner = {
-        enable = true;
-        interval = "Sat *-*-* 12:00:00";
-      };
-    };
+    # clamav = {
+    #   daemon.enable = true;
+    #   daemon.settings = {
+    #     OnAccessIncludePath = "/home/${me.name}/Downloads";
+    #     OnAccessPrevention = true;
+    #   };
+    #   clamonacc.enable = true;
+    #   updater.enable = true;
+    #   fangfrisch.enable = true;
+    #   scanner = {
+    #     enable = true;
+    #     interval = "Sat *-*-* 12:00:00";
+    #   };
+    # };
     passSecretService.enable = true;
   };
 

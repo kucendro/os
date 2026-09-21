@@ -73,4 +73,9 @@ in
     address = "${nas}:8092";
     extraConfig = "proxy_buffering off;";
   };
+  #: -> nas/opencode opencode :8093 name=opencode@home:443
+  code = {
+    address = "${nas}:8093";
+    extraConfig = "proxy_buffering off;";
+  };
 }

@@ -20,6 +20,7 @@
     ../../services/gitea.nix
     ../../services/cache.nix
     ../../services/mcp.nix
+    ../../services/opencode.nix
     ../../services/karakeep.nix
     ../../services/calibre-web.nix
     # ../../services/remarkable.nix

@@ -22,7 +22,7 @@
     ../../services/mcp.nix
     ../../services/opencode.nix
     ../../services/karakeep.nix
-    ../../services/calibre-web.nix
+    # ../../services/calibre-web.nix
     # ../../services/remarkable.nix
     ../../services/lazybaka.nix
     ../../services/portfolio.nix

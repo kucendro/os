@@ -1,4 +1,4 @@
-![plymoth](../display/boot.png)
+![plymoth](https://github.com/kucendro/os/blob/8081d23bae8c27424d9aca7aae11ea5cde274946/display/boot.png)
 
 <hr>
 

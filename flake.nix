@@ -1,7 +1,8 @@
 {
-  description = "Kucendro's nix configuration";
+  description = "Ondřej Kučera's infrastructure configuration.";
 
   inputs = {
+
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     sops-nix.url = "github:Mic92/sops-nix";

@@ -23,5 +23,6 @@
     vulnix
     deploy-rs
     nixos-anywhere
+    gh
   ];
 }

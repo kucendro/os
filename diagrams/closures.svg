@@ -2,30 +2,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 144" width="720" height="144" role="img" font-family="ui-sans-serif, system-ui, sans-serif">
   <title>System closure size by host</title>
   <rect x="0" y="0" width="720" height="144" fill="transparent"/>
-  <rect x="75" y="10" width="10" height="10" fill="#7fa7e8"/>
-  <text x="90" y="19" font-size="12" fill="#8b949e">shared by every host</text>
-  <rect x="244" y="10" width="10" height="10" fill="#d9995a"/>
-  <text x="259" y="19" font-size="12" fill="#8b949e">shared by some</text>
-  <rect x="371" y="10" width="10" height="10" fill="#2ecc71"/>
-  <text x="386" y="19" font-size="12" fill="#8b949e">unique to this host</text>
-  <text x="67" y="49" font-size="13" fill="#8b949e" text-anchor="end">edge</text>
-  <text x="716" y="49" font-size="12" fill="#8b949e" text-anchor="end">not measured</text>
-  <text x="67" y="75" font-size="13" fill="#c9d1d9" text-anchor="end">nas</text>
-  <rect x="75" y="64" width="541" height="14" fill="#2a2a2e"/>
-  <rect x="75" y="64" width="114" height="14" fill="#7fa7e8"/>
-  <rect x="189" y="64" width="15" height="14" fill="#d9995a"/>
-  <rect x="204" y="64" width="157" height="14" fill="#2ecc71"/>
-  <text x="716" y="75" font-size="12" fill="#c9d1d9" text-anchor="end">18.3 GiB</text>
-  <text x="67" y="101" font-size="13" fill="#c9d1d9" text-anchor="end">nixbook</text>
-  <rect x="75" y="90" width="541" height="14" fill="#2a2a2e"/>
-  <rect x="75" y="90" width="114" height="14" fill="#7fa7e8"/>
-  <rect x="189" y="90" width="140" height="14" fill="#d9995a"/>
-  <rect x="329" y="90" width="287" height="14" fill="#2ecc71"/>
-  <text x="716" y="101" font-size="12" fill="#c9d1d9" text-anchor="end">34.6 GiB</text>
-  <text x="67" y="127" font-size="13" fill="#c9d1d9" text-anchor="end">stockholm</text>
-  <rect x="75" y="116" width="541" height="14" fill="#2a2a2e"/>
-  <rect x="75" y="116" width="114" height="14" fill="#7fa7e8"/>
-  <rect x="189" y="116" width="125" height="14" fill="#d9995a"/>
-  <rect x="314" y="116" width="29" height="14" fill="#2ecc71"/>
-  <text x="716" y="127" font-size="12" fill="#c9d1d9" text-anchor="end">17.2 GiB</text>
+  <rect x="75" y="10" width="10" height="10" fill="#4a76c4"/>
+  <text x="90" y="19" font-size="12" fill="#777777">shared by every host</text>
+  <rect x="244" y="10" width="10" height="10" fill="#c47a29"/>
+  <text x="259" y="19" font-size="12" fill="#777777">shared by some</text>
+  <rect x="371" y="10" width="10" height="10" fill="#27893f"/>
+  <text x="386" y="19" font-size="12" fill="#777777">unique to this host</text>
+  <text x="67" y="49" font-size="13" fill="#777777" text-anchor="end">edge</text>
+  <text x="716" y="49" font-size="12" fill="#777777" text-anchor="end">not measured</text>
+  <text x="67" y="75" font-size="13" fill="#333333" text-anchor="end">nas</text>
+  <rect x="75" y="64" width="541" height="14" fill="#ebebeb"/>
+  <rect x="75" y="64" width="100" height="14" fill="#4a76c4"/>
+  <rect x="175" y="64" width="14" height="14" fill="#c47a29"/>
+  <rect x="189" y="64" width="161" height="14" fill="#27893f"/>
+  <text x="716" y="75" font-size="12" fill="#333333" text-anchor="end">17.1 GiB</text>
+  <text x="67" y="101" font-size="13" fill="#333333" text-anchor="end">nixbook</text>
+  <rect x="75" y="90" width="541" height="14" fill="#ebebeb"/>
+  <rect x="75" y="90" width="100" height="14" fill="#4a76c4"/>
+  <rect x="175" y="90" width="143" height="14" fill="#c47a29"/>
+  <rect x="318" y="90" width="298" height="14" fill="#27893f"/>
+  <text x="716" y="101" font-size="12" fill="#333333" text-anchor="end">33.5 GiB</text>
+  <text x="67" y="127" font-size="13" fill="#333333" text-anchor="end">stockholm</text>
+  <rect x="75" y="116" width="541" height="14" fill="#ebebeb"/>
+  <rect x="75" y="116" width="100" height="14" fill="#4a76c4"/>
+  <rect x="175" y="116" width="129" height="14" fill="#c47a29"/>
+  <rect x="304" y="116" width="30" height="14" fill="#27893f"/>
+  <text x="716" y="127" font-size="12" fill="#333333" text-anchor="end">16.1 GiB</text>
 </svg>

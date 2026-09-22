@@ -16,8 +16,6 @@ let
       proxyWebsockets = true;
       extraConfig = ''
         set $upstream_${name} ${cfg.address};
-        proxy_read_timeout 600s;
-        proxy_send_timeout 600s;
         ${cfg.extraConfig or ""}
       '';
     };

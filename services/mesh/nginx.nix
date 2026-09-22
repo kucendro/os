@@ -22,6 +22,7 @@
     recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
+    proxyTimeout = "600s";
   };
 
   networking.firewall.allowedTCPPorts = [

@@ -1,7 +1,22 @@
-# Infrastructure wiki
+![plymoth](../display/boot.png)
 
-## About this wiki
+<hr>
 
-This page is the one I write by hand: the big picture, the _why_, and where a newcomer should start.
+<samp>This system is my best attempt at recreating a personal, "Apple like"
+ecosystem through a powerful yet simple principle: declare everything that can
+be declared. It is only possible because enough people grew tired of endless
+repetitive configuration, and of the fatal mistakes waiting along that path. So
+we have Nix, in my opinion the best open source language in its class for
+declaring your vision.</samp>
 
-Everything else (Architecture, Hosts, Services, Endpoints) is **auto-generated from the NixOS configuration** on every commit, so it is always current.
+<hr>
+
+### Status
+
+![services](https://img.shields.io/endpoint?url=https%3A%2F%2Fedge.kucendro.dev%2Fmetrics%2Fuptime.json)
+![edge](https://img.shields.io/endpoint?url=https%3A%2F%2Fedge.kucendro.dev%2Fmetrics%2Fedge.json)
+![devices](https://img.shields.io/endpoint?url=https%3A%2F%2Fedge.kucendro.dev%2Fmetrics%2Fdevices.json)
+
+## Money pls
+
+<a href="https://www.buymeacoffee.com/kucendro"><img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20matcha&emoji=&slug=kucendro&button_colour=5f5ca7&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00" alt="Buy me a matcha" height="50" /></a>

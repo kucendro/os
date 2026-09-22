@@ -52,6 +52,7 @@ nixdiag.lib.mkDocs {
   title = "kucendro infrastructure wiki";
   indexPage = ../wiki/index.md;
   bookToml = ../wiki/book.toml;
+  theme = "light";
   extraPages = {
     Termux = "${termux}/termux.md";
     Blink = "${blink}/blink.md";

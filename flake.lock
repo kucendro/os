@@ -364,11 +364,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789630137,
-        "narHash": "sha256-DqWzfQ6amLnZxArEmDatyF2sV7UTlseGmLCUjhcYHz4=",
+        "lastModified": 1790067439,
+        "narHash": "sha256-crfp6TRtn1THaI/ASqHjXcwqNg3BYLdF3nFR5uAgBak=",
         "owner": "kucendro",
         "repo": "nixdiag",
-        "rev": "4fc4622ede7821a86224ade503c9f5668690dd12",
+        "rev": "af8ca7a4a9b5f72957cda49b302ecbc4a49b8ae8",
         "type": "github"
       },
       "original": {

@@ -1,5 +1,3 @@
-# Serves the nixdiag-generated wiki (`packages.docs`) straight from the store:
-# it ships atomically with every deploy of this host.
 {
   inputs,
   pkgs,

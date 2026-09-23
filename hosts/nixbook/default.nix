@@ -21,7 +21,7 @@
     # ../../services/kdrive.nix
     ../../services/printer.nix
     ../../services/sync/client.nix
-    ../../services/apt-cache.nix
+    ../../services/apt-cache/apt-cache.nix # later remove
     ../../services/netreg.nix
   ];
 

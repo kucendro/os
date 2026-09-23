@@ -4,6 +4,7 @@
     enable = true;
     withRuby = false;
     withPython3 = false;
+    extraPackages = [ pkgs.nixd ];
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim
@@ -24,6 +25,19 @@
              servers = {
               rust_analyzer = {
               mason = false,
+              },
+              nil_ls = { enabled = false },
+              nixd = {
+                mason = false,
+                settings = {
+                  nixd = {
+                    nixpkgs = { expr = 'import (builtins.getFlake (toString ./.)).inputs.nixpkgs { }' },
+                    options = {
+                      nixos = { expr = '(builtins.getFlake (toString ./.)).nixosConfigurations.nixbook.options' },
+                      ["home-manager"] = { expr = '(builtins.getFlake (toString ./.)).nixosConfigurations.nixbook.options.home-manager.users.type.getSubOptions []' },
+                    },
+                  },
+                },
               },
              },
             },

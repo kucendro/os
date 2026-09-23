@@ -22,4 +22,6 @@ with pkgs; [
   just
   lefthook
   sqlx-cli
+  # mysql-workbench
+  jdk25
 ]

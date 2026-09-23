@@ -8,7 +8,7 @@ let
   };
   setup = pkgs.runCommand "apt-cache-setup" { } ''
     install -Dm444 ${
-      pkgs.replaceVars ./apt-cache/apt.sh {
+      pkgs.replaceVars ./apt.sh {
         ip = hotspot.ip;
         port = toString port;
       }

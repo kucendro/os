@@ -1,7 +1,3 @@
-![plymoth](https://github.com/kucendro/os/blob/8081d23bae8c27424d9aca7aae11ea5cde274946/display/boot.png)
-
-<hr>
-
 <samp>This system is my best attempt at recreating a personal, "Apple like"
 ecosystem through a powerful yet simple principle: declare everything that can
 be declared. It is only possible because enough people grew tired of endless

@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   port = 8093;
@@ -32,6 +37,7 @@ in
       ExecStart = "${lib.getExe pkgs.opencode} serve --hostname 0.0.0.0 --port ${toString port} --print-logs";
       User = "opencode";
       Group = "opencode";
+      EnvironmentFile = config.sops.templates."opencode-env".path;
       WorkingDirectory = "/var/lib/opencode";
       Restart = "on-failure";
       NoNewPrivileges = true;

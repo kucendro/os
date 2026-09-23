@@ -118,11 +118,11 @@ in
     dashboards.settings.providers = [
       {
         name = "endpoints";
-        options.path = ./endpoints-dashboard.json;
+        options.path = ./grafana/dashboards/endpoints.json;
       }
       {
         name = "speed";
-        options.path = ./speed-dashboard.json;
+        options.path = ./grafana/dashboards/speed.json;
       }
     ];
     alerting.contactPoints.settings = {

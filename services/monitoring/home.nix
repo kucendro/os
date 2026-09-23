@@ -2,11 +2,11 @@
 
 {
   services.grafana = {
-    settings.dashboards.default_home_dashboard_path = "${./home-dashboard.json}";
+    settings.dashboards.default_home_dashboard_path = "${./grafana/dashboards/home.json}";
     provision.dashboards.settings.providers = [
       {
         name = "home";
-        options.path = ./home-dashboard.json;
+        options.path = ./grafana/dashboards/home.json;
       }
     ];
   };

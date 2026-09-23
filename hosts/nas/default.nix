@@ -15,7 +15,7 @@
     ../../services/immich.nix
     ../../services/vault.nix
     ../../services/sync/server.nix
-    ../../services/grafana.nix
+    ../../services/monitoring/grafana
     ../../services/monitoring/endpoints.nix
     ../../services/monitoring/deploys.nix
     ../../services/monitoring/logs.nix

@@ -87,7 +87,7 @@ in
     dashboards.settings.providers = [
       {
         name = "backups";
-        options.path = ./backup-dashboard.json;
+        options.path = ../monitoring/grafana/dashboards/backup.json;
       }
     ];
     alerting.rules.settings.groups = [

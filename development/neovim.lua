@@ -1,6 +1,7 @@
 require("lazy").setup({
+  dev = { path = vim.g.nix_lazy_path, patterns = { "" }, fallback = true },
   spec = {
-    { "LazyVim/LazyVim",     import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim",      import = "lazyvim.plugins" },
     {
       "terrastruct/d2-vim",
       ft = { "d2" },
@@ -28,15 +29,10 @@ require("lazy").setup({
         },
       },
     },
-    { "nvim-mini/mini.nvim", lazy = false },
-    {
-      "nvim-mini/mini.icons",
-      dir = "${pkgs.vimPlugins.mini-icons}",
-      lazy = false,
-    },
+    { "nvim-mini/mini.nvim",  lazy = false },
+    { "nvim-mini/mini.icons", lazy = false },
     {
       "iamcco/markdown-preview.nvim",
-      dir = "${pkgs.vimPlugins.markdown-preview-nvim}",
       build = function() vim.fn["mkdp#util#install"]() end,
       cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
       ft = { "markdown" },

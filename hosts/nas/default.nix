@@ -19,6 +19,7 @@
     ../../services/monitoring/endpoints.nix
     ../../services/monitoring/deploys.nix
     ../../services/monitoring/logs.nix
+    ../../services/monitoring/home.nix
     ../../services/gitea.nix
     ../../services/cache.nix
     ../../services/mcp.nix

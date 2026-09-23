@@ -35,7 +35,7 @@ in
     };
     serviceConfig = {
       ExecStart = "${lib.getExe pkgs.opencode} serve --hostname 0.0.0.0 --port ${toString port} --print-logs";
-      User = "kucendro";
+      User = "opencode";
       Group = "opencode";
       EnvironmentFile = config.sops.templates."opencode-env".path;
       WorkingDirectory = "/var/lib/opencode";

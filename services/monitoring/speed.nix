@@ -69,7 +69,10 @@ let
   };
 in
 {
-  services.prometheus.pushgateway.enable = true;
+  services.prometheus.pushgateway = {
+    enable = true;
+    persistMetrics = true;
+  };
 
   systemd.services.iperf3-run = {
     description = "Run iperf3 speed tests against mesh targets, push to pushgateway";

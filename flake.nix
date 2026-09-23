@@ -200,13 +200,17 @@
         }
       );
 
-      checks = nixpkgs.lib.genAttrs systems (system: {
-        inherit (deploy-rs.lib.${system}.deployChecks self.deploy) deploy-schema;
-      });
+      checks = nixpkgs.lib.genAttrs systems (
+        system:
+        {
+          inherit (deploy-rs.lib.${system}.deployChecks self.deploy) deploy-schema;
+        }
+        // import ./flake/checks.nix { inherit nixpkgs self; } system
+      );
 
       apps = nixpkgs.lib.genAttrs systems (
         import ./flake/apps.nix {
-          inherit nixpkgs;
+          inherit nixpkgs me;
         }
       );
 

@@ -22,8 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: STARTING
+        run: echo "started=$(date +%s)" >> "$GITHUB_ENV"
+
       - name: CHECKING
-        run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
+        run: nix --extra-experimental-features "nix-command flakes" flake check
 
       - name: BUILDING
         run: |
@@ -70,6 +73,7 @@ jobs:
             user=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
               ".#deploy.nodes.$node.sshUser")
 
+            # shellcheck disable=SC2086 # SSH_OPTS is a flag list, splitting is the point
             if ! ssh $SSH_OPTS -o BatchMode=yes -o ConnectTimeout=5 "$user@$host" true 2>/dev/null; then
               echo "skip $node ($host unreachable)"
               continue
@@ -83,6 +87,10 @@ jobs:
             echo "failed:$failed"
             exit 1
           fi
+
+      - name: VERIFYING
+        if: always()
+        run: nix --extra-experimental-features "nix-command flakes" run .#verify
 
       - name: NOTIFYING
         run: |
@@ -104,3 +112,12 @@ jobs:
             "$self" "$(git log -1 --pretty='%h %s')" "$self" "$changes")
 
           nix --extra-experimental-features "nix-command flakes" run .#tg -- message "$text"
+
+      - name: REPORTING
+        if: always()
+        run: nix --extra-experimental-features "nix-command flakes" run .#verify -- run deploy "${{ job.status }}" "$started"
+
+      - name: FAILING
+        if: failure()
+        run: |
+          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "deploy failed: $(git log -1 --pretty='%h %s')"

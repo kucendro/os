@@ -14,6 +14,8 @@
     ../services/services.nix
     ../services/mesh/tailscale.nix
     ../services/monitoring/agent.nix
+    ../services/monitoring/metrics.nix
+    ../services/monitoring/journal.nix
   ];
 
   boot = {

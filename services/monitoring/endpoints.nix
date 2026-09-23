@@ -3,13 +3,24 @@
   lib,
   pkgs,
   me,
+  inputs,
   ...
 }:
 
 let
-  homeDomain = me.domains.home;
-  endpoints = import ../mesh/proxied/endpoints.nix me;
-  targets = lib.mapAttrsToList (name: _: "https://${name}.${homeDomain}") endpoints;
+  hosts = inputs.self.nixosConfigurations;
+  vhosts = lib.unique (
+    lib.concatMap (
+      name:
+      let
+        cfg = if name == config.networking.hostName then config else hosts.${name}.config;
+      in
+      lib.optionals cfg.services.nginx.enable (
+        lib.filter (lib.hasInfix ".") (lib.attrNames cfg.services.nginx.virtualHosts)
+      )
+    ) (lib.attrNames hosts)
+  );
+  targets = map (vhost: "https://${vhost}") vhosts;
   blackboxPort = 9115;
   prometheusPort = 9090;
 in
@@ -80,6 +91,13 @@ in
         honor_labels = true;
         static_configs = [ { targets = [ "edge.${me.domains.mesh}:9091" ]; } ];
       }
+      {
+        job_name = "node";
+        static_configs = map (name: {
+          targets = [ "${name}.${me.domains.mesh}:9100" ];
+          labels.node = name;
+        }) (lib.attrNames hosts);
+      }
     ];
   };
 
@@ -100,11 +118,11 @@ in
     dashboards.settings.providers = [
       {
         name = "endpoints";
-        options.path = ./blackbox-dashboard.json;
+        options.path = ./endpoints-dashboard.json;
       }
       {
         name = "speed";
-        options.path = ./iperf3-dashboard.json;
+        options.path = ./speed-dashboard.json;
       }
     ];
     alerting.contactPoints.settings = {

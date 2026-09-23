@@ -16,7 +16,9 @@
     ../../services/vault.nix
     ../../services/sync/server.nix
     ../../services/grafana.nix
-    ../../services/monitoring/blackbox.nix
+    ../../services/monitoring/endpoints.nix
+    ../../services/monitoring/deploys.nix
+    ../../services/monitoring/logs.nix
     ../../services/gitea.nix
     ../../services/cache.nix
     ../../services/mcp.nix

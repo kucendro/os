@@ -10,7 +10,7 @@
     ../../services/mesh/proxied/services.nix
     ../../services/mesh/wiki.nix
     ../../services/monitoring/hub.nix
-    ../../services/monitoring/iperf3.nix
+    ../../services/monitoring/speed.nix
     ../../services/monitoring/badges.nix
   ];
 

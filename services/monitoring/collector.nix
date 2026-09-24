@@ -40,13 +40,13 @@ in
           {
             context = "resource";
             statements = [
-              ''set(attributes["service.name"], attributes["unit"])''
-              ''set(attributes["host.name"], attributes["host"])''
+              ''set(resource.attributes["service.name"], resource.attributes["unit"])''
+              ''set(resource.attributes["host.name"], resource.attributes["host"])''
             ];
           }
           {
             context = "log";
-            statements = [ ''set(severity_text, attributes["level"])'' ];
+            statements = [ ''set(log.severity_text, log.attributes["level"])'' ];
           }
         ];
         batch = {
@@ -84,7 +84,9 @@ in
 
   systemd.services.opentelemetry-collector = {
     after = [ "clickhouse.service" ];
-    wants = [ "clickhouse.service" ];
+    requires = [ "clickhouse.service" ];
+    startLimitIntervalSec = 0;
+    serviceConfig.RestartSec = 10;
   };
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ otlpPort ];

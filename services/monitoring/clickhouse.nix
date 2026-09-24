@@ -3,6 +3,7 @@
 let
   dataDir = "/mnt/data/clickhouse";
   database = "monitoring";
+  httpPort = 8124;
   reader = name: ''
     <${name}>
       <no_password/>
@@ -24,11 +25,11 @@ in
   services.clickhouse = {
     enable = true;
     serverConfig = {
+      http_port = httpPort;
       max_server_memory_usage_to_ram_ratio = 0.3;
       mark_cache_size = 536870912;
       uncompressed_cache_size = 268435456;
       max_concurrent_queries = 20;
-      background_pool_size = 4;
     };
     extraUsersConfig = ''
       <clickhouse>

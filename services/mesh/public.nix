@@ -26,7 +26,7 @@ let
   alts = lib.concatMap (d: [
     d
     "www.${d}"
-  ]) me.domains.alts;
+  ]) me.altDomains;
 
   mkRedirect = {
     enableACME = true;

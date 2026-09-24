@@ -23,6 +23,17 @@ let
     # };
   };
 
+  alts = lib.concatMap (d: [
+    d
+    "www.${d}"
+  ]) me.domains.alts;
+
+  mkRedirect = {
+    enableACME = true;
+    forceSSL = true;
+    globalRedirect = me.domains.root;
+  };
+
   mkVhost = name: cfg: {
     enableACME = true;
     forceSSL = true;
@@ -41,7 +52,9 @@ in
   #: -> nas/nginx archive
   #: -> nas/music-assistant party
   #: -> nas/kubicek kubicek
-  services.nginx.virtualHosts = lib.mapAttrs' (
-    name: cfg: lib.nameValuePair (cfg.host or "${name}.${me.domains.root}") (mkVhost name cfg)
-  ) publics;
+  services.nginx.virtualHosts =
+    lib.mapAttrs' (
+      name: cfg: lib.nameValuePair (cfg.host or "${name}.${me.domains.root}") (mkVhost name cfg)
+    ) publics
+    // lib.genAttrs alts (_: mkRedirect);
 }

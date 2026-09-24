@@ -11,7 +11,7 @@
     ../../services/mesh/wiki.nix
     ../../services/monitoring/hub.nix
     ../../services/monitoring/speed.nix
-    ../../services/monitoring/badges.nix
+    ../../services/monitoring/3rd/badges
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

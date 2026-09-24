@@ -27,18 +27,6 @@
       };
     };
 
-    # mac = {
-    #   hostname = "mac";
-    #   sshUser = me.name;
-    #   remoteBuild = true;
-    #   interactiveSudo = true;
-    #   magicRollback = false;
-    #   profiles.system = {
-    #     user = "root";
-    #     path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mac;
-    #   };
-    # };
-
     nas = {
       hostname = "nas";
       sshUser = me.name;

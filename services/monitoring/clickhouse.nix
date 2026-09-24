@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   dataDir = "/mnt/data/clickhouse";
@@ -59,7 +59,13 @@ in
     '';
   };
 
-  systemd.services.clickhouse.unitConfig.RequiresMountsFor = [ "/var/lib/clickhouse" ];
+  systemd.services.clickhouse = {
+    unitConfig.RequiresMountsFor = [ "/var/lib/clickhouse" ];
+    restartTriggers = [
+      (builtins.toJSON config.services.clickhouse.serverConfig)
+      config.services.clickhouse.extraUsersConfig
+    ];
+  };
 
   systemd.tmpfiles.rules = [ "d ${dataDir} 0700 clickhouse clickhouse -" ];
 

@@ -32,11 +32,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -87,7 +82,6 @@
       home-manager,
       stylix,
       disko,
-      nix-darwin,
       nixos-generators,
       deploy-rs,
       irlume,
@@ -101,10 +95,7 @@
 
       flakeDir = "os";
 
-      systems = [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ];
+      systems = [ "x86_64-linux" ];
 
       nixosHosts = {
 
@@ -142,16 +133,7 @@
 
       };
 
-      darwinHosts = {
-
-        mac = {
-          profile = "darwin";
-          targetModule = ./hosts/mac;
-        };
-
-      };
-
-      hostNames = builtins.attrNames nixosHosts ++ builtins.attrNames darwinHosts;
+      hostNames = builtins.attrNames nixosHosts;
 
       inherit
         (import ./lib/mk-system.nix {
@@ -163,15 +145,12 @@
             ;
         })
         mkSystem
-        mkDarwin
         ;
 
     in
 
     {
       nixosConfigurations = nixpkgs.lib.mapAttrs mkSystem nixosHosts;
-
-      darwinConfigurations = nixpkgs.lib.mapAttrs mkDarwin darwinHosts;
 
       deploy = import ./flake/deploy.nix {
         inherit deploy-rs me self;

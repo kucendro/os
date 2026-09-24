@@ -17,8 +17,7 @@
   ];
 
   home.username = me.name;
-  home.homeDirectory =
-    if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${me.name}" else "/home/${me.name}";
+  home.homeDirectory = "/home/${me.name}";
 
   home.sessionVariables = {
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
@@ -77,7 +76,6 @@
           ControlPath = "~/.ssh/master-%r@%n:%p";
           ControlPersist = "no";
         };
-        mac.User = me.name;
         stockholm.User = me.name;
         edge.User = me.name;
       };
@@ -161,12 +159,6 @@
             when = "[ -e /lib/libc.so.6 ]";
             format = "[$output]($style) ";
             style = "bold blue";
-          };
-          darwin = {
-            command = "echo 🍏";
-            when = ''[ "$(uname)" = "Darwin" ]'';
-            format = "[$output]($style) ";
-            style = "bold white";
           };
         };
       };

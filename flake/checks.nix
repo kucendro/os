@@ -63,8 +63,4 @@ in
         actionlint -config-file ${labels} ${self}/.gitea/workflows/*.yaml
         touch $out
       '';
-
-  darwin = builtins.deepSeq (lib.mapAttrs (_: cfg: cfg.system.drvPath) self.darwinConfigurations) (
-    pkgs.runCommand "darwin" { } "touch $out"
-  );
 }

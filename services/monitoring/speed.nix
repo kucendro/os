@@ -12,7 +12,6 @@ let
   targets = {
     nas = "nas.${me.domains.mesh}";
     nixbook = "nixbook.${me.domains.mesh}";
-    mac = "mac.${me.domains.mesh}";
   };
 
   targetLines = lib.concatStringsSep "\n" (

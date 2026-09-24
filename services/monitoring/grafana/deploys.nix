@@ -5,7 +5,7 @@
     dashboards.settings.providers = [
       {
         name = "deploys";
-        options.path = ./grafana/dashboards/deploys.json;
+        options.path = ./dashboards/deploys.json;
       }
     ];
     alerting.rules.settings.groups = [

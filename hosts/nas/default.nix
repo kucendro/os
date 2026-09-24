@@ -17,9 +17,13 @@
     ../../services/sync/server.nix
     ../../services/monitoring/grafana
     ../../services/monitoring/endpoints.nix
-    ../../services/monitoring/deploys.nix
+    ../../services/monitoring/grafana/deploys.nix
     ../../services/monitoring/logs.nix
-    ../../services/monitoring/home.nix
+    ../../services/monitoring/grafana/home.nix
+    ../../services/monitoring/clickhouse.nix
+    ../../services/monitoring/collector.nix
+    ../../services/monitoring/3rd/kaiwadb.nix
+    ../../services/monitoring/3rd/telegram.nix
     ../../services/gitea.nix
     ../../services/cache.nix
     ../../services/mcp.nix

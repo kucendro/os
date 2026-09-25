@@ -14,6 +14,7 @@
     ];
     dnsProvider = "cloudflare";
     environmentFile = config.sops.templates."acme-cloudflare-env".path;
+    extraLegoFlags = [ "--dns.propagation.disable-rns" ];
     group = "nginx";
   };
 

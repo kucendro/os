@@ -8,7 +8,7 @@
 {
   imports = [
     ./graphical.nix
-    ./dev.nix
+    ./dev
     ../display/plymouth.nix
     ../services/virtualization/win.nix
   ];

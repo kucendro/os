@@ -3,6 +3,7 @@
 {
   imports = [
     ../../base/linux.nix
+    ../../profiles/dev/host.nix
     ./disko.nix
     ./data.nix
     ./reliability.nix

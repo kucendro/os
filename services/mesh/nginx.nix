@@ -8,10 +8,7 @@
 
   security.acme.certs.${me.domains.home} = {
     domain = me.domains.home;
-    extraDomainNames = [
-      "*.${me.domains.home}"
-      "*.dev.${me.domains.root}"
-    ];
+    extraDomainNames = [ "*.${me.domains.home}" ];
     dnsProvider = "cloudflare";
     environmentFile = config.sops.templates."acme-cloudflare-env".path;
     extraLegoFlags = [ "--dns.propagation.disable-rns" ];

@@ -1,11 +1,11 @@
 { pkgs, me, ... }:
 
 {
-  imports = [ ../../development/fhs.nix ];
+  imports = [ ../development/fhs.nix ];
 
   environment.localBinInPath = true;
 
-  environment.systemPackages = import ../../development/packages.nix pkgs;
+  environment.systemPackages = import ../development/packages.nix pkgs;
 
   home-manager.users.${me.name}.programs = {
     uv = {

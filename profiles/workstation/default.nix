@@ -2,7 +2,7 @@
 {
   imports = [
     ../graphical.nix
-    ../dev
+    ../dev.nix
     ./gpu.nix
     ./session.nix
     ../../services/sunshine.nix

@@ -23,7 +23,5 @@ in
       useACMEHost = homeDomain;
       forceSSL = true;
     };
-    allowOrigins = [ ];
-    history = true;
   };
 }

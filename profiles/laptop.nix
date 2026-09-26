@@ -110,6 +110,7 @@
     zoom-us
     voxtype
     audacity
+    element-desktop
   ];
 
   environment.sessionVariables = {

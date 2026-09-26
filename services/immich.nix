@@ -8,6 +8,8 @@
     mediaLocation = "/mnt/data/immich";
   };
 
+  nixdiag.units.immich.ports = [ 2283 ];
+
   systemd.services.immich-server.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 2283 ];
 }

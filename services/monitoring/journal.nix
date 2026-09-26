@@ -1,10 +1,18 @@
 { config, me, ... }:
 
 {
-  #: unit alloy
-  #: -> nas/loki logs
-  #: -> nas/opentelemetry-collector logs
   services.alloy.enable = true;
+
+  nixdiag.units.alloy.connections = [
+    {
+      to = "nas/loki";
+      label = "logs";
+    }
+    {
+      to = "nas/opentelemetry-collector";
+      label = "logs";
+    }
+  ];
 
   environment.etc."alloy/config.alloy".text = ''
     loki.source.journal "journal" {

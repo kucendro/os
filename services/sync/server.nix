@@ -5,8 +5,6 @@ let
   syncPort = 22000;
 in
 {
-  #: unit syncthing
-  #: expose 22000 mesh
   services.syncthing = {
     enable = true;
     dataDir = "/mnt/data/syncthing";
@@ -49,6 +47,16 @@ in
           drop = shared "drop";
         };
     };
+  };
+
+  nixdiag.units.syncthing = {
+    ports = [ guiPort ];
+    expose = [
+      {
+        port = syncPort;
+        scope = "mesh";
+      }
+    ];
   };
 
   systemd.services.syncthing.unitConfig.RequiresMountsFor = [ "/mnt/data" ];

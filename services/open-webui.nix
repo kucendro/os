@@ -16,5 +16,7 @@ in
     };
   };
 
+  nixdiag.units.open-webui.ports = [ port ];
+
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
 }

@@ -20,8 +20,6 @@ let
   '';
 in
 {
-  #: unit clickhouse
-  #: -> nas/grafana sql
   services.clickhouse = {
     enable = true;
     serverConfig = {
@@ -58,6 +56,13 @@ in
       </clickhouse>
     '';
   };
+
+  nixdiag.units.clickhouse.connections = [
+    {
+      to = "nas/grafana";
+      label = "sql";
+    }
+  ];
 
   systemd.services.clickhouse = {
     unitConfig.RequiresMountsFor = [ "/var/lib/clickhouse" ];

@@ -5,8 +5,6 @@ let
   dataDir = "/mnt/data/loki";
 in
 {
-  #: unit loki
-  #: -> nas/grafana logs
   services.loki = {
     enable = true;
     inherit dataDir;
@@ -55,6 +53,13 @@ in
       };
     };
   };
+
+  nixdiag.units.loki.connections = [
+    {
+      to = "nas/grafana";
+      label = "logs";
+    }
+  ];
 
   systemd.services.loki.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
   systemd.tmpfiles.rules = [ "d ${dataDir} 0700 loki loki -" ];

@@ -7,7 +7,6 @@ in
 {
   services.postgresqlBackup.enable = true;
 
-  #: unit restic-backups-hetzner
   services.restic.backups.hetzner = {
     repositoryFile = config.sops.secrets.restic-repository.path;
     passwordFile = config.sops.secrets.restic-password.path;
@@ -45,6 +44,8 @@ in
       RandomizedDelaySec = "15m";
     };
   };
+
+  nixdiag.units.restic-backups-hetzner = { };
 
   systemd.services.restic-backups-hetzner.unitConfig.RequiresMountsFor = [ "/mnt/data/.snapshots" ];
 }

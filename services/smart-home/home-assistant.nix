@@ -7,8 +7,6 @@ let
   configDir = "/mnt/data/home-assistant";
 in
 {
-  #: -> matterjs-server matter :5580
-  #: -> openthread-border-router thread :8081
   services.home-assistant = {
     enable = true;
     inherit configDir;
@@ -57,6 +55,20 @@ in
       script = "!include scripts.yaml";
       scene = "!include scenes.yaml";
     };
+  };
+
+  nixdiag.units.home-assistant = {
+    ports = [ port ];
+    connections = [
+      {
+        to = "matterjs-server";
+        label = "matter :5580";
+      }
+      {
+        to = "openthread-border-router";
+        label = "thread :8081";
+      }
+    ];
   };
 
   services.matterjs-server.enable = true;

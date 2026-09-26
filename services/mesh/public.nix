@@ -48,13 +48,14 @@ let
   };
 in
 {
-  #: -> nas/nginx portfolio
-  #: -> nas/nginx archive
-  #: -> nas/music-assistant party
-  #: -> nas/kubicek kubicek
   services.nginx.virtualHosts =
     lib.mapAttrs' (
       name: cfg: lib.nameValuePair (cfg.host or "${name}.${me.domains.root}") (mkVhost name cfg)
     ) publics
     // lib.genAttrs alts (_: mkRedirect);
+
+  nixdiag.units.nginx.connections = lib.mapAttrsToList (name: cfg: {
+    to = cfg.address;
+    label = "${name} :${lib.last (lib.splitString ":" cfg.address)}";
+  }) publics;
 }

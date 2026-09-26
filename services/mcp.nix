@@ -13,7 +13,6 @@ let
   };
 in
 {
-  #: unit mcp
   systemd.services = lib.mapAttrs' (
     name: srv:
     lib.nameValuePair "mcp-${name}" {
@@ -40,6 +39,8 @@ in
       };
     }
   ) servers;
+
+  nixdiag.units.mcp.ports = lib.mapAttrsToList (_: srv: srv.port) servers;
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = lib.mapAttrsToList (
     _: srv: srv.port

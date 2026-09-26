@@ -16,8 +16,6 @@ let
   '';
 in
 {
-  #: unit apt-packages-cache
-  #: expose 3142 lan
   systemd.services.apt-cacher-ng = {
     description = "apt-cacher-ng caching proxy";
     wantedBy = [ "multi-user.target" ];
@@ -40,6 +38,13 @@ in
       Restart = "on-failure";
     };
   };
+
+  nixdiag.units.apt-packages-cache.expose = [
+    {
+      inherit port;
+      scope = "lan";
+    }
+  ];
 
   networking.firewall.interfaces.${hotspot.interface} = {
     allowedTCPPorts = [

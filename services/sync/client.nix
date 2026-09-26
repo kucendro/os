@@ -4,8 +4,6 @@ let
   syncPort = 22000;
 in
 {
-  #: unit syncthing
-  #: -> nas/syncthing sync
   services.syncthing = {
     enable = true;
     user = me.name;
@@ -50,6 +48,13 @@ in
         };
     };
   };
+
+  nixdiag.units.syncthing.connections = [
+    {
+      to = "nas/syncthing";
+      label = "sync";
+    }
+  ];
 
   networking.firewall.interfaces."tailscale0" = {
     allowedTCPPorts = [ syncPort ];

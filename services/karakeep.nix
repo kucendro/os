@@ -24,6 +24,8 @@ in
     };
   };
 
+  nixdiag.units.karakeep.ports = [ port ];
+
   services.meilisearch.settings = lib.mkForce {
     http_addr = "${config.services.meilisearch.listenAddress}:${toString config.services.meilisearch.listenPort}";
     db_path = "/var/lib/meilisearch";

@@ -13,9 +13,6 @@ let
       '';
 in
 {
-  #: unit calibre-web
-  #: expose 8083 mesh
-  #: expose 8083 lan
   services.calibre-web = {
     enable = true;
     listen = {
@@ -27,6 +24,17 @@ in
       enableBookUploading = true;
     };
   };
+
+  nixdiag.units.calibre-web.expose = [
+    {
+      inherit port;
+      scope = "mesh";
+    }
+    {
+      inherit port;
+      scope = "lan";
+    }
+  ];
 
   systemd.tmpfiles.rules = [
     "d /mnt/data/calibre-web 0700 calibre-web calibre-web -"

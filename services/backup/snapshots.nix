@@ -1,5 +1,4 @@
 {
-  #: unit btrbk-data
   services.btrbk.instances.data = {
     onCalendar = "hourly";
     settings = {
@@ -9,6 +8,8 @@
       subvolume."/mnt/data".snapshot_name = "data";
     };
   };
+
+  nixdiag.units.btrbk-data = { };
 
   systemd.services.btrbk-data.unitConfig.RequiresMountsFor = [ "/mnt/data/.snapshots" ];
 }

@@ -31,7 +31,6 @@ in
     };
   };
 
-  #: unit ledfx
   systemd.services.ledfx = {
     description = "LedFx";
     wantedBy = [ "multi-user.target" ];
@@ -49,6 +48,8 @@ in
       RestartSec = 5;
     };
   };
+
+  nixdiag.units.ledfx = { };
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ webPort ];
 }

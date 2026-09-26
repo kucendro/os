@@ -18,8 +18,6 @@ let
       v;
 in
 {
-  #: unit opentelemetry-collector
-  #: -> nas/clickhouse otel
   services.opentelemetry-collector = {
     enable = true;
     package = pkgs.opentelemetry-collector-contrib;
@@ -81,6 +79,13 @@ in
       };
     };
   };
+
+  nixdiag.units.opentelemetry-collector.connections = [
+    {
+      to = "nas/clickhouse";
+      label = "otel";
+    }
+  ];
 
   systemd.services.opentelemetry-collector = {
     after = [ "clickhouse.service" ];

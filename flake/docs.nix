@@ -63,7 +63,5 @@ nixdiag.lib.mkDocs {
     blink = "${blink}/blink";
     phone = "${theme}";
   };
-  domains = me.domains;
   closures = true;
-  closuresExclude = [ "edge" ];
 }

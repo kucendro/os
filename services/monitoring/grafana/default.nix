@@ -4,8 +4,6 @@ let
   port = 3000;
 in
 {
-  #: monitor
-  #: -> nas/prometheus metrics
   services.grafana = {
     enable = true;
     settings = {
@@ -18,6 +16,13 @@ in
       security.secret_key = "$__file{${config.sops.secrets.grafana-secret-key.path}}";
     };
   };
+
+  nixdiag.units.grafana.connections = [
+    {
+      to = "nas/prometheus";
+      label = "metrics";
+    }
+  ];
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
 }

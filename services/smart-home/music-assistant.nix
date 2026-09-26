@@ -4,7 +4,6 @@
   virtualisation.oci-containers = {
     backend = "docker";
 
-    #: unit music-assistant
     containers.music-assistant = {
       image = "ghcr.io/music-assistant/server:latest";
       volumes = [ "/var/lib/music-assistant:/data" ];
@@ -19,6 +18,8 @@
       ];
     };
   };
+
+  nixdiag.units.music-assistant.ports = [ 8095 ];
 
   systemd.tmpfiles.rules = [
     "d /var/lib/music-assistant 0700 root root -"

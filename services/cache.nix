@@ -4,7 +4,6 @@ let
   port = 5008;
 in
 {
-  #: expose 5008 mesh
   services.harmonia.cache = {
     enable = true;
     signKeyPaths = [ config.sops.secrets.harmonia-signing-key.path ];
@@ -13,6 +12,13 @@ in
       priority = 30;
     };
   };
+
+  nixdiag.units.harmonia.expose = [
+    {
+      inherit port;
+      scope = "mesh";
+    }
+  ];
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
 }

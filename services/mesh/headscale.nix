@@ -5,8 +5,6 @@
 }:
 
 {
-  #: mesh-control
-  #: expose 3478/udp public
   services.headscale = {
     enable = true;
     address = "127.0.0.1";
@@ -39,7 +37,14 @@
     };
   };
 
-  #: -> edge/headscale headscale :8080
+  nixdiag.units.headscale.expose = [
+    {
+      port = 3478;
+      udp = true;
+      scope = "public";
+    }
+  ];
+
   services.nginx.virtualHosts.${me.domains.edge} = {
     enableACME = true;
     forceSSL = true;

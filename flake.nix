@@ -156,17 +156,6 @@
         inherit deploy-rs me self;
       };
 
-      nixdiag = {
-        out = "docs";
-        title = "kucendro infrastructure wiki";
-        extraLinks = {
-          Termux = "termux.md";
-          Blink = "blink.md";
-        };
-        domains = me.domains;
-        theme = "light";
-      };
-
       packages = nixpkgs.lib.genAttrs systems (
         import ./flake/packages.nix {
           inherit

@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  #: -> lan epson :9100 name=EPSON@home
   services.printing.drivers = [ pkgs.epson-escpr ];
 
   hardware.printers = {
@@ -18,4 +17,11 @@
       }
     ];
   };
+
+  nixdiag.units.printing.connections = [
+    {
+      to = "lan";
+      label = "epson :9100";
+    }
+  ];
 }

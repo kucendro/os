@@ -5,7 +5,6 @@ let
   dir = "/home/kucendro/kubicek";
 in
 {
-  #: unit kubicek
   systemd.services.kubicek = {
     description = "kubicek Next.js server";
     after = [ "network.target" ];
@@ -20,6 +19,8 @@ in
       RestartSec = 5;
     };
   };
+
+  nixdiag.units.kubicek.ports = [ port ];
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
 }

@@ -10,6 +10,7 @@ let
     nixpkgs
     sops-nix
     home-manager
+    nixdiag
     ;
 
   homeManagerConfig = profile: {
@@ -74,6 +75,7 @@ let
         home-manager.nixosModules.home-manager
         (homeManagerConfig profile)
         sopsModule
+        nixdiag.nixosModules.default
       ]
       ++ extraModules;
     };

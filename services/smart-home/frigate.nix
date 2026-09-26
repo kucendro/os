@@ -35,7 +35,6 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
 
-    #: unit frigate
     containers.frigate = {
       image = "ghcr.io/blakeblackshear/frigate:stable";
       volumes = [
@@ -55,6 +54,8 @@ in
       ];
     };
   };
+
+  nixdiag.units.frigate.ports = [ port ];
 
   systemd.services.docker-frigate.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
 

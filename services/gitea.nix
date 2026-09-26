@@ -30,7 +30,6 @@ let
   };
 in
 {
-  #: expose 2222 mesh
   services.gitea = {
     enable = true;
     lfs.enable = true;
@@ -52,6 +51,16 @@ in
       service.DISABLE_REGISTRATION = false;
       actions.ENABLED = true;
     };
+  };
+
+  nixdiag.units.gitea = {
+    ports = [ httpPort ];
+    expose = [
+      {
+        port = sshPort;
+        scope = "mesh";
+      }
+    ];
   };
 
   services.gitea-actions-runner.instances = {

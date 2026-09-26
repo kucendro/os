@@ -15,8 +15,6 @@
     group = "nginx";
   };
 
-  #: proxy
-  #: expose 443 public
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;

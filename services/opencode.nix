@@ -9,8 +9,6 @@ let
   port = 8093;
 in
 {
-  #: unit opencode
-  #: expose 8093 mesh
   users.users.opencode = {
     isSystemUser = true;
     group = "opencode";
@@ -44,6 +42,13 @@ in
       PrivateTmp = true;
     };
   };
+
+  nixdiag.units.opencode.expose = [
+    {
+      inherit port;
+      scope = "mesh";
+    }
+  ];
 
   systemd.tmpfiles.rules = [
     "d /mnt/data/opencode 0700 opencode opencode -"

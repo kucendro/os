@@ -3,7 +3,6 @@
 {
   imports = [ inputs.lazybaka.nixosModules.bakasync ];
 
-  #: unit bakasync
   services.bakasync = {
     enable = true;
     baseUrl = "https://bakalari.spse.cz/bakaweb";
@@ -17,4 +16,6 @@
     serviceAccountKeyFile = config.sops.secrets.bakasync-service-account.path;
     interval = "2min";
   };
+
+  nixdiag.units.bakasync = { };
 }

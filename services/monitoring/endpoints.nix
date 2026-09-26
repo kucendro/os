@@ -57,8 +57,6 @@ in
     );
   };
 
-  #: monitor
-  #: -> edge/nginx probes
   services.prometheus = {
     enable = true;
     listenAddress = "0.0.0.0";
@@ -97,6 +95,16 @@ in
           targets = [ "${name}.${me.domains.mesh}:9100" ];
           labels.node = name;
         }) (lib.attrNames hosts);
+      }
+    ];
+  };
+
+  nixdiag.units.prometheus = {
+    role = "monitor";
+    connections = [
+      {
+        to = "edge/nginx";
+        label = "probes";
       }
     ];
   };

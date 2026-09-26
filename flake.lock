@@ -109,6 +109,23 @@
         "type": "github"
       }
     },
+    "data": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790456601,
+        "narHash": "sha256-gY62qZzptKRzQvJneonNM0HXLd0JP9CMt6TbrB9kTkE=",
+        "owner": "kucendro",
+        "repo": "nixdiag",
+        "rev": "1f9080c7df23fc80dd4245e29218aa9dc343b2b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kucendro",
+        "ref": "data",
+        "repo": "nixdiag",
+        "type": "github"
+      }
+    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -339,16 +356,17 @@
     },
     "nixdiag": {
       "inputs": {
+        "data": "data",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1790452194,
-        "narHash": "sha256-rJEGYmyRTDQuRxFnQokPhT5v2VCMap7wsGlE82/EGNE=",
+        "lastModified": 1790458549,
+        "narHash": "sha256-3Yw5OR8NPSJlIT5i0B77IMC92CsN/EQP1iw5Lvgfxm0=",
         "owner": "kucendro",
         "repo": "nixdiag",
-        "rev": "4355eccbdd7a44353d85e2e6d6a14a36429bb003",
+        "rev": "d60f52981f101f2005f469e42e2d2a031d3d31aa",
         "type": "github"
       },
       "original": {

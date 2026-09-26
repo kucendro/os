@@ -1,4 +1,3 @@
-<!-- Auto-generated from the Nix config by nixdiag. Do not edit. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 144" width="720" height="144" role="img" font-family="ui-sans-serif, system-ui, sans-serif">
   <title>System closure size by host</title>
   <rect x="0" y="0" width="720" height="144" fill="transparent"/>
@@ -8,24 +7,28 @@
   <text x="259" y="19" font-size="12" fill="#777777">shared by some</text>
   <rect x="371" y="10" width="10" height="10" fill="#27893f"/>
   <text x="386" y="19" font-size="12" fill="#777777">unique to this host</text>
-  <text x="67" y="49" font-size="13" fill="#777777" text-anchor="end">edge</text>
-  <text x="716" y="49" font-size="12" fill="#777777" text-anchor="end">not measured</text>
+  <text x="67" y="49" font-size="13" fill="#333333" text-anchor="end">edge</text>
+  <rect x="75" y="38" width="569" height="14" fill="#ebebeb"/>
+  <rect x="75" y="38" width="83" height="14" fill="#4a76c4"/>
+  <rect x="158" y="38" width="3" height="14" fill="#c47a29"/>
+  <rect x="161" y="38" width="3" height="14" fill="#27893f"/>
+  <text x="716" y="49" font-size="12" fill="#333333" text-anchor="end">5.5 GiB</text>
   <text x="67" y="75" font-size="13" fill="#333333" text-anchor="end">nas</text>
-  <rect x="75" y="64" width="541" height="14" fill="#ebebeb"/>
-  <rect x="75" y="64" width="109" height="14" fill="#4a76c4"/>
-  <rect x="184" y="64" width="26" height="14" fill="#c47a29"/>
-  <rect x="210" y="64" width="164" height="14" fill="#27893f"/>
+  <rect x="75" y="64" width="569" height="14" fill="#ebebeb"/>
+  <rect x="75" y="64" width="83" height="14" fill="#4a76c4"/>
+  <rect x="158" y="64" width="59" height="14" fill="#c47a29"/>
+  <rect x="217" y="64" width="173" height="14" fill="#27893f"/>
   <text x="716" y="75" font-size="12" fill="#333333" text-anchor="end">19.5 GiB</text>
   <text x="67" y="101" font-size="13" fill="#333333" text-anchor="end">nixbook</text>
-  <rect x="75" y="90" width="541" height="14" fill="#ebebeb"/>
-  <rect x="75" y="90" width="109" height="14" fill="#4a76c4"/>
-  <rect x="184" y="90" width="151" height="14" fill="#c47a29"/>
-  <rect x="335" y="90" width="281" height="14" fill="#27893f"/>
+  <rect x="75" y="90" width="569" height="14" fill="#ebebeb"/>
+  <rect x="75" y="90" width="83" height="14" fill="#4a76c4"/>
+  <rect x="158" y="90" width="191" height="14" fill="#c47a29"/>
+  <rect x="349" y="90" width="295" height="14" fill="#27893f"/>
   <text x="716" y="101" font-size="12" fill="#333333" text-anchor="end">35.2 GiB</text>
   <text x="67" y="127" font-size="13" fill="#333333" text-anchor="end">stockholm</text>
-  <rect x="75" y="116" width="541" height="14" fill="#ebebeb"/>
-  <rect x="75" y="116" width="109" height="14" fill="#4a76c4"/>
-  <rect x="184" y="116" width="126" height="14" fill="#c47a29"/>
-  <rect x="310" y="116" width="29" height="14" fill="#27893f"/>
+  <rect x="75" y="116" width="569" height="14" fill="#ebebeb"/>
+  <rect x="75" y="116" width="83" height="14" fill="#4a76c4"/>
+  <rect x="158" y="116" width="164" height="14" fill="#c47a29"/>
+  <rect x="322" y="116" width="31" height="14" fill="#27893f"/>
   <text x="716" y="127" font-size="12" fill="#333333" text-anchor="end">17.2 GiB</text>
 </svg>

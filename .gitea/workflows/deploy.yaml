@@ -26,7 +26,7 @@ jobs:
         run: echo "started=$(date +%s)" >> "$GITHUB_ENV"
 
       - name: CHECKING
-        run: nix --extra-experimental-features "nix-command flakes" flake check
+        run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
 
       - name: BUILDING
         run: |

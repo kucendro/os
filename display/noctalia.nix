@@ -120,6 +120,7 @@
           "gabedunn/voxtype"
           "rylos/tailnet"
           "rylos/syncthing"
+          "8bury/lid-guard"
         ];
         auto_update = "all";
       };
@@ -164,6 +165,7 @@
           "tailnet"
           "bluetooth"
           "battery"
+          "lidguard"
           "tray"
           "divider"
           "voxtype"
@@ -237,6 +239,7 @@
           display_mode = "glyph";
           show_label = false;
         };
+        lidguard.type = "8bury/lid-guard:lid-guard";
         tray.drawer = true;
         notifications.hide_when_no_unread = false;
       };

@@ -49,10 +49,10 @@ in
 nixdiag.lib.mkDocs {
   inherit pkgs;
   flake = self;
-  title = "kucendro infrastructure wiki";
+  title = "Ondřej's infrastructure wiki";
   indexPage = ../wiki/index.md;
   bookToml = ../wiki/book.toml;
-  theme = "light";
+  theme = "dark";
   extraPages = {
     Termux = "${termux}/termux.md";
     Blink = "${blink}/blink.md";

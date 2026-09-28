@@ -51,7 +51,6 @@ nixdiag.lib.mkDocs {
   flake = self;
   title = "Ondřej's infrastructure wiki";
   indexPage = ../wiki/index.md;
-  bookToml = ../wiki/book.toml;
   theme = "dark";
   extraPages = {
     Termux = "${termux}/termux.md";

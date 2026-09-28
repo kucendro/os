@@ -1,9 +1,0 @@
-[book]
-title = "Personal infrastructure"
-authors = ["Ondřej Kučera"]
-src = "src"
-
-[output.html]
-default-theme = "light"
-preferred-dark-theme = "coal"
-no-section-label = true

@@ -121,6 +121,9 @@
           "rylos/tailnet"
           "rylos/syncthing"
           "8bury/lid-guard"
+          "dunarand/tmux-provider"
+          "lowcache/claude-companion"
+          "pozzoo/hassio"
         ];
         auto_update = "all";
       };

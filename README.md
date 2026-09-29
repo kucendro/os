@@ -17,24 +17,6 @@ declaring your vision.</samp>
 ![edge](https://img.shields.io/endpoint?url=https%3A%2F%2Fedge.kucendro.dev%2Fmetrics%2Fedge.json)
 ![devices](https://img.shields.io/endpoint?url=https%3A%2F%2Fedge.kucendro.dev%2Fmetrics%2Fdevices.json)
 
-<hr>
-
-### Topology
-
-![topology](diagrams/topology.svg)
-
-### Module tree
-
-![module tree](diagrams/modules.svg)
-
-### Flake inputs
-
-![flake inputs](diagrams/inputs.svg)
-
-### Closure sizes
-
-![closure sizes](diagrams/closures.svg)
-
 ---
 
 <a href="https://www.buymeacoffee.com/kucendro"><img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20matcha&emoji=&slug=kucendro&button_colour=5f5ca7&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00" alt="Buy me a matcha" height="50" /></a>

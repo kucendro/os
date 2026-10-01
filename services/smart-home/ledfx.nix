@@ -51,5 +51,5 @@ in
 
   nixdiag.units.ledfx = { };
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ webPort ];
+  mesh.ports.ledfx = webPort;
 }

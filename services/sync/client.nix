@@ -1,4 +1,4 @@
-{ me, ... }:
+{ config, me, ... }:
 
 let
   syncPort = 22000;
@@ -23,7 +23,7 @@ in
       devices = {
         nas = {
           id = "TCH5BXD-5XBUVYJ-WKEMZCL-JEQXSGZ-NHTKQJT-OWEZ2NU-P7RFVLY-YUA7FAG";
-          addresses = [ "tcp://nas.${me.domains.mesh}:${toString syncPort}" ];
+          addresses = [ "tcp://nas.${me.domains.mesh}:${toString config.nodes.nas.mesh.ports.syncthing}" ];
         };
         fold = {
           id = "JHIZPBP-NPI5FXX-PGAH3IM-AZ3J4IG-44ELB4E-ENDRQL3-QRBGXJB-GIIGDQW";
@@ -56,9 +56,8 @@ in
     }
   ];
 
-  networking.firewall.interfaces."tailscale0" = {
-    allowedTCPPorts = [ syncPort ];
-    allowedUDPPorts = [ syncPort ];
+  mesh = {
+    ports.syncthing = syncPort;
+    udp = [ syncPort ];
   };
-
 }

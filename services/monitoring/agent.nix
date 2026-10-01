@@ -1,5 +1,8 @@
 { config, ... }:
 
+let
+  port = 45876;
+in
 {
   services.beszel.agent = {
     enable = true;
@@ -14,5 +17,5 @@
     }
   ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 45876 ];
+  mesh.ports.beszel-agent = port;
 }

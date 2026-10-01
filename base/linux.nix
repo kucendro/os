@@ -13,6 +13,7 @@
     ../home/user.nix
     ../services/services.nix
     ../services/mesh/tailscale.nix
+    ../services/mesh/ports.nix
     ../services/monitoring/agent.nix
     ../services/monitoring/metrics.nix
     ../services/monitoring/journal.nix

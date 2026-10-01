@@ -46,6 +46,20 @@ let
     }
   );
 
+  nodesModule =
+    hostName:
+    { config, lib, ... }:
+    {
+      options.nodes = lib.mkOption {
+        type = lib.types.raw;
+        readOnly = true;
+        internal = true;
+        default = lib.mapAttrs (
+          name: host: if name == hostName then config else host.config
+        ) inputs.self.nixosConfigurations;
+      };
+    };
+
   specialArgs = profile: {
     inherit
       inputs
@@ -69,6 +83,7 @@ let
       specialArgs = specialArgs profile;
       modules = [
         { networking.hostName = hostName; }
+        (nodesModule hostName)
         targetModule
         hardwareModule
         sops-nix.nixosModules.sops

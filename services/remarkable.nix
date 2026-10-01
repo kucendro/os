@@ -22,5 +22,5 @@ in
   };
 
   systemd.services.rmfakecloud.unitConfig.RequiresMountsFor = [ "/var/lib/private/rmfakecloud" ];
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+  mesh.ports.rmfakecloud = port;
 }

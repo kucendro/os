@@ -60,5 +60,5 @@ in
     options = [ "bind" ];
   };
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+  mesh.ports.opencode = port;
 }

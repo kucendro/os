@@ -1,5 +1,8 @@
 { ... }:
 
+let
+  port = 8095;
+in
 {
   virtualisation.oci-containers = {
     backend = "docker";
@@ -19,14 +22,16 @@
     };
   };
 
-  nixdiag.units.music-assistant.ports = [ 8095 ];
+  nixdiag.units.music-assistant.ports = [ port ];
+
+  mesh.ports.music-assistant = port;
 
   systemd.tmpfiles.rules = [
     "d /var/lib/music-assistant 0700 root root -"
   ];
 
   networking.firewall.allowedTCPPorts = [
-    8095
+    port
     8097
     8927
     1780

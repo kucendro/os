@@ -7,5 +7,5 @@
   };
 
   systemd.services.matrix-synapse.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 8008 ];
+  mesh.ports.matrix-synapse = 8008;
 }

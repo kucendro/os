@@ -1,60 +1,60 @@
-me:
+{ config, me }:
 
 let
-  nas = "nas.${me.domains.mesh}";
+  nas = name: "nas.${me.domains.mesh}:${toString config.nodes.nas.mesh.ports.${name}}";
 in
 {
   monitoring = {
-    address = "127.0.0.1:8090";
+    address = "127.0.0.1:${toString config.services.beszel.hub.port}";
   };
   music = {
-    address = "${nas}:8095";
+    address = nas "music-assistant";
   };
   vault = {
-    address = "${nas}:8222";
+    address = nas "vaultwarden";
   };
   gallery = {
-    address = "${nas}:2283";
+    address = nas "immich";
   };
   grafana = {
-    address = "${nas}:3000";
+    address = nas "grafana";
   };
   git = {
-    address = "${nas}:3001";
+    address = nas "gitea";
   };
   assistant = {
-    address = "${nas}:8123";
+    address = nas "home-assistant";
   };
   cameras = {
-    address = "${nas}:5000";
+    address = nas "frigate";
   };
   qore = {
-    address = "${nas}:7673";
+    address = nas "qore";
   };
   #ledfx = {
-  #  address = "${nas}:8888";
+  #  address = nas "ledfx";
   #};
   chat = {
-    address = "${nas}:8080";
+    address = nas "open-webui";
   };
   karakeep = {
-    address = "${nas}:3006";
+    address = nas "karakeep";
   };
   #shelf = {
-  #  address = "${nas}:8083";
+  #  address = nas "calibre-web";
   #};
   #remarkable = {
-  #  address = "${nas}:5007";
+  #  address = nas "rmfakecloud";
   #};
   sync = {
-    address = "${nas}:8384";
+    address = nas "syncthing-gui";
   };
   mcp = {
-    address = "${nas}:8092";
+    address = nas "mcp-gitea";
     extraConfig = "proxy_buffering off;";
   };
   code = {
-    address = "${nas}:8093";
+    address = nas "opencode";
     extraConfig = "proxy_buffering off;";
   };
 }

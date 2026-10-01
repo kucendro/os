@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   me,
   ...
@@ -21,7 +22,7 @@
     ];
 
     substituters = [
-      "http://nas.${me.domains.mesh}:5008"
+      "http://nas.${me.domains.mesh}:${toString config.nodes.nas.mesh.ports.harmonia}"
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
       "https://noctalia.cachix.org"

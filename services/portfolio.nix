@@ -9,5 +9,5 @@
     live.user = "gitea-runner";
   };
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 80 ];
+  mesh.ports.portfolio = 80;
 }

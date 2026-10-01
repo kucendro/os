@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   me,
@@ -16,7 +17,7 @@ let
       pkgs.gnused
     ];
     runtimeEnv = {
-      PROMETHEUS = "http://nas.${me.domains.mesh}:9090";
+      PROMETHEUS = "http://nas.${me.domains.mesh}:${toString config.nodes.nas.mesh.ports.prometheus}";
       OUT = webroot;
       HOME_DOMAIN = me.domains.home;
     };

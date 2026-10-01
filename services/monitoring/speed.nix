@@ -71,6 +71,7 @@ in
   services.prometheus.pushgateway = {
     enable = true;
     persistMetrics = true;
+    web.listen-address = ":${toString pushgatewayPort}";
   };
 
   systemd.services.iperf3-run = {
@@ -97,5 +98,5 @@ in
     };
   };
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ pushgatewayPort ];
+  mesh.ports.pushgateway = pushgatewayPort;
 }

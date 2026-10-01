@@ -1,5 +1,8 @@
 { config, me, ... }:
 
+let
+  nas = config.nodes.nas.mesh.ports;
+in
 {
   services.alloy.enable = true;
 
@@ -37,7 +40,7 @@
 
     loki.write "nas" {
       endpoint {
-        url                 = "http://nas.${me.domains.mesh}:3100/loki/api/v1/push"
+        url                 = "http://nas.${me.domains.mesh}:${toString nas.loki}/loki/api/v1/push"
         max_backoff_period  = "5m"
         max_backoff_retries = 0
       }
@@ -57,7 +60,7 @@
 
     otelcol.exporter.otlphttp "nas" {
       client {
-        endpoint = "http://nas.${me.domains.mesh}:4318"
+        endpoint = "http://nas.${me.domains.mesh}:${toString nas.otlp}"
       }
     }
   '';

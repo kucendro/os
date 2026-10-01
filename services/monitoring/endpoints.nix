@@ -3,22 +3,17 @@
   lib,
   pkgs,
   me,
-  inputs,
   ...
 }:
 
 let
-  hosts = inputs.self.nixosConfigurations;
   vhosts = lib.unique (
     lib.concatMap (
-      name:
-      let
-        cfg = if name == config.networking.hostName then config else hosts.${name}.config;
-      in
-      lib.optionals cfg.services.nginx.enable (
-        lib.filter (lib.hasInfix ".") (lib.attrNames cfg.services.nginx.virtualHosts)
+      node:
+      lib.optionals node.services.nginx.enable (
+        lib.filter (lib.hasInfix ".") (lib.attrNames node.services.nginx.virtualHosts)
       )
-    ) (lib.attrNames hosts)
+    ) (lib.attrValues config.nodes)
   );
   targets = map (vhost: "https://${vhost}") vhosts;
   blackboxPort = 9115;
@@ -87,14 +82,16 @@ in
       {
         job_name = "iperf3";
         honor_labels = true;
-        static_configs = [ { targets = [ "edge.${me.domains.mesh}:9091" ]; } ];
+        static_configs = [
+          { targets = [ "edge.${me.domains.mesh}:${toString config.nodes.edge.mesh.ports.pushgateway}" ]; }
+        ];
       }
       {
         job_name = "node";
-        static_configs = map (name: {
-          targets = [ "${name}.${me.domains.mesh}:9100" ];
+        static_configs = lib.mapAttrsToList (name: node: {
+          targets = [ "${name}.${me.domains.mesh}:${toString node.mesh.ports.node-exporter}" ];
           labels.node = name;
-        }) (lib.attrNames hosts);
+        }) config.nodes;
       }
     ];
   };
@@ -109,7 +106,7 @@ in
     ];
   };
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ prometheusPort ];
+  mesh.ports.prometheus = prometheusPort;
 
   services.grafana.provision = {
     enable = true;

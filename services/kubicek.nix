@@ -22,5 +22,5 @@ in
 
   nixdiag.units.kubicek.ports = [ port ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+  mesh.ports.kubicek = port;
 }

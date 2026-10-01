@@ -1,9 +1,13 @@
 {
+  config,
   pkgs,
   me,
   ...
 }:
 
+let
+  stunPort = 3478;
+in
 {
   services.headscale = {
     enable = true;
@@ -30,7 +34,7 @@
           region_id = 999;
           region_code = "edge";
           region_name = "Edge";
-          stun_listen_addr = "0.0.0.0:3478";
+          stun_listen_addr = "0.0.0.0:${toString stunPort}";
         };
         urls = [ ];
       };
@@ -39,7 +43,7 @@
 
   nixdiag.units.headscale.expose = [
     {
-      port = 3478;
+      port = stunPort;
       udp = true;
       scope = "public";
     }
@@ -49,12 +53,12 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:8080";
+      proxyPass = "http://127.0.0.1:${toString config.services.headscale.port}";
       proxyWebsockets = true;
     };
   };
 
-  networking.firewall.allowedUDPPorts = [ 3478 ];
+  networking.firewall.allowedUDPPorts = [ stunPort ];
 
   systemd.services.headscale-init = {
     description = "Ensure headscale user exists";

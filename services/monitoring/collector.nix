@@ -53,7 +53,7 @@ in
         };
       };
       exporters.clickhouse = {
-        endpoint = "tcp://127.0.0.1:9000?dial_timeout=10s";
+        endpoint = "tcp://127.0.0.1:${toString config.services.clickhouse.serverConfig.tcp_port}?dial_timeout=10s";
         username = "collector";
         database = "monitoring";
         create_schema = true;
@@ -94,5 +94,5 @@ in
     serviceConfig.RestartSec = 10;
   };
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ otlpPort ];
+  mesh.ports.otlp = otlpPort;
 }

@@ -1,6 +1,7 @@
 {
   nixpkgs,
   me,
+  self,
 }:
 
 system:
@@ -26,7 +27,7 @@ in
           pkgs.nix
         ];
         text = ''
-          export PUSHGATEWAY=http://edge.${me.domains.mesh}:9091
+          export PUSHGATEWAY=http://edge.${me.domains.mesh}:${toString self.nixosConfigurations.edge.config.mesh.ports.pushgateway}
         ''
         + builtins.readFile ../automations/verify.sh;
       }

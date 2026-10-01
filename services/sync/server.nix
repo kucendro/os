@@ -1,4 +1,4 @@
-{ me, ... }:
+{ config, me, ... }:
 
 let
   guiPort = 8384;
@@ -23,7 +23,9 @@ in
       devices = {
         nixbook = {
           id = "WVEIFL3-ZPPU7BB-BDBW52J-OMZRSRO-QUTOL6F-Q5RDSUO-DGU6TVO-G7457AU";
-          addresses = [ "tcp://nixbook.${me.domains.mesh}:${toString syncPort}" ];
+          addresses = [
+            "tcp://nixbook.${me.domains.mesh}:${toString config.nodes.nixbook.mesh.ports.syncthing}"
+          ];
         };
         fold = {
           id = "JHIZPBP-NPI5FXX-PGAH3IM-AZ3J4IG-44ELB4E-ENDRQL3-QRBGXJB-GIIGDQW";
@@ -61,11 +63,11 @@ in
 
   systemd.services.syncthing.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
 
-  networking.firewall.interfaces."tailscale0" = {
-    allowedTCPPorts = [
-      guiPort
-      syncPort
-    ];
-    allowedUDPPorts = [ syncPort ];
+  mesh = {
+    ports = {
+      syncthing = syncPort;
+      syncthing-gui = guiPort;
+    };
+    udp = [ syncPort ];
   };
 }

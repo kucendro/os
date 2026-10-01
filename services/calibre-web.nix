@@ -53,8 +53,9 @@ in
     "/mnt/data/shelf"
   ];
 
+  mesh.ports.calibre-web = port;
+
   networking.firewall.interfaces = {
-    "tailscale0".allowedTCPPorts = [ port ];
     "enp1s0".allowedTCPPorts = [ port ];
     "enp3s0".allowedTCPPorts = [ port ];
   };

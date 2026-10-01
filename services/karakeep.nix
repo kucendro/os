@@ -49,5 +49,5 @@ in
   systemd.services.karakeep-workers.unitConfig.RequiresMountsFor = [ "/var/lib/karakeep" ];
   systemd.services.karakeep-web.unitConfig.RequiresMountsFor = [ "/var/lib/karakeep" ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+  mesh.ports.karakeep = port;
 }

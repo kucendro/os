@@ -17,5 +17,5 @@ in
 
   nixdiag.units.vaultwarden.ports = [ port ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+  mesh.ports.vaultwarden = port;
 }

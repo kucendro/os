@@ -65,12 +65,10 @@ in
     "d /mnt/data/frigate/media 0755 root root -"
   ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
-    port
-    8554 # RTSP restream (go2rtc)
-    8555 # WebRTC live view
-  ];
-  networking.firewall.interfaces."tailscale0".allowedUDPPorts = [
-    8555 # WebRTC live view
-  ];
+  mesh.ports = {
+    frigate = port;
+    frigate-rtsp = 8554;
+    frigate-webrtc = 8555;
+  };
+  mesh.udp = [ 8555 ];
 }

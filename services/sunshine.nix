@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   streamOutput = "sunshine";
@@ -67,7 +72,7 @@ in
   };
 
   networking.firewall = {
-    trustedInterfaces = [ "tailscale0" ];
+    trustedInterfaces = [ config.mesh.interface ];
     checkReversePath = "loose";
   };
 }

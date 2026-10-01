@@ -178,7 +178,7 @@
 
       apps = nixpkgs.lib.genAttrs systems (
         import ./flake/apps.nix {
-          inherit nixpkgs me;
+          inherit nixpkgs me self;
         }
       );
 

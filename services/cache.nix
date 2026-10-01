@@ -20,5 +20,5 @@ in
     }
   ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+  mesh.ports.harmonia = port;
 }

@@ -1,9 +1,14 @@
-{ lib, me, ... }:
+{
+  config,
+  lib,
+  me,
+  ...
+}:
 
 let
   homeDomain = me.domains.home;
   tailnetIP = "100.64.0.1";
-  upstreams = import ./endpoints.nix me;
+  upstreams = import ./endpoints.nix { inherit config me; };
   mkVhost = name: cfg: {
     listenAddresses = [ tailnetIP ];
     useACMEHost = homeDomain;

@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   profile,
   pkgs,
@@ -53,7 +54,7 @@
     passSecretService.enable = true;
   };
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 5201 ];
+  mesh.ports.iperf3 = config.services.iperf3.port;
 
   systemd = lib.mkMerge [
     (lib.mkIf (profile != "desktop") {

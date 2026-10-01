@@ -4,6 +4,7 @@ let
   dataDir = "/mnt/data/clickhouse";
   database = "monitoring";
   httpPort = 8124;
+  nativePort = 9000;
   reader = name: ''
     <${name}>
       <no_password/>
@@ -24,6 +25,7 @@ in
     enable = true;
     serverConfig = {
       http_port = httpPort;
+      tcp_port = nativePort;
       max_server_memory_usage_to_ram_ratio = 0.3;
       mark_cache_size = 536870912;
       uncompressed_cache_size = 268435456;
@@ -90,7 +92,7 @@ in
         access = "proxy";
         jsonData = {
           host = "127.0.0.1";
-          port = 9000;
+          port = nativePort;
           protocol = "native";
           username = "grafana";
           defaultDatabase = database;

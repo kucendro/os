@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   servers = {
@@ -7,7 +12,7 @@ let
       port = 8092;
       extraArgs = [
         "-H"
-        "http://127.0.0.1:3001"
+        "http://127.0.0.1:${toString config.mesh.ports.gitea}"
       ];
     };
   };
@@ -42,7 +47,5 @@ in
 
   nixdiag.units.mcp.ports = lib.mapAttrsToList (_: srv: srv.port) servers;
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = lib.mapAttrsToList (
-    _: srv: srv.port
-  ) servers;
+  mesh.ports = lib.mapAttrs' (name: srv: lib.nameValuePair "mcp-${name}" srv.port) servers;
 }

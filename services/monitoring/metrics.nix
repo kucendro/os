@@ -3,6 +3,7 @@
 {
   services.prometheus.exporters.node = {
     enable = true;
+    port = 9101;
     openFirewall = false;
     enabledCollectors = [ "systemd" ];
   };
@@ -14,7 +15,5 @@
     }
   ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
-    config.services.prometheus.exporters.node.port
-  ];
+  mesh.ports.node-exporter = config.services.prometheus.exporters.node.port;
 }

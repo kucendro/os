@@ -1,24 +1,29 @@
-{ lib, me, ... }:
+{
+  config,
+  lib,
+  me,
+  ...
+}:
 
 let
-  nas = "nas.${me.domains.mesh}";
+  nas = name: "nas.${me.domains.mesh}:${toString config.nodes.nas.mesh.ports.${name}}";
 
   publics = {
     portfolio = {
       host = me.domains.root;
-      address = "${nas}:80";
+      address = nas "portfolio";
     };
     archive = {
-      address = "${nas}:80";
+      address = nas "portfolio";
     };
     party = {
-      address = "${nas}:8095";
+      address = nas "music-assistant";
     };
     kubicek = {
-      address = "${nas}:3007";
+      address = nas "kubicek";
     };
     # mcp = {
-    #   address = "${nas}:8092";
+    #   address = nas "mcp-gitea";
     #   extraConfig = "proxy_buffering off;";
     # };
   };

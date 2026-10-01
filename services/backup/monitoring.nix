@@ -7,7 +7,7 @@
 }:
 
 let
-  pushgateway = "http://edge.${me.domains.mesh}:9091/metrics/job/backup/target";
+  pushgateway = "http://edge.${me.domains.mesh}:${toString config.nodes.edge.mesh.ports.pushgateway}/metrics/job/backup/target";
 
   backup-metrics = pkgs.writeShellApplication {
     name = "backup-metrics";

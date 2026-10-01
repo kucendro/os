@@ -1,14 +1,17 @@
 { ... }:
 
+let
+  port = 8090;
+in
 {
   services.beszel.hub = {
     enable = true;
     host = "127.0.0.1";
-    port = 8090;
+    inherit port;
   };
 
   nixdiag.units.beszel = {
     role = "monitor";
-    ports = [ 8090 ];
+    ports = [ port ];
   };
 }

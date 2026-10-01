@@ -95,7 +95,7 @@ in
     "Z ${configDir} - hass hass -"
   ];
 
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ port ];
+  mesh.ports.home-assistant = port;
 
   networking.firewall.interfaces.${lanInterface} = {
     allowedTCPPorts = [

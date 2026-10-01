@@ -53,14 +53,14 @@ nixdiag.lib.mkDocs {
   indexPage = ../wiki/index.md;
   theme = "dark";
   extraPages = {
-    Termux = "${termux}/termux.md";
-    Blink = "${blink}/blink.md";
+    # Termux = "${termux}/termux.md";
+    # Blink = "${blink}/blink.md";
     "Apt cache" = "${../wiki}/apt-cache.md";
   };
   extraAssets = {
-    termux = "${termux}/termux";
-    blink = "${blink}/blink";
-    phone = "${theme}";
+    # termux = "${termux}/termux";
+    # blink = "${blink}/blink";
+    # phone = "${theme}";
     "img/boot.png" = ../display/boot.png;
     "img/nixdiag.svg" = "${nixdiag}/assets/logo.svg";
   };

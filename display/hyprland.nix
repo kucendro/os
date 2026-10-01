@@ -104,9 +104,7 @@ in
         active_opacity = 0.9;
         inactive_opacity = 0.9;
 
-        dim_inactive = true;
-        dim_strength = 0.15;
-        dim_special = 0.3;
+        dim_inactive = false;
 
         shadow = {
           enabled = true;

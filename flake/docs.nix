@@ -61,6 +61,8 @@ nixdiag.lib.mkDocs {
     termux = "${termux}/termux";
     blink = "${blink}/blink";
     phone = "${theme}";
+    "img/boot.png" = ../display/boot.png;
+    "img/nixdiag.svg" = "${nixdiag}/assets/logo.svg";
   };
   closures = true;
 }

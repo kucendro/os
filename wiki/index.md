@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="img/boot.png" alt="os" height="120" />
+  <img src="img/nixdiag.svg" alt="nixdiag" height="120" />
+</p>
+
 <samp>This system is my best attempt at recreating a personal, "Apple like"
 ecosystem through a powerful yet simple principle: declare everything that can
 be declared. It is only possible because enough people grew tired of endless

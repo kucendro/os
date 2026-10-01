@@ -19,9 +19,6 @@ let
     party = {
       address = nas "music-assistant";
     };
-    kubicek = {
-      address = nas "kubicek";
-    };
     # mcp = {
     #   address = nas "mcp-gitea";
     #   extraConfig = "proxy_buffering off;";

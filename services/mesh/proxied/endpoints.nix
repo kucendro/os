@@ -57,4 +57,7 @@ in
     address = nas "opencode";
     extraConfig = "proxy_buffering off;";
   };
+  kubicek = {
+    address = nas "kubicek";
+  };
 }

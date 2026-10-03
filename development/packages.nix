@@ -1,6 +1,7 @@
 pkgs:
 
-with pkgs; [
+with pkgs;
+[
   nodejs
   pnpm
   cargo
@@ -9,7 +10,6 @@ with pkgs; [
   clippy
   rustfmt
   gcc
-  gccgo15
   clang
   gnumake
   python315
@@ -25,3 +25,4 @@ with pkgs; [
   # mysql-workbench
   jdk25
 ]
+++ lib.optionals stdenv.hostPlatform.isLinux [ gccgo15 ]

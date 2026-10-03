@@ -16,9 +16,6 @@
     ../development/tools.nix
   ];
 
-  home.username = me.name;
-  home.homeDirectory = "/home/${me.name}";
-
   home.sessionVariables = {
     KUBECONFIG = "${config.home.homeDirectory}/.kube/work-prod:${config.home.homeDirectory}/.kube/work-test";
     PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm";
@@ -44,7 +41,7 @@
 
   nix = {
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = !pkgs.stdenv.hostPlatform.isDarwin;
       warn-dirty = false;
       allowed-users = [
         me.name
@@ -76,6 +73,7 @@
           ControlPath = "~/.ssh/master-%r@%n:%p";
           ControlPersist = "no";
         };
+        mac.User = me.name;
         stockholm.User = me.name;
         edge.User = me.name;
       };
@@ -159,6 +157,12 @@
             when = "[ -e /lib/libc.so.6 ]";
             format = "[$output]($style) ";
             style = "bold blue";
+          };
+          darwin = {
+            command = "echo 🍏";
+            when = ''[ "$(uname)" = "Darwin" ]'';
+            format = "[$output]($style) ";
+            style = "bold white";
           };
         };
       };

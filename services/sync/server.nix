@@ -31,6 +31,10 @@ in
           id = "JHIZPBP-NPI5FXX-PGAH3IM-AZ3J4IG-44ELB4E-ENDRQL3-QRBGXJB-GIIGDQW";
           addresses = [ "tcp://fold.${me.domains.mesh}:${toString syncPort}" ];
         };
+        mac = {
+          id = "OYN5NMI-G4YU6F5-66F5UL7-3MZGO6G-IS6CWMD-LYK6ANT-3HX6IBN-WVREHAV";
+          addresses = [ "tcp://mac.${me.domains.mesh}:${toString syncPort}" ];
+        };
       };
       folders =
         let
@@ -39,6 +43,7 @@ in
             devices = [
               "nixbook"
               "fold"
+              "mac"
             ];
           };
         in

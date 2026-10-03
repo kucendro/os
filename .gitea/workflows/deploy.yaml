@@ -9,7 +9,7 @@ on:
 
 env:
   HOME: /var/lib/gitea-runner
-  SKIP_NODES: nixbook
+  SKIP_NODES: nixbook mac
   SSH_OPTS: >-
     -i /var/lib/gitea-runner/.ssh/id_ed25519
     -o StrictHostKeyChecking=accept-new

@@ -11,6 +11,7 @@ let
     sops-nix
     home-manager
     nixdiag
+    nix-darwin
     ;
 
   homeManagerConfig = profile: {
@@ -94,7 +95,28 @@ let
       ]
       ++ extraModules;
     };
+
+  mkDarwin =
+    hostName:
+    {
+      targetModule,
+      profile,
+      extraModules ? [ ],
+    }:
+    nix-darwin.lib.darwinSystem {
+      specialArgs = specialArgs profile;
+      modules = [
+        { networking.hostName = hostName; }
+        (nodesModule hostName)
+        targetModule
+        sops-nix.darwinModules.sops
+        home-manager.darwinModules.home-manager
+        (homeManagerConfig profile)
+        sopsModule
+      ]
+      ++ extraModules;
+    };
 in
 {
-  inherit mkSystem;
+  inherit mkSystem mkDarwin;
 }

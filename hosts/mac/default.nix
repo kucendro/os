@@ -71,6 +71,7 @@
       ProgramArguments = [
         "/opt/homebrew/opt/sunshine-beta/bin/sunshine"
         "/Users/${me.name}/.config/sunshine/sunshine.conf"
+        "system_tray=disabled"
       ];
       KeepAlive = true;
       RunAtLoad = true;

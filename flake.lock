@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790890764,
-        "narHash": "sha256-GXaihoaOhXWLkeAUvUM4E9o4oHyP+EcZ4AJK4DRps30=",
+        "lastModified": 1791056534,
+        "narHash": "sha256-T0AlXw0hwkb7Ow6qeGw+pkyhClRT4MZ3zQy7b8hsaC4=",
         "owner": "akitaonrails",
         "repo": "ai-usagebar",
-        "rev": "ad28ba6118b6ac391ea54b76a0498c76d814de22",
+        "rev": "e3de804415bc82d6ec048ef8f3143affa426ba2f",
         "type": "github"
       },
       "original": {
@@ -321,11 +321,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1790997473,
-        "narHash": "sha256-yB4Tp+bGdrnqKHT4WDHrrIuxRZBmkNCdjOza8ecLFvc=",
+        "lastModified": 1791044539,
+        "narHash": "sha256-Qw84qn5bwAg5DiUOgoagMgiwX62HjGSH6uP7blCIAcM=",
         "owner": "archledger",
         "repo": "irlume",
-        "rev": "b10e4ea7a4f9d9444dab76c1e586c96aa1d5255f",
+        "rev": "2b92a57c558015b247c150e5865e713414d05e13",
         "type": "github"
       },
       "original": {
@@ -470,11 +470,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790967847,
-        "narHash": "sha256-zjTq+MSL+B7GpRx/gEpj3y+OqonsdZBuA1OGrBQdlXw=",
+        "lastModified": 1791048152,
+        "narHash": "sha256-R+cq28uDVDRY//7BjWXh/oKGv+yIrDsuFJJX9H41yEo=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "63685992f8cfef008de338ff769c8f44df3bcdaa",
+        "rev": "e639a87e811ad3268c73f6d5e77669c94184ba15",
         "type": "github"
       },
       "original": {

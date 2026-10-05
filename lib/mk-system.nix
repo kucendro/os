@@ -29,23 +29,7 @@ let
     home-manager.users.${me.name} = import ../home/home.nix;
   };
 
-  sopsModule = (
-    {
-      secretsDir,
-      config,
-      lib,
-      me,
-      ...
-    }:
-    import (inputs.secrets + "/sops.nix") {
-      inherit
-        secretsDir
-        config
-        lib
-        me
-        ;
-    }
-  );
+  sopsModule = hostName: inputs.secrets + "/sops/${hostName}.nix";
 
   nodesModule =
     hostName:
@@ -72,7 +56,7 @@ let
     secretsDir = inputs.secrets;
   };
 
-  mkSystem =
+  linuxModules =
     hostName:
     {
       targetModule,
@@ -80,20 +64,24 @@ let
       profile,
       extraModules ? [ ],
     }:
+    [
+      { networking.hostName = hostName; }
+      (nodesModule hostName)
+      targetModule
+      hardwareModule
+      sops-nix.nixosModules.sops
+      home-manager.nixosModules.home-manager
+      (homeManagerConfig profile)
+      (sopsModule hostName)
+      nixdiag.nixosModules.default
+    ]
+    ++ extraModules;
+
+  mkSystem =
+    hostName: host:
     nixpkgs.lib.nixosSystem {
-      specialArgs = specialArgs profile;
-      modules = [
-        { networking.hostName = hostName; }
-        (nodesModule hostName)
-        targetModule
-        hardwareModule
-        sops-nix.nixosModules.sops
-        home-manager.nixosModules.home-manager
-        (homeManagerConfig profile)
-        sopsModule
-        nixdiag.nixosModules.default
-      ]
-      ++ extraModules;
+      specialArgs = specialArgs host.profile;
+      modules = linuxModules hostName host;
     };
 
   mkDarwin =
@@ -112,11 +100,16 @@ let
         sops-nix.darwinModules.sops
         home-manager.darwinModules.home-manager
         (homeManagerConfig profile)
-        sopsModule
+        (sopsModule hostName)
       ]
       ++ extraModules;
     };
 in
 {
-  inherit mkSystem mkDarwin;
+  inherit
+    mkSystem
+    mkDarwin
+    linuxModules
+    specialArgs
+    ;
 }

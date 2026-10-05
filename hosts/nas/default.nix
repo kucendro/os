@@ -11,7 +11,7 @@
     ../../services/smart-home
     ../../services/dockerized/qore.nix
     ../../services/open-webui.nix
-    ../../services/kubicek.nix
+    # ../../services/kubicek.nix
     ../../services/immich.nix
     ../../services/vault.nix
     ../../services/sync/server.nix

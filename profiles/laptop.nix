@@ -111,6 +111,7 @@
     voxtype
     audacity
     element-desktop
+    davinci-resolve
   ];
 
   environment.sessionVariables = {

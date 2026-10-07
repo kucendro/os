@@ -103,6 +103,7 @@
         gd = "git diff";
         gstats = "tokei";
         j = "just";
+        p = "python";
         qore = "cd ~/qore/ && cargo run --release --bin qore";
         link-phone = "adb tcpip 5555";
         options = "manix";

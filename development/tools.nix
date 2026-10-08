@@ -3,6 +3,7 @@
 {
   imports = [
     ./opencode.nix
+    ./anthropic.nix
   ];
 
   home.packages =

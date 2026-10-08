@@ -92,6 +92,7 @@
         k = "kubectl";
         n = "nvim .";
         c = "claude";
+        cw = "claude-work";
         d = "docker";
         dc = "docker compose";
         d-clean-non-destruct = "docker builder prune -a && docker image prune -a";

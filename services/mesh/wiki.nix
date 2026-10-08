@@ -9,10 +9,9 @@
   services.nixdiag.serve = {
     enable = true;
     docs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.docs;
-    virtualHost = "wiki.${me.domains.home}";
+    virtualHost = "infra.${me.domains.root}";
     virtualHostExtra = {
-      listenAddresses = [ "100.64.0.1" ];
-      useACMEHost = me.domains.home;
+      enableACME = true;
       forceSSL = true;
     };
   };

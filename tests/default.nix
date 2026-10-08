@@ -16,7 +16,12 @@ let
       virtualisation.memorySize = 2048;
       vm.skip = [ "metric-badges" ];
     };
-    nas.vm.skip = [ "kucendro-github" ];
+    nas.vm.skip = [
+      "kucendro-github"
+      "qore"
+      "gitea-runner-nas"
+      "gitea-runner-ubuntu"
+    ];
     stockholm.vm.skip = [
       "amazon-ssm-agent"
       "growpart"

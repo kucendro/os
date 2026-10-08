@@ -8,12 +8,27 @@
 
 let
   real = inputs.self.nixosConfigurations.${config.networking.hostName}.config;
-  secrets = import ./secrets.nix {
-    inherit pkgs lib;
-    inherit (real.sops) secrets;
-  };
   binds = lib.filterAttrs (_: fs: lib.elem "bind" fs.options) real.fileSystems;
   socket = expose: "${if expose.udp then "udp" else "tcp"}/${toString expose.port}";
+
+  pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2emJ0xYTyw8Su01xsxl/lPvRqqvHvCFQMAxeak5com vm";
+  fake = name: if lib.hasSuffix "pubkey" name then pubkey else "vm";
+  install =
+    file: content:
+    let
+      owner = if file.owner != null then file.owner else toString file.uid;
+      group = if file.group != null then file.group else toString file.gid;
+      source = pkgs.writeText "vm-${lib.strings.sanitizeDerivationName file.name}" content;
+    in
+    "install -D -m ${file.mode} -o ${owner} -g ${group} ${source} ${file.path}\n";
+  secrets = lib.attrValues config.sops.secrets;
+  forUsers = lib.filter (secret: secret.neededForUsers) secrets;
+  regular = lib.filter (secret: !secret.neededForUsers) secrets;
+  render =
+    template:
+    builtins.replaceStrings (lib.attrValues config.sops.placeholder) (map fake (
+      lib.attrNames config.sops.placeholder
+    )) template.content;
 in
 {
   options.vm = {
@@ -46,23 +61,27 @@ in
       fileSystems = lib.mapAttrs (_: fs: { inherit (fs) device fsType options; }) binds;
     };
 
-    sops = {
-      validateSopsFiles = false;
-      age.keyFile = lib.mkForce "/run/vm-sops/key.txt";
-      age.sshKeyPaths = lib.mkForce [ ];
-      gnupg.sshKeyPaths = lib.mkForce [ ];
-      secrets = lib.mapAttrs (_: secret: {
-        sopsFile = lib.mkForce "${secrets}/${secret.format}";
-      }) real.sops.secrets;
-    };
-
     system.activationScripts = {
-      vm-sops-key = lib.stringAfter [ "specialfs" ] ''
-        install -D -m 400 ${secrets}/key.txt /run/vm-sops/key.txt
-      '';
+      setupSecretsForUsers = lib.mkForce (
+        lib.stringAfter [ "specialfs" ] (
+          lib.concatMapStrings (secret: install secret (fake secret.name)) forUsers
+        )
+      );
+      setupSecrets = lib.mkForce (
+        lib.stringAfter
+          [
+            "specialfs"
+            "users"
+            "groups"
+          ]
+          (
+            lib.concatMapStrings (secret: install secret (fake secret.name)) regular
+            + lib.concatMapStrings (template: install template (render template)) (
+              lib.attrValues config.sops.templates
+            )
+          )
+      );
       vm-bind-sources = lib.concatMapStrings (fs: "mkdir -p ${fs.device}\n") (lib.attrValues binds);
-      setupSecretsForUsers.deps = [ "vm-sops-key" ];
-      setupSecrets.deps = [ "vm-sops-key" ];
     };
 
     systemd.services."serial-getty@ttyS0".enable = lib.mkForce false;

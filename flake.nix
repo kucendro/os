@@ -213,5 +213,11 @@
         }
       );
 
+      devShells = nixpkgs.lib.genAttrs systems (
+        import ./flake/devshell.nix {
+          inherit nixpkgs;
+        }
+      );
+
     };
 }

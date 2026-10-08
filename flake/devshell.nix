@@ -12,6 +12,7 @@ in
     packages = [
       pkgs.typst
       pkgs.opentimestamps-client
+      pkgs.just
     ];
   };
 }

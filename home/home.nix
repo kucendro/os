@@ -91,6 +91,7 @@
         ex = "exit";
         k = "kubectl";
         n = "nvim .";
+        nd = "nix develop";
         c = "claude";
         cw = "claude-work";
         d = "docker";

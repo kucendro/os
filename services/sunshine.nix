@@ -7,6 +7,7 @@
 
 let
   streamOutput = "sunshine";
+  port = config.services.sunshine.settings.port;
 
   ensureHis = ''
     if [ -z "''${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
@@ -64,15 +65,25 @@ in
   services.sunshine = {
     enable = true;
     autoStart = true;
-    openFirewall = true;
     settings = {
       capture = "wlr";
       global_prep_cmd = ''[{"do":"${lib.getExe configureMonitors}","undo":"${lib.getExe restoreMonitors}"}]'';
     };
   };
 
-  networking.firewall = {
-    trustedInterfaces = [ config.mesh.interface ];
-    checkReversePath = "loose";
+  mesh = {
+    ports = {
+      sunshine-https = port - 5;
+      sunshine = port;
+      sunshine-web = port + 1;
+      sunshine-rtsp = port + 21;
+    };
+    udp = map (offset: port + offset) [
+      9
+      10
+      11
+      13
+      21
+    ];
   };
 }

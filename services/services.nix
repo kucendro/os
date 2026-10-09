@@ -2,7 +2,6 @@
   config,
   lib,
   profile,
-  pkgs,
   me,
   ...
 }:
@@ -30,10 +29,7 @@
   // lib.optionalAttrs (profile == "desktop") {
     printing = {
       enable = true;
-      drivers = with pkgs; [
-        cups-filters
-        cups-browsed
-      ];
+      browsed.enable = false;
     };
     udisks2.enable = true;
     gvfs.enable = true;

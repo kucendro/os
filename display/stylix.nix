@@ -7,7 +7,7 @@
       chromium.enable = false;
       kmscon.enable = false;
     };
-    image = ./wallpaper-ascii.png;
+    image = ./wallpaper.png;
     polarity = "dark";
     base16Scheme = ./carbonfox.yaml;
     cursor = {

@@ -87,35 +87,19 @@ in
       ];
 
       general = {
-
-        gaps_in = 5;
-        gaps_out = 8;
-        border_size = 0;
+        gaps_in = 4;
+        gaps_out = 4;
+        border_size = 1;
+        "col.inactive_border" = lib.mkForce "rgb(${c.base02})";
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
-
       };
 
       decoration = {
-
-        rounding = 12;
-        rounding_power = 2;
-        active_opacity = 1;
-        inactive_opacity = 1;
-
-        dim_inactive = false;
-
-        shadow = {
-          enabled = true;
-          range = 4;
-          render_power = 3;
-        };
-
-        blur = {
-          enabled = true;
-        };
-
+        rounding = 0;
+        shadow.enabled = false;
+        blur.enabled = false;
       };
 
       animations = {
@@ -193,6 +177,7 @@ in
       bind = [
         "$mainMod, A, exec, noctalia msg panel-toggle control-center"
         "$mainMod, L, exec, noctalia msg session lock"
+        "$mainMod, V, exec, noctalia msg panel-toggle clipboard"
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
@@ -288,11 +273,6 @@ in
         match:title = ^$
         float = yes
         center = yes
-      }
-      windowrule {
-        name = kitty-opacity
-        match:class = ^kitty$
-        opacity = 0.95
       }
       windowrule {
         name = move-hyprland-run

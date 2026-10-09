@@ -16,6 +16,7 @@
         clipboard_enabled = true;
         clipboard_auto_paste = "off";
         settings_show_advanced = true;
+        corner_radius_scale = 0.25;
 
         panel = {
           launcher_placement = "floating";
@@ -131,66 +132,67 @@
       plugin_settings = {
         "icefish/phone-connect" = {
           state_update_interval = 60;
+          battery_display = "icon";
         };
       };
 
       bar.main = {
         position = "top";
+        thickness = 32;
         auto_hide = false;
         reserve_space = true;
-        margin_edge = 8;
-        margin_ends = 8;
-        radius = 12;
-        concave_edge_corners = false;
-        background_opacity = 0.75;
+        margin_edge = 0;
+        margin_ends = 0;
+        radius = 0;
+        background_opacity = 1.0;
+        compositor_blur = false;
+        shadow = false;
+        padding = 16;
+        widget_spacing = 8;
 
         start = [
-          "clock"
-          "spacer"
-          "active_window"
-        ];
-        center = [
           "workspaces"
-          "spacer"
+          "active_window"
           "cat"
         ];
-
+        center = [ "clock" ];
         end = [
           "media"
-          "spacer"
-          "bar"
-          "divider"
-          "ai_usage"
-          "divider"
-          "volume"
-          "brightness"
-          "network"
-          "tailnet"
-          "bluetooth"
-          "battery"
-          "lidguard"
-          "tray"
-          "divider"
           "voxtype"
+          "bar"
+          "ai_usage"
+          "tailnet"
           "syncthing"
-          "divider"
-          "clipboard"
-          "divider"
+          "bluetooth"
+          "lidguard"
+          "volume"
+          "network"
+          "battery"
           "notifications"
+          "clipboard"
+          "tray"
         ];
       };
 
       widget = {
-        active_window = {
-          display = "icon_only";
-          title_scroll = "on_hover";
-          min_length = 14;
-        };
-
         workspaces = {
           show_labels = false;
           focused_output_only = true;
           hide_when_empty = true;
+          focused_color = "primary";
+          occupied_color = "outline";
+          empty_color = "outline";
+        };
+
+        active_window = {
+          display = "icon_and_text";
+          title_scroll = "on_hover";
+        };
+
+        clock = {
+          format = "{:%H:%M}";
+          tooltip_format = "{:%A %d %B}";
+          font_weight = 500;
         };
 
         media = {
@@ -200,27 +202,21 @@
           hide_when_no_media = true;
         };
 
-        bar = {
-          type = "icefish/phone-connect:bar";
-          battery_display = "percentage";
-        };
-
         cat = {
           type = "noctalia/bongocat:cat";
           audio_spectrum = true;
           tappy_mode = true;
         };
-
-        ai_usage.type = "felipeartur/ai-usagebar:bar";
-
-        volume = {
-          show_label = false;
-          actions.middle = "exec pwvucontrol";
+        voxtype = {
+          type = "gabedunn/voxtype:status";
+          idle_color = "outline";
         };
-        brightness.show_label = false;
-        network = {
-          show_label = false;
-          vpn_status = "both";
+        bar.type = "icefish/phone-connect:bar";
+        ai_usage = {
+          type = "felipeartur/ai-usagebar:bar";
+          visualization = "none";
+          show_value = false;
+          extras = "none";
         };
         tailnet = {
           type = "rylos/tailnet:bar";
@@ -231,20 +227,22 @@
           type = "rylos/syncthing:bar";
           show_pending = false;
         };
-        voxtype.type = "gabedunn/voxtype:status";
-        divider = {
-          type = "text";
-          text = "│";
-          color = "outline";
-        };
         bluetooth.show_label = false;
+        lidguard.type = "8bury/lid-guard:lid-guard";
+        volume = {
+          show_label = false;
+          actions.middle = "exec pwvucontrol";
+        };
+        network = {
+          show_label = false;
+          vpn_status = "both";
+        };
         battery = {
           display_mode = "glyph";
           show_label = false;
         };
-        lidguard.type = "8bury/lid-guard:lid-guard";
+        notifications.hide_when_no_unread = true;
         tray.drawer = true;
-        notifications.hide_when_no_unread = false;
       };
     };
   };

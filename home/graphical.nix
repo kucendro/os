@@ -20,14 +20,6 @@
   };
 
   programs = {
-    chromium = {
-      enable = true;
-      commandLineArgs = [
-        "--hide-crash-restore-bubble"
-        "--restore-last-session"
-      ];
-    };
-
     kitty = lib.mkForce {
       enable = true;
       settings = {

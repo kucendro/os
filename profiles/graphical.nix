@@ -10,5 +10,6 @@
     ../display/hyprland.nix
     ../display/noctalia.nix
     ../home/graphical.nix
+    ../home/browser.nix
   ];
 }

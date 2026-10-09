@@ -28,7 +28,6 @@ let
     fuzzel
     gnome-calculator
     discord
-    (chromium.override { commandLineArgs = "--restore-last-session"; })
     google-chrome
     clickhouse
     kdePackages.qttools

@@ -38,6 +38,11 @@
 
     upower.enable = true;
     power-profiles-daemon.enable = true;
+    openssh.openFirewall = false;
+    tailscale = {
+      useRoutingFeatures = "client";
+      extraSetFlags = [ "--accept-routes" ];
+    };
 
     avahi = {
       enable = true;
@@ -144,6 +149,8 @@
     zlib
     openssl
   ];
+
+  mesh.ports.ssh = 22;
 
   virtualisation = {
     waydroid = {

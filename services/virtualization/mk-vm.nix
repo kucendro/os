@@ -61,10 +61,10 @@ in
   home-manager.users.${me.name}.wayland.windowManager.hyprland = {
     settings = {
       workspace = [
-        "${ws}, defaultName:${desktopName}, gapsin:0, gapsout:0, rounding:false, border:false, shadow:false, on-created-empty:${launcher}"
+        "${ws}, defaultName:${desktopName}, gapsin:0, gapsout:0, rounding:false, border:false, shadow:false"
       ];
-      bind = [
-        "$mainMod, ${key}, workspace, ${ws}"
+      bind = lib.optionals (key != "") [
+        "$mainMod, ${key}, exec, ${lib.getExe start}"
         "$mainMod SHIFT, ${key}, movetoworkspace, ${ws}"
       ];
     };

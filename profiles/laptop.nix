@@ -108,7 +108,6 @@
     android-tools
     geteduroam
     zoom-us
-    voxtype
     audacity
     element-desktop
     davinci-resolve

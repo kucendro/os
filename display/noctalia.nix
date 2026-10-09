@@ -2,8 +2,71 @@
   config,
   inputs,
   flakeDir,
+  lib,
   ...
 }:
+let
+  lockOutputs = {
+    "eDP-1" = {
+      w = 1920;
+      h = 1200;
+    };
+    "DP-1" = {
+      w = 3440;
+      h = 1440;
+    };
+  };
+
+  lockWidgets = lib.concatMapAttrs (
+    output:
+    { w, h }:
+    let
+      s = h / 1200.0;
+      place = cx: cy: bw: bh: {
+        inherit output cx cy;
+        box_width = bw;
+        box_height = bh;
+        rotation = 0.0;
+        placement_width = w * 1.0;
+        placement_height = h * 1.0;
+      };
+    in
+    {
+      "time@${output}" = place (w / 2.0) (h * 44 / 100.0) (480 * s) (160 * s) // {
+        type = "clock";
+        settings = {
+          format = "{:%H:%M}";
+          center_text = true;
+          background = false;
+        };
+      };
+      "date@${output}" = place (w / 2.0) (h * 56 / 100.0) (480 * s) (40 * s) // {
+        type = "clock";
+        settings = {
+          format = "{:%A %d %B}";
+          center_text = true;
+          background = false;
+          color = "on_surface_variant";
+        };
+      };
+      "lockscreen-login-box@${output}" = place (w / 2.0) (h * 88 / 100.0) 400.0 70.0 // {
+        type = "login_box";
+        settings = {
+          layout = "compact";
+          background_opacity = 0.0;
+          input_radius = 6.0;
+          show_login_button = false;
+          show_session_buttons = false;
+          show_unlock_hint = false;
+          show_media = false;
+          show_weather = false;
+          show_caps_lock = true;
+          show_keyboard_layout = true;
+        };
+      };
+    }
+  ) lockOutputs;
+in
 {
   programs.noctalia = {
     enable = true;
@@ -62,7 +125,17 @@
         enabled = true;
         allow_empty_password = true;
         blurred_desktop = false;
+        blur_intensity = 0.0;
+        transition = [ "fade" ];
+        transition_duration = 450;
         wallpaper = "${config.stylix.image}";
+      };
+
+      lockscreen_widgets = {
+        enabled = true;
+        schema_version = 2;
+        widget_order = lib.attrNames lockWidgets;
+        widget = lockWidgets;
       };
 
       idle.behavior = {
@@ -116,9 +189,7 @@
       plugins = {
         enabled = [
           "icefish/phone-connect"
-          "noctalia/bongocat"
           "felipeartur/ai-usagebar"
-          "gabedunn/voxtype"
           "rylos/tailnet"
           "rylos/syncthing"
           "8bury/lid-guard"
@@ -147,27 +218,32 @@
         background_opacity = 1.0;
         compositor_blur = false;
         shadow = false;
+        hover_highlight = false;
         padding = 16;
         widget_spacing = 8;
 
         start = [
+          "launcher"
+          "gap"
           "workspaces"
+          "gap"
           "active_window"
-          "cat"
         ];
         center = [ "clock" ];
         end = [
           "media"
-          "voxtype"
+          "divider"
           "bar"
           "ai_usage"
           "tailnet"
           "syncthing"
           "bluetooth"
           "lidguard"
+          "divider"
           "volume"
           "network"
           "battery"
+          "divider"
           "notifications"
           "clipboard"
           "tray"
@@ -175,8 +251,15 @@
       };
 
       widget = {
+        launcher.custom_image = "${./icon.png}";
+        gap = {
+          type = "spacer";
+          length = 16;
+        };
+
         workspaces = {
           show_labels = false;
+          pill_scale = 0.5;
           focused_output_only = true;
           hide_when_empty = true;
           focused_color = "primary";
@@ -184,10 +267,7 @@
           empty_color = "outline";
         };
 
-        active_window = {
-          display = "icon_and_text";
-          title_scroll = "on_hover";
-        };
+        active_window.display = "icon_only";
 
         clock = {
           format = "{:%H:%M}";
@@ -196,20 +276,14 @@
         };
 
         media = {
-          album_art_only = false;
-          hide_artist = true;
-          title_scroll = "on_hover";
+          album_art_only = true;
           hide_when_no_media = true;
         };
 
-        cat = {
-          type = "noctalia/bongocat:cat";
-          audio_spectrum = true;
-          tappy_mode = true;
-        };
-        voxtype = {
-          type = "gabedunn/voxtype:status";
-          idle_color = "outline";
+        divider = {
+          type = "text";
+          text = "│";
+          color = "outline";
         };
         bar.type = "icefish/phone-connect:bar";
         ai_usage = {

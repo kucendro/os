@@ -23,12 +23,11 @@ let
       };
 
   execOnce = [
-    "noctalia"
+    "LC_TIME=en_US.UTF-8 noctalia"
   ]
   ++ lib.optionals (!isStream) [
     "beeper & slack"
     # "env QT_QPA_PLATFORM=xcb kdrive"
-    "voxtype daemon"
   ];
 in
 {
@@ -87,9 +86,10 @@ in
       ];
 
       general = {
-        gaps_in = 4;
-        gaps_out = 4;
+        gaps_in = 6;
+        gaps_out = 12;
         border_size = 1;
+        "col.active_border" = lib.mkForce "rgb(${c.base04})";
         "col.inactive_border" = lib.mkForce "rgb(${c.base02})";
         resize_on_border = false;
         allow_tearing = false;
@@ -104,32 +104,12 @@ in
 
       animations = {
         enabled = true;
-        bezier = [
-          "easeOutQuint,   0.23, 1,    0.32, 1"
-          "easeInOutCubic, 0.65, 0.05, 0.36, 1"
-          "linear,         0,    0,    1,    1"
-          "almostLinear,   0.5,  0.5,  0.75, 1"
-          "quick,          0.15, 0,    0.1,  1"
-        ];
+        bezier = [ "ease, 0.25, 0.1, 0.25, 1" ];
         animation = [
-          "global,        1,     10,    default"
-          "border,        1,     5.39,  easeOutQuint"
-          "windows,       1,     4.79,  easeOutQuint"
-          "windowsIn,     1,     4.1,   easeOutQuint, slide top"
-          "windowsOut,    1,     1.49,  linear,       slide bottom"
-          "fadeIn,        1,     1.73,  almostLinear"
-          "fadeOut,       1,     1.46,  almostLinear"
-          "fade,          1,     3.03,  quick"
-          "layers,        1,     3.81,  easeOutQuint"
-          "layersIn,      1,     4,     easeOutQuint, fade"
-          "layersOut,     1,     1.5,   linear,       fade"
-          "fadeLayersIn,  1,     1.79,  almostLinear"
-          "fadeLayersOut, 1,     1.39,  almostLinear"
-          "workspaces,    1,     1.94,  almostLinear, fade"
-          "workspacesIn,  1,     1.21,  almostLinear, fade"
-          "workspacesOut, 1,     1.94,  almostLinear, fade"
-          "specialWorkspace, 1,  4,     easeOutQuint, slidevert"
-          "zoomFactor,    1,     7,     quick"
+          "global, 1, 2.5, ease"
+          "windows, 1, 2.5, ease, slide top"
+          "layers, 1, 2.5, ease, slide top"
+          "workspaces, 1, 2.5, ease, slide"
         ];
       };
 
@@ -169,9 +149,6 @@ in
 
       bindr = [
         "SUPER, SUPER_L, exec, noctalia msg panel-toggle launcher"
-      ]
-      ++ lib.optionals (!isStream) [
-        "SUPER SHIFT, F23, exec, voxtype record stop"
       ];
 
       bind = [
@@ -203,10 +180,6 @@ in
         "$mainMod, period, exec, rofimoji --selector fuzzel --action type --typer wtype"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-      ]
-      ++ lib.optionals (!isStream) [
-        # copilot key sends SUPER + SHIFT + F23
-        "SUPER SHIFT, F23, exec, voxtype record start"
       ];
 
       bindm = [

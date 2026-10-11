@@ -32,21 +32,12 @@ let
       };
     in
     {
-      "time@${output}" = place (w / 2.0) (h * 44 / 100.0) (480 * s) (160 * s) // {
+      "time@${output}" = place (w / 2.0) (h / 2.0) (480 * s) (160 * s) // {
         type = "clock";
         settings = {
           format = "{:%H:%M}";
           center_text = true;
           background = false;
-        };
-      };
-      "date@${output}" = place (w / 2.0) (h * 56 / 100.0) (480 * s) (40 * s) // {
-        type = "clock";
-        settings = {
-          format = "{:%A %d %B}";
-          center_text = true;
-          background = false;
-          color = "on_surface_variant";
         };
       };
       "lockscreen-login-box@${output}" = place (w / 2.0) (h * 88 / 100.0) 400.0 70.0 // {

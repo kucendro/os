@@ -180,7 +180,6 @@ in
       plugins = {
         enabled = [
           "icefish/phone-connect"
-          "felipeartur/ai-usagebar"
           "rylos/tailnet"
           "rylos/syncthing"
           "8bury/lid-guard"

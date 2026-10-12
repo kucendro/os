@@ -8,7 +8,6 @@
   home.pointerCursor.enable = true;
 
   home.packages = with pkgs; [
-    sshfs
     glib
     vial
     audacity
@@ -16,7 +15,10 @@
     davinci-resolve
     telegram-desktop
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
+    wl-clipboard
+    wtype
+    rofimoji
+    fuzzel
     nautilus
     loupe
     qdirstat
@@ -28,8 +30,6 @@
     gnome-keyring
     grim
     slurp
-    hypridle
-    android-tools
   ];
 
   services = {

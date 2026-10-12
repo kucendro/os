@@ -1,58 +1,8 @@
 {
-  pkgs,
-  lib,
   config,
   me,
-  profile,
   ...
 }:
-
-let
-  desktopPackages = with pkgs; [
-    slack
-    vscode
-    orca-slicer
-    bambu-studio
-    prusa-slicer
-    wireshark
-    metasploit
-    aircrack-ng
-    hashcat
-    foremost
-    sqlmap
-    lycheeslicer
-    libreoffice-qt-fresh
-    wl-clipboard
-    wtype
-    rofimoji
-    fuzzel
-    gnome-calculator
-    discord
-    google-chrome
-    clickhouse
-    kdePackages.qttools
-    witr
-    beeper
-    setxkbmap
-    obsidian
-    kiwix
-    lmms
-    tableplus
-    worktrunk
-    mkchromecast
-    qalculate-gtk
-    hyprpicker
-    tesseract
-    zbar
-    translate-shell
-    wl-screenrec
-    ffmpeg
-    gifski
-    (python3.withPackages (ps: [ ps.pygobject3 ]))
-    qt6.qtwebsockets
-    showtime
-  ];
-in
 
 {
   users.users.${me.name} = {
@@ -67,6 +17,5 @@ in
       "dialout"
       "input"
     ];
-    packages = lib.optionals (profile == "desktop") desktopPackages;
   };
 }

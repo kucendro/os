@@ -238,8 +238,17 @@ in
         match:class = ^(org.gnome.Nautilus)$
         float = yes
         center = yes
-        size = 60% 70%
+        size = 70% 80%
       }
+
+      windowrule {
+        name = float-telegram
+        match:class = ^(org.telegram.desktop)$
+        float = yes
+        center = yes
+        size = 70% 80%
+      }
+
       windowrule {
         name = float-dialogs
         match:class = ^$

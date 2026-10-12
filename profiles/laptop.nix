@@ -93,29 +93,10 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # inputs.colibri.packages.${pkgs.stdenv.hostPlatform.system}.default
-    nautilus
-    loupe
-    qdirstat
-    gpu-screen-recorder
-    moonlight-qt
     brightnessctl
     drawy
-    gnome-network-displays
-    nwg-displays
-    adwaita-icon-theme
-    gnome-keyring
-    grim
-    slurp
-    hypridle
-    android-tools
     geteduroam
     zoom-us
-    audacity
-    element-desktop
-    davinci-resolve
   ];
 
   environment.sessionVariables = {

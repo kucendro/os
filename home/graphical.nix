@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   home.pointerCursor.enable = true;
 
@@ -6,6 +11,25 @@
     sshfs
     glib
     vial
+    audacity
+    element-desktop
+    davinci-resolve
+    telegram-desktop
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
+    nautilus
+    loupe
+    qdirstat
+    gpu-screen-recorder
+    moonlight-qt
+    gnome-network-displays
+    nwg-displays
+    adwaita-icon-theme
+    gnome-keyring
+    grim
+    slurp
+    hypridle
+    android-tools
   ];
 
   services = {

@@ -1,25 +1,5 @@
 {
   "nodes": {
-    "ai-usagebar": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791056534,
-        "narHash": "sha256-T0AlXw0hwkb7Ow6qeGw+pkyhClRT4MZ3zQy7b8hsaC4=",
-        "owner": "akitaonrails",
-        "repo": "ai-usagebar",
-        "rev": "e3de804415bc82d6ec048ef8f3143affa426ba2f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "akitaonrails",
-        "repo": "ai-usagebar",
-        "type": "github"
-      }
-    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -533,7 +513,6 @@
     },
     "root": {
       "inputs": {
-        "ai-usagebar": "ai-usagebar",
         "colibri": "colibri",
         "deploy-rs": "deploy-rs",
         "disko": "disko",

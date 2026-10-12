@@ -193,7 +193,7 @@ in
 
       plugin_settings = {
         "icefish/phone-connect" = {
-          state_update_interval = 60;
+          state_update_interval = 10;
           battery_display = "icon";
         };
       };
@@ -225,7 +225,6 @@ in
           "media"
           "divider"
           "bar"
-          "ai_usage"
           "tailnet"
           "syncthing"
           "bluetooth"
@@ -277,12 +276,6 @@ in
           color = "outline";
         };
         bar.type = "icefish/phone-connect:bar";
-        ai_usage = {
-          type = "felipeartur/ai-usagebar:bar";
-          visualization = "none";
-          show_value = false;
-          extras = "none";
-        };
         tailnet = {
           type = "rylos/tailnet:bar";
           show_count = false;

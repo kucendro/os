@@ -207,15 +207,6 @@ in
         center = yes
         size = 70% 80%
       }
-
-      windowrule {
-        name = float-telegram
-        match:class = ^(org.telegram.desktop)$
-        float = yes
-        center = yes
-        size = 70% 80%
-      }
-
       windowrule {
         name = float-dialogs
         match:class = ^$

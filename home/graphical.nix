@@ -7,30 +7,33 @@
 {
   home.pointerCursor.enable = true;
 
-  home.packages = with pkgs; [
-    glib
-    vial
-    audacity
-    element-desktop
-    davinci-resolve
-    telegram-desktop
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-    wl-clipboard
-    wtype
-    rofimoji
-    fuzzel
-    nautilus
-    loupe
-    qdirstat
-    gpu-screen-recorder
-    moonlight-qt
-    gnome-network-displays
-    nwg-displays
-    adwaita-icon-theme
-    gnome-keyring
-    grim
-    slurp
-  ];
+  home.packages =
+    with pkgs;
+    [
+      glib
+      vial
+      audacity
+      element-desktop
+      davinci-resolve
+      telegram-desktop
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      wl-clipboard
+      wtype
+      rofimoji
+      fuzzel
+      nautilus
+      loupe
+      qdirstat
+      gpu-screen-recorder
+      moonlight-qt
+      gnome-network-displays
+      nwg-displays
+      adwaita-icon-theme
+      gnome-keyring
+      grim
+      slurp
+    ]
+    ++ lib.attrValues (import ../packages/artcraft.nix { inherit pkgs lib; });
 
   services = {
     udiskie = {

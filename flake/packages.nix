@@ -26,21 +26,24 @@ setups ../services/phones/android/termux-setup.nix "termux-setup"
 // {
   phone-theme = import ../services/phones/theme.nix { inherit me; } pkgs;
 }
-// lib.optionalAttrs (system == "x86_64-linux") {
-  workstation = import ../packages/workstation.nix {
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
+// lib.optionalAttrs (system == "x86_64-linux") (
+  import ../packages/artcraft.nix { inherit pkgs lib; }
+  // {
+    workstation = import ../packages/workstation.nix {
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      inherit me lib;
     };
-    inherit me lib;
-  };
-  docs = import ./docs.nix {
-    inherit
-      nixdiag
-      nixpkgs
-      self
-      me
-      hostNames
-      ;
-  } system;
-}
+    docs = import ./docs.nix {
+      inherit
+        nixdiag
+        nixpkgs
+        self
+        me
+        hostNames
+        ;
+    } system;
+  }
+)

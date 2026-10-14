@@ -16,6 +16,8 @@
       element-desktop
       davinci-resolve
       telegram-desktop
+      music-assistant-desktop
+      blender
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       wl-clipboard
       wtype
@@ -23,6 +25,7 @@
       fuzzel
       nautilus
       loupe
+      spotify
       qdirstat
       gpu-screen-recorder
       moonlight-qt

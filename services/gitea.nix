@@ -88,15 +88,15 @@ in
       ];
     };
 
-    ubuntu = {
-      enable = true;
-      name = "ubuntu-24.04";
-      url = "https://${webDomain}";
-      tokenFile = config.sops.templates."gitea-runner-env".path;
-      labels = [
-        "ubuntu-24.04:docker://catthehacker/ubuntu:act-24.04"
-      ];
-    };
+    # ubuntu = {
+    #   enable = true;
+    #   name = "ubuntu-24.04";
+    #   url = "https://${webDomain}";
+    #   tokenFile = config.sops.templates."gitea-runner-env".path;
+    #   labels = [
+    #     "ubuntu-24.04:docker://catthehacker/ubuntu:act-24.04"
+    #   ];
+    # };
   };
 
   users.users.gitea-runner = {
@@ -115,7 +115,7 @@ in
   '';
 
   systemd.services.gitea-runner-nas = runnerService;
-  systemd.services.gitea-runner-ubuntu = runnerService;
+  # systemd.services.gitea-runner-ubuntu = runnerService;
 
   programs.git = {
     enable = true;

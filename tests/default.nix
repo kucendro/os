@@ -22,7 +22,7 @@ let
         "kucendro-github"
         "qore"
         "gitea-runner-nas"
-        "gitea-runner-ubuntu"
+        # "gitea-runner-ubuntu"
       ];
     };
     stockholm.vm.skip = [

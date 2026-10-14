@@ -14,4 +14,18 @@
 
   # setting added after fatal crash of nas during build
   nix.settings.fsync-store-paths = true;
+
+  systemd.slices.builds.sliceConfig = {
+    CPUQuota = "200%";
+    CPUWeight = 20;
+    MemoryMax = "7.5G";
+    MemorySwapMax = 0;
+  };
+
+  systemd.services.nix-daemon.serviceConfig.Slice = "builds.slice";
+
+  systemd.services.gitea-runner-nas.serviceConfig = {
+    Slice = "builds.slice";
+    OOMPolicy = "continue";
+  };
 }

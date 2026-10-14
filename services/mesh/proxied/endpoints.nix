@@ -40,6 +40,9 @@ in
   karakeep = {
     address = nas "karakeep";
   };
+  flashcards = {
+    address = nas "anki-sync-server";
+  };
   #shelf = {
   #  address = nas "calibre-web";
   #};

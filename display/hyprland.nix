@@ -29,6 +29,8 @@ let
     "beeper & slack"
     # "env QT_QPA_PLATFORM=xcb kdrive"
   ];
+
+  classes = names: "^(${lib.concatMapStringsSep "|" lib.escapeRegex names})$";
 in
 {
   wayland.windowManager.hyprland = {
@@ -193,19 +195,35 @@ in
         workspace = special:magic silent
       }
       windowrule {
-        name = float-slack
-        match:class = ^slack$
+        name = float-apps
+        match:class = ${
+          classes [
+            "slack"
+            "Beeper"
+            "org.telegram.desktop"
+            "org.gnome.Nautilus"
+          ]
+        }
         float = yes
         center = yes
         size = 70% 80%
-        no_initial_focus = yes
       }
       windowrule {
-        name = float-nautilus
-        match:class = ^(org.gnome.Nautilus)$
+        name = float-apps-native-size
+        match:class = ${
+          classes [
+            "scrcpy"
+            "Emulator"
+            "org.gnome.Calculator"
+          ]
+        }
         float = yes
         center = yes
-        size = 70% 80%
+      }
+      windowrule {
+        name = slack-no-initial-focus
+        match:class = ^slack$
+        no_initial_focus = yes
       }
       windowrule {
         name = float-dialogs
@@ -219,19 +237,6 @@ in
         match:class = hyprland-run
         move = 20 monitor_h-120
         float = yes
-      }
-      windowrule {
-        name = float-scrcpy
-        match:class = ^(scrcpy)$
-        float = yes
-        center = yes
-      }
-
-      windowrule {
-        name = float-simulator
-        match:class = ^(Emulator)$
-        float = yes
-        center = yes
       }
       windowrule {
         name = float-netreg

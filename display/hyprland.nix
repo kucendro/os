@@ -188,12 +188,7 @@ in
         match:class = ^(Apple music|apple music).*$
         workspace = special:magic silent
         opacity = 1
-      }
-      windowrule {
-        name = beeper-to-special
-        match:class = ^Beeper$
-        workspace = special:magic silent
-      }
+      } 
       windowrule {
         name = float-apps
         match:class = ${

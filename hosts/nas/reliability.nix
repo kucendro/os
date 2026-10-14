@@ -18,7 +18,7 @@
   systemd.slices.builds.sliceConfig = {
     CPUQuota = "200%";
     CPUWeight = 20;
-    MemoryMax = "7.5G";
+    MemoryMax = "10G";
     MemorySwapMax = 0;
   };
 

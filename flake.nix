@@ -153,6 +153,8 @@
         })
         mkSystem
         mkDarwin
+        linuxModules
+        specialArgs
         ;
 
     in
@@ -194,6 +196,16 @@
             ;
         }
         // import ./flake/checks.nix { inherit nixpkgs self; } system
+        // nixpkgs.lib.optionalAttrs (nixpkgs.lib.hasSuffix "-linux" system) (
+          import ./tests {
+            inherit
+              nixpkgs
+              nixosHosts
+              linuxModules
+              specialArgs
+              ;
+          } system
+        )
       );
 
       apps = nixpkgs.lib.genAttrs systems (

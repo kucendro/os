@@ -10,9 +10,6 @@
   home-manager.users.${me.name}.programs = {
     uv = {
       enable = true;
-      tool.packages = [
-        "graphifyy"
-      ];
       tool.prune = true;
     };
   };

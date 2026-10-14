@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   inputs,
   me,
   ...
@@ -19,17 +18,6 @@
       }
     ];
     sshAllowedSignersPath = config.sops.templates.allowed-signers.path;
-  };
-
-  sops.templates.allowed-signers = {
-    content =
-      lib.concatMapStrings
-        (device: "${me.emails.personal} ${config.sops.placeholder."${device}-pubkey"}\n")
-        [
-          "nixbook"
-          "mac"
-        ];
-    mode = "0444";
   };
 
   nixdiag.units.comin = { };

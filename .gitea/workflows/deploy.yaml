@@ -57,6 +57,6 @@ jobs:
         run: |
           reason="deploy failed"
           if [ "${{ steps.signature.outcome }}" = failure ]; then
-            reason="unsigned commit, not deployed"
+            reason="signature not verified, not deployed"
           fi
           nix --extra-experimental-features "nix-command flakes" run .#tg -- message "$reason: $(git log -1 --pretty='%h %s')"

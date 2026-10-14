@@ -10,26 +10,21 @@ let
   pkgs = nixpkgs.legacyPackages.${system};
 in
 {
-  verify = {
+  ci-report = {
     type = "app";
-    meta.description = "Check nodes after deploy, push to Grafana";
+    meta.description = "Push a CI run outcome to Grafana";
     program = nixpkgs.lib.getExe (
       pkgs.writeShellApplication {
-        name = "verify";
+        name = "ci-report";
         runtimeInputs = [
           pkgs.curl
-          pkgs.jq
-          pkgs.openssh
           pkgs.gitMinimal
           pkgs.coreutils
-          pkgs.gnugrep
-          pkgs.gnused
-          pkgs.nix
         ];
         text = ''
           export PUSHGATEWAY=http://edge.${me.domains.mesh}:${toString self.nixosConfigurations.edge.config.mesh.ports.pushgateway}
         ''
-        + builtins.readFile ../automations/verify.sh;
+        + builtins.readFile ../automations/ci-report.sh;
       }
     );
   };

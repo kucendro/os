@@ -9,11 +9,10 @@ on:
 
 env:
   HOME: /var/lib/gitea-runner
-  SKIP_NODES: nixbook mac
-  SSH_OPTS: >-
-    -i /var/lib/gitea-runner/.ssh/id_ed25519
-    -o StrictHostKeyChecking=accept-new
-    -o UserKnownHostsFile=/var/lib/gitea-runner/known_hosts
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -23,6 +22,10 @@ jobs:
 
       - name: STARTING
         run: echo "started=$(date +%s)" >> "$GITHUB_ENV"
+
+      - name: VERIFYING
+        id: signature
+        run: git verify-commit HEAD
 
       - name: CHECKING
         run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
@@ -42,81 +45,18 @@ jobs:
               --out-link "/var/lib/gitea-runner/gcroots/$host"
           done
 
-      - name: DEPLOYING
-        run: |
-          set -euo pipefail
-          export NIX_SSHOPTS="$SSH_OPTS"
-
-          nodes=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
-            ".#deploy.nodes" \
-            --apply 'ns: builtins.concatStringsSep " " (builtins.attrNames ns)')
-
-          self=$(cat /proc/sys/kernel/hostname)
-          failed=""
-
-          for node in $nodes; do
-            if [ "$node" = "$self" ]; then
-              echo "skipping $node"
-              continue
-            fi
-
-            case " $SKIP_NODES " in
-              *" $node "*)
-                echo "skipping $node"
-                continue
-                ;;
-            esac
-
-            host=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
-              ".#deploy.nodes.$node.hostname")
-            user=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
-              ".#deploy.nodes.$node.sshUser")
-
-            # shellcheck disable=SC2086 # SSH_OPTS is a flag list, splitting is the point
-            if ! ssh $SSH_OPTS -o BatchMode=yes -o ConnectTimeout=5 "$user@$host" true 2>/dev/null; then
-              echo "skip $node ($host unreachable)"
-              continue
-            fi
-
-            echo "deploy $node ($host)"
-            deploy --skip-checks --ssh-opts "$SSH_OPTS" ".#$node" || failed="$failed $node"
-          done
-
-          if [ -n "$failed" ]; then
-            echo "failed:$failed"
-            exit 1
-          fi
-
-      - name: VERIFYING
-        if: always()
-        run: nix --extra-experimental-features "nix-command flakes" run .#verify
-
-      - name: NOTIFYING
-        run: |
-          set -euo pipefail
-          self=$(cat /proc/sys/kernel/hostname)
-          closure=$(readlink -f "/var/lib/gitea-runner/gcroots/$self")
-          current=$(readlink -f /run/current-system)
-
-          if [ "$closure" = "$current" ]; then
-            echo "$self up to date"
-            exit 0
-          fi
-
-          diff=$(nix --extra-experimental-features "nix-command flakes" \
-            store diff-closures "$current" "$closure")
-          changes=$(head -20 <<<"$diff")
-
-          text=$(printf '%s needs a switch\n\n%s\n\ndeploy .#%s\n\n%s' \
-            "$self" "$(git log -1 --pretty='%h %s')" "$self" "$changes")
-
-          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "$text"
+      - name: PROMOTING
+        run: git push ssh://git@nas:2222/kucendro/os.git HEAD:deploy
 
       - name: REPORTING
         if: always()
-        run: nix --extra-experimental-features "nix-command flakes" run .#verify -- run deploy "${{ job.status }}" "$started"
+        run: nix --extra-experimental-features "nix-command flakes" run .#ci-report -- deploy "${{ job.status }}" "$started"
 
       - name: FAILING
         if: failure()
         run: |
-          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "deploy failed: $(git log -1 --pretty='%h %s')"
+          reason="deploy failed"
+          if [ "${{ steps.signature.outcome }}" = failure ]; then
+            reason="unsigned commit, not deployed"
+          fi
+          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "$reason: $(git log -1 --pretty='%h %s')"

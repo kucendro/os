@@ -23,33 +23,10 @@
   "version": 1,
   "panels": [
     {
-      "id": 1,
-      "type": "stat",
-      "title": "Last verified",
-      "gridPos": { "h": 5, "w": 6, "x": 0, "y": 0 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
-      "targets": [
-        {
-          "expr": "verify_timestamp_seconds{job=\"verify\"} * 1000",
-          "legendFormat": "{{node}}",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"] },
-        "colorMode": "none",
-        "graphMode": "none",
-        "textMode": "value_and_name"
-      },
-      "fieldConfig": {
-        "defaults": { "unit": "dateTimeFromNow" }
-      }
-    },
-    {
       "id": 2,
       "type": "stat",
       "title": "Failed units",
-      "gridPos": { "h": 5, "w": 6, "x": 6, "y": 0 },
+      "gridPos": { "h": 5, "w": 8, "x": 0, "y": 0 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
@@ -77,84 +54,10 @@
       }
     },
     {
-      "id": 3,
-      "type": "stat",
-      "title": "Generation",
-      "gridPos": { "h": 5, "w": 6, "x": 12, "y": 0 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
-      "targets": [
-        {
-          "expr": "verify_current{job=\"verify\"}",
-          "legendFormat": "{{node}}",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"] },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "value_and_name"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [
-            {
-              "type": "value",
-              "options": {
-                "0": { "text": "drift", "color": "orange" },
-                "1": { "text": "current", "color": "green" }
-              }
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [{ "color": "green", "value": null }]
-          }
-        }
-      }
-    },
-    {
-      "id": 4,
-      "type": "stat",
-      "title": "Reboot needed",
-      "gridPos": { "h": 5, "w": 6, "x": 18, "y": 0 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
-      "targets": [
-        {
-          "expr": "verify_reboot_needed{job=\"verify\"}",
-          "legendFormat": "{{node}}",
-          "refId": "A"
-        }
-      ],
-      "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"] },
-        "colorMode": "value",
-        "graphMode": "none",
-        "textMode": "value_and_name"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [
-            {
-              "type": "value",
-              "options": {
-                "0": { "text": "no", "color": "green" },
-                "1": { "text": "yes", "color": "orange" }
-              }
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [{ "color": "green", "value": null }]
-          }
-        }
-      }
-    },
-    {
       "id": 5,
       "type": "stat",
       "title": "Last CI run",
-      "gridPos": { "h": 5, "w": 12, "x": 0, "y": 5 },
+      "gridPos": { "h": 5, "w": 8, "x": 8, "y": 0 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
@@ -191,7 +94,7 @@
       "id": 6,
       "type": "stat",
       "title": "CI run age",
-      "gridPos": { "h": 5, "w": 12, "x": 12, "y": 5 },
+      "gridPos": { "h": 5, "w": 8, "x": 16, "y": 0 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
@@ -214,7 +117,7 @@
       "id": 7,
       "type": "state-timeline",
       "title": "Failed units",
-      "gridPos": { "h": 9, "w": 24, "x": 0, "y": 10 },
+      "gridPos": { "h": 9, "w": 24, "x": 0, "y": 5 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
@@ -248,41 +151,10 @@
       }
     },
     {
-      "id": 8,
-      "type": "timeseries",
-      "title": "Closure size",
-      "gridPos": { "h": 9, "w": 24, "x": 0, "y": 19 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
-      "targets": [
-        {
-          "expr": "verify_closure_bytes{job=\"verify\"}",
-          "legendFormat": "{{node}}",
-          "refId": "A"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "bytes",
-          "min": 0,
-          "custom": {
-            "drawStyle": "line",
-            "lineInterpolation": "stepAfter",
-            "fillOpacity": 8,
-            "showPoints": "auto",
-            "spanNulls": true
-          }
-        }
-      },
-      "options": {
-        "legend": { "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "multi", "sort": "desc" }
-      }
-    },
-    {
       "id": 9,
       "type": "logs",
       "title": "Errors",
-      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 28 },
+      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 14 },
       "datasource": { "type": "loki", "uid": "loki" },
       "targets": [
         {

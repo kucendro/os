@@ -42,6 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     irlume = {
       url = "github:archledger/irlume";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -26,6 +26,7 @@ jobs:
         run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
 
       - name: COMMITING
+        id: commit
         run: |
           set -euo pipefail
           if git diff --quiet -- flake.lock; then
@@ -36,6 +37,18 @@ jobs:
           git config user.email "actions@kucendro.dev"
           git add flake.lock
           git commit -m "automatic weekly update"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: PUSHING
-        run: git push ssh://git@nas:2222/kucendro/os.git HEAD:main
+        if: steps.commit.outputs.changed == 'true'
+        run: git push --force ssh://git@nas:2222/kucendro/os.git HEAD:update
+
+      - name: NOTIFYING
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "weekly update ready on branch update, deploy it with: just merge update"
+
+      - name: FAILING
+        if: failure()
+        run: |
+          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "update failed: $(git log -1 --pretty='%h %s')"

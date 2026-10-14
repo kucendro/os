@@ -31,7 +31,7 @@ Own copy of what gets read and watched. cobalt has no nixpkgs package or module 
 
 - [ ] Mealie: recipes and meal planning, HA integration.
 - [ ] Mosquitto: needed by the frigate HA integration once cameras exist.
-- [ ] comin: nas pulls from gitea and rebuilds itself instead of manual deploy.
+- [x] comin on nas and edge follows the `deploy` branch, which CI fast-forwards after checking the commit signature and building every host; only commits signed by the nixbook or mac key deploy (`services/comin.nix`, 2026-10-14).
 
 ## Torrents
 

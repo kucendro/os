@@ -16,6 +16,7 @@ let
     ) (lib.attrValues config.nodes)
   );
   targets = map (vhost: "https://${vhost}") vhosts;
+  cominNodes = lib.filterAttrs (_: node: node.mesh.ports ? comin) config.nodes;
   blackboxPort = 9115;
   prometheusPort = 9090;
 in
@@ -93,6 +94,13 @@ in
           labels.node = name;
         }) config.nodes;
       }
+      {
+        job_name = "comin";
+        static_configs = lib.mapAttrsToList (name: node: {
+          targets = [ "${name}.${me.domains.mesh}:${toString node.mesh.ports.comin}" ];
+          labels.node = name;
+        }) cominNodes;
+      }
     ];
   };
 
@@ -107,7 +115,11 @@ in
     ++ map (name: {
       to = "${name}/prometheus-node-exporter";
       label = "metrics";
-    }) (lib.attrNames config.nodes);
+    }) (lib.attrNames config.nodes)
+    ++ map (name: {
+      to = "${name}/comin";
+      label = "metrics";
+    }) (lib.attrNames cominNodes);
   };
 
   mesh.ports.prometheus = prometheusPort;

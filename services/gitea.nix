@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   me,
   ...
 }:
@@ -48,7 +47,7 @@ in
         SSH_LISTEN_PORT = sshPort;
         BUILTIN_SSH_SERVER_USER = "git";
       };
-      service.DISABLE_REGISTRATION = false;
+      service.DISABLE_REGISTRATION = true;
       actions.ENABLED = true;
     };
   };
@@ -86,7 +85,6 @@ in
         openssh
         wget
         config.nix.package
-        inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
     };
 
@@ -118,6 +116,11 @@ in
 
   systemd.services.gitea-runner-nas = runnerService;
   systemd.services.gitea-runner-ubuntu = runnerService;
+
+  programs.git = {
+    enable = true;
+    config.gpg.ssh.allowedSignersFile = config.sops.templates.allowed-signers.path;
+  };
 
   systemd.services.gitea.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
 

@@ -23,8 +23,5 @@ in
     }
   ];
 
-  mesh = {
-    ports.syncthing = syncPort;
-    udp = [ syncPort ];
-  };
+  mesh.ports.syncthing = syncPort;
 }

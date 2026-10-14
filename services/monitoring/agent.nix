@@ -10,12 +10,7 @@ in
     environmentFile = config.sops.templates."beszel-agent-env".path;
   };
 
-  nixdiag.units.beszel-agent.connections = [
-    {
-      to = "edge/beszel";
-      label = "metrics";
-    }
-  ];
+  nixdiag.units.beszel-agent = { };
 
   mesh.ports.beszel-agent = port;
 }

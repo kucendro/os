@@ -68,11 +68,8 @@ in
 
   systemd.services.syncthing.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
 
-  mesh = {
-    ports = {
-      syncthing = syncPort;
-      syncthing-gui = guiPort;
-    };
-    udp = [ syncPort ];
+  mesh.ports = {
+    syncthing = syncPort;
+    syncthing-gui = guiPort;
   };
 }

@@ -97,17 +97,8 @@ in
 
   mesh.ports.home-assistant = port;
 
-  networking.firewall.interfaces.${lanInterface} = {
-    allowedTCPPorts = [
-      9999
-      80
-      443
-    ];
-    allowedUDPPorts = [
-      9999
-      20002
-      1900
-      5353
-    ];
-  };
+  networking.firewall.interfaces.${lanInterface}.allowedUDPPorts = [
+    1900
+    5353
+  ];
 }

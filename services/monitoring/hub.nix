@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 
 let
   port = 8090;
@@ -13,5 +13,9 @@ in
   nixdiag.units.beszel = {
     role = "monitor";
     ports = [ port ];
+    connections = map (name: {
+      to = "${name}/beszel-agent";
+      label = "metrics";
+    }) (lib.attrNames config.nodes);
   };
 }

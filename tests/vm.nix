@@ -45,7 +45,8 @@ in
   config = {
     vm.skip =
       lib.attrNames config.virtualisation.oci-containers.containers
-      ++ lib.optional (config.security.acme.certs != { }) "acme-order-renew";
+      ++ lib.optional (config.security.acme.certs != { }) "acme-order-renew"
+      ++ lib.optional config.services.sunshine.enable "sunshine";
 
     vm.ports = lib.mkMerge [
       (lib.mapAttrs (_: port: [ "tcp/${toString port}" ]) config.mesh.ports)

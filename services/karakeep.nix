@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  me,
-  ...
-}:
+{ me, ... }:
 
 let
   port = 3006;
@@ -25,15 +20,6 @@ in
   };
 
   nixdiag.units.karakeep.ports = [ port ];
-
-  services.meilisearch.settings = lib.mkForce {
-    http_addr = "${config.services.meilisearch.listenAddress}:${toString config.services.meilisearch.listenPort}";
-    db_path = "/var/lib/meilisearch";
-    dump_dir = "/var/lib/meilisearch/dumps";
-    snapshot_dir = "/var/lib/meilisearch/snapshots";
-    no_analytics = true;
-    upgrade_db = true;
-  };
 
   systemd.tmpfiles.rules = [
     "d /mnt/data/karakeep 0700 karakeep karakeep -"

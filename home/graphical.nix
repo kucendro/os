@@ -35,6 +35,7 @@
       gnome-keyring
       grim
       slurp
+      anki
     ]
     ++ lib.attrValues (import ../packages/artcraft.nix { inherit pkgs lib; });
 

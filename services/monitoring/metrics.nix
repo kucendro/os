@@ -8,12 +8,7 @@
     enabledCollectors = [ "systemd" ];
   };
 
-  nixdiag.units.prometheus-node-exporter.connections = [
-    {
-      to = "nas/prometheus";
-      label = "metrics";
-    }
-  ];
+  nixdiag.units.prometheus-node-exporter = { };
 
   mesh.ports.node-exporter = config.services.prometheus.exporters.node.port;
 }

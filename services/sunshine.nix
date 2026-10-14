@@ -71,19 +71,10 @@ in
     };
   };
 
-  mesh = {
-    ports = {
-      sunshine-https = port - 5;
-      sunshine = port;
-      sunshine-web = port + 1;
-      sunshine-rtsp = port + 21;
-    };
-    udp = map (offset: port + offset) [
-      9
-      10
-      11
-      13
-      21
-    ];
+  mesh.ports = {
+    sunshine-https = port - 5;
+    sunshine = port;
+    sunshine-web = port + 1;
+    sunshine-rtsp = port + 21;
   };
 }

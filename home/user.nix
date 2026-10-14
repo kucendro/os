@@ -9,8 +9,8 @@
     isNormalUser = true;
     description = me.fullName;
     hashedPasswordFile = config.sops.secrets.password_hash.path;
+    linger = true;
     extraGroups = [
-      "networkmanager"
       "wheel"
       "vboxusers"
       "docker"

@@ -70,5 +70,4 @@ in
     frigate-rtsp = 8554;
     frigate-webrtc = 8555;
   };
-  mesh.udp = [ 8555 ];
 }

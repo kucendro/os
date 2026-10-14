@@ -2,6 +2,13 @@
 
 let
   port = 8095;
+  streamPort = 8097;
+  sendspinPort = 8927;
+  ports = [
+    port
+    streamPort
+    sendspinPort
+  ];
 in
 {
   virtualisation.oci-containers = {
@@ -22,7 +29,7 @@ in
     };
   };
 
-  nixdiag.units.music-assistant.ports = [ port ];
+  nixdiag.units.music-assistant.ports = ports;
 
   mesh.ports.music-assistant = port;
 
@@ -30,14 +37,7 @@ in
     "d /var/lib/music-assistant 0700 root root -"
   ];
 
-  networking.firewall.allowedTCPPorts = [
-    port
-    8097
-    8927
-    1780
-    1704
-    1705
-  ];
+  networking.firewall.allowedTCPPorts = ports;
 
   networking.firewall.allowedUDPPorts = [ 5353 ];
 }

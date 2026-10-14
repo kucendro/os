@@ -8,4 +8,6 @@
       "--login-server=https://${me.domains.edge}"
     ];
   };
+
+  networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
 }

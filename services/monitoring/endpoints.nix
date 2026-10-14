@@ -103,7 +103,11 @@ in
         to = "edge/nginx";
         label = "probes";
       }
-    ];
+    ]
+    ++ map (name: {
+      to = "${name}/prometheus-node-exporter";
+      label = "metrics";
+    }) (lib.attrNames config.nodes);
   };
 
   mesh.ports.prometheus = prometheusPort;

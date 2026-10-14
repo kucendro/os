@@ -24,6 +24,5 @@ with pkgs;
   sqlx-cli
   # mysql-workbench
   jdk25
-  apple-sdk_26
 ]
 ++ lib.optionals stdenv.hostPlatform.isLinux [ gccgo15 ]

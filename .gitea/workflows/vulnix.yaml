@@ -1,0 +1,44 @@
+name: vulnix
+
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+env:
+  HOME: /var/lib/gitea-runner
+
+concurrency:
+  group: vulnix
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: native
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: deploy
+
+      - name: SCANNING
+        run: |
+          set -euo pipefail
+          hosts=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
+            ".#nixosConfigurations" \
+            --apply 'cfgs: builtins.concatStringsSep " " (builtins.attrNames cfgs)')
+
+          for host in $hosts; do
+            closure=$(nix --extra-experimental-features "nix-command flakes" build \
+              ".#nixosConfigurations.$host.config.system.build.toplevel" \
+              --no-link --print-out-paths)
+            message=$(nix --extra-experimental-features "nix-command flakes" run .#vulnix-report -- "$host" "$closure")
+            if [ -n "$message" ]; then
+              nix --extra-experimental-features "nix-command flakes" run .#tg -- message "$message"
+            fi
+          done
+
+      - name: FAILING
+        if: failure()
+        run: |
+          nix --extra-experimental-features "nix-command flakes" run .#tg -- message "vulnix scan failed: $(git log -1 --pretty='%h %s')"

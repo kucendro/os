@@ -12,7 +12,7 @@ in
 {
   ci-report = {
     type = "app";
-    meta.description = "Push a CI run outcome to Grafana";
+    meta.description = "Push a CI info to Grafana";
     program = nixpkgs.lib.getExe (
       pkgs.writeShellApplication {
         name = "ci-report";
@@ -58,6 +58,23 @@ in
           pkgs.coreutils
         ];
         text = builtins.readFile ../automations/runpod.sh;
+      }
+    );
+  };
+
+  vulnix-report = {
+    type = "app";
+    meta.description = "Scan a closure for CVEs";
+    program = nixpkgs.lib.getExe (
+      pkgs.writeShellApplication {
+        name = "vulnix-report";
+        runtimeInputs = [
+          pkgs.vulnix
+          pkgs.jq
+          pkgs.gawk
+          pkgs.coreutils
+        ];
+        text = builtins.readFile ../automations/vulnix.sh;
       }
     );
   };

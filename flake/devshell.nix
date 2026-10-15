@@ -14,6 +14,12 @@ in
       pkgs.opentimestamps-client
       pkgs.just
       pkgs.nh
+      pkgs.lefthook
+      pkgs.nixfmt
     ];
+    shellHook = ''
+      lefthook install
+    '';
+
   };
 }

@@ -1,73 +1,49 @@
-{ pkgs, ... }:
+{ me, ... }:
 
 let
-  port = 5000;
-
-  configYaml = pkgs.writeText "frigate-config.yml" ''
-    mqtt:
-      enabled: false
-
-    detectors:
-      # CPU detection works out of the box. For a Coral TPU use `type: edgetpu`,
-      # or `type: openvino` with an Intel iGPU (also uncomment the /dev/dri device
-      # passthrough below) for far lower load.
-      cpu1:
-        type: cpu
-
-    # Add cameras here, e.g.:
-    # cameras:
-    #   driveway:
-    #     ffmpeg:
-    #       inputs:
-    #         - path: rtsp://user:pass@192.168.1.50:554/stream
-    #           roles: [detect, record]
-    #     detect:
-    #       width: 1280
-    #       height: 720
-    #     record:
-    #       enabled: true
-    #       retain:
-    #         days: 7
-    cameras: {}
-  '';
+  port = 8971;
+  reverseProxyIP = "100.64.0.1";
+  hostname = "cameras.${me.domains.home}";
+  dataDir = "/mnt/data/frigate";
 in
 {
-  virtualisation.oci-containers = {
-    backend = "docker";
+  services.frigate = {
+    enable = true;
+    inherit hostname;
 
-    containers.frigate = {
-      image = "ghcr.io/blakeblackshear/frigate:stable";
-      volumes = [
-        "/mnt/data/frigate/config:/config"
-        "/mnt/data/frigate/media:/media/frigate"
-        "${configYaml}:/config/config.yml:ro"
-        "/etc/localtime:/etc/localtime:ro"
-      ];
-
-      environment.TZ = "Europe/Prague";
-
-      extraOptions = [
-        "--network=host"
-        "--shm-size=256m"
-        "--mount=type=tmpfs,destination=/tmp/cache,tmpfs-size=1000000000"
-        # "--device=/dev/dri/renderD128" # iGPU for hwaccel decode + openvino detect
-      ];
+    settings = {
+      auth = {
+        cookie_secure = true;
+        trusted_proxies = [
+          "127.0.0.1"
+          reverseProxyIP
+        ];
+      };
+      detectors.cpu1.type = "cpu";
+      cameras = { };
     };
   };
 
-  nixdiag.units.frigate.ports = [ port ];
-
-  systemd.services.docker-frigate.unitConfig.RequiresMountsFor = [ "/mnt/data" ];
-
-  systemd.tmpfiles.rules = [
-    "d /mnt/data/frigate 0755 root root -"
-    "d /mnt/data/frigate/config 0755 root root -"
-    "d /mnt/data/frigate/media 0755 root root -"
+  services.nginx.virtualHosts.${hostname}.listen = [
+    {
+      addr = "0.0.0.0";
+      inherit port;
+    }
   ];
 
-  mesh.ports = {
-    frigate = port;
-    frigate-rtsp = 8554;
-    frigate-webrtc = 8555;
+  nixdiag.units.frigate.ports = [ port ];
+
+  systemd.services.frigate.unitConfig.RequiresMountsFor = [ "/var/lib/frigate" ];
+
+  systemd.tmpfiles.rules = [
+    "d ${dataDir} 0750 frigate frigate -"
+  ];
+
+  fileSystems."/var/lib/frigate" = {
+    device = dataDir;
+    fsType = "none";
+    options = [ "bind" ];
   };
+
+  mesh.ports.frigate = port;
 }

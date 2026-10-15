@@ -11,7 +11,7 @@ in
       DOMAIN = "https://vault.${me.domains.home}";
       ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = port;
-      SIGNUPS_ALLOWED = true;
+      SIGNUPS_ALLOWED = false;
     };
   };
 

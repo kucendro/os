@@ -22,6 +22,11 @@
   "acls": [
     { "action": "accept", "src": ["group:admins"], "dst": ["*:*"] },
 
-    { "action": "accept", "src": ["tag:guest"], "dst": ["edge:*", "nas:*"] }
+    {
+      "action": "accept",
+      "src": ["tag:guest"],
+      "proto": "tcp",
+      "dst": ["edge:443"]
+    }
   ]
 }

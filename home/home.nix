@@ -74,7 +74,7 @@
           ControlPersist = "no";
         };
         mac.User = me.name;
-        stockholm.User = me.name;
+        # stockholm.User = me.name;
         edge.User = me.name;
       };
     };

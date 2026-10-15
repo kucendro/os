@@ -25,11 +25,11 @@ let
         # "gitea-runner-ubuntu"
       ];
     };
-    stockholm.vm.skip = [
-      "amazon-ssm-agent"
-      "growpart"
-      "home-manager-kucendro"
-    ];
+    # stockholm.vm.skip = [
+    #   "amazon-ssm-agent"
+    #   "growpart"
+    #   "home-manager-kucendro"
+    # ];
   };
 
   test =

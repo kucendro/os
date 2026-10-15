@@ -129,10 +129,10 @@
           ];
         };
 
-        stockholm = {
-          profile = "workstation";
-          targetModule = ./hosts/aws/stockholm.nix;
-        };
+        # stockholm = {
+        #   profile = "workstation";
+        #   targetModule = ./hosts/aws/stockholm.nix;
+        # };
 
       };
 

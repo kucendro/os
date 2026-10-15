@@ -28,21 +28,6 @@ in
       }
     );
   };
-
-  tg = {
-    type = "app";
-    meta.description = "Send Telegram message";
-    program = nixpkgs.lib.getExe (
-      pkgs.writeShellApplication {
-        name = "tg";
-        runtimeInputs = [
-          pkgs.curl
-          pkgs.coreutils
-        ];
-        text = builtins.readFile ../automations/telegram.sh;
-      }
-    );
-  };
 }
 // nixpkgs.lib.optionalAttrs (system == "x86_64-linux") {
   runpod = {

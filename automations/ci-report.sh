@@ -4,7 +4,7 @@ workflow=${1:?workflow}
 status=${2:?status}
 started=${3:-}
 now=$(date +%s)
-rev=$(git rev-parse --short HEAD 2>/dev/null || echo unknown)
+rev=$(git rev-parse HEAD 2>/dev/null || echo unknown)
 if [ "$status" = success ]; then success=1; else success=0; fi
 
 {

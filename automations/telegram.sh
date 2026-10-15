@@ -12,10 +12,13 @@ fi
 api="https://api.telegram.org/bot$BOT_TOKEN"
 
 case "${1:-}" in
-message)
+message | silent)
+  quiet=false
+  [ "$1" = message ] || quiet=true
   curl -fsS -o /dev/null -X POST "$api/sendMessage" \
     --data-urlencode "chat_id=$CHAT_ID" \
-    --data-urlencode "text=$2"
+    --data-urlencode "text=$2" \
+    --data-urlencode "disable_notification=$quiet"
   ;;
 photo)
   curl -fsS -o /dev/null -X POST "$api/sendPhoto" \

@@ -112,6 +112,23 @@ in
             legendFormat = "{{node}}";
             for = "1m";
           })
+          (alert {
+            uid = "deploy-stuck";
+            title = "Deploy stuck";
+            expr = ''
+              (
+                count by (node) (comin_deployment_info)
+                unless on (node) (
+                  label_replace(comin_deployment_info{status="done"}, "rev", "$1", "commit_id", "(.*)")
+                  and on (rev) ci_run_info{workflow="deploy"}
+                )
+                unless on (node) (comin_last_eval_failed + comin_last_build_failed + comin_last_deployment_failed > 0)
+              )
+              and on () (ci_run_success{workflow="deploy"} == 1)
+            '';
+            legendFormat = "{{node}}";
+            for = "30m";
+          })
         ];
       }
     ];

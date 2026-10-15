@@ -25,6 +25,15 @@ setups ../services/phones/android/termux-setup.nix "termux-setup"
 // setups ../services/phones/ios/blink-setup.nix "blink-setup"
 // {
   phone-theme = import ../services/phones/theme.nix { inherit me; } pkgs;
+  tg = pkgs.writeShellApplication {
+    name = "tg";
+    meta.description = "Send Telegram message";
+    runtimeInputs = [
+      pkgs.curl
+      pkgs.coreutils
+    ];
+    text = builtins.readFile ../automations/telegram.sh;
+  };
 }
 // lib.optionalAttrs (system == "x86_64-linux") (
   import ../packages/artcraft.nix { inherit pkgs lib; }

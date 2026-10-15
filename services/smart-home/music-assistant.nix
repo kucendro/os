@@ -15,17 +15,12 @@ in
     backend = "docker";
 
     containers.music-assistant = {
-      image = "ghcr.io/music-assistant/server:latest";
+      image = "ghcr.io/music-assistant/server:2.10.3";
       volumes = [ "/var/lib/music-assistant:/data" ];
 
       environment.LOG_LEVEL = "info";
 
-      extraOptions = [
-        "--network=host"
-        "--cap-add=SYS_ADMIN"
-        "--cap-add=DAC_READ_SEARCH"
-        "--security-opt=apparmor:unconfined"
-      ];
+      extraOptions = [ "--network=host" ];
     };
   };
 

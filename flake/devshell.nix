@@ -13,6 +13,7 @@ in
       pkgs.typst
       pkgs.opentimestamps-client
       pkgs.just
+      pkgs.nh
     ];
   };
 }

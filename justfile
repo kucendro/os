@@ -1,6 +1,21 @@
 _default:
     @just --list
 
+check:
+  nix flake check
+
+update input:
+  nix flake update {{input}}
+
+build:
+  nh os build .
+
+switch:
+  nh os switch .
+
+deploy target:
+  deploy -s .#{{target}}
+
 paper:
   typst compile --root ./papers/general/ --out ./papers/general/pdf/
   typst compile --root ./papers/maturita/ --out ./papers/maturita/pdf/

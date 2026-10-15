@@ -5,11 +5,11 @@ pre-commit:
       run: nixfmt {staged_files}
       stage_fixed: true
 pre-push:
-  parallel: true
+  follow: true
   commands:
     check:
       glob: "*.{nix,json,lock}"
       run: |
-        nix flake check
+        nix flake check -L
       skip:
         - merge

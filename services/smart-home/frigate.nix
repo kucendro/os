@@ -31,7 +31,15 @@ in
     }
   ];
 
-  nixdiag.units.frigate.ports = [ port ];
+  nixdiag.units.frigate = {
+    ports = [ port ];
+    names = [
+      "frigate-api"
+      "frigate-go2rtc"
+      "frigate-jsmpeg"
+      "frigate-mqtt-ws"
+    ];
+  };
 
   systemd.services.frigate.unitConfig.RequiresMountsFor = [ "/var/lib/frigate" ];
 

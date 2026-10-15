@@ -15,8 +15,8 @@ let
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.tg
     ];
     text = ''
-      icon=✅
-      [ "$COMIN_STATUS" = "done" ] || icon=❌
+      icon=✅🤤
+      [ "$COMIN_STATUS" = "done" ] || icon=🥀
       text="$icon $COMIN_HOSTNAME ''${COMIN_GIT_SHA:0:7} $(head -n1 <<<"$COMIN_GIT_MSG")"
       [ -z "$COMIN_ERROR_MSG" ] || text="$text
       ''${COMIN_ERROR_MSG:0:3500}"
@@ -28,8 +28,6 @@ let
 in
 {
   imports = [ inputs.comin.nixosModules.comin ];
-
-  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   services.comin = {
     enable = true;

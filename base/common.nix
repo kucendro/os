@@ -2,6 +2,7 @@
   config,
   pkgs,
   me,
+  inputs,
   ...
 }:
 
@@ -9,6 +10,8 @@
   time.timeZone = me.timeZone;
 
   nixpkgs.config.allowUnfree = true;
+
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   nix.settings = {
     experimental-features = [

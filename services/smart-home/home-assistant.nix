@@ -71,7 +71,10 @@ in
     ];
   };
 
-  services.matterjs-server.enable = true;
+  services.matterjs-server = {
+    enable = true;
+    extraArgs = [ "--ble-proxy" ];
+  };
 
   systemd.services.home-assistant = {
     unitConfig.RequiresMountsFor = [ "/mnt/data" ];

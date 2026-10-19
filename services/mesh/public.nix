@@ -19,10 +19,20 @@ let
     party = {
       address = nas "music-assistant";
     };
-    # mcp = {
-    #   address = nas "mcp-gitea";
-    #   extraConfig = "proxy_buffering off;";
-    # };
+    assistant = {
+      host = "mcp.assistant.${me.domains.root}";
+      address = nas "home-assistant";
+      extraConfig = "proxy_buffering off;";
+      paths = [
+        "/api/mcp"
+        "/auth/"
+        "/frontend_latest/"
+        "/static/"
+        "= /manifest.json"
+        "= /.well-known/oauth-authorization-server"
+        "= /.well-known/oauth-protected-resource"
+      ];
+    };
   };
 
   alts = lib.concatMap (d: [
@@ -36,17 +46,23 @@ let
     globalRedirect = me.domains.root;
   };
 
+  mkProxy = name: cfg: {
+    proxyPass = "http://$upstream_${name}";
+    proxyWebsockets = true;
+    extraConfig = ''
+      set $upstream_${name} ${cfg.address};
+      ${cfg.extraConfig or ""}
+    '';
+  };
+
   mkVhost = name: cfg: {
     enableACME = true;
     forceSSL = true;
-    locations."/" = {
-      proxyPass = "http://$upstream_${name}";
-      proxyWebsockets = true;
-      extraConfig = ''
-        set $upstream_${name} ${cfg.address};
-        ${cfg.extraConfig or ""}
-      '';
-    };
+    locations =
+      if cfg ? paths then
+        lib.genAttrs cfg.paths (_: mkProxy name cfg) // { "/".return = "404"; }
+      else
+        { "/" = mkProxy name cfg; };
   };
 in
 {

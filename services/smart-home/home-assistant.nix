@@ -1,10 +1,12 @@
-{ pkgs, ... }:
+{ me, pkgs, ... }:
 
 let
   port = 8123;
   reverseProxyIP = "100.64.0.1";
   lanInterface = "wlp2s0";
   configDir = "/mnt/data/home-assistant";
+  hostname = "assistant.${me.domains.home}";
+  publicHostname = "mcp.assistant.${me.domains.root}";
 in
 {
   services.home-assistant = {
@@ -44,12 +46,18 @@ in
     ];
 
     config = {
-      homeassistant.time_zone = null;
+      homeassistant = {
+        time_zone = null;
+        internal_url = "https://${hostname}";
+        external_url = "https://${publicHostname}";
+      };
       default_config = { };
       frontend.themes = "!include_dir_merge_named themes";
       http = {
         use_x_forwarded_for = true;
         trusted_proxies = [ reverseProxyIP ];
+        ip_ban_enabled = true;
+        login_attempts_threshold = 5;
       };
       automation = "!include automations.yaml";
       script = "!include scripts.yaml";

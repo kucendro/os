@@ -10,6 +10,7 @@
     clock24 = true;
     historyLimit = 50000;
     shortcut = "space";
+    terminal = "tmux-256color";
     extraConfig = ''
       set -g @continuum-restore 'on'
       set -g @continuum-save-interval '10'

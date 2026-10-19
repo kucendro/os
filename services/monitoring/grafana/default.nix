@@ -14,6 +14,8 @@ in
         root_url = "https://grafana.${me.domains.home}";
       };
       security.secret_key = "$__file{${config.sops.secrets.grafana-secret-key.path}}";
+      # lets Home Assistant (assistant.${me.domains.home}) show panels in its Homelab dashboard
+      security.allow_embedding = true;
     };
   };
 

@@ -100,6 +100,9 @@ in
   systemd.tmpfiles.rules = [
     "d ${configDir} 0700 hass hass -"
     "d ${configDir}/themes 0755 hass hass -"
+    "d ${configDir}/www 0755 hass hass -"
+    # Blender-rendered floorplan layers, served at /local/floorplan/
+    "L+ ${configDir}/www/floorplan - - - - ${./floorplan}"
     "f ${configDir}/automations.yaml 0644 hass hass - []"
     "f ${configDir}/scripts.yaml 0644 hass hass -"
     "f ${configDir}/scenes.yaml 0644 hass hass -"

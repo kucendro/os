@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./home-assistant.nix
+    ./home-assistant
     ./otbr.nix
     ./music-assistant.nix
     ./frigate.nix

@@ -7,6 +7,24 @@ let
   configDir = "/mnt/data/home-assistant";
   hostname = "assistant.${me.domains.home}";
   publicHostname = "mcp.assistant.${me.domains.root}";
+  # shared prefix of the attention sensor templates; sets ns.items
+  attentionItems = builtins.readFile ./attention.jinja;
+  bedroomLamps = [
+    "light.kajplats_e27_ws_g95_clear_806lm"
+    "light.ondrej_s_bedroom_right_bulb"
+  ];
+  lampsAt =
+    brightness: kelvin:
+    builtins.listToAttrs (
+      map (entity: {
+        name = entity;
+        value = {
+          state = "on";
+          inherit brightness;
+          color_temp_kelvin = kelvin;
+        };
+      }) bedroomLamps
+    );
 in
 {
   services.home-assistant = {
@@ -43,6 +61,10 @@ in
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
       mushroom
       card-mod
+      horizon-card
+      mini-graph-card
+      battery-state-card
+      navbar-card
     ];
 
     config = {
@@ -62,6 +84,45 @@ in
       automation = "!include automations.yaml";
       script = "!include scripts.yaml";
       scene = "!include scenes.yaml";
+
+      "scene manual" = [
+        {
+          name = "Bedroom relax";
+          icon = "mdi:sofa-outline";
+          entities = lampsAt 102 2200;
+        }
+        {
+          name = "Bedroom focus";
+          icon = "mdi:lightbulb-on";
+          entities = lampsAt 255 4000;
+        }
+        {
+          name = "Bedroom night";
+          icon = "mdi:weather-night";
+          entities = {
+            "light.kajplats_e27_ws_g95_clear_806lm" = {
+              state = "on";
+              brightness = 8;
+              color_temp_kelvin = 2200;
+            };
+            "light.ondrej_s_bedroom_right_bulb".state = "off";
+          };
+        }
+      ];
+
+      template = [
+        {
+          sensor = [
+            {
+              name = "Attention";
+              unique_id = "attention_items";
+              icon = "mdi:alert-circle-outline";
+              state = attentionItems + "{{ ns.items | count }}";
+              attributes.items = attentionItems + "{{ ns.items }}";
+            }
+          ];
+        }
+      ];
     };
   };
 

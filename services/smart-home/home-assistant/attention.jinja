@@ -1,0 +1,26 @@
+{#- Things that need someone's attention. Used by sensor.attention (state = count, attribute items = list). -#}
+{%- set ns = namespace(items=[]) -%}
+{%- set door = 'binary_sensor.myggbett_door_window_sensor_door' -%}
+{%- if is_state(door, 'on') and (now() - states[door].last_changed).total_seconds() > 600 -%}
+  {%- set ns.items = ns.items + ['Bedroom door open ' ~ ((now() - states[door].last_changed).total_seconds() // 60) | int ~ ' min'] -%}
+{%- endif -%}
+{%- for part, label in [('main_brush', 'main brush'), ('side_brush', 'side brush'), ('filter', 'filter'), ('round_mop', 'mop'), ('unit_care', 'unit care')] -%}
+  {%- set v = states('sensor.okucera244_seznam_cz_' ~ part ~ '_lifespan') | float(100) -%}
+  {%- if v <= 5 -%}
+    {%- set ns.items = ns.items + ['Vacuum ' ~ label ~ ' ' ~ (v | round(0) | int) ~ ' %'] -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for entity, label in [('sensor.myggbett_door_window_sensor_battery', 'Door sensor'), ('sensor.ondrej_s_bedroom_scroll_remote_battery', 'Scroll remote')] -%}
+  {%- set v = states(entity) | float(100) -%}
+  {%- if v < 15 -%}
+    {%- set ns.items = ns.items + [label ~ ' battery ' ~ (v | int) ~ ' %'] -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if now().hour >= 21 or now().hour < 6 -%}
+  {%- for level, charging, who in [('sensor.ondrej_s_fold_battery_level', 'sensor.ondrej_s_fold_battery_state', 'Ondřej'), ('sensor.jakub_s_iphone_battery_level', 'sensor.jakub_s_iphone_battery_state', 'Jakub'), ('sensor.jiri_iphone_battery_level', 'sensor.jiri_iphone_battery_state', 'Jiří')] -%}
+    {%- set v = states(level) | float(100) -%}
+    {%- if v < 20 and states(charging) | lower not in ['charging', 'full'] -%}
+      {%- set ns.items = ns.items + [who ~ ' phone ' ~ (v | int) ~ ' %, charge it'] -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

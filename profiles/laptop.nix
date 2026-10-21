@@ -36,6 +36,8 @@
   mesh.ports.ssh = 22;
 
   home-manager.users.${me.name} = {
+    imports = [ ../home/hass-agent.nix ];
+
     services.hypridle.settings.listener = [
       {
         timeout = 150;

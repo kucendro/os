@@ -117,7 +117,7 @@ in
         allow_empty_password = true;
         blurred_desktop = false;
         blur_intensity = 0.0;
-        transition = [ "fade" ];
+        transition = [ "zoom" ];
         transition_duration = 450;
         wallpaper = "${config.stylix.image}";
       };

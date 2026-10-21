@@ -36,7 +36,6 @@
       grim
       slurp
       anki
-      go-hass-agent
     ]
     ++ lib.attrValues (import ../packages/artcraft.nix { inherit pkgs lib; });
 

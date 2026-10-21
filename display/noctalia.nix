@@ -10,18 +10,28 @@ let
     "eDP-1" = {
       w = 1920;
       h = 1200;
+      mm = 300;
     };
     "DP-1" = {
       w = 3440;
       h = 1440;
+      mm = 800;
     };
   };
 
   lockWidgets = lib.concatMapAttrs (
     output:
-    { w, h }:
+    {
+      w,
+      h,
+      mm,
+    }:
     let
       s = h / 1200.0;
+      px = len: len * w / mm;
+      gap = px 5.0;
+      mediaWidth = px 30.0;
+      mediaHeight = px 52.0;
       place = cx: cy: bw: bh: {
         inherit output cx cy;
         box_width = bw;
@@ -40,6 +50,16 @@ let
           background = false;
         };
       };
+      "media@${output}" =
+        place (gap + mediaWidth / 2.0) (h - gap - mediaHeight / 2.0) mediaWidth mediaHeight
+        // {
+          type = "media_player";
+          settings = {
+            layout = "vertical";
+            background = false;
+            hide_when_no_media = true;
+          };
+        };
       "lockscreen-login-box@${output}" = place (w / 2.0) (h * 88 / 100.0) 400.0 70.0 // {
         type = "login_box";
         settings = {

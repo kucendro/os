@@ -82,7 +82,7 @@
     };
   };
 
-  environment.systemPackages = [ pkgs.ghostty.terminfo ];
+  environment.enableAllTerminfo = true;
 
   programs.mosh.enable = true;
 

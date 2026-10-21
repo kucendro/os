@@ -29,5 +29,3 @@ merge branch:
   git commit --no-edit
   git push origin main
 
-commit message:
-  git commit -m "Commit time: {{time}} | Created by: {{user}} | Description: {{message}}"

@@ -50,5 +50,8 @@
 
   environment.variables.NH_FLAKE = "/Users/${me.name}/${flakeDir}";
   environment.systemPath = [ "/opt/homebrew/bin" ];
-  environment.systemPackages = [ pkgs.nh ];
+  environment.systemPackages = [
+    pkgs.ghostty-bin
+    pkgs.nh
+  ];
 }

@@ -1,3 +1,5 @@
+time := datetime_utc("%Y%m%dT%H%M%SZ")
+
 _default:
     @just --list
 
@@ -25,3 +27,6 @@ merge branch:
   git merge --squash origin/{{branch}}
   git commit --no-edit
   git push origin main
+
+commit message:
+  git commit -m "Commit time: {{time}}/n Created by: {{$USER}}/n Description: {{message}}"

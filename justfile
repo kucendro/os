@@ -30,4 +30,4 @@ merge branch:
   git push origin main
 
 commit message:
-  git commit -m "Commit time: {{time}} Created by: {{user}} Description: {{message}}"
+  git commit -m "Commit time: {{time}} | Created by: {{user}} | Description: {{message}}"

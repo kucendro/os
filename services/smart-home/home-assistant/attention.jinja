@@ -1,9 +1,5 @@
 {#- Things that need someone's attention. Used by sensor.attention (state = count, attribute items = list). -#}
 {%- set ns = namespace(items=[]) -%}
-{%- set door = 'binary_sensor.myggbett_door_window_sensor_door' -%}
-{%- if is_state(door, 'on') and (now() - states[door].last_changed).total_seconds() > 600 -%}
-  {%- set ns.items = ns.items + ['Bedroom door open ' ~ ((now() - states[door].last_changed).total_seconds() // 60) | int ~ ' min'] -%}
-{%- endif -%}
 {%- set window = 'binary_sensor.ondrej_s_bedroom_window_door' -%}
 {%- if is_state(window, 'on') -%}
   {%- set open_min = ((now() - states[window].last_changed).total_seconds() // 60) | int -%}

@@ -82,6 +82,8 @@
     };
   };
 
+  environment.systemPackages = [ pkgs.ghostty.terminfo ];
+
   programs.mosh.enable = true;
 
   programs.gnupg.agent = {

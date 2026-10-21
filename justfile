@@ -1,4 +1,5 @@
 time := datetime_utc("%Y%m%dT%H%M%SZ")
+user := env('USER', 'unidentified')
 
 _default:
     @just --list
@@ -29,4 +30,4 @@ merge branch:
   git push origin main
 
 commit message:
-  git commit -m "Commit time: {{time}}/n Created by: {{$USER}}/n Description: {{message}}"
+  git commit -m "Commit time: {{time}} Created by: {{user}} Description: {{message}}"

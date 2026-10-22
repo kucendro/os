@@ -5,3 +5,6 @@ __pycache__/
 
 # nixdiag mode-A output (generated docs are never committed)
 /docs/
+
+# just paper output
+/papers/*/pdf/

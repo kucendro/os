@@ -21,6 +21,9 @@ paper:
   typst compile --root ./papers/general ./papers/general/main.typ ./papers/general/pdf/main.pdf
   typst compile --root ./papers/maturita ./papers/maturita/main.typ ./papers/maturita/pdf/main.pdf
 
+paper-watch name="maturita":
+  tinymist preview --open --root ./papers/{{name}} ./papers/{{name}}/main.typ
+
 merge branch:
   git fetch origin {{branch}}
   git merge --squash origin/{{branch}}

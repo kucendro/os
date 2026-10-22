@@ -11,6 +11,7 @@ in
   default = pkgs.mkShell {
     packages = [
       pkgs.typst
+      pkgs.tinymist
       pkgs.opentimestamps-client
       pkgs.just
       pkgs.nh

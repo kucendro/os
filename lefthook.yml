@@ -4,6 +4,9 @@ pre-commit:
       glob: "*.{nix}"
       run: nixfmt {staged_files}
       stage_fixed: true
+    papers:
+      glob: "*.{typ, bib}"
+      run: just paper
 pre-push:
   follow: true
   commands:

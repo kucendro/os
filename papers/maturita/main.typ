@@ -22,6 +22,7 @@
 
 #heading(numbering: none)[Úvod]
 
+idk write some stuff there
 
 
 = Analýza obdobných řešení

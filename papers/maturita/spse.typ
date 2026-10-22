@@ -4,18 +4,25 @@
 #let font-ascent = 1824 / 2048
 #let font-descent = 443 / 2048
 #let font-line-gap = 87 / 2048
-#let line-step = 1.5 * (font-ascent + font-descent + font-line-gap)
+#let line-step = 1.35 * (font-ascent + font-descent + font-line-gap)
 #let top-edge = (font-ascent + font-line-gap) * 1em
 #let bottom-edge = (font-ascent + font-line-gap - line-step) * 1em
 
-#let body-size = 12pt
-#let para-gap = 18pt
+#let margins = (top: 25mm, left: 30mm, right: 20mm, bottom: 25mm)
+#let text-width = 210mm - margins.left - margins.right
+
+#let body-size = 13pt
+#let head-size = (body-size + 4pt, body-size + 2pt, body-size)
+#let front-size = 14pt
+#let front-head = 16pt
+#let toc-small = body-size - 2pt
+#let para-gap = 12pt
 #let hang = 1.25cm
-#let table-width = 15.49cm
+#let table-width = text-width
 #let cell-pad = 5.4pt
 #let sig-tab = 13cm
-#let author-tab = 15.75cm
-#let footer-tab = 8cm
+#let author-tab = text-width
+#let footer-tab = text-width / 2
 
 #let blank-lines(n) = v(n * line-step * body-size)
 #let empty-par = block(height: line-step * 1em)
@@ -25,10 +32,10 @@
 #let outline-entry(it) = {
   let level = it.level
   let indent = (0cm, 0.42cm, 1.25cm).at(level - 1)
-  let number-width = (1.25cm, 0.83cm, 0.75cm).at(level - 1)
+  let number-width = (1.25cm, 0.83cm, 0.9cm).at(level - 1)
   let prefix = it.prefix()
   block(above: (12pt, 6pt, 0pt).at(level - 1), below: 0pt, pad(left: indent, {
-    set text(..if level == 3 { (size: 10pt, style: "italic") } else { (weight: "bold") })
+    set text(..if level == 3 { (size: toc-small, style: "italic") } else { (weight: "bold") })
     set par(
       justify: false,
       first-line-indent: 0pt,
@@ -45,26 +52,26 @@
 
 #let title-page(kind, title, date, author) = {
   align(center, {
-    set text(size: 14pt)
+    set text(size: front-size)
     [Střední průmyslová škola elektrotechnická \ a Vyšší odborná škola Pardubice]
   })
   v(66pt)
   align(center, {
-    set text(size: 16pt, weight: "bold")
+    set text(size: front-head, weight: "bold")
     [STŘEDNÍ PRŮMYSLOVÁ ŠKOLA ELEKTROTECHNICKÁ]
   })
   v(160pt)
   align(center, {
-    set text(size: 16pt, weight: "bold")
+    set text(size: front-head, weight: "bold")
     kind
   })
   blank-lines(2)
   align(center, {
-    set text(size: 16pt, weight: "bold")
+    set text(size: front-head, weight: "bold")
     title
   })
-  blank-lines(12)
-  set text(size: 14pt)
+  v(1fr)
+  set text(size: front-size)
   box(width: author-tab, [#date #h(1fr) #author])
 }
 
@@ -91,7 +98,7 @@
 #let abstract-page(label, abstract, keywords-label, keywords) = {
   set text(style: "italic")
   {
-    set text(size: 14pt)
+    set text(size: front-size)
     label
   }
   v(12pt)
@@ -112,8 +119,9 @@
   keywords-en: [],
   body,
 ) = {
-  set page(paper: "a4", margin: (top: 2.5cm, bottom: 2.5cm, left: 3.5cm, right: 2cm))
-  set text(font: serif, size: body-size, lang: "cs", hyphenate: false, top-edge: top-edge, bottom-edge: bottom-edge)
+  set page(paper: "a4", margin: margins)
+  set text(font: serif, size: body-size, lang: "cs", region: "cz", hyphenate: false, top-edge: top-edge, bottom-edge: bottom-edge)
+  show regex(" [aAiIkKoOsSuUvVzZ] "): it => [ #it.text.trim()~]
   set par(leading: 0pt, spacing: para-gap, justify: true, first-line-indent: (amount: hang, all: true))
   set block(spacing: para-gap)
   set heading(numbering: "1.1.1")
@@ -123,8 +131,8 @@
   show heading: it => {
     let level = it.level
     if level == 1 { pagebreak(weak: true) }
-    block(above: (42pt, 36pt, 36pt).at(level - 1), below: para-gap, {
-      set text(font: sans, size: (16pt, 14pt, 12pt).at(level - 1), weight: "bold")
+    block(above: (20pt, 24pt, 24pt).at(level - 1), below: (30pt, 18pt, 18pt).at(level - 1), {
+      set text(font: sans, size: head-size.at(level - 1), weight: "bold")
       set par(justify: false, first-line-indent: 0pt, hanging-indent: hang)
       if it.numbering != none { box(width: hang, counter(heading).display(it.numbering)) }
       it.body
@@ -144,13 +152,13 @@
     assignment-page[DRUHÁ]
     pagebreak()
     v(6pt)
-    v(line-step * 14pt)
+    v(line-step * front-size)
     abstract-page([Anotace], abstract-cs, [Klíčová slova:], keywords-cs)
     pagebreak()
     abstract-page([Annotation], abstract-en, [Keywords:], keywords-en)
     pagebreak()
     {
-      set text(font: sans, size: 14pt, weight: "bold")
+      set text(font: sans, size: front-size, weight: "bold")
       [Obsah]
     }
     outline(title: none, depth: 3)

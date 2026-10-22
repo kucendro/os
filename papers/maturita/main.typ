@@ -92,7 +92,7 @@ URL adresa webu:
   )
 }))
 
-#heading(numbering: none)[Seznam použité literatury a zdrojů obrázků]
+#heading(numbering: none)[Seznam použité literatury a zdrojů informací]
 
 Vložte seznam literatury a on-line stránek, které jste použili pro vyhledávání informací a studium.
 
@@ -100,7 +100,11 @@ Do seznamu zahrňte zdroje obrázků použité v~písemné práci i v~samotném 
 
 Seznam můžete vygenerovat na #link("http://www.citace.com")[www.citace.com]
 
-#heading(numbering: none)[Seznam obrázků]
+#heading(numbering: none)[Seznam použitých zkratek]
+
+Zkratky řaďte abecedně, malé písmeno má přednost před velkým.
+
+#heading(numbering: none)[Seznam obrázků, tabulek, grafů]
 
 Vygenerujte seznam obrázků použitých v~dokumentaci (obrázky musí mít zapsané titulky) včetně čísel stránek (stránky menší než polovina stránky mohou být vloženy ve stránce, bez obtékání textu, velké obrázky budou v~příloze).
 

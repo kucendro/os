@@ -1,26 +1,26 @@
 #import "spse.typ": spse-doc, empty-par, table-width, cell-pad
 
 #show: spse-doc.with(
-  title: [NÁZEV MATURITNÍ PRÁCE],
-  kind: [MATURITNÍ PRÁCE – WEBOVÉ STRÁNKY],
-  date: [březen rok],
-  author: [jméno, příjmení a třída],
+  title: [NÁVRH A REALIZACE OSOBNÍ TECHNOLOGICKÉ INFRASTRUKTURY],
+  kind: [MATURITNÍ PRÁCE – HARDWARE A POČÍTAČOVÉ SÍTĚ],
+  date: [březen 2027],
+  author: [Ondřej Kučera 4.D],
   city: [Pardubicích],
-  abstract-cs: [Vložte popis webu (description).],
-  keywords-cs: [Zapište klíčová slova (keywords)],
+  abstract-cs: [Vložte popis],
+  keywords-cs: [automatizace, infrastruktura, linux, mesh síť, monitoring, NixOS, server, ssh, síťové připojení, virtualizace, vzdálená plocha, vzdálený přístup, zálohování dat],
   abstract-en: [Insert a translation of the description.],
-  keywords-en: [],
+  keywords-en: [automation, data backup, infrastructure, linux, mesh network, monitoring, network connection, NixOS, remote access, remote desktop, server, ssh, virtualization]
 )
 
 #heading(numbering: none)[Úvod]
 
-Zapište účel webu, a proč jste si toto téma vybrali.
+Zapište účel, proč jste si toto téma vybrali.
 
-= Analýza obdobných webových stránek
+= Analýza obdobných řešení
 
-Zapište důvod, proč je vhodné provést analýzu obdobných stránek…
+Analyza podobnych reseni jako Bazel, Freeform apod.
 
-== Zapište název prvního webu
+== Bazel
 
 Adresa: http:// …
 
@@ -31,6 +31,7 @@ Popište web …
 #empty-par
 
 === Záporné stránky
+#empty-par
 
 = Návrh projektu
 

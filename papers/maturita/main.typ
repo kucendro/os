@@ -4,7 +4,7 @@
   title: [NÁVRH A REALIZACE OSOBNÍ TECHNOLOGICKÉ INFRASTRUKTURY],
   kind: [MATURITNÍ PRÁCE – HARDWARE A POČÍTAČOVÉ SÍTĚ],
   date: [březen 2027],
-  author: [Ondřej Kučera 4.D],
+  author: [Ondřej Kučera, 4.D],
   city: [Pardubicích],
 
   abstract-cs:

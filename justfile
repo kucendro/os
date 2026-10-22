@@ -33,3 +33,6 @@ merge branch:
   git commit --no-edit
   git push origin main
 
+
+maturita message:
+  git commit -m "[MATURITA - SPSE]: {{message}}"

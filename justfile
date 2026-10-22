@@ -19,10 +19,12 @@ switch:
 deploy target:
   deploy -s .#{{target}}
 
-paper:
-  mkdir -p ./papers/general/pdf ./papers/maturita/pdf
-  typst compile --root ./papers/general ./papers/general/main.typ ./papers/general/pdf/main.pdf
-  typst compile --root ./papers/maturita ./papers/maturita/main.typ ./papers/maturita/pdf/main.pdf
+paper: (_paper "general") (_paper "maturita")
+
+_paper name:
+  mkdir -p ./papers/{{name}}/pdf
+  typst compile --root ./papers/{{name}} ./papers/{{name}}/main.typ ./papers/{{name}}/pdf/main.pdf
+  typst compile --root ./papers/{{name}} --format png --pages 1 --ppi 40 ./papers/{{name}}/main.typ ./papers/{{name}}/pdf/preview.png
 
 paper-watch name="maturita":
   tinymist preview --open --root ./papers/{{name}} ./papers/{{name}}/main.typ

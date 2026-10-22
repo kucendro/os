@@ -21,8 +21,7 @@
 )
 
 #heading(numbering: none)[Úvod]
-
-idk write some stuff there
+toto by melo byt napsane v kontextu ze tuto praci budu teprve psat
 
 
 = Analýza obdobných řešení

@@ -11,6 +11,12 @@ declaring your vision.</samp>
 
 <hr>
 
+### Publications
+
+| General | Maturita |
+| :-: | :-: |
+| [![General, first page](./papers/general/pdf/preview.png)](./papers/general/pdf/main.pdf) | [![Maturita, first page](./papers/maturita/pdf/preview.png)](./papers/maturita/pdf/main.pdf) |
+
 ### Status
 
 ![services](https://img.shields.io/endpoint?url=https%3A%2F%2Fedge.kucendro.dev%2Fmetrics%2Fuptime.json)

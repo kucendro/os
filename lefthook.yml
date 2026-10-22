@@ -6,8 +6,7 @@ pre-commit:
       stage_fixed: true
     papers:
       glob: "*.{typ,bib}"
-      run: nix develop --command just paper
-      stage_fixed: true
+      run: nix develop --command just paper && git add papers/*/pdf
 pre-push:
   follow: true
   commands:

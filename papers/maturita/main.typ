@@ -6,15 +6,23 @@
   date: [březen 2027],
   author: [Ondřej Kučera 4.D],
   city: [Pardubicích],
-  abstract-cs: [Vložte popis],
-  keywords-cs: [automatizace, infrastruktura, linux, mesh síť, monitoring, NixOS, server, ssh, síťové připojení, virtualizace, vzdálená plocha, vzdálený přístup, zálohování dat],
-  abstract-en: [Insert a translation of the description.],
-  keywords-en: [automation, data backup, infrastructure, linux, mesh network, monitoring, network connection, NixOS, remote access, remote desktop, server, ssh, virtualization]
+
+  abstract-cs:
+  [Práce byla vytvořena za účelem důkazu možnosti sestavit state-of-art personální řešení softwarových služeb na vlastním či propůjčeném hardwaru. V mnohých aspektech plně nahrazující komerční cloudové služby. Nikterak však nezabraňuje komerčním řešením využívat stejných principů. Klíčem bylo vytvoření silné bezpečnostní vrztvy mezi jednotlivými zařízeními, uživateli a konkrétními službami. Řešení je plně modulární, po destrukci hardwaru je možná obnova do původního stavu. Práce nabízí podrobný popis konceptů využitých při realizaci i návod pro tvorbu obdobného řešení.],
+
+  keywords-cs:
+  [automatizace, infrastruktura, linux, mesh síť, monitoring, NixOS, server, ssh, síťové připojení, virtualizace, vzdálená plocha, vzdálený přístup, zálohování dat],
+
+  abstract-en:
+  [The work was created to prove the possibility of assembling a state-of-art personal solution for software services on one's own or borrowed hardware. In many aspects, it fully replaces commercial cloud services. However, it does not prevent commercial solutions from using the same principles. The key was to create a strong security layer between individual devices, users, and specific services. The solution is fully modular, and after hardware destruction, it is possible to restore it to its original state. The work offers a detailed description of the concepts used in the implementation and a guide for creating a similar solution.],
+
+  keywords-en:
+  [automation, data backup, infrastructure, linux, mesh network, monitoring, network connection, NixOS, remote access, remote desktop, server, ssh, virtualization]
 )
 
 #heading(numbering: none)[Úvod]
 
-Zapište účel, proč jste si toto téma vybrali.
+Zapište účel proč jste si toto téma vybrali.
 
 = Analýza obdobných řešení
 

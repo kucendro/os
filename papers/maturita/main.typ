@@ -21,8 +21,10 @@
 )
 
 #heading(numbering: none)[Úvod]
-toto by melo byt napsane v kontextu ze tuto praci budu teprve psat
 
+Infrastrukturou se rozumí soubor více než jednoho zařízení, které společne tvoří funkční celek. V současné době je zcela běžné, že uživatel vlastní více, než jedno zařízení zároveň. Z pohledu konzumenta takových prostředků (mobilní telefon, chytrá notitelná elektronika, laptop) je zcela běžnou praxí tendence přetrvávat u jednoho poskytovatele služeb či hardware. A to i po mnoho let. Pro uživatele je to nejsnažší cesta. Šetří tím svůj čas, protože se nemusí učit hlubší koncepty počítačových sítí, bezpečnosti, apod. Většina uživatelů se tak stává závislá na jednom dodavateli služeb. Tento způsob čerpání výhod však má i svá úskalí.
+V komerční sféře softwarových firem je běžnou praxí přesný opak. 
+Firmy shledávají za nejen finančně výhodnější, ale i bezpečnější a efektivnější provoz vlastních služeb. V praxi k tomu využívají vlastní hardware, vlastní síťovou infrastrukturu a vlastní software. Firmám tento způsob nabízí absolutní kontrolu nad jejich fungováním. Takový přístup je však pro běžného uživatele příliš složitý a nákladný. Cílem této práce je nabídnout uživateli možnost sestavit si vlastní infrastrukturu, která bude plně funkční a bezpečná, a to i na základě vlastního hardwaru. V práci je popsán návrh, realizace a testování takového řešení.
 
 = Analýza obdobných řešení
 

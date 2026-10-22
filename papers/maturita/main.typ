@@ -22,7 +22,7 @@
 
 #heading(numbering: none)[Úvod]
 
-Zapište účel proč jste si toto téma vybrali.
+
 
 = Analýza obdobných řešení
 

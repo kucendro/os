@@ -114,6 +114,7 @@
     zoom-us
     sshfs
     android-tools
+    zeal
   ];
 
   home-manager.users.${me.name}.imports = [

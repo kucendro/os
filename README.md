@@ -11,10 +11,10 @@ declaring your vision.</samp>
 
 <hr>
 
-### Publications
+### Written thoughts
 
-| General | Maturita |
-| :-: | :-: |
+|                                            idk                                            |                                  Graduation work (1Q 2027)                                   |
+| :---------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
 | [![General, first page](./papers/general/pdf/preview.png)](./papers/general/pdf/main.pdf) | [![Maturita, first page](./papers/maturita/pdf/preview.png)](./papers/maturita/pdf/main.pdf) |
 
 ### Status

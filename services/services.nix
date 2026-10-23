@@ -9,6 +9,7 @@
     resolved.enable = true;
     openssh = {
       enable = true;
+      openFirewall = false;
       settings = {
         PasswordAuthentication = false;
         PermitRootLogin = "no";

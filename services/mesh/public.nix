@@ -16,9 +16,6 @@ let
     archive = {
       address = nas "portfolio";
     };
-    party = {
-      address = nas "music-assistant";
-    };
     assistant = {
       host = "mcp.assistant.${me.domains.root}";
       address = nas "home-assistant";

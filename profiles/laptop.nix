@@ -11,7 +11,6 @@
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
-    openssh.openFirewall = false;
     tailscale = {
       useRoutingFeatures = "client";
       extraSetFlags = [ "--accept-routes" ];

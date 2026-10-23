@@ -8,13 +8,13 @@
   city: [Pardubicích],
 
   abstract-cs:
-  [Práce byla vytvořena za účelem důkazu možnosti sestavit state-of-art personální řešení softwarových služeb na vlastním či propůjčeném hardwaru. V mnohých aspektech plně nahrazující komerční cloudové služby. Nikterak však nezabraňuje komerčním řešením využívat stejných principů. Klíčem bylo vytvoření silné bezpečnostní vrztvy mezi jednotlivými zařízeními, uživateli a konkrétními službami. Řešení je plně modulární, po destrukci hardwaru je možná obnova do původního stavu. Práce nabízí podrobný popis konceptů využitých při realizaci i návod pro tvorbu obdobného řešení.],
+  [Práce byla vytvořena za účelem důkazu možnosti sestavit state-of-the-art personální řešení softwarových služeb na vlastním či propůjčeném hardwaru. V mnohých aspektech plně nahrazující komerční cloudové služby. Nikterak však nezabraňuje komerčním řešením využívat stejných principů. Klíčem bylo vytvoření silné bezpečnostní vrstvy mezi jednotlivými zařízeními, uživateli a konkrétními službami. Řešení je plně modulární, po destrukci hardwaru je možná obnova do původního stavu. Práce nabízí podrobný popis konceptů využitých při realizaci i návod pro tvorbu obdobného řešení.],
 
   keywords-cs:
   [automatizace, infrastruktura, linux, mesh síť, monitoring, NixOS, server, ssh, síťové připojení, virtualizace, vzdálená plocha, vzdálený přístup, zálohování dat],
 
   abstract-en:
-  [The work was created to prove the possibility of assembling a state-of-art personal solution for software services on one's own or borrowed hardware. In many aspects, it fully replaces commercial cloud services. However, it does not prevent commercial solutions from using the same principles. The key was to create a strong security layer between individual devices, users, and specific services. The solution is fully modular, and after hardware destruction, it is possible to restore it to its original state. The work offers a detailed description of the concepts used in the implementation and a guide for creating a similar solution.],
+  [The work was created to prove the possibility of assembling a state-of-the-art personal solution for software services on one's own or borrowed hardware. In many aspects, it fully replaces commercial cloud services. However, it does not prevent commercial solutions from using the same principles. The key was to create a strong security layer between individual devices, users, and specific services. The solution is fully modular, and after hardware destruction, it is possible to restore it to its original state. The work offers a detailed description of the concepts used in the implementation and a guide for creating a similar solution.],
 
   keywords-en:
   [automation, data backup, infrastructure, linux, mesh network, monitoring, network connection, NixOS, remote access, remote desktop, server, ssh, virtualization]
@@ -24,9 +24,9 @@
 
 Infrastrukturou se rozumí soubor více než jednoho zařízení, která společně tvoří funkční celek.
 
-V současné době je zcela běžné, že uživatel vlastní více, než jedno elektronické zařízení zároveň. Z pohledu konzumenta takových prostředků, jakými mohou být mobilní telefon, notitelná elektronika a laptop, je zcela běžnou praxí tendence přetrvávat u jednoho poskytovatele služeb či hardware. A to i po mnoho let, dekád. Pro uživatele je to nejsnazší cesta. Kompletní řešení nabízené techologickými firmami šetří uživatelův čas. Pro něj tak nevzniká povinnost učit se a porozumět hlubším konceptům počítačových sítí, kybernetické bezpečnosti ani programovacím jazykům. Firmami se jednotné nabízené řešení stává dobře marketingově propagovatelné viz. Apple Inc. Za čas prosazování konceptu centralizace si uživatelé od velkých korporací vybudovali očekávání luxusu v této kategorii. Uživatel se tak stává závislý na dodavateli služeb. Tento způsob čerpání výhod však má i svá úskalí.
+V současné době je zcela běžné, že uživatel vlastní více, než jedno elektronické zařízení zároveň. Z pohledu konzumenta takových prostředků, jakými mohou být mobilní telefon, nositelná elektronika a laptop, je zcela běžnou praxí tendence přetrvávat u jednoho poskytovatele služeb či hardware. A to i po mnoho let, dekád. Pro uživatele je to nejsnazší cesta. Kompletní řešení nabízené technologickými firmami šetří uživatelův čas. Pro něj tak nevzniká povinnost učit se a porozumět hlubším konceptům počítačových sítí, kybernetické bezpečnosti ani programovacím jazykům. Firmami se jednotné nabízené řešení stává dobře marketingově propagovatelné viz Apple Inc. Za čas prosazování konceptu centralizace si uživatelé od velkých korporací vybudovali očekávání luxusu v této kategorii. Uživatel se tak stává závislý na dodavateli služeb. Tento způsob čerpání výhod však má i svá úskalí.
 
-Uzavřením do jednoho ekosystému se uživatel vystavuje nebezpečí nekontrolovanému nárůstu výdajů. Společnočnosti využívají centralizace k vytvoření psychické iluze a emocionální vazby s produktem/ekosystémem. Často se tak v praxi setkáváme s tolerancí uživatele k nadsazeným cenám poskytovaných služeb a fenoménu „Nebudeš nic vlastnit. A budeš šťastný.“ popsaném v [doplnit citaci]
+Uzavřením do jednoho ekosystému se uživatel vystavuje nebezpečí nekontrolovanému nárůstu výdajů. Společnosti využívají centralizace k vytvoření psychické iluze a emocionální vazby s produktem/ekosystémem. Často se tak v praxi setkáváme s tolerancí uživatele k nadsazeným cenám poskytovaných služeb a fenoménu „Nebudeš nic vlastnit. A budeš šťastný.“, tedy předpovědi Světového ekonomického fóra z roku 2016 @wef2016, jejíž důsledky pro vlastnictví kriticky rozebírají Stewart, Charles a Page @stewart2023. Rozpor mezi skutečným vlastnictvím a pouhým přístupem ke službě je přitom měřitelný. V reprezentativním experimentu s 1299 účastníky se více než 83 % z nich po kliknutí na tlačítko „Buy Now“ považovalo za vlastníky zakoupeného digitálního obsahu, přestože jim licenční podmínky přiznávaly pouze omezené právo jej užívat. Za skutečná vlastnická práva jsou přitom zákazníci ochotni zaplatit více @perzanowski2017.
 
 
 V komerční sféře softwarových firem je běžnou praxí přesný opak. 
@@ -104,11 +104,10 @@ URL adresa webu:
 
 #heading(numbering: none)[Seznam použité literatury a zdrojů informací]
 
-Vložte seznam literatury a on-line stránek, které jste použili pro vyhledávání informací a studium.
-
-Do seznamu zahrňte zdroje obrázků použité v~písemné práci i v~samotném webu (uveďte práva k~použití – používejte pouze obrázky zdarma použitelné pro komerční i nekomerční využití). Pokud jste některé obrázky vytvořili sami (vlastní grafika či vlastní fotografie), uveďte jejich seznam nebo popis a zdroj vlastní.
-
-Seznam můžete vygenerovat na #link("http://www.citace.com")[www.citace.com]
+#[
+  #set par(justify: false, first-line-indent: 0pt)
+  #bibliography("refs.bib", title: none, style: "iso690-numeric-cs.csl")
+]
 
 #heading(numbering: none)[Seznam použitých zkratek]
 
@@ -121,15 +120,3 @@ Vygenerujte seznam obrázků použitých v~dokumentaci (obrázky musí mít zaps
 #heading(numbering: none)[Přílohy]
 
 Use case diagram
-
-#pagebreak()
-
-E-R diagram
-
-#pagebreak()
-
-Responzivita – vložte obrázek webu na počítači, na mobilu, příp. na tabletu.
-
-#pagebreak()
-
-Obrázky dalších stránek webu – vložte screenshoty všech hlavních stránek webu včetně ukázek administrace.

@@ -5,7 +5,10 @@
 system:
 
 let
-  pkgs = nixpkgs.legacyPackages.${system};
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
 in
 {
   default = pkgs.mkShell {
@@ -18,6 +21,7 @@ in
       pkgs.lefthook
       pkgs.nixfmt
     ];
+    TYPST_FONT_PATHS = "${pkgs.corefonts}/share/fonts";
     shellHook = ''
       lefthook install
     '';

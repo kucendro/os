@@ -74,6 +74,7 @@
   users.users.${me.name}.packages = with pkgs; [
     slack
     vscode
+    phpstorm
     orca-slicer
     bambu-studio
     prusa-slicer

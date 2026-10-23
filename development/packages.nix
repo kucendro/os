@@ -22,8 +22,8 @@ with pkgs;
   just
   lefthook
   sqlx-cli
-  # mysql-workbench
   jdk25
   graphify
+  php
 ]
 ++ lib.optionals stdenv.hostPlatform.isLinux [ gccgo15 ]

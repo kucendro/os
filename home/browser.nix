@@ -1,7 +1,7 @@
 { ... }:
 let
   extensions = {
-    adguard = "bgnkhhnnamicmpeenaelnjfhikgbkllg";
+    ublock-origin-lite = "ddkjiahejlhfcafbddmgiahcphecmpfh";
     bitwarden = "nngceckbapebfimnlniiiahkandclblb";
     claude = "fcoeoabgfenejglbffodgkkbkcdhcgfn";
     duckduckgo = "bkdgflcldnnnapblkhphbgpggdiikppg";

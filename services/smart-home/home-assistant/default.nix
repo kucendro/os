@@ -145,6 +145,9 @@ in
     extraArgs = [ "--ble-proxy" ];
   };
 
+  systemd.services.matterjs-server.serviceConfig.ExecStartPre =
+    "${pkgs.findutils}/bin/find -H %S/matterjs-server -maxdepth 2 ( -name matter.lock -o -name matter.pid ) -delete";
+
   systemd.services.home-assistant = {
     unitConfig.RequiresMountsFor = [ "/mnt/data" ];
     after = [ "matterjs-server.service" ];

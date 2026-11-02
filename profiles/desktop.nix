@@ -117,6 +117,7 @@
     android-tools
     zeal
     mindustry
+    icestudio
   ];
 
   home-manager.users.${me.name}.imports = [

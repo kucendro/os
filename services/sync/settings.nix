@@ -3,6 +3,7 @@
 let
   syncPort = 22000;
   home = config.users.users.${me.name}.home;
+  ignores = import ./ignores.nix;
   shared = path: {
     inherit path;
     devices = [
@@ -36,7 +37,9 @@ in
   folders = {
     documents = shared "${home}/Documents";
     screenshots = shared "${home}/screenshots";
-    knowledge = shared "${home}/knowledge";
+    knowledge = shared "${home}/knowledge" // {
+      ignorePatterns = ignores.knowledge;
+    };
     drop = shared "${home}/drop";
   };
 }

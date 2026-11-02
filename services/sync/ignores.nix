@@ -1,0 +1,8 @@
+{
+  knowledge = [
+    ".git"
+    ".trash"
+    "/.obsidian/workspace.json"
+    "/.obsidian/workspace-mobile.json"
+  ];
+}

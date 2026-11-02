@@ -50,7 +50,9 @@ in
         {
           documents = shared "documents";
           screenshots = shared "screenshots";
-          knowledge = shared "knowledge";
+          knowledge = shared "knowledge" // {
+            ignorePatterns = (import ./ignores.nix).knowledge;
+          };
           drop = shared "drop";
         };
     };

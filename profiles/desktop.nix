@@ -116,6 +116,7 @@
     sshfs
     android-tools
     zeal
+    mindustry
   ];
 
   home-manager.users.${me.name}.imports = [

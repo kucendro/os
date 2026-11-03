@@ -38,7 +38,7 @@
           }
           {
             timeout = 1200;
-            on-timeout = "systemctl suspend";
+            on-timeout = "systemd-ac-power || systemctl suspend";
           }
         ];
       };

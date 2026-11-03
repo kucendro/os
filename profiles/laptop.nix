@@ -20,8 +20,6 @@
       HandleLidSwitch = "suspend";
       HandleLidSwitchExternalPower = "lock";
       HandlePowerKey = "suspend";
-      IdleAction = "suspend";
-      IdleActionSec = "5min";
     };
   };
 

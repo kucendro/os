@@ -38,20 +38,20 @@
     StrictModes no
   '';
 
-  system.activationScripts.postActivation.text = ''
-    /usr/bin/pmset -a sleep 0 displaysleep 30 disksleep 0 disablesleep 1
-  '';
+  # system.activationScripts.postActivation.text = ''
+  #   /usr/bin/pmset -a sleep 0 displaysleep 30 disksleep 0 disablesleep 1
+  # '';
 
-  launchd.daemons.caffeinate = {
-    serviceConfig = {
-      ProgramArguments = [
-        "/usr/bin/caffeinate"
-        "-dimsu"
-      ];
-      KeepAlive = true;
-      RunAtLoad = true;
-    };
-  };
+  # launchd.daemons.caffeinate = {
+  #   serviceConfig = {
+  #     ProgramArguments = [
+  #       "/usr/bin/caffeinate"
+  #       "-dimsu"
+  #     ];
+  #     KeepAlive = true;
+  #     RunAtLoad = true;
+  #   };
+  # };
 
   launchd.daemons.iperf3-server = {
     serviceConfig = {

@@ -9,6 +9,8 @@ repetitive configuration, and of the fatal mistakes waiting along that path. So
 we have Nix, in my opinion the best open source language in its class for
 declaring your vision.</samp>
 
+<samp>Am I dumb this is public? Probably yes... nobody pays me tho..</samp>
+
 <hr>
 
 ### Written thoughts

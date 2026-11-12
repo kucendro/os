@@ -23,8 +23,8 @@
     taskwarrior3
     github-copilot-cli
     ollama
-    maven
     php
+    javaPackages.compiler.temurin-bin.jdk-25
   ];
 
   homebrew = {

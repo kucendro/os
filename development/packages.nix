@@ -23,6 +23,7 @@ with pkgs;
   lefthook
   sqlx-cli
   jdk25
+  (maven.override { jdk_headless = jdk25; })
   graphify
   php
 ]

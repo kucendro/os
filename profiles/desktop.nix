@@ -1,4 +1,9 @@
-{ pkgs, me, ... }:
+{
+  pkgs,
+  me,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -104,6 +109,7 @@
     hyprpicker
     tesseract
     zbar
+    inputs.scry.packages.${pkgs.stdenv.hostPlatform.system}.default
     translate-shell
     wl-screenrec
     ffmpeg

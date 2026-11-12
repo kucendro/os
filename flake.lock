@@ -540,6 +540,7 @@
         "nixpkgs": "nixpkgs_2",
         "noctalia": "noctalia",
         "portfolio": "portfolio",
+        "scry": "scry",
         "secrets": "secrets",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
@@ -563,6 +564,48 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "scry",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793956102,
+        "narHash": "sha256-dASUovwB3DUoTm6daga0hsNZZAFCCGlUS4FPBjK0OwA=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "74cebce67ef6671ea48fda353a5be2d229bd2920",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "scry": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay_2"
+      },
+      "locked": {
+        "lastModified": 1794396229,
+        "narHash": "sha256-BR0+zBf04uHUGcwebZbwN1Ehx3UgdG1mhbW6N0p88Fs=",
+        "owner": "JirkaKlimes",
+        "repo": "scry",
+        "rev": "5d0bd41c7cd84569afa4473e4a931d6a4c912e58",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JirkaKlimes",
+        "repo": "scry",
         "type": "github"
       }
     },

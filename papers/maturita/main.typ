@@ -8,13 +8,13 @@
   city: [Pardubicích],
 
   abstract-cs:
-  [Práce byla vytvořena za účelem důkazu možnosti sestavit state-of-the-art personální řešení softwarových služeb na vlastním či propůjčeném hardwaru. V mnohých aspektech plně nahrazující komerční cloudové služby. Nikterak však nezabraňuje komerčním řešením využívat stejných principů. Klíčem bylo vytvoření silné bezpečnostní vrstvy mezi jednotlivými zařízeními, uživateli a konkrétními službami. Řešení je plně modulární, po destrukci hardwaru je možná obnova do původního stavu. Práce nabízí podrobný popis konceptů využitých při realizaci i návod pro tvorbu obdobného řešení.],
+  [Práce byla vytvořena s cílem prokázat, že lze na vlastním či propůjčeném hardwaru sestavit moderní osobní řešení softwarových služeb, kterým mohou být v mnohých aspektech plně nahrazeny komerční cloudové služby. Komerčním řešením však nikterak není zabráněno využívat stejných principů. Klíčovým bodem bylo vytvoření silné bezpečnostní vrstvy mezi jednotlivými zařízeními, uživateli a konkrétními službami. Řešení je navrženo jako plně modulární a po zničení hardwaru může být obnoveno do původního stavu. V práci jsou podrobně popsány koncepty využité při realizaci a je předložen návod pro tvorbu obdobného řešení.],
 
   keywords-cs:
   [automatizace, infrastruktura, linux, mesh síť, monitoring, NixOS, server, ssh, síťové připojení, virtualizace, vzdálená plocha, vzdálený přístup, zálohování dat],
 
   abstract-en:
-  [The work was created to prove the possibility of assembling a state-of-the-art personal solution for software services on one's own or borrowed hardware. In many aspects, it fully replaces commercial cloud services. However, it does not prevent commercial solutions from using the same principles. The key was to create a strong security layer between individual devices, users, and specific services. The solution is fully modular, and after hardware destruction, it is possible to restore it to its original state. The work offers a detailed description of the concepts used in the implementation and a guide for creating a similar solution.],
+  [The thesis was created to demonstrate that a modern personal solution for software services can be built on one's own or borrowed hardware, by which commercial cloud services can be fully replaced in many aspects. Commercial solutions are, however, in no way prevented from using the same principles. The key element was the creation of a strong security layer between individual devices, users and specific services. The solution is designed to be fully modular and can be restored to its original state after the hardware is destroyed. The concepts used in the implementation are described in detail, and a guide for building a similar solution is provided.],
 
   keywords-en:
   [automation, data backup, infrastructure, linux, mesh network, monitoring, network connection, NixOS, remote access, remote desktop, server, ssh, virtualization]
@@ -36,31 +36,37 @@ Firmy shledávají provoz vlastních služeb nejen finančně výhodnějším @w
 
 Cílem této práce je nabídnout uživateli možnost sestavit si vlastní infrastrukturu, která bude plně funkční a bezpečná, a to i na základě vlastního hardwaru. Práce je shrnutím mojí cesty s deklarativními systémy včetně blíže rozvedených rozhodnutí, vyvstalých úskalí a klíčových výhod. Blíže je popsán návrh, realizace a testování.
 
-= Analýza obdobných řešení
+= Analýza
 
-Výběr technologie pro tvorbu infrastruktury je nejklíčovějším rozhodnutím, protože další postup na něj navazuje. Ačkoliv se rozdíly v technologiích nemusejí zdát velké, chyba při výběru může vést ke zdlouhavému procesu migrace dat a služeb na jiný substrát (rozumí se platformu) @oparamartins2016. Tímto procesem si projde kdokoliv, kdo řeší otázku infrastruktury.
+Výběr technologie pro tvorbu infrastruktury se stává již zprvu nejklíčovějším rozhodnutím, protože další postup navazuje. Ačkoliv se rozdíly v technologiích nemusejí zdát velké, chyba při výběru může vést ke zdlouhavému procesu migrace dat a služeb na jiný substrát (rozumí se platformu) @oparamartins2016. Vyvarování se migraci vhodným výběrem je v praxi preferováno, protože se tím šetří náklady, ale ne úplně běžné. Technologie se ve svých vlasnostech překrývají. Pověřená osoba tak musí pochopit požadavky a nároky na insrastrukturu kladené, zpracovat je, predikovat, a občasně i tvořit kompromisy. 
 
-Řešení je mnoho. Problém je aktuální od vzniku internetu a nepolevuje, nýbrž se jen škáluje, a to jak horizontálně (výpočetní výkon v datacentrech pokrývá větší geografickou plochu, větší počet datacenter), tak i vertikálně (jednotlivé uzly jsou výkonnější a mají rychlejší paměť i propojení) @michael2007. Přenosy dat tak mnohdy dosahují až TB/s, viz ultrazvukový skener Midjourney Medical @midjourney2026, nebo moderní AI datacentra @vahdat2025 s akcelerátory TPU @jouppi2017 či NPU @liao2021. Může se zdát, že toto je problém řešitelný na straně síťového připojení, kdy se kladou extrémní nároky na přenosová média (optické kabely, metalické spoje, on-die čipové spoje) @poutievski2022. Pokud ale opomeneme software pohánějící hardware, narazíme na problém škálovatelnosti mnohem pomaleji řešitelný.
+Řešení je mnoho. Problém je aktuální již od vzniku internetu a nepolevuje, naopak se škáluje, a to jak horizontálně (výpočetní výkon v datacentrech pokrývá větší geografickou plochu, větší počet datacenter), tak i vertikálně (jednotlivé uzly jsou výkonnější, mají rychlejší paměť i propojení) @michael2007. Přenosy dat tak mnohdy dosahují až TB/s, viz ultrazvukový skener Midjourney Medical @midjourney2026, nebo současná AI datacentra @vahdat2025 s akcelerátory TPU @jouppi2017 či NPU @liao2021. Software se musí nárokům přizpůsobit. Může se zdát, že problém je řešitelný pouze na straně síťového připojení, kde jsou kladeny extrémní nároky na přenosová média (optické kabely, metalické spoje, on-die čipové spoje) @poutievski2022. Pokud se však opomene software, vyvstane problém škálovatelnosti mnohem obtížněji řešitelný.
 
-Vytvoření systému, který se dokáže dle potřeby a vytíženosti adaptovat @verma2015 a zároveň je plně deterministický @dolstra2010, je těžký inženýrský problém, na který existuje mnoho lepších i horších odpovědí. Při své cestě jsem měl možnost vyzkoušet, používat a aplikovat více z nich.
+Vytvoření systému, který by se dokázal dle potřeby a vytíženosti adaptovat @verma2015 a zároveň by byl plně deterministický @dolstra2010, je těžkým inženýrským problémem, jehož existenci potvrzuje mnoho lepších i horších odpovědí.
 
 == Operační systémy
 
-Operační systém (OS) tvoří vrstvu mezi hardwarem a aplikacemi. Úkolem OS je zajistit, aby programy mohly sdílet procesor (CPU), operační paměť (RAM), disk i síťové rozhraní, aniž by o sobě musely nutně vzájemně vědět. Základem systémů, kterými se tato práce zabývá, je jádro Linux (kernel), tedy „klon operačního systému Unix, vytvořený Linusem Torvaldsem za pomoci volně sdružené skupiny programátorů (opensource komunita).“ @kernelreadme. Kernel je nejrozšířenější platformou pro cloud computing na světě. Dle statistik #highlight()[doplnit statistiku] ho využívá přes 70% všech počítačů na světe.
+=== Linux Kernel
 
-Samotný kernel však k provozu nestačí. Obsluhuje hardware a spouští procesy. O tom, jaké programy jsou nainstalovány, v jakých verzích a jak jsou nastaveny, ale nerozhoduje. To je úkolem distribuce#footnote[Celek složený z jádra, základních nástrojů, správce balíčků a výchozí konfigurace.], jakou je například Ubuntu, Fedora nebo NixOS. Ty všechny na kernelu staví. Rozdíly, kterými se budeme zabývat, proto nevznikají v kernelu samotném, ale ve způsobu, jakým distribuce spravuje vše, co nad ním běží.
+Operační systém (OS) tvoří vrstvu mezi hardwarem a aplikacemi. Úkolem OS je zajistit, aby programy mohly sdílet procesor (CPU), operační paměť (RAM), disk i síťové rozhraní, aniž by o sobě musely nutně vzájemně vědět. Základem systémů, kterými se tato práce zabývá, je jádro Linux (kernel). @kernelreadme.
 
-Nejrozšířenější je imperativní#footnote[Sekvence příkazů $p_1, ..., p_n$ aplikovaná na aktuální stav: $S_n = p_n (... p_2 (p_1 (S_0)))$. Výsledek závisí na výchozim stavu $S_0$ a na pořadí příkazů.] způsob správy distribuce. To zahrnuje manuální nastavování systému. Pro demonstrační účely můžeme využít OS Ubuntu na nejž se aplikace a jiný software instalují a aktualizují pomocí nástroje APT. @ubuntuapt. Každý příkaz mění soubory v systému za běhu, tedy na místě. Obdobné použití aplikuje i OS Windows: instalátory aplikací, systémové aktualizace i změny nastavení se postupně vrší na sebe. Výsledný stav počítače tak není nikde centralizovaně popsán. Je dán pouze výchozí instalací a celou historií změn, které uživatel v průběhu užívání uskutečnil.
+Linux je dominantem především na serverech. Podle průzkumu běží na Linuxu 63,7~% webových stránek, u nichž je OS serveru znám @w3techslinux, a v žebříčku 500 nejvýkonnějších superpočítačů světa jej využívají všechny @top500os. Na stolních počítačích je trend opačný, Linuxu připadá jen asi 2~% provozu @statcounteros. Kernel však používá i Android @androidkernel, který je s podílem 44,6~% nejrozšířenějším operačním systémem na světě @statcounteros.
 
-Problém nastane ve chvíli, kdy je strojů více než jeden. Dva počítače nainstalované ze stejného média se po několika měsících běžného používání téměř jistě liší, protože každý prošel jinou posloupností aktualizací, instalací a oprav. Tento jev se označuje jako drift konfigurace (z angl. _configuration drift_). Důsledkem je, že nikdo nedokáže s jistotou říct, co přesně na daném stroji je a hlavně, proč.
+=== Distribuce OS
 
-S tím souvisí i obnova. Pokud aktualizace neproběhne, jak se předpokládalo, imperativní systém obvykle nenabízí jednoduchou cestu zpět. Předchozí verze souborů byly přepsány. Windows tento problém částečně řeší funkcí Obnovení systému, která pracuje s body obnovy#footnote[(z angl. _snapshot_) Snímky konfigurace a nastavení systému v určitém okamžiku @windowsrestore].
+Samotný kernel však k provozu nestačí. Obsluhuje hardware a spouští procesy. O tom, jaké programy jsou nainstalovány, jejich verze a jak jsou nastaveny, ale nerozhoduje. To je úkolem distribuce#footnote[Celek složený z jádra, základních nástrojů, správce balíčků a výchozí konfigurace.], jakou je například Ubuntu, nebo Fedora. Ty na kernelu staví. Rozdíly nevznikají v kernelu samotném, ale ve způsobu, jakým distribuce spravuje vše, co nad ním běží.
 
-#highlight()[projit toto nize]
+Nejrozšířenější je imperativní#footnote[Sekvence příkazů $p_1, ..., p_n$ aplikovaná na aktuální stav: $S_n = p_n (... p_2 (p_1 (S_0)))$. Výsledek závisí na výchozim stavu $S_0$ a na pořadí příkazů.] způsob správy distribuce. Pro demonstrační účely lze využít OS Ubuntu na nejž se aplikace a jiný software instalují a aktualizují s pomocí nástroje APT. @ubuntuapt. Každý příkaz mění soubory v systému za běhu na místě. Obdobné použití aplikuje i OS Windows: instalátory aplikací, systémové aktualizace i změny nastavení se postupně vrší. Výsledný stav počítače tak není nikde centralizovaně popsán. Je dán pouze výchozí instalací a celou historií změn, kterou uživatel v průběhu užívání uskutečnil.
 
-Přirozenou reakcí na drift by mohl být zápis postupu instalace do předpisu, který lze spustit na libovolném počtu strojů. Tímto směrem jdou nástroje pro správu konfigurace, z nichž nejznámější je Ansible. Jeho základem je idempotence#footnote[Binární operace je idempotentní, pokud je výsledek jednoho jejího provedení stejný jako výsledek opakovaného provedení: $x * x = x quad forall x in S$]. Dokumentace Ansible uvádí, že uvede systém do požadovaného stavu bez ohledu na aktuální stav, místo aby uživatel musel popisovat, jak se k němu dostat @ansibleglossary. Ansible tedy není čistě imperativní. Požadovaný stav ale popisuje pouze pro ty části systému, které jsou v předpisu uvedeny. Co bylo na stroj nainstalováno mimo předpis, Ansible neodstraní, protože o tom neví.
+=== Drift konfigurace
 
-Jiná skupina systémů řeší návrat tím, že si předchozí stavy uchovává. Distribuce openSUSE MicroOS používá nástroj transactional-update, který před každou aktualizací vytvoří pomocí nástroje snapper nový snímek kořenového souborového systému a aktualizaci provede v něm. Změny se projeví až po restartu a příkaz `rollback` umožňuje nastavit jako výchozí některý z předchozích snímků @transactionalupdate. Projekt bootc, na kterém staví Fedora Atomic, jde ještě dál a aktualizuje celý operační systém pomocí obrazů kontejnerů ve formátu OCI @bootcreadme. Nová verze systému se připraví jako další nasazení vedle stávajícího a příkaz `bootc rollback` pouze změní pořadí položek v zavaděči, takže se při dalším startu spustí nasazení předchozí @bootc.
+Problém vyvstane ve chvíli, kdy je strojů více než jeden. Dva počítače nainstalované ze stejného média se po několika měsících běžného používání téměř jistě liší, protože každý prošel jinou posloupností aktualizací, instalací a oprav. Tento jev se označuje jako drift konfigurace (z angl. _configuration drift_). Důsledkem je, že nikdo nedokáže s jistotou říct, co přesně na daném stroji je a hlavně, proč.
+
+S tím souvisí i obnova. Pokud aktualizace neproběhne, jak se předpokládalo, imperativní systém obvykle nenabízí jednoduchou cestu zpět. Předchozí verze souborů byly přepsány. Windows tento problém částečně řeší funkcí Obnovení systému, která pracuje s body obnovy#footnote[(z angl. _snapshot_), Snímky konfigurace a nastavení systému v určitém okamžiku @windowsrestore].
+
+Přirozenou reakcí na drift by mohl být zápis postupu do předpisu, který lze spustit na libovolném počtu strojů. Tímto směrem jdou nástroje pro správu konfigurace, z nichž nejznámější je Ansible. Základem je idempotence#footnote[Binární operace je idempotentní, pokud je výsledek jednoho jejího provedení stejný jako výsledek opakovaného provedení: $x * x = x quad forall x in S$]. Dokumentace Ansible uvádí, že uvede systém do požadovaného stavu bez ohledu na aktuální stav, místo aby uživatel musel popisovat, jak se k němu dostat @ansibleglossary. Ansible tedy není čistě imperativní. Požadovaný stav ale popisuje pouze pro ty části systému, které jsou v předpisu uvedeny. Co bylo na stroj nainstalováno mimo předpis, Ansible neodstraní, protože o tom neví.
+
+Jiná skupina systémů řeší obnovu tím, že si předchozí stavy uchovává. Distribuce openSUSE MicroOS využívá nástroj transactional-update, který před každou aktualizací vytvoří pomocí nástroje snapper nový snímek kořenového souborového systému a aktualizaci provede v něm. Změny se projeví až po restartu a příkaz `rollback` umožňuje nastavit jako výchozí některý z předchozích snímků @transactionalupdate. Projekt bootc, na kterém staví Fedora Atomic, jde ještě dál a aktualizuje celý operační systém pomocí obrazů kontejnerů ve formátu OCI @bootcreadme. Nová verze systému se připraví jako další nasazení vedle stávajícího a příkaz `bootc rollback` pouze změní pořadí položek v zavaděči, takže se při dalším startu spustí nasazení předchozí @bootc.
 
 #figure(
   include "figures/rollback.typ",
@@ -128,22 +134,6 @@ Pro úplnost je třeba zmínit i nevýhody. Jazyk Nix a celý model vyžadují n
 
 Popište význam projektu, zdůvodněte problémy při řešení daného tématu a~odchylky od zadání, popište využití maturitní práce a plány do budoucna.
 
-#heading(numbering: none)[Seznam přístupových údajů]
-
-URL adresa webu:
-
-#pad(left: -cell-pad, block(width: table-width, breakable: false, {
-  set par(first-line-indent: 0pt)
-  table(
-    columns: (1fr, 1fr, 1fr),
-    stroke: 0.5pt + black,
-    inset: (x: cell-pad, y: 6pt),
-    [Úroveň oprávnění], [Přihlašovací jméno], [Heslo],
-    [Administrátor], [], [],
-    [Redaktor, trenér, vedoucí apod. - upravte], [], [],
-    [Registrovaný uživatel], [], [],
-  )
-}))
 
 #heading(numbering: none)[Seznam použité literatury a zdrojů informací]
 
@@ -162,6 +152,7 @@ URL adresa webu:
   OS:  [Operační Systém],
   RAM: [Random Access Memory - operační paměť],
   CPU: [Central Processing Unit - procesor],
+  OCI: [Open Container Initiative - otevřená kontejnerová iniciativa, soubor standardů pro kontejnerizaci systémů a aplikací]
 )
 #[
   #set par(justify: false, first-line-indent: 0pt)

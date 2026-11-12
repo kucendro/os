@@ -38,25 +38,25 @@ Cílem této práce je nabídnout uživateli možnost sestavit si vlastní infra
 
 = Analýza obdobných řešení
 
-Výběr technologie pro tvorbu infrastruktury je nejklíčovějším rozhodnutím, protože další postup na něj navazuje. Ačkoliv se rozdíly v technologiích nemusejí zdát velké, chyba při výběru může vést ke zdlouhavému procesu migrace dat a služeb na jiný substrát (rozumí se platformu) @oparamartins2016. Tímto procesem si projde kdokoliv, kdo řeší infrastrukturu.
+Výběr technologie pro tvorbu infrastruktury je nejklíčovějším rozhodnutím, protože další postup na něj navazuje. Ačkoliv se rozdíly v technologiích nemusejí zdát velké, chyba při výběru může vést ke zdlouhavému procesu migrace dat a služeb na jiný substrát (rozumí se platformu) @oparamartins2016. Tímto procesem si projde kdokoliv, kdo řeší otázku infrastruktury.
 
-Řešení je mnoho, problém je aktuální od vzniku internetu a nepolevuje, nýbrž se jen škáluje, a to jak horizontálně (výpočetní výkon v datacentrech pokrývá větší geografickou plochu, větší počet datacenter), tak i vertikálně (jednotlivé uzly jsou výkonnější a mají rychlejší paměť i propojení) @michael2007. Přenosy dat tak mnohdy dosahují až TB/s, viz celotělový ultrazvukový skener Midjourney Medical @midjourney2026, nebo moderní AI datacentra @vahdat2025 s akcelerátory TPU @jouppi2017 či NPU @liao2021. Může se zdát, že toto je problém řešitelný na straně síťového připojení, kdy se kladou extrémní nároky na přenosová média (optické kabely, metalické spoje, on-die čipové spoje) @poutievski2022. Pokud ale opomeneme software pohánějící hardware, narazíme na problém softwarové škálovatelnosti.
+Řešení je mnoho. Problém je aktuální od vzniku internetu a nepolevuje, nýbrž se jen škáluje, a to jak horizontálně (výpočetní výkon v datacentrech pokrývá větší geografickou plochu, větší počet datacenter), tak i vertikálně (jednotlivé uzly jsou výkonnější a mají rychlejší paměť i propojení) @michael2007. Přenosy dat tak mnohdy dosahují až TB/s, viz ultrazvukový skener Midjourney Medical @midjourney2026, nebo moderní AI datacentra @vahdat2025 s akcelerátory TPU @jouppi2017 či NPU @liao2021. Může se zdát, že toto je problém řešitelný na straně síťového připojení, kdy se kladou extrémní nároky na přenosová média (optické kabely, metalické spoje, on-die čipové spoje) @poutievski2022. Pokud ale opomeneme software pohánějící hardware, narazíme na problém škálovatelnosti mnohem pomaleji řešitelný.
 
-Vytvoření systému, který se dokáže dle potřeby a vytíženosti adaptovat @verma2015 a zároveň je plně deterministický @dolstra2010, je těžký inženýrský problém, na který existuje mnoho lepších i horších odpovědí. Při své cestě jsem měl možnost vyzkoušet používat a aplikovat více z nich.
+Vytvoření systému, který se dokáže dle potřeby a vytíženosti adaptovat @verma2015 a zároveň je plně deterministický @dolstra2010, je těžký inženýrský problém, na který existuje mnoho lepších i horších odpovědí. Při své cestě jsem měl možnost vyzkoušet, používat a aplikovat více z nich.
 
 == Operační systémy
 
-Operační systém tvoří vrstvu mezi hardwarem a aplikacemi. Stará se o to, aby programy mohly sdílet procesor, paměť, disk i síťové rozhraní, aniž by o sobě musely vzájemně vědět. Základem systémů, kterými se tato práce zabývá, je jádro Linux, tedy „klon operačního systému Unix, napsaný od základu Linusem Torvaldsem za pomoci volně sdružené skupiny programátorů z celého internetu“ @kernelreadme.
+Operační systém (OS) tvoří vrstvu mezi hardwarem a aplikacemi. Úkolem OS je zajistit, aby programy mohly sdílet procesor (CPU), operační paměť (RAM), disk i síťové rozhraní, aniž by o sobě musely nutně vzájemně vědět. Základem systémů, kterými se tato práce zabývá, je jádro Linux (kernel), tedy „klon operačního systému Unix, vytvořený Linusem Torvaldsem za pomoci volně sdružené skupiny programátorů (opensource komunita).“ @kernelreadme. Kernel je nejrozšířenější platformou pro cloud computing na světě. Dle statistik [doplnit statistiku] ho využívá přes 70% všech počítačů na světe.
 
-Samotné jádro ale k provozu nestačí. Obsluhuje hardware a spouští procesy, o tom, jaké programy jsou v systému nainstalovány, v jakých verzích a jak jsou nastaveny, však nerozhoduje. To je úkolem distribuce (rozumí se celku složeného z jádra, základních nástrojů, správce balíčků a výchozí konfigurace), jakou je například Ubuntu, Fedora nebo NixOS. Všechny tři staví na jádře Linux, a rozdíly, kterými se tato kapitola zabývá, proto nevznikají v jádře, ale ve způsobu, jakým distribuce spravuje vše, co nad ním běží.
+Samotný kernel však k provozu nestačí. Obsluhuje hardware a spouští procesy. O tom, jaké programy jsou nainstalovány, v jakých verzích a jak jsou nastaveny, ale nerozhoduje. To je úkolem distribuce (rozumí se celku složeného z jádra, základních nástrojů, správce balíčků a výchozí konfigurace), jakou je například Ubuntu, Fedora nebo NixOS. Ty všechny na kernelu staví. Rozdíly, kterými se budeme zabývat, proto nevznikají v kernelu samotném, ale ve způsobu, jakým distribuce spravuje vše, co nad ním běží.
 
-Nejrozšířenější je přístup, který lze nazvat imperativní. Na Ubuntu se software instaluje pomocí nástroje APT, jehož příkazy umožňují instalovat nové balíčky, aktualizovat ty stávající, obnovit seznam dostupných balíčků a dokonce povýšit celý systém @ubuntuapt. Každý takový příkaz mění soubory přímo v běžícím systému, tedy na místě. Obdobně funguje i Windows: instalátory aplikací, systémové aktualizace i ruční změny nastavení se postupně vrší na sebe. Výsledný stav počítače tak není nikde popsán. Je dán výchozí instalací a celou historií změn, které na ni byly v daném pořadí aplikovány.
+Nejrozšířenější je imperativní způsob správy distribuce. To zahrnuje manuální nastavování systému krok po kroku. Na Ubuntu se software instaluje pomocí nástroje APT, jehož příkazy umožňují instalovat nové balíčky, aktualizovat ty stávající apod. @ubuntuapt. Každý APT příkaz mění soubory v běžícím systému, tedy na místě. Obdobné použití aplikuje i Windows: instalátory aplikací, systémové aktualizace i ruční změny nastavení se postupně vrší na sebe. Výsledný stav počítače tak není nikde centralizovaně popsán. Je dán pouze výchozí instalací a celou historií změn, které uživatel v průběhu užívání provedl.
 
-Může se zdát, že na tom nezáleží, dokud počítač funguje. Problém nastane ve chvíli, kdy je strojů více. Dva počítače nainstalované ze stejného média se po několika měsících běžného používání téměř jistě liší, protože každý prošel jinou posloupností aktualizací, instalací a oprav. Tento jev se označuje jako drift konfigurace (z angl. _configuration drift_) a jeho důsledkem je, že nikdo nedokáže s jistotou říct, co přesně na daném stroji je a proč. Pro jediný notebook je to únosné, pro infrastrukturu složenou z několika serverů a klientů už nikoli.
+Uživatel si tak vytvoří dojem, že na tom nezáleží, dokud počítač funguje. Problém nastane ve chvíli, kdy je strojů více. Dva počítače nainstalované ze stejného média se po několika měsících běžného používání téměř jistě liší, protože každý prošel jinou posloupností aktualizací, instalací a oprav. Tento jev se označuje jako drift konfigurace (z angl. _configuration drift_). Důsledkem je, že nikdo nedokáže s jistotou říct, co přesně na daném stroji je a hlavně, proč. Pro jediný uživatelův notebook je tento přístup únosný, pro infrastrukturu složenou z několika serverů a klientů už nikoli.
 
-S tím souvisí i otázka návratu. Pokud aktualizace něco rozbije, imperativní systém obvykle nenabízí jednoduchou cestu zpět, protože předchozí verze souborů byly přepsány. Windows tento problém částečně řeší funkcí Obnovení systému, která pracuje s body obnovení, tedy se snímky konfigurace a nastavení systému v určitém okamžiku @windowsrestore. Jak napovídá samotná definice, jde o snímek konfigurace a nastavení, nikoli o kompletní kopii systému.
+S tím souvisí i obnova. Pokud aktualizace neproběhne, jak se předpokládalo, imperativní systém obvykle nenabízí jednoduchou cestu zpět. Předchozí verze souborů totiž byly přepsány. Windows tento problém částečně řeší funkcí Obnovení systému, která pracuje s body obnovení (z angl. _snapshot_), tzv. snímky konfigurace a nastavení systému v určitém okamžiku @windowsrestore.
 
-Přirozenou reakcí na drift je zapsat postup instalace do předpisu, který lze spustit na libovolném počtu strojů. Tímto směrem jdou nástroje pro správu konfigurace, z nichž nejznámější je Ansible. Jeho základní vlastností je idempotence: operace je idempotentní, pokud je výsledek jejího jednoho provedení přesně stejný jako výsledek opakovaného provedení @ansibleglossary. Dokumentace Ansible dokonce uvádí, že nástroj uvede systém do požadovaného stavu bez ohledu na stav aktuální, místo aby uživatel musel popisovat, jak se k němu dostat @ansibleglossary. Ansible tedy není čistě imperativní. Požadovaný stav ale popisuje pouze pro ty části systému, které jsou v předpisu (rozumí se playbooku) uvedeny. Co bylo na stroj nainstalováno mimo něj, Ansible neodstraní, protože o tom neví. Tento závěr neplyne z dokumentace, ale přímo z principu, na kterém nástroj stojí.
+Přirozenou reakcí na drift by mohl být zapis postupu instalace do předpisu, který lze spustit na libovolném počtu strojů. Tímto směrem jdou nástroje pro správu konfigurace, z nichž nejznámější je Ansible. Jeho základní vlastností je idempotence#footnote[Binární operace je idempotentní, pokud je výsledek jednoho jejího provedení stejný jako výsledek opakovaného provedení: $x * x = x quad forall x in S$]. Dokumentace Ansible dokonce uvádí, že nástroj uvede systém do požadovaného stavu bez ohledu na stav aktuální, místo aby uživatel musel popisovat, jak se k němu dostat @ansibleglossary. Ansible tedy není čistě imperativní. Požadovaný stav ale popisuje pouze pro ty části systému, které jsou v předpisu (rozumí se playbooku) uvedeny. Co bylo na stroj nainstalováno mimo něj, Ansible neodstraní, protože o tom neví. Tento závěr neplyne z dokumentace, ale přímo z principu, na kterém nástroj stojí.
 
 Jiná skupina systémů řeší návrat tím, že si předchozí stavy uchovává. Distribuce openSUSE MicroOS používá nástroj transactional-update, který před každou aktualizací vytvoří pomocí nástroje snapper nový snímek kořenového souborového systému a aktualizaci provede v něm. Změny se projeví až po restartu a příkaz `rollback` umožňuje nastavit jako výchozí některý z předchozích snímků @transactionalupdate. Projekt bootc, na kterém staví Fedora Atomic, jde ještě dál a aktualizuje celý operační systém pomocí obrazů kontejnerů ve formátu OCI @bootcreadme. Nová verze systému se připraví jako další nasazení vedle stávajícího a příkaz `bootc rollback` pouze změní pořadí položek v zavaděči, takže se při dalším startu spustí nasazení předchozí @bootc.
 
@@ -152,14 +152,25 @@ URL adresa webu:
 
 #heading(numbering: none)[Seznam použitých zkratek]
 
+#let zkratky = (
+  AI:  [Artificial Intelligence – umělá inteligence],
+  NPU: [Neural Processing Unit – neuronová procesorová jednotka, procesor specializovaný na výpočty neuronových sítí],
+  TPU: [Tensor Processing Unit – tenzorová procesorová jednotka, specializovaný čip společnosti Google pro urychlení výpočtů AI],
+  APT: [Advanced package tool - pokročilý balíčkový nástroj, užívaný distribucí Ubuntu],
+  OS:  [Operační Systém],
+  RAM: [Random Access Memory - operační paměť],
+  CPU: [Central Processing Unit - procesor],
+)
 #[
   #set par(justify: false, first-line-indent: 0pt)
   #grid(
     columns: (4em, 1fr),
     row-gutter: 0.8em,
-    [AI], [Artificial Intelligence – umělá inteligence],
-    [NPU], [Neural Processing Unit – neuronová procesorová jednotka, procesor specializovaný na výpočty neuronových sítí],
-    [TPU], [Tensor Processing Unit – tenzorová procesorová jednotka, specializovaný čip společnosti Google pro urychlení výpočtů neuronových sítí],
+    ..zkratky
+      .pairs()
+      .sorted(key: p => p.first())
+      .map(((k, v)) => ([#k], v))
+      .flatten()
   )
 ]
 

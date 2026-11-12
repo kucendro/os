@@ -1,6 +1,17 @@
 #import "layout.typ": front-size, sans, toc-above, toc-indent, toc-number-width, toc-small
 
 #let outline-entry(it) = {
+  if it.element.func() == figure {
+    return block(above: toc-above.at(1), below: 0pt, {
+      set par(justify: false, first-line-indent: 0pt)
+      link(it.element.location(), {
+        [#it.prefix(): ]
+        it.body()
+        box(width: 1fr, repeat[.])
+        it.page()
+      })
+    })
+  }
   let level = it.level
   let number-width = toc-number-width.at(level - 1)
   let prefix = it.prefix()

@@ -47,14 +47,32 @@ Vytvoření systému, který se dokáže dle potřeby a vytíženosti adaptovat 
 == Operační systémy
  zde uvest imperativne nastaveovane os jako ubuntu, jine systemy, windows, a pod. kernel linux, jednoduche popsani
 
- moznost doplnit o vizualizace
+#figure(
+  include "figures/rollback.typ",
+  caption: [Modely aktualizace a návratu operačního systému. Zdroj: vlastní zpracování dle @transactionalupdate, @bootc a @nixosmanual.],
+)
 
 == Deklarativní sestavování
- vysvetleni vyhody deklarativnosti vs imperativnost, vysvetleni teorie za tim, uvest veci jako dockerfile, kube, bazsel a pod. Moznost doplnit o vizualizace
+ vysvetleni vyhody deklarativnosti vs imperativnost, vysvetleni teorie za tim, uvest veci jako dockerfile, kube, bazsel a pod.
+
+#figure(
+  include "figures/drift.typ",
+  caption: [Imperativní a deklarativní správa více hostitelů. Zdroj: vlastní zpracování.],
+)
+
+#figure(
+  include "figures/landscape.typ",
+  caption: [Role ve správě infrastruktury a nástroje, které je pokrývají. Zdroj: vlastní zpracování.],
+)
 
 == Kombinace deklarativnosti a operačního systému
 
 zminit nix a nixos, ktery to spojuje, rozebrat do hloubky, pak zduvodnit, proc jsem si to vybral ... pozn, navrh mi to kolega, moje cesta neni retrospektivni, neopak jsem se k tomu dostal omylem a pak jsem zjistoval vyhody
+
+#figure(
+  include "figures/nix-pipeline.typ",
+  caption: [Cesta od deklarace k nové generaci systému v Nix. Zdroj: vlastní zpracování dle @dolstra2006.],
+)
 
 
 #heading(numbering: none)[Závěr]
@@ -100,7 +118,7 @@ URL adresa webu:
 
 #heading(numbering: none)[Seznam obrázků, tabulek, grafů]
 
-Vygenerujte seznam obrázků použitých v~dokumentaci (obrázky musí mít zapsané titulky) včetně čísel stránek (stránky menší než polovina stránky mohou být vloženy ve stránce, bez obtékání textu, velké obrázky budou v~příloze).
+#outline(title: none, target: figure)
 
 #heading(numbering: none)[Přílohy]
 

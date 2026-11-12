@@ -21,6 +21,9 @@
   set par(leading: 0pt, spacing: para-gap, justify: true, first-line-indent: (amount: hang, all: true))
   set block(spacing: para-gap)
   set heading(numbering: "1.1.1")
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.caption: set text(size: toc-small)
+  show figure.caption: set par(justify: false, first-line-indent: 0pt)
   show link: it => if type(it.dest) == str { underline(text(fill: rgb("#0000FF"), it)) } else { it }
   show outline.entry: outline-entry
   show heading: heading-rule

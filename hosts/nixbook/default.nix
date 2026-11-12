@@ -17,6 +17,7 @@
     ../../services/phones/android/termux.nix
     ../../services/phones/ios/blink.nix
     ../../services/remarkable-setup.nix
+    ../../services/comin.nix
     # ../../services/kdrive.nix
     ../../services/printer.nix
     ../../services/sync/client.nix

@@ -15,7 +15,7 @@ let
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.tg
     ];
     text = ''
-      icon=✅🤤
+      icon=✅
       [ "$COMIN_STATUS" = "done" ] || icon=🥀
       text="$icon $COMIN_HOSTNAME ''${COMIN_GIT_SHA:0:7} $(head -n1 <<<"$COMIN_GIT_MSG")"
       [ -z "$COMIN_ERROR_MSG" ] || text="$text

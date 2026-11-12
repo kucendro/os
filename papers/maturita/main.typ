@@ -38,20 +38,19 @@ Cílem této práce je nabídnout uživateli možnost sestavit si vlastní infra
 
 = Analýza obdobných řešení
 
-Analyza podobnych reseni jako Bazel, Freeform apod.
+Výběr technologie pro tvorbu infrastruktury je nejklíčovějších rozhodnutím, protože další postup na něj navazuje. Ačkoliv se rozdíly v technologiích nemusejí zdát velké, chyba při výběru může vést k zdlouhavému procesu migrace dat a služeb na jiný substrát (rozumí se platformu). Tímto procesem si projde kdokoliv, kdo řeší infrastrukturu.
 
-== Bazel
+Řešení je mnoho, problém je aktuální od vzniku internetu a nepolevuje, nýbrž se, jen škáluje jak horizontálně (výpočetní výkon v datacentrech pokrývá větší geografickou plochu, větší počet datacenter), ale i vertikálně (přenosy dat jsou větší, mnohdy až TB/s viz. Midjourney Medical, moderní TPU/NPU AI datacentra). Může se zdát, že toto je problém řešitelný na straně síťového připojení, kdy se kladou extrémní nároky na přenosová média (optické kabely, metalické spoje, on-die čipové spoje). Pokud ale opomeneme software pohánějící hardware, narazíme na problém softwarové škálovatelnosti.
 
-Adresa: http:// …
+Vytvoření systému, který se dokáže dle potřeby a vytíženosti adaptovat a zároveň je plně deterministický je těžký inženýrský problém, na který existuje mnoho lepších i horších odpovědí. Při své cestě jsem měl možnost vyzkoušet používat a aplikovat více z nich.
 
-Popište web …
+== Operační systémy
 
-=== Kladné stránky
 
-#empty-par
+== Deklarativní sestavování
 
-=== Záporné stránky
-#empty-par
+
+== Kombinace deklarativnosti a operačního systému
 
 = Návrh projektu
 

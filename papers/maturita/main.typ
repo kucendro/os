@@ -45,42 +45,17 @@ Výběr technologie pro tvorbu infrastruktury je nejklíčovějším rozhodnutí
 Vytvoření systému, který se dokáže dle potřeby a vytíženosti adaptovat @verma2015 a zároveň je plně deterministický @dolstra2010, je těžký inženýrský problém, na který existuje mnoho lepších i horších odpovědí. Při své cestě jsem měl možnost vyzkoušet používat a aplikovat více z nich.
 
 == Operační systémy
+ zde uvest imperativne nastaveovane os jako ubuntu, jine systemy, windows, a pod. kernel linux, jednoduche popsani
 
+ moznost doplnit o vizualizace
 
 == Deklarativní sestavování
-
+ vysvetleni vyhody deklarativnosti vs imperativnost, vysvetleni teorie za tim, uvest veci jako dockerfile, kube, bazsel a pod. Moznost doplnit o vizualizace
 
 == Kombinace deklarativnosti a operačního systému
 
-= Návrh projektu
+zminit nix a nixos, ktery to spojuje, rozebrat do hloubky, pak zduvodnit, proc jsem si to vybral ... pozn, navrh mi to kolega, moje cesta neni retrospektivni, neopak jsem se k tomu dostal omylem a pak jsem zjistoval vyhody
 
-== Cílové skupiny
-
-Popište, pro koho budou webové stránky určeny.
-
-== Administrace webu
-
-Popište, kdo bude spravovat obsah webu a vložte odkaz na use~case diagram vložený jako obrázek do příloh.
-
-== Databáze
-
-Popište strukturu databáze a vložte odkaz na E-R diagram s~viditelnou strukturou tabulek a vyznačenými spojnicemi relací, vložený jako obrázek do příloh.
-
-== Design a responzivita
-
-Popište způsob řešení responzivního zobrazení, uveďte rozlišení, při kterém se bude měnit menu, sloupcové uspořádání obsahu apod. Vložte schématické návrhy designu a~odkaz na screenshoty stránek zobrazených na různých zařízeních, vložené do příloh.
-
-= Popis projektu
-
-Uveďte členění následujícího popisu.
-
-== Frontend
-
-Uveďte popis jednotlivých webových stránek.
-
-== Backend
-
-Uveďte popis a způsob administrace webových stránek (co kdo a jak může vkládat, mazat, editovat).
 
 #heading(numbering: none)[Závěr]
 

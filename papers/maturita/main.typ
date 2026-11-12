@@ -28,11 +28,13 @@ V současné době je zcela běžné, že uživatel vlastní více, než jedno e
 
 Uzavřením do jednoho ekosystému se uživatel vystavuje nebezpečí nekontrolovanému nárůstu výdajů. Společnosti využívají centralizace k vytvoření psychické iluze a emocionální vazby s produktem/ekosystémem. Často se tak v praxi setkáváme s tolerancí uživatele k nadsazeným cenám poskytovaných služeb a fenoménu „Nebudeš nic vlastnit. A budeš šťastný.“, tedy předpovědi Světového ekonomického fóra z roku 2016 @wef2016, jejíž důsledky pro vlastnictví kriticky rozebírají Stewart, Charles a Page @stewart2023. Rozpor mezi skutečným vlastnictvím a pouhým přístupem ke službě je přitom měřitelný. V reprezentativním experimentu s 1299 účastníky se více než 83 % z nich po kliknutí na tlačítko „Buy Now“ považovalo za vlastníky zakoupeného digitálního obsahu, přestože jim licenční podmínky přiznávaly pouze omezené právo jej užívat. Za skutečná vlastnická práva jsou přitom zákazníci ochotni zaplatit více @perzanowski2017.
 
+Do jisté míry je zmíněným fenoménem zasažen každý z nás. V západní společnosti ze za poslední dekády setkáváme s normalizací trendu primárně u mladé generace. Což je odůvodněno faktem, že mladí lidé neměli možnost prožít vlastnictví. Osobně, jakožto autor práce, se vnímám ovlivněn také.  
+To činí jeden z důvodů, proč jsem se ponořil do hlubších konceptů self-hosted služeb, decentralizace a technologické nezávislosti.
 
-V komerční sféře softwarových firem je běžnou praxí přesný opak. 
-Firmy shledávají za nejen finančně výhodnější, ale i bezpečnější a efektivnější provoz vlastních služeb. V praxi k tomu využívají vlastní hardware, síťovou infrastrukturu a software. Firmám tento způsob nabízí absolutní kontrolu nad jejich fungováním. Takový přístup je však pro běžného uživatele příliš složitý a nákladný. Cílem této práce je nabídnout uživateli možnost sestavit si vlastní infrastrukturu, která bude plně funkční a bezpečná, a to i na základě vlastního hardwaru. V práci je popsán návrh, realizace a testování takového řešení.
+V komerční sféře softwarových firem je praxí obdobný přístup. 
+Firmy shledávají za nejen finančně výhodnější, ale i bezpečnější a efektivnější provoz vlastních služeb. V praxi k tomu využívají vlastní hardware, síťovou infrastrukturu a software. Firmám tento způsob nabízí absolutní kontrolu nad jejich fungováním. Takový přístup je však pro běžného uživatele příliš složitý a nákladný.
 
-(doplnit moje vlastni cile, sitove infra atd).
+Cílem této práce je nabídnout uživateli možnost sestavit si vlastní infrastrukturu, která bude plně funkční a bezpečná, a to i na základě vlastního hardwaru. Práce je shrnutím mojí cesty s deklarativnímy systémy včetně blíže rozvedených rozhodnutí, vyvstalých úskalí a klíčových výhod. Blíže je popsán návrh, realizace a testování.
 
 = Analýza obdobných řešení
 

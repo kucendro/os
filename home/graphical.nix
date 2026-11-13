@@ -36,6 +36,7 @@
       grim
       slurp
       anki
+      zotero
     ]
     ++ lib.attrValues (import ../packages/artcraft.nix { inherit pkgs lib; });
 

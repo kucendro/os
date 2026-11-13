@@ -7,6 +7,7 @@ let
     duckduckgo = "bkdgflcldnnnapblkhphbgpggdiikppg";
     karakeep = "kgcjekpmcjjogibpjebkhaanilehneje";
     vimium = "dbepggeogbaibhgnhhndojpepiihcmeb";
+    zotero = "ekhagklcjbdpajgpjgmbionohlpdbjgc";
   };
 in
 {

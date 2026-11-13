@@ -81,6 +81,7 @@
     vscode
     phpstorm
     jetbrains.pycharm
+    rust-rover
     orca-slicer
     bambu-studio
     prusa-slicer

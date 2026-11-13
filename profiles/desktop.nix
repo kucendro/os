@@ -80,6 +80,7 @@
     slack
     vscode
     phpstorm
+    jetbrains.pycharm
     orca-slicer
     bambu-studio
     prusa-slicer

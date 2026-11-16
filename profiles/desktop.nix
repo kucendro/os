@@ -10,6 +10,7 @@
     ./graphical.nix
     ../display/plymouth.nix
     ../services/virtualization/win.nix
+    ../services/virtualization/ubuntu.nix
   ];
 
   hardware.bluetooth = {

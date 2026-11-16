@@ -10,6 +10,7 @@
       comment = "Windows 11";
       workspace = 11;
       key = "";
+      rdp = true;
       categories = [
         "System"
         "Office"

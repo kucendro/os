@@ -84,7 +84,7 @@ in
 
     settings = {
       shell = {
-        avatar_path = "${inputs.secrets}/profile.jpg";
+        avatar_path = "${inputs.secrets}/ondra_furrik.png";
         lang = "en";
         telemetry_enabled = false;
         clipboard_enabled = true;

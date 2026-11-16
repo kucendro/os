@@ -20,7 +20,7 @@
 let
   uri = "qemu:///system";
   ws = toString workspace;
-  rdpClass = "vm-${name}";
+  class = "vm-${name}";
 
   start = pkgs.writeShellApplication {
     name = launcher;
@@ -33,15 +33,11 @@ let
     ++ lib.optionals rdp [
       pkgs.coreutils
       pkgs.gawk
+      pkgs.jq
       pkgs.netcat
       pkgs.freerdp
     ];
     text = ''
-      exec 9>"$XDG_RUNTIME_DIR/vm-${name}.lock"
-      if ! flock -n 9; then
-        hyprctl dispatch workspace ${ws} >/dev/null 2>&1 || true
-        exit 0
-      fi
       state=$(virsh -c ${uri} domstate ${name} 2>/dev/null || true)
       case "$state" in
         running) ;;
@@ -49,6 +45,11 @@ let
         pmsuspended) virsh -c ${uri} dompmwakeup ${name} ;;
         *) virsh -c ${uri} start ${name} ;;
       esac
+      exec 9>"$XDG_RUNTIME_DIR/${class}.lock"
+      if ! flock -n 9; then
+        hyprctl dispatch workspace ${ws} >/dev/null 2>&1 || true
+        exit 0
+      fi
     ''
     + lib.optionalString rdp ''
       case "$state" in
@@ -58,28 +59,16 @@ let
       for _ in $(seq "$tries"); do
         ip=$(virsh -c ${uri} domifaddr ${name} 2>/dev/null | awk '$3 == "ipv4" { sub("/.*", "", $4); print $4; exit }')
         if [ -n "$ip" ] && nc -z -w 1 "$ip" 3389; then
-          SDL_APP_ID=${rdpClass} exec sdl-freerdp /v:"$ip" /cert:ignore +dynamic-resolution +clipboard /sound
+          size=$(hyprctl -j monitors | jq -r '.[] | select(.focused) | "\((.width / .scale | floor) - .reserved[0] - .reserved[2])x\((.height / .scale | floor) - .reserved[1] - .reserved[3])"')
+          SDL_APP_ID=${class} exec sdl-freerdp /v:"$ip" /size:"$size" /cert:ignore +dynamic-resolution +clipboard /sound
         fi
         sleep 1
       done
     ''
     + ''
-      exec virt-viewer -c ${uri} --attach --wait --reconnect --auto-resize=always ${name} "$@"
+      exec -a ${class} virt-viewer -c ${uri} --attach --wait --reconnect --auto-resize=always ${name} "$@"
     '';
   };
-
-  rule = id: matches: ''
-    windowrule {
-      name = ${id}
-    ${lib.concatMapStrings (m: "  ${m}\n") matches}  workspace = ${ws}
-      opacity = 1.0 override 1.0 override
-      no_dim = true
-      no_blur = true
-      no_shadow = true
-      rounding = 0
-      border_size = 0
-    }
-  '';
 in
 {
   environment.systemPackages = [
@@ -107,11 +96,18 @@ in
       ];
     };
 
-    extraConfig =
-      rule "vm-${name}" [
-        "match:class = ^(org\\.virt-manager\\.virt-viewer|virt-viewer|remote-viewer)$"
-        "match:title = ^.*\\b${name}\\b.*$"
-      ]
-      + lib.optionalString rdp (rule "vm-${name}-rdp" [ "match:class = ^${rdpClass}$" ]);
+    extraConfig = ''
+      windowrule {
+        name = ${class}
+        match:class = ^${class}$
+        workspace = ${ws}
+        opacity = 1.0 override 1.0 override
+        no_dim = true
+        no_blur = true
+        no_shadow = true
+        rounding = 0
+        border_size = 0
+      }
+    '';
   };
 }

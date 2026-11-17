@@ -12,14 +12,10 @@ let
   lib = nixpkgs.lib;
 
   overrides = {
-    edge = {
-      virtualisation.memorySize = 2048;
-      vm.skip = [ "metric-badges" ];
-    };
+    edge.virtualisation.memorySize = 2048;
     nas = {
       virtualisation.memorySize = 8192;
       vm.skip = [
-        "kucendro-github"
         "qore"
         "gitea-runner-nas"
         # "gitea-runner-ubuntu"

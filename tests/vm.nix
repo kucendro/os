@@ -88,6 +88,8 @@ in
 
     systemd.services."serial-getty@ttyS0".enable = lib.mkForce false;
 
+    systemd.targets.timers.enable = lib.mkForce false;
+
     services.tailscale.authKeyFile = lib.mkForce null;
 
     services.nixdiag.serve.docs = lib.mkIf config.services.nixdiag.serve.enable (

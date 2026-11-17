@@ -38,9 +38,9 @@
       cleanup = "uninstall";
       extraFlags = [ "--force" ];
     };
-
-    casks = [ "tailscale-app" ];
   };
+
+  services.tailscale.enable = true;
 
   system.stateVersion = 6;
 

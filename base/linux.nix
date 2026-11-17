@@ -34,8 +34,6 @@
       "loglevel=3"
     ];
     initrd = {
-      verbose = false;
-      systemd.enable = true;
       compressor = "zstd";
       compressorArgs = [
         "-19"

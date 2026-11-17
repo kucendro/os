@@ -1,4 +1,4 @@
-![plymoth](display/boot.png)
+<picture><source media="(prefers-color-scheme: dark)" srcset="display/boot.png"><img src="display/boot-light.png" alt="plymoth"></picture>
 
 <hr>
 

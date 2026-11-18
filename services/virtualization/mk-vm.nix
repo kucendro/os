@@ -47,7 +47,7 @@ let
       esac
       exec 9>"$XDG_RUNTIME_DIR/${class}.lock"
       if ! flock -n 9; then
-        hyprctl dispatch workspace ${ws} >/dev/null 2>&1 || true
+        hyprctl dispatch 'hl.dsp.focus({ workspace = ${ws} })' >/dev/null 2>&1 || true
         exit 0
       fi
     ''
@@ -87,27 +87,36 @@ in
 
   home-manager.users.${me.name}.wayland.windowManager.hyprland = {
     settings = {
-      workspace = [
-        "${ws}, defaultName:${desktopName}, gapsin:0, gapsout:0, rounding:false, border:false, shadow:false"
+      workspace_rule = [
+        {
+          workspace = ws;
+          default_name = desktopName;
+          gaps_in = 0;
+          gaps_out = 0;
+          no_rounding = true;
+          no_border = true;
+          no_shadow = true;
+        }
       ];
-      bind = lib.optionals (key != "") [
-        "$mainMod, ${key}, exec, ${lib.getExe start}"
-        "$mainMod SHIFT, ${key}, movetoworkspace, ${ws}"
+
+      window_rule = [
+        {
+          name = class;
+          match.class = "^${class}$";
+          workspace = ws;
+          opacity = "1.0 override 1.0 override";
+          no_dim = true;
+          no_blur = true;
+          no_shadow = true;
+          rounding = 0;
+          border_size = 0;
+        }
       ];
     };
 
-    extraConfig = ''
-      windowrule {
-        name = ${class}
-        match:class = ^${class}$
-        workspace = ${ws}
-        opacity = 1.0 override 1.0 override
-        no_dim = true
-        no_blur = true
-        no_shadow = true
-        rounding = 0
-        border_size = 0
-      }
+    extraConfig = lib.optionalString (key != "") ''
+      hl.bind("SUPER + ${key}", hl.dsp.exec_cmd("${lib.getExe start}"))
+      hl.bind("SUPER + SHIFT + ${key}", hl.dsp.window.move({ workspace = ${ws} }))
     '';
   };
 }

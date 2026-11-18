@@ -1,4 +1,7 @@
 { ... }:
+let
+  dpms = action: "hyprctl dispatch 'hl.dsp.dpms({ action = \"${action}\" })'";
+in
 {
   imports = [
     ../services/kdeconnect.nix
@@ -24,7 +27,7 @@
         general = {
           lock_cmd = "noctalia msg session lock";
           before_sleep_cmd = "loginctl lock-session";
-          after_sleep_cmd = "hyprctl dispatch dpms on";
+          after_sleep_cmd = dpms "on";
         };
         listener = [
           {
@@ -33,8 +36,8 @@
           }
           {
             timeout = 600;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
+            on-timeout = dpms "off";
+            on-resume = dpms "on";
           }
           {
             timeout = 1200;

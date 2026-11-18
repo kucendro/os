@@ -26,7 +26,7 @@ let
       fi
 
       hyprctl output create headless vr0 || true
-      hyprctl keyword monitor "vr0,3440x1440@60,auto,1" || true
+      hyprctl eval 'hl.monitor({ output = "vr0", mode = "3440x1440@60", position = "auto", scale = 1 })' || true
       wayvr || true
       hyprctl output remove vr0 || true
       systemctl --user stop monado || true
@@ -40,13 +40,11 @@ in
     vrSession
   ];
 
-  wayland.windowManager.hyprland.settings = {
-    permission = [
-      "/nix/store/.*/bin/wayvr, screencopy, allow"
-    ];
-
-    bind = [
-      "$mainMod, V, exec, vr"
-    ];
-  };
+  wayland.windowManager.hyprland.settings.permission = [
+    {
+      binary = "/nix/store/.*/bin/wayvr";
+      type = "screencopy";
+      mode = "allow";
+    }
+  ];
 }

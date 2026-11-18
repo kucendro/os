@@ -35,14 +35,21 @@ let
       fps="''${SUNSHINE_CLIENT_FPS:-60}"
       scale="''${SUNSHINE_CLIENT_SCALE:-1}"
 
+      for value in "$width" "$height" "$fps" "$scale"; do
+        if ! [[ $value =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+          echo "refusing non-numeric client mode value: $value" >&2
+          exit 1
+        fi
+      done
+
       if ! hyprctl monitors all -j | jq -e '.[] | select(.name == "${streamOutput}")' >/dev/null; then
         hyprctl output create headless ${streamOutput}
       fi
-      hyprctl keyword monitor "${streamOutput},''${width}x''${height}@''${fps},0x0,''${scale}"
+      hyprctl eval "hl.monitor({ output = \"${streamOutput}\", mode = \"''${width}x''${height}@''${fps}\", position = \"0x0\", scale = $scale })"
 
       hyprctl monitors -j | jq -r '.[] | select(.name != "${streamOutput}") | .name' \
         | while read -r mon; do
-            hyprctl keyword monitor "$mon,disable"
+            hyprctl eval "hl.monitor({ output = \"$mon\", disabled = true })"
           done
     '';
   };

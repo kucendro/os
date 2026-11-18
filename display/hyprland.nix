@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   me,
   profile,
   ...
@@ -10,237 +9,275 @@
 let
   c = config.lib.stylix.colors;
   isStream = profile == "workstation";
+  toLua = lib.generators.toLua { };
 
-  monitorConf =
-    if isStream then
-      { monitor = ",preferred,auto,1"; }
-    else
-      {
-        source = [
-          "$HOME/.config/hypr/monitors.conf"
-          "$HOME/.config/hypr/workspaces.conf"
-        ];
-      };
-
-  execOnce = [
+  autostart = [
     "LC_TIME=en_US.UTF-8 noctalia"
   ]
   ++ lib.optionals (!isStream) [
     "beeper & slack"
-    # "env QT_QPA_PLATFORM=xcb kdrive"
   ];
+
+  allow =
+    type: binaries:
+    map (binary: {
+      inherit binary type;
+      mode = "allow";
+    }) binaries;
 
   classes = names: "^(${lib.concatMapStringsSep "|" lib.escapeRegex names})$";
 in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    configType = "hyprlang";
+    configType = "lua";
 
     settings = {
-      xwayland = {
-        force_zero_scaling = true;
-      };
+      config = {
+        xwayland.force_zero_scaling = true;
 
-      exec-once = execOnce;
+        ecosystem.enforce_permissions = true;
 
-      ecosystem.enforce_permissions = 1;
+        general = {
+          gaps_in = 6;
+          gaps_out = 12;
+          border_size = 1;
+          "col.active_border" = lib.mkForce "rgb(${c.base04})";
+          "col.inactive_border" = lib.mkForce "rgb(${c.base02})";
+          resize_on_border = false;
+          allow_tearing = false;
+          layout = "dwindle";
+        };
 
-      permission = [
-        "/nix/store/.*/bin/grim, screencopy, allow"
-        "/nix/store/.*/bin/slurp, screencopy, allow"
-        "/nix/store/.*/bin/sunshine.*, screencopy, allow"
-        "/nix/store/.*/bin/.*noctalia.*, screencopy, allow"
-        "/nix/store/.*/libexec/xdg-desktop-portal-hyprland, screencopy, allow"
-        "/nix/store/.*/bin/hyprpm, plugin, allow"
-        "/nix/store/.*/bin/hyprctl, plugin, allow"
-      ];
+        decoration = {
+          rounding = 0;
+          shadow.enabled = false;
+          blur.enabled = false;
+        };
 
-      general = {
-        gaps_in = 6;
-        gaps_out = 12;
-        border_size = 1;
-        "col.active_border" = lib.mkForce "rgb(${c.base04})";
-        "col.inactive_border" = lib.mkForce "rgb(${c.base02})";
-        resize_on_border = false;
-        allow_tearing = false;
-        layout = "dwindle";
-      };
+        animations.enabled = true;
 
-      decoration = {
-        rounding = 0;
-        shadow.enabled = false;
-        blur.enabled = false;
-      };
+        dwindle = {
+          preserve_split = true;
+          smart_split = true;
+          force_split = 2;
+        };
 
-      animations = {
-        enabled = true;
-        bezier = [ "ease, 0.25, 0.1, 0.25, 1" ];
-        animation = [
-          "global, 1, 2.5, ease"
-          "windows, 1, 2.5, ease, slide top"
-          "layers, 1, 2.5, ease, slide top"
-          "workspaces, 1, 2.5, ease, slide"
-        ];
-      };
+        master.new_status = "master";
 
-      dwindle = {
-        preserve_split = true;
-        smart_split = true;
-        force_split = 2;
-      };
+        misc = {
+          force_default_wallpaper = 0;
+          disable_hyprland_logo = true;
+        };
 
-      master.new_status = "master";
-
-      misc = {
-        force_default_wallpaper = 0;
-        disable_hyprland_logo = true;
-      };
-
-      input = {
-        kb_layout = me.keyboard.layout;
-        kb_variant = ",qwerty";
-        kb_model = "pc104";
-        kb_options = "grp:alt_space_toggle";
-        kb_rules = "";
-        follow_mouse = 1;
-        sensitivity = 0;
-        touchpad = {
-          natural_scroll = true;
-          "tap-to-click" = true;
+        input = {
+          kb_layout = me.keyboard.layout;
+          kb_variant = ",qwerty";
+          kb_model = "pc104";
+          kb_options = "grp:alt_space_toggle";
+          follow_mouse = 1;
+          sensitivity = 0;
+          touchpad = {
+            natural_scroll = true;
+            tap_to_click = true;
+          };
         };
       };
 
-      gesture = [
-        "3, horizontal, workspace"
-        "3, vertical, workspace"
+      permission =
+        allow "screencopy" [
+          "/nix/store/.*/bin/grim"
+          "/nix/store/.*/bin/slurp"
+          "/nix/store/.*/bin/sunshine.*"
+          "/nix/store/.*/bin/.*noctalia.*"
+          "/nix/store/.*/libexec/xdg-desktop-portal-hyprland"
+        ]
+        ++ allow "plugin" [
+          "/nix/store/.*/bin/hyprpm"
+          "/nix/store/.*/bin/hyprctl"
+        ];
+
+      curve._args = [
+        "ease"
+        {
+          type = "bezier";
+          points = [
+            [
+              0.25
+              0.1
+            ]
+            [
+              0.25
+              1
+            ]
+          ];
+        }
       ];
 
-      "$mainMod" = "SUPER";
+      animation =
+        map
+          (
+            anim:
+            {
+              enabled = true;
+              speed = 2.5;
+              bezier = "ease";
+            }
+            // anim
+          )
+          [
+            { leaf = "global"; }
+            {
+              leaf = "windows";
+              style = "slide top";
+            }
+            {
+              leaf = "layers";
+              style = "slide top";
+            }
+            {
+              leaf = "workspaces";
+              style = "slide";
+            }
+          ];
 
-      bindr = [
-        "SUPER, SUPER_L, exec, noctalia msg panel-toggle launcher"
-      ];
+      gesture =
+        map
+          (direction: {
+            fingers = 3;
+            inherit direction;
+            action = "workspace";
+          })
+          [
+            "horizontal"
+            "vertical"
+          ];
 
-      bind = [
-        "$mainMod, A, exec, noctalia msg panel-toggle control-center"
-        "$mainMod, L, exec, noctalia msg session lock"
-        "$mainMod, V, exec, noctalia msg panel-toggle clipboard"
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-        "$mainMod CTRL, left, movewindow, l"
-        "$mainMod CTRL, right, movewindow, r"
-        "$mainMod CTRL, up, movewindow, u"
-        "$mainMod CTRL, down, movewindow, d"
-        "$mainMod SHIFT, left, resizeactive, -20 0"
-        "$mainMod SHIFT, right, resizeactive, 20 0"
-        "$mainMod SHIFT, up, resizeactive, 0 -20"
-        "$mainMod SHIFT, down, resizeactive, 0 20"
-        "$mainMod, P, pseudo,"
-        "$mainMod, S, exec, grim -g \"$(slurp)\" \"$HOME/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png\""
-        "$mainMod, F, togglefloating,"
-        "$mainMod, Q, killactive,"
-        "$mainMod, TAB, workspace, e+1"
-        "$mainMod SHIFT, TAB, movetoworkspace, e+1"
-        "$mainMod, W, togglespecialworkspace, magic"
-        "$mainMod SHIFT, W, movetoworkspace, special:magic"
-        "$mainMod CTRL, W, movetoworkspace, 1"
-        "$mainMod, +, exec, tmux attach -d -t default"
-        "$mainMod, period, exec, rofimoji --selector fuzzel --action type --typer wtype"
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-      ];
-
-      bindm = [
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-      ];
-
-      bindel = [
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ];
-    }
-    // monitorConf;
-
-    extraConfig = ''
-      windowrule {
-        name = suppress-maximize-events
-        match:class = .*
-        suppress_event = maximize, minimize
-      }
-      windowrule {
-        name = fix-xwayland-drags
-        match:class = ^$
-        match:title = ^$
-        match:xwayland = true
-        match:float = true
-        match:fullscreen = false
-        match:pin = false
-        no_focus = true
-      }
-      windowrule {
-        name = apple-music-to-special
-        match:class = ^(Apple music|apple music).*$
-        workspace = special:magic silent
-        opacity = 1
-      } 
-      windowrule {
-        name = float-apps
-        match:class = ${
-          classes [
+      window_rule = [
+        {
+          name = "suppress-maximize-events";
+          match.class = ".*";
+          suppress_event = "maximize minimize";
+        }
+        {
+          name = "fix-xwayland-drags";
+          match = {
+            class = "^$";
+            title = "^$";
+            xwayland = true;
+            float = true;
+            fullscreen = false;
+            pin = false;
+          };
+          no_focus = true;
+        }
+        {
+          name = "apple-music-to-special";
+          match.class = "^(Apple music|apple music).*$";
+          workspace = "special:magic silent";
+          opacity = "1";
+        }
+        {
+          name = "float-apps";
+          match.class = classes [
             "slack"
             "Beeper"
             "org.telegram.desktop"
             "org.gnome.Nautilus"
-          ]
+          ];
+          float = true;
+          center = true;
+          size = "70% 80%";
         }
-        float = yes
-        center = yes
-        size = 70% 80%
-      }
-      windowrule {
-        name = float-apps-native-size
-        match:class = ${
-          classes [
+        {
+          name = "float-apps-native-size";
+          match.class = classes [
             "scrcpy"
             "Emulator"
             "org.gnome.Calculator"
-          ]
+          ];
+          float = true;
+          center = true;
         }
-        float = yes
-        center = yes
+        {
+          name = "slack-no-initial-focus";
+          match.class = "^slack$";
+          no_initial_focus = true;
+        }
+        {
+          name = "float-dialogs";
+          match = {
+            class = "^$";
+            title = "^$";
+          };
+          float = true;
+          center = true;
+        }
+        {
+          name = "move-hyprland-run";
+          match.class = "hyprland-run";
+          move = "20 monitor_h-120";
+          float = true;
+        }
+        {
+          name = "float-netreg";
+          match = {
+            class = "^(netreg\\.exe)$";
+            title = "^(NetReg - .*)$";
+          };
+          float = true;
+          center = true;
+          size = "75% 80%";
+        }
+      ];
+    };
+
+    extraConfig = ''
+      ${
+        if isStream then
+          ''hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })''
+        else
+          ''pcall(require, "monitors")''
       }
-      windowrule {
-        name = slack-no-initial-focus
-        match:class = ^slack$
-        no_initial_focus = yes
-      }
-      windowrule {
-        name = float-dialogs
-        match:class = ^$
-        match:title = ^$
-        float = yes
-        center = yes
-      }
-      windowrule {
-        name = move-hyprland-run
-        match:class = hyprland-run
-        move = 20 monitor_h-120
-        float = yes
-      }
-      windowrule {
-        name = float-netreg
-        match:class = ^(netreg\.exe)$
-        match:title = ^(NetReg - .*)$
-        float = yes
-        center = yes
-        size = 75% 80%
-      }
+
+      hl.on("hyprland.start", function()
+      ${lib.concatMapStrings (cmd: "  hl.exec_cmd(${toLua cmd})\n") autostart}end)
+
+      hl.bind("SUPER_L", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), { release = true })
+      hl.bind("SUPER + A", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
+      hl.bind("SUPER + L", hl.dsp.exec_cmd("noctalia msg session lock"))
+      hl.bind("SUPER + V", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
+      hl.bind("SUPER + S", hl.dsp.exec_cmd('grim -g "$(slurp)" "$HOME/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png"'))
+      hl.bind("SUPER + period", hl.dsp.exec_cmd("rofimoji --selector fuzzel --action type --typer wtype"))
+
+      for _, dir in ipairs({ "left", "right", "up", "down" }) do
+        hl.bind("SUPER + " .. dir, hl.dsp.focus({ direction = dir }))
+        hl.bind("SUPER + CTRL + " .. dir, hl.dsp.window.move({ direction = dir }))
+      end
+      hl.bind("SUPER + SHIFT + left", hl.dsp.window.resize({ x = -20, y = 0, relative = true }))
+      hl.bind("SUPER + SHIFT + right", hl.dsp.window.resize({ x = 20, y = 0, relative = true }))
+      hl.bind("SUPER + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -20, relative = true }))
+      hl.bind("SUPER + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 20, relative = true }))
+
+      hl.bind("SUPER + P", hl.dsp.window.pseudo())
+      hl.bind("SUPER + F", hl.dsp.window.float({ action = "toggle" }))
+      hl.bind("SUPER + Q", hl.dsp.window.close())
+
+      hl.bind("SUPER + TAB", hl.dsp.focus({ workspace = "e+1" }))
+      hl.bind("SUPER + SHIFT + TAB", hl.dsp.window.move({ workspace = "e+1" }))
+      hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+      hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+      hl.bind("SUPER + W", hl.dsp.workspace.toggle_special("magic"))
+      hl.bind("SUPER + SHIFT + W", hl.dsp.window.move({ workspace = "special:magic" }))
+      hl.bind("SUPER + CTRL + W", hl.dsp.window.move({ workspace = 1 }))
+
+      hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
+      hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
+      hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
+      hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
     '';
   };
 }

@@ -280,11 +280,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789630024,
-        "narHash": "sha256-fu9soC/KnoQwz9EY/1jftO1K5NEBdu/2qiCli9+GAY0=",
+        "lastModified": 1795020926,
+        "narHash": "sha256-XhQxfhhzdvjiW8pq4K2v0CSj3O3k/hMEwAjPu0IjaSo=",
         "ref": "refs/heads/main",
-        "rev": "528561394ac46a7a3b4a2d05df0b614aaa266a0a",
-        "revCount": 15,
+        "rev": "a5eacca585dc6681924148536865e717a3d38c06",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@nas:2222/kucendro/lazybaka.git"
       },

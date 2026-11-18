@@ -79,6 +79,14 @@ let
   ) lockOutputs;
 in
 {
+  wayland.windowManager.hyprland.settings.layer_rule = [
+    {
+      name = "noctalia-no-anim";
+      match.namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
+      no_anim = true;
+    }
+  ];
+
   programs.noctalia = {
     enable = true;
 
@@ -90,9 +98,10 @@ in
         clipboard_enabled = true;
         clipboard_auto_paste = "off";
         settings_show_advanced = true;
-        corner_radius_scale = 0.25;
+        corner_radius_scale = 0.5;
 
         panel = {
+          transparency_mode = "glass";
           launcher_placement = "floating";
           launcher_position = "center";
           control_center_placement = "attached";
@@ -225,8 +234,8 @@ in
         margin_edge = 0;
         margin_ends = 0;
         radius = 0;
-        background_opacity = 1.0;
-        compositor_blur = false;
+        background_opacity = 0.55;
+        compositor_blur = true;
         shadow = false;
         hover_highlight = false;
         padding = 16;

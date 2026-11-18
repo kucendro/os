@@ -50,9 +50,14 @@ in
         };
 
         decoration = {
-          rounding = 0;
+          rounding = 6;
           shadow.enabled = false;
-          blur.enabled = false;
+          blur = {
+            enabled = true;
+            passes = 2;
+            brightness = 0.9;
+            noise = 0.02;
+          };
         };
 
         animations.enabled = true;

@@ -20,7 +20,9 @@ in
 {
   services.opentelemetry-collector = {
     enable = true;
-    package = pkgs.opentelemetry-collector-contrib;
+    package =
+      (pkgs.opentelemetry-collector-releases.override { buildGoModule = pkgs.buildGo126Module; })
+      .otelcol-contrib;
     settings = {
       receivers = {
         otlp.protocols.http.endpoint = "0.0.0.0:${toString otlpPort}";

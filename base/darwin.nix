@@ -38,6 +38,7 @@
       cleanup = "uninstall";
       extraFlags = [ "--force" ];
     };
+    casks = [ "raycast" ];
   };
 
   services.tailscale.enable = true;

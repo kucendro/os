@@ -70,7 +70,6 @@
   };
 
   programs = {
-    firefox.enable = true;
     evince.enable = true;
     kdeconnect.enable = true;
   };

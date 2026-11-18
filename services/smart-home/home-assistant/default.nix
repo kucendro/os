@@ -58,9 +58,12 @@ in
       "zeroconf"
     ];
 
+    customComponents = with pkgs.home-assistant-custom-components; [
+      uix
+    ];
+
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
       mushroom
-      card-mod
       horizon-card
       mini-graph-card
       battery-state-card

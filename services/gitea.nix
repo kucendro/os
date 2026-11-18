@@ -37,7 +37,6 @@ in
 
     settings = {
       server = {
-        DOMAIN = webDomain;
         ROOT_URL = "https://${webDomain}/";
         HTTP_ADDR = "0.0.0.0";
         HTTP_PORT = httpPort;

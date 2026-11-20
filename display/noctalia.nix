@@ -189,7 +189,13 @@ in
         effects = true;
       };
 
-      calendar.enabled = false;
+      calendar = {
+        enabled = true;
+        account.google = {
+          type = "google";
+          color = "tertiary";
+        };
+      };
       control_center.calendar = {
         show_events_card = true;
         show_week_numbers = false;
@@ -213,8 +219,6 @@ in
           "rylos/syncthing"
           "8bury/lid-guard"
           "dunarand/tmux-provider"
-          "lowcache/claude-companion"
-          "pozzoo/hassio"
         ];
         auto_update = "all";
       };
@@ -281,8 +285,8 @@ in
           focused_output_only = true;
           hide_when_empty = true;
           focused_color = "primary";
-          occupied_color = "outline";
-          empty_color = "outline";
+          occupied_color = "outline_variant";
+          empty_color = "outline_variant";
         };
 
         active_window.display = "icon_only";
@@ -301,7 +305,7 @@ in
         divider = {
           type = "text";
           text = "│";
-          color = "outline";
+          color = "outline_variant";
         };
         bar.type = "icefish/phone-connect:bar";
         tailnet = {

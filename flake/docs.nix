@@ -64,5 +64,5 @@ nixdiag.lib.mkDocs {
     "img/boot.png" = ../display/boot.png;
     "img/nixdiag.svg" = "${nixdiag}/assets/logo.svg";
   };
-  closures = true;
+  closures = false; # flip back to true
 }

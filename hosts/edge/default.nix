@@ -9,6 +9,7 @@
     ../../services/mesh/public.nix
     ../../services/mesh/proxied/services.nix
     ../../services/mesh/wiki.nix
+    ../../services/portfolio.nix
     ../../services/monitoring/hub.nix
     ../../services/monitoring/speed.nix
     ../../services/monitoring/3rd/badges

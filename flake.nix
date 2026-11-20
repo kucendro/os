@@ -47,11 +47,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # irlume = {
-    #   url = "github:archledger/irlume";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     secrets = {
       url = "git+ssh://git@nas:2222/kucendro/secrets.git";
       flake = false;
@@ -90,7 +85,6 @@
       nix-darwin,
       nixos-generators,
       deploy-rs,
-      # irlume,
       secrets,
       nixdiag,
       ...
@@ -112,7 +106,6 @@
           targetModule = ./hosts/nixbook;
           hardwareModule = ./hosts/nixbook/hw-configuration.nix;
           extraModules = [
-            # irlume.nixosModules.irlume
           ];
         };
 

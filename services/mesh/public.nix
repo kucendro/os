@@ -9,13 +9,6 @@ let
   nas = name: "nas.${me.domains.mesh}:${toString config.nodes.nas.mesh.ports.${name}}";
 
   publics = {
-    portfolio = {
-      host = me.domains.root;
-      address = nas "portfolio";
-    };
-    archive = {
-      address = nas "portfolio";
-    };
     assistant = {
       host = "mcp.assistant.${me.domains.root}";
       address = nas "home-assistant";

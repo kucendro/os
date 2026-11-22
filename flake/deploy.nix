@@ -8,7 +8,7 @@
   nodes = {
 
     edge = {
-      hostname = me.domains.edge;
+      hostname = "edge";
       sshUser = me.name;
       remoteBuild = false;
       profiles.system = {

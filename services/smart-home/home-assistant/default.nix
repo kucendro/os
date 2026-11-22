@@ -31,6 +31,11 @@ in
     enable = true;
     inherit configDir;
 
+    package = pkgs.home-assistant.overrideAttrs (old: {
+      patches = old.patches ++ [ ./matter-multipress.patch ];
+      doInstallCheck = false;
+    });
+
     extraComponents = [
       "default_config"
       "analytics"

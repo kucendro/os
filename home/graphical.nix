@@ -30,6 +30,7 @@
       gpu-screen-recorder
       moonlight-qt
       gnome-network-displays
+      gnome-disk-utility
       nwg-displays
       adwaita-icon-theme
       gnome-keyring

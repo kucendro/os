@@ -23,7 +23,7 @@ jobs:
         run: nix --extra-experimental-features "nix-command flakes" flake update
 
       - name: CHECKING
-        run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
+        run: nix --extra-experimental-features "nix-command flakes" flake check -L
 
       - name: COMMITING
         id: commit

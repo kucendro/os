@@ -30,7 +30,7 @@ jobs:
         run: git verify-commit HEAD
 
       - name: CHECKING
-        run: nix --extra-experimental-features "nix-command flakes" flake check --no-build
+        run: nix --extra-experimental-features "nix-command flakes" flake check -L
 
       - name: BUILDING
         run: |

@@ -6,6 +6,7 @@
     ./disko.nix
     ./data.nix
     ./reliability.nix
+    ./nixbuild.nix
     # ./tethering.nix
     ../../services/mesh/subnet-router.nix
     ../../services/smart-home

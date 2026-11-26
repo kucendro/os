@@ -8,7 +8,11 @@
   security.rtkit.enable = true;
 
   services = {
-    gnome.gnome-keyring.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+      evolution-data-server.enable = true;
+      gnome-online-accounts.enable = true;
+    };
 
     pipewire = {
       enable = true;

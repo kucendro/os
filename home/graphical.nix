@@ -31,7 +31,7 @@
       moonlight-qt
       gnome-network-displays
       gnome-disk-utility
-      gnome-control-center
+      gnome-online-accounts-gtk
       gnome-clocks
       gnome-maps
       gnome-system-monitor
@@ -39,6 +39,7 @@
       gnome-contacts
       gnome-music
       gnome-sound-recorder
+      gnome-calendar
       nwg-displays
       adwaita-icon-theme
       gnome-keyring

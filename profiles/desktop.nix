@@ -72,6 +72,7 @@
   programs = {
     evince.enable = true;
     kdeconnect.enable = true;
+    yubikey-manager.enable = true;
   };
 
   virtualisation.waydroid.enable = true;

@@ -186,7 +186,7 @@
       checks = nixpkgs.lib.genAttrs systems (
         system:
         {
-          inherit
+          deploy-schema =
             (deploy-rs.lib.${system}.deployChecks (
               self.deploy
               // {
@@ -194,9 +194,8 @@
                   _: node: node.profiles.system.path.system == system
                 ) self.deploy.nodes;
               }
-            ))
-            deploy-schema
-            ;
+            )).deploy-schema.overrideAttrs
+              { preferLocalBuild = true; };
         }
         // import ./flake/checks.nix { inherit nixpkgs self; } system
         // nixpkgs.lib.optionalAttrs (nixpkgs.lib.hasSuffix "-linux" system) (

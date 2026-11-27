@@ -8,6 +8,7 @@
   imports = [
     ../../base/darwin.nix
     ../../services/sync/client-darwin.nix
+    ../../services/comin/darwin.nix
   ];
 
   environment.systemPackages =

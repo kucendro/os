@@ -26,7 +26,7 @@
     ../../services/monitoring/3rd/kaiwadb.nix
     ../../services/monitoring/3rd/telegram.nix
     ../../services/gitea.nix
-    ../../services/comin.nix
+    ../../services/comin
     ../../services/cache.nix
     ../../services/mcp.nix
     ../../services/opencode.nix

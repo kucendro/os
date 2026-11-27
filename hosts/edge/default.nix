@@ -13,7 +13,7 @@
     ../../services/monitoring/hub.nix
     ../../services/monitoring/speed.nix
     ../../services/monitoring/3rd/badges
-    ../../services/comin.nix
+    ../../services/comin
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";

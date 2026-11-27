@@ -22,39 +22,36 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: STARTING
+      - name: START
         run: echo "started=$(date +%s)" >> "$GITHUB_ENV"
 
-      - name: VERIFYING
+      - name: VERIFY COMMIT SIGNATURE
         id: signature
         run: git verify-commit HEAD
 
-      - name: CHECKING
+      - name: CHECK FLAKE & BUILDING
         run: nix --extra-experimental-features "nix-command flakes" flake check -L
 
-      - name: BUILDING
+      - name: ARCHIVE FLAKE INPUTS
         run: |
           set -euo pipefail
-          mkdir -p /var/lib/gitea-runner/gcroots
+          roots=/var/lib/gitea-runner/gcroots
+          rm -rf "${roots:?}"/*
 
-          hosts=$(nix --extra-experimental-features "nix-command flakes" eval --raw \
-            ".#nixosConfigurations" \
-            --apply 'cfgs: builtins.concatStringsSep " " (builtins.attrNames cfgs)')
+          nix --extra-experimental-features "nix-command flakes" flake archive --json \
+            | grep -o '/nix/store/[^"]*' \
+            | while read -r path; do
+                nix-store --add-root "$roots/$(basename "$path")" --realise "$path" > /dev/null
+              done
 
-          for host in $hosts; do
-            nix --extra-experimental-features "nix-command flakes" build \
-              ".#nixosConfigurations.$host.config.system.build.toplevel" \
-              --out-link "/var/lib/gitea-runner/gcroots/$host"
-          done
-
-      - name: PROMOTING
+      - name: PROMOTE
         run: git push ssh://git@nas:2222/kucendro/os.git HEAD:deploy
 
-      - name: REPORTING
+      - name: PUSH TO GRAFANA
         if: always()
         run: nix --extra-experimental-features "nix-command flakes" run .#ci-report -- deploy "${{ job.status }}" "$started"
 
-      - name: FAILING
+      - name: FAIL (IF SO)
         if: failure()
         run: |
           reason="deploy failed"

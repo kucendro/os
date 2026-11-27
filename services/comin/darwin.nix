@@ -20,6 +20,9 @@
         pkgs
         ;
     })
-    { exporter.listen_address = "127.0.0.1"; }
+    {
+      exporter.listen_address = "127.0.0.1";
+      grpc.unix_socket_group = "admin";
+    }
   ];
 }

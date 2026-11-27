@@ -90,6 +90,10 @@ in
 
     systemd.targets.timers.enable = lib.mkForce false;
 
+    systemd.services.postgresql = lib.mkIf config.services.postgresql.enable {
+      serviceConfig.TimeoutSec = lib.mkForce 600;
+    };
+
     services.tailscale.authKeyFile = lib.mkForce null;
 
     services.nixdiag.serve.docs = lib.mkIf config.services.nixdiag.serve.enable (

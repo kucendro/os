@@ -38,7 +38,10 @@
       cleanup = "uninstall";
       extraFlags = [ "--force" ];
     };
-    casks = [ "raycast" ];
+    casks = [
+      "ghostty"
+      "raycast"
+    ];
   };
 
   services.tailscale.enable = true;
@@ -51,8 +54,5 @@
 
   environment.variables.NH_FLAKE = "/Users/${me.name}/${flakeDir}";
   environment.systemPath = [ "/opt/homebrew/bin" ];
-  environment.systemPackages = [
-    pkgs.ghostty-bin
-    pkgs.nh
-  ];
+  environment.systemPackages = [ pkgs.nh ];
 }
